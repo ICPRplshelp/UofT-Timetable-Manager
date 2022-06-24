@@ -6,7 +6,7 @@ import java.util.List;
 public class BreadthRequirement {
 
     private final double courseWeight;
-    public List<Integer> brFilled;
+    private final List<Integer> brFilled;
 
     public BreadthRequirement(String brqString, double courseWeight) {
         brFilled = new ArrayList<>();
