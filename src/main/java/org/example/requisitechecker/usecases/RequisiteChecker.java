@@ -15,6 +15,17 @@ public class RequisiteChecker {
 
     /**
      * Creates this class.
+     * This overload always assumes exclusionMode is false.
+     *
+     * @param reqString a copy-paste of any UofT prerequisite from
+     *                  the ArtSci timetable.
+     */
+    public RequisiteChecker(String reqString) {
+        this(reqString, false);
+    }
+
+    /**
+     * Creates this class.
      *
      * @param reqString a copy-paste of any UofT prerequisite from
      *                  the ArtSci timetable.
@@ -26,6 +37,7 @@ public class RequisiteChecker {
                 new ExclusionListBuilder() : new PrerequisiteListBuilder();
         this.templateList = requisiteListBuilder.buildRequisiteList(reqString);
     }
+    
 
     /**
      * Given a collection of courses, this method
