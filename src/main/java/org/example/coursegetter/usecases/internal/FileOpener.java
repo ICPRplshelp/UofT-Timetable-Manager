@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class FileOpener {
+class FileOpener {
 
     /**
      * Reads and returns the text contents of the file passed in.

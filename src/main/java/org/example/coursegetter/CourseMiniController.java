@@ -8,13 +8,12 @@ import org.example.coursegetter.usecases.CourseSearcherGetter;
  */
 public class CourseMiniController {
 
-    // feel free to do what you want with this thing
     private final CourseSearcher courseSearcher;
 
 
     public CourseMiniController() {
-        var temp = new CourseSearcherGetter();
-        courseSearcher = temp.csr;
+        CourseSearcherGetter csgTemp = new CourseSearcherGetter();
+        courseSearcher = csgTemp.getCourseSearcher();
     }
 
 
