@@ -1,4 +1,4 @@
-package org.example.entities.courserelated;
+package org.example.coursegetter.entities;
 
 import java.util.ArrayList;
 import java.util.List;

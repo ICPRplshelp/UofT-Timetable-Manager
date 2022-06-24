@@ -1,4 +1,4 @@
-package org.example.usecases;
+package org.example.coursegetter.usecases.internal;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

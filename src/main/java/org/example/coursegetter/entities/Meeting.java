@@ -1,4 +1,4 @@
-package org.example.entities.courserelated;
+package org.example.coursegetter.entities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Meeting {
     public final String online;
     public final List<ScheduleEntry> scheduleEntryList = new ArrayList<>();
 
-    public Meeting(Map<String, Object> mInfo){
+    public Meeting(Map<String, Object> mInfo) {
         this.cancel = (String) mInfo.get("cancel");
         this.sectionNumber = (String) mInfo.get("sectionNumber");
         this.enrollmentCapacity = (String) mInfo.get("enrollmentCapacity");
@@ -28,10 +28,24 @@ public class Meeting {
         this.subtitle = (String) mInfo.get("subtitle");
         this.waitlist = (String) mInfo.get("waitlist");
         this.online = (String) mInfo.get("online");
-        Map<String, Object> tempScheduleMap = ((Map<String, Object>) mInfo.get("schedule"));
-        for (var tse : tempScheduleMap.values()){
-            ScheduleEntry se = new ScheduleEntry((Map<String, Object>) tse);
-            scheduleEntryList.add(se);
+
+        // System.out.println(mInfo.get("schedule"));
+        Object tempSchedule = mInfo.get("schedule");
+        Map<String, Object> tempScheduleMap;
+        if (tempSchedule instanceof Map) {
+            tempScheduleMap = ((Map<String, Object>) mInfo.get("schedule"));
+            for (var tse : tempScheduleMap.values()) {
+                ScheduleEntry se;
+                if (tse instanceof Map) {
+                    se = new ScheduleEntry((Map<String, Object>) tse);
+                    scheduleEntryList.add(se);
+                }
+            }
         }
+    }
+
+    @Override
+    public String toString() {
+        return this.teachingMethod + this.sectionNumber;
     }
 }

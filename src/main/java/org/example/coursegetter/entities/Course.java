@@ -1,4 +1,4 @@
-package org.example.entities.courserelated;
+package org.example.coursegetter.entities;
 
 import java.util.Map;
 
@@ -17,6 +17,7 @@ public class Course {
     public final String courseTitle;
     public final String corequisite;
     public final Meetings meetings;
+    public final int brq;
 
     public Course(Map<String, Object> cInfo){
         this.orgName = (String) cInfo.get("orgName");
@@ -33,5 +34,27 @@ public class Course {
         this.courseTitle = (String) cInfo.get("courseTitle");
         this.corequisite = (String) cInfo.get("corequisite");
         this.meetings = new Meetings((Map<String, Object>) cInfo.get("meetings"));
+        this.brq = calculateBrq(this.breadthCategories);
+    }
+
+    /**
+     * Calculates the breadth requirement of a course
+     * based on its breadth requirement description.
+     * @param brqDesc the breadth category description.
+     * @return the BRQ number or 0 if it doesn't fullfill in any
+     * breadth requirement.
+     */
+    private int calculateBrq(String brqDesc){
+        for(int i = 1; i <= 5; i++){
+            if(brqDesc.contains(Integer.toString(i))){
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return this.code + "-" + this.section;
     }
 }

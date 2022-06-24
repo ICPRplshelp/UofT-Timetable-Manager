@@ -1,4 +1,4 @@
-package org.example.entities.courserelated;
+package org.example.coursegetter.entities;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -76,5 +76,10 @@ public class ScheduleEntry {
             default:
                 return null;
         }
+    }
+
+    @Override
+    public String toString() {
+        return this.meetingDay + " " + this.meetingStartTime + "-" + this.meetingEndTime;
     }
 }
