@@ -5,6 +5,7 @@ import org.example.coursegetter.entities.CourseStorage;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,7 +26,7 @@ public class CourseSearcher {
      * @param crsCode the course code such as MAT135H1
      * @return a collection of courses such as MAT135H1-F, MAT135H1-S, MAT135H1-Y
      */
-    public Collection<Course> searchCourseByCourseCode(String crsCode){
+    public Collection<Course> getCourseByCourseCode(String crsCode){
         ArrayList<Course> courseList = new ArrayList<>();
         String[] suffixes = {"-F", "-S", "-Y"};
         for(String suffix : suffixes){
@@ -35,6 +36,26 @@ public class CourseSearcher {
                 courseList.add(tempCourse);
         }
         return courseList;
+    }
+
+    /**
+     * Returns a set of all courses that can be reached from the given course
+     * storage.
+     *
+     * @return a set of all courses that can be reached from the given course storage.
+     */
+    public Set<String> getAllCoursesOfferingList(){
+        return courseStorage.getCourseOfferingListAsString();
+    }
+
+    /**
+     * Returns a set of all courses that can be reached from the given course
+     * storage.
+     *
+     * @return a set of all courses that can be reached from the given course storage.
+     */
+    public Set<String> getAllCoursesList(){
+        return courseStorage.getCourseListAsString();
     }
 
 

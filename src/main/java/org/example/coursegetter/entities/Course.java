@@ -3,6 +3,7 @@ package org.example.coursegetter.entities;
 import java.util.Map;
 
 public class Course {
+    public final double creditValue;
     public final String orgName;
     public final String code;
     public final String webTimetableInstructions;
@@ -17,11 +18,13 @@ public class Course {
     public final String courseTitle;
     public final String corequisite;
     public final Meetings meetings;
-    public final int brq;
+    // public final int brq;
+    public final BreadthRequirement brc;
 
     public Course(Map<String, Object> cInfo){
         this.orgName = (String) cInfo.get("orgName");
         this.code = (String) cInfo.get("code");
+        this.creditValue = this.code.charAt(6) == 'Y' ? 1 : 0.5;
         this.webTimetableInstructions = (String) cInfo.get("webTimetableInstructions");
         this.org = (String) cInfo.get("org");
         this.session = (String) cInfo.get("session");
@@ -34,7 +37,8 @@ public class Course {
         this.courseTitle = (String) cInfo.get("courseTitle");
         this.corequisite = (String) cInfo.get("corequisite");
         this.meetings = new Meetings((Map<String, Object>) cInfo.get("meetings"));
-        this.brq = calculateBrq(this.breadthCategories);
+        // this.brq = calculateBrq(this.breadthCategories);
+        this.brc = new BreadthRequirement(this.breadthCategories, this.creditValue);
     }
 
     /**

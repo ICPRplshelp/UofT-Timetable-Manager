@@ -1,8 +1,7 @@
 package org.example.coursegetter.entities;
 
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Set;
 
 public class CourseStorage {
     private final Map<String, Course> courses;
@@ -10,7 +9,11 @@ public class CourseStorage {
     // only UTSG courses are supported
 
 
-
+    /**
+     * Create a course storage.
+     * @param courseMap a map of courses.
+     * @param session the session of the courses.
+     */
     public CourseStorage(Map<String, Course> courseMap, String session) {
         this.courses = courseMap;
         this.session = session;
@@ -26,5 +29,25 @@ public class CourseStorage {
         return courses.get(fullCourseCode);
     }
 
+    /**
+     * Gets a set of all the course offering codes.
+     * @return a set of all the course codes.
+     */
+    public Set<String> getCourseOfferingListAsString(){
+        Set<String> tempKeySet = courses.keySet();
+        Set<String> newSet = new java.util.HashSet<>();
+        tempKeySet.forEach(key -> newSet.add(key.substring(0, key.length() - 6)));
+        return newSet;
+    }
 
+    /**
+     * Gets a set of all the course codes.
+     * @return a set of all the course codes.
+     */
+    public Set<String> getCourseListAsString(){
+        Set<String> tempKeySet = courses.keySet();
+        Set<String> newSet = new java.util.HashSet<>();
+        tempKeySet.forEach(key -> newSet.add(key.substring(0, key.length() - 8)));
+        return newSet;
+    }
 }
