@@ -28,7 +28,7 @@ public class BreadthRequirement {
     public double breadthWeight(int brCategory){
         double divs = brFilled.size();
         if(brFilled.contains(brCategory)){
-            return (double) courseWeight / divs;
+            return courseWeight / divs;
         }
         return 0.0;  // otherwise
     }
@@ -36,8 +36,8 @@ public class BreadthRequirement {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        brFilled.forEach(n -> {sb.append(String.format("%.1f credits in BR%d, ",
-                breadthWeight(n), n));});
+        brFilled.forEach(n -> sb.append(String.format("%.1f credits in BR%d, ",
+                breadthWeight(n), n)));
         if (sb.length() >= 2) {
             sb.setLength(sb.length() - 2);
         }
