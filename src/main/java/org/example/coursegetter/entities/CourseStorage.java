@@ -31,6 +31,9 @@ public class CourseStorage {
 
     /**
      * Gets a set of all the course offering codes.
+     * The set is a copy, so mutating will not
+     * affect the original course storage.
+     *
      * @return a set of all the course codes.
      */
     public Set<String> getCourseOfferingListAsString(){
@@ -42,6 +45,9 @@ public class CourseStorage {
 
     /**
      * Gets a set of all the course codes.
+     * The set is a copy, so mutating will not
+     * affect the original course storage.
+     *
      * @return a set of all the course codes.
      */
     public Set<String> getCourseListAsString(){

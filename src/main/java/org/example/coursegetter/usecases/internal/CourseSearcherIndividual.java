@@ -9,14 +9,22 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CourseSearcher {
+/**
+ * This class may be used to:
+ * - Return all searchable code
+ * - Get information about one course
+ *
+ * This class may not be used to query multiple courses.
+ * That's too overwhelming to implement.
+ */
+public class CourseSearcherIndividual {
 
     private CourseStorage courseStorage;
-    private final Pattern[] coursePatterns = {Pattern.compile("[A-Z]{3}[0-4]\\d{2}[H|Y][01]-[F|S|Y]"),
-            Pattern.compile("[A-Z]{3}[0-4]\\d{2}[H|Y][01][F|S|Y]"),
-            Pattern.compile("[A-Z]{3}[0-4]\\d{2}[H|Y][01] [F|S|Y]")};
+    private final Pattern[] coursePatterns = {Pattern.compile("[A-Z]{3}[0-4]\\d{2}[HY][01]-[FSY]"),
+            Pattern.compile("[A-Z]{3}[0-4]\\d{2}[HY][01][FSY]"),
+            Pattern.compile("[A-Z]{3}[0-4]\\d{2}[HY][01] [FSY]")};
 
-    public CourseSearcher(CourseStorage courseStorage) {
+    public CourseSearcherIndividual(CourseStorage courseStorage) {
         this.courseStorage = courseStorage;
     }
 

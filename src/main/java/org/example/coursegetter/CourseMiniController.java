@@ -1,6 +1,6 @@
 package org.example.coursegetter;
 
-import org.example.coursegetter.usecases.internal.CourseSearcher;
+import org.example.coursegetter.usecases.internal.CourseSearcherIndividual;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 
 /**
@@ -8,12 +8,12 @@ import org.example.coursegetter.usecases.CourseSearcherGetter;
  */
 public class CourseMiniController {
 
-    private final CourseSearcher courseSearcher;
+    private final CourseSearcherIndividual courseSearcherIndividual;
 
 
     public CourseMiniController() {
         CourseSearcherGetter csgTemp = new CourseSearcherGetter();
-        courseSearcher = csgTemp.getCourseSearcher();
+        courseSearcherIndividual = csgTemp.getCourseSearcher();
     }
 
 

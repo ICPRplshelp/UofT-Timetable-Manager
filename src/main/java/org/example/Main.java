@@ -1,13 +1,12 @@
 package org.example;
 
 import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.coursegetter.usecases.internal.CourseListObtainer;
-import org.example.coursegetter.usecases.internal.CourseSearcher;
+import org.example.coursegetter.usecases.internal.CourseSearcherIndividual;
 
 public class Main {
     public static void main(String[] args) {
         CourseSearcherGetter csgTemp = new CourseSearcherGetter();
-        CourseSearcher courseSearcher = csgTemp.getCourseSearcher();
+        CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
         // debug here
         System.out.println("DONE");
 //        FileOpener fo = new FileOpener();
