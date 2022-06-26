@@ -4,12 +4,15 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Map;
 
-public class ScheduleEntry {
-    public final String assignedRoom1;
-    public final String assignedRoom2;
+public class ScheduleEntry implements Comparable<ScheduleEntry> {
+    private final String assignedRoom1;  // room in the fall.
+    // always null if the course
+    // is an S course.
+    private final String assignedRoom2;  // room in the winter.
     public final String meetingStartTime;
     public final String meetingDay;
     public final String meetingEndTime;
+
 
     public ScheduleEntry(Map<String, Object> sInfo) {
         this.assignedRoom1 = (String) sInfo.get("assignedRoom1");
@@ -58,6 +61,7 @@ public class ScheduleEntry {
      * meeting is async.
      */
     public DayOfWeek getDay() {
+        if(meetingDay == null) return null;
         switch(meetingDay) {
             case "MO":
                 return DayOfWeek.MONDAY;
@@ -81,5 +85,38 @@ public class ScheduleEntry {
     @Override
     public String toString() {
         return this.meetingDay + " " + this.meetingStartTime + "-" + this.meetingEndTime;
+    }
+
+    /**
+     * @param o the other schedule entry to be compared.
+     * @return -1, 0, 1 depending on which schedule entry
+     * STARTS earlier or later.
+     * Async schedule entries are assumed to start earlier than monday 12AM.
+     */
+    @Override
+    public int compareTo(ScheduleEntry o) {
+        int asyncCode = dealWithAsync(o);
+        if (asyncCode != 0) return asyncCode == 2 ? 0 : asyncCode;
+        // step 1: compare dates
+
+        int thisDay = this.getDay().getValue();
+        int otherDay = o.getDay().getValue();
+        if (thisDay < otherDay) return -1;
+        else if (thisDay > otherDay) return 1;
+        // step 2: eliminate null cases
+
+        // we can now assert that both this and o are NOT async
+        // the days are the same, then compare timings
+        return this.getStartTime().compareTo(o.getStartTime());
+    }
+
+    private int dealWithAsync(ScheduleEntry o){
+        if (this.isAsync() && !o.isAsync()){
+            return -1;
+        } else if (!this.isAsync() && o.isAsync()){
+            return 1;
+        } else if(this.isAsync() && o.isAsync()){
+            return 2;
+        } else return 0;
     }
 }

@@ -9,12 +9,9 @@ public class Main {
         CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
         // CREATE A BREAKPOINT AND DEBUG HERE TO TEST COURSES
         System.out.println("DONE");
-//        FileOpener fo = new FileOpener();
-//        CourseReader cr = new CourseReader();
-//        String crsJsonAsStr = fo.readFile("src\\coursesMASTER.json");
-//        Map<String, Course> crses = cr.getCourses(crsJsonAsStr);
-//        CourseStorage cs = new CourseStorage(crses, "20229");
-//        System.out.println("DONE");
-        // System.out.println("FINISHED!!");
+
+        var ts = courseSearcherIndividual.getCourseOfferingByCode("MAT137Y1-Y")
+                .meetings.getLectures().get("LEC0201").getScheduleEntries();
+        System.out.println(ts);
     }
 }

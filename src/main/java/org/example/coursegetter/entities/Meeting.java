@@ -1,8 +1,6 @@
 package org.example.coursegetter.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Meeting {
     public final String cancel;
@@ -15,7 +13,7 @@ public class Meeting {
     public final String subtitle;
     public final String waitlist;
     public final String online;
-    public final List<ScheduleEntry> scheduleEntryList = new ArrayList<>();
+    private final Set<ScheduleEntry> scheduleEntryList = new TreeSet<>();
 
     public Meeting(Map<String, Object> mInfo) {
         this.cancel = (String) mInfo.get("cancel");
@@ -42,6 +40,17 @@ public class Meeting {
                 }
             }
         }
+    }
+
+    /**
+     * Returns the schedule entries of the course.
+     * That is, the list of times you have to actually go there.
+     *
+     * @return the schedule entries of this course, sorted by the day
+     * and time of the week.
+     */
+    public Set<ScheduleEntry> getScheduleEntries() {
+        return Collections.unmodifiableSet(scheduleEntryList);
     }
 
     @Override

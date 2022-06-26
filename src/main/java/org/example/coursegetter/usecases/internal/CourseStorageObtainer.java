@@ -13,7 +13,7 @@ import java.util.Map;
  * It would be much better if we obtained this from the UofT API,
  * but no, I'm not doing it.
  */
-public class CourseListObtainer {
+public class CourseStorageObtainer {
 
     /**
      * Locally extracts every course, which is saved in this repository.
