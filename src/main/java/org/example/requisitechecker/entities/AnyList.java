@@ -31,4 +31,9 @@ public class AnyList extends TemplateList {
         var temp = crses.toString();
         return "(" + temp.substring(1, temp.length() - 1) + ")";
     }
+
+    @Override
+    public boolean alwaysTrue(){
+        return crses.size() == 0;
+    }
 }
