@@ -1,11 +1,17 @@
 package org.example.coursegetter.entities;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
 public class CourseStorage {
     private final Map<String, Course> courses;
-    public final String session;
+
+    public String getSession() {
+        return session;
+    }
+
+    private final String session;
     // only UTSG courses are supported
 
 
@@ -31,8 +37,6 @@ public class CourseStorage {
 
     /**
      * Gets a set of all the course offering codes.
-     * The set is a copy, so mutating will not
-     * affect the original course storage.
      *
      * @return a set of all the course codes.
      */
@@ -40,7 +44,7 @@ public class CourseStorage {
         Set<String> tempKeySet = courses.keySet();
         Set<String> newSet = new java.util.HashSet<>();
         tempKeySet.forEach(key -> newSet.add(key.substring(0, key.length() - 6)));
-        return newSet;
+        return Collections.unmodifiableSet(newSet);
     }
 
     /**
@@ -54,6 +58,6 @@ public class CourseStorage {
         Set<String> tempKeySet = courses.keySet();
         Set<String> newSet = new java.util.HashSet<>();
         tempKeySet.forEach(key -> newSet.add(key.substring(0, key.length() - 8)));
-        return newSet;
+        return Collections.unmodifiableSet(newSet);
     }
 }

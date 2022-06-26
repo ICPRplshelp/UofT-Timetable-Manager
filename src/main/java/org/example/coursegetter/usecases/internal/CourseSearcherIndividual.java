@@ -52,7 +52,7 @@ public class CourseSearcherIndividual {
     public Course getCourseOfferingByCode(String crsCode) {
         String searchableCourse = courseInputValidator.courseOfferingToSearchableCourse(crsCode);
         if(searchableCourse == null) return null;
-        searchableCourse += "-" + courseStorage.session;
+        searchableCourse += "-" + courseStorage.getSession();
         return courseStorage.getCourse(searchableCourse);
     }
 
