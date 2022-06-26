@@ -4,6 +4,11 @@ import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.entities.CourseStorage;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,8 +25,17 @@ public class CourseStorageObtainer {
      * @return a CourseStorage object holding every FW2022-2023 course.
      */
     public CourseStorage obtainAllCourses(){
-        FileOpener fo = new FileOpener();
-        String crsJsonAsStr = fo.readFile("src\\coursesMASTER.json");
+
+        // URL url = getClass().getResource("coursesCSC.json");
+        String pathToFile = "src/coursesMASTER.json";
+        String crsJsonAsStr;
+        try {
+            crsJsonAsStr = Files.readString(Path.of(pathToFile));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        // fo.readFile(pathToFile);
+
         Map<String, Course> crses = getCourses(crsJsonAsStr);
         return new CourseStorage(crses, "20229");
     }

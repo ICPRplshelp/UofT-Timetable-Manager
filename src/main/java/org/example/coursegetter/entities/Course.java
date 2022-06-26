@@ -18,6 +18,7 @@ public class Course {
     public final String courseTitle;
     public final String corequisite;
     public final Meetings meetings;
+    // public final int level;
     // public final int brq;
     public final BreadthRequirement brc;
 
@@ -39,6 +40,7 @@ public class Course {
         this.meetings = new Meetings((Map<String, Object>) cInfo.get("meetings"));
         // this.brq = calculateBrq(this.breadthCategories);
         this.brc = new BreadthRequirement(this.breadthCategories, this.creditValue);
+        // this.level = Integer.parseInt(String.valueOf(this.code.charAt(3)));
     }
 
     /**

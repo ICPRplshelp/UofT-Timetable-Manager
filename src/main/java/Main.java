@@ -1,5 +1,3 @@
-package org.example;
-
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.internal.CourseSearcherIndividual;
 
