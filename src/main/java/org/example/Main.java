@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         CourseSearcherGetter csgTemp = new CourseSearcherGetter();
         CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
-        // debug here
+        // CREATE A BREAKPOINT AND DEBUG HERE TO TEST COURSES
         System.out.println("DONE");
 //        FileOpener fo = new FileOpener();
 //        CourseReader cr = new CourseReader();
