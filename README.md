@@ -1,4 +1,18 @@
-# DEFINITIONS
+# CSC207 Project
+
+The name of this project is to be added.
+
+## Running the program
+
+There is no way to run the program at this time.
+
+## Dependencies
+
+This project uses **Java 18.**
+I'm unsure if it is backwards compatible.
+If you seem to be getting errors, ensure that your JDK is Java 18.
+
+## DEFINITIONS
 
 A **course** can only tell us the course title,
 and has no information about the timings it is offered or whether it is offered in the fall or the winter.
@@ -8,7 +22,7 @@ Examples:
 - MAT137Y1
 - CSC207H1
 
-`[A-Z]{3}[0-4]\d{2}[H|Y][01]`
+`[A-Z]{3}[0-4]\d{2}[HY][01]`
 (Only UTSG courses)
 
 A **course offering** tells us about the course title and also which session it is offered.
@@ -19,7 +33,7 @@ Examples:
 - MAT137Y1-Y
 - CSC207H1-Y
 
-`[A-Z]{3}[0-4]\d{2}[H|Y][01]-[F|S|Y]` (Only UTSG courses)
+`[A-Z]{3}[0-4]\d{2}[HY][01]-[FSY]` (Only UTSG courses)
 
 ## Course
 
@@ -32,5 +46,5 @@ Examples:
 - exclusion
 - prerequsite
 - deliveryInstructions
-- session: identifies the year when the course is offered. For example, 20229, which is F/W 2022-2023. 20235 is Summer 2023. Note that S courses are not given its own code.
+- session: identifies the year when the course is offered. For example, 20229, which is F/W 2022-2023. 20235 is Summer 2023. Note that S courses are not given its own code, even though, in some course, Quercus pages, individual winter session numbers are given anyway.
 - section: F/S/Y. better just to call this variable FSY.

@@ -7,25 +7,25 @@ public class TestBracketDealer {
 
     @Test(timeout = 50)
     public void testRemoveHuggingBrackets1(){
-        var bd = new BracketDealer();
-        var str = "(MAT)(APM)(PB)(CSC)";
-        var output = bd.removeHuggingBrackets(str);
+        BracketDealer bd = new BracketDealer();
+        String str = "(MAT)(APM)(PB)(CSC)";
+        String output = bd.removeHuggingBrackets(str);
         assertEquals(str, output);
     }
 
     @Test(timeout = 50)
     public void testRemoveHuggingBrackets2(){
-        var bd = new BracketDealer();
-        var str = "[MAT](APM)(PB)[CSC]";
-        var output = bd.removeHuggingBrackets(str);
+        BracketDealer bd = new BracketDealer();
+        String str = "[MAT](APM)(PB)[CSC]";
+        String  output = bd.removeHuggingBrackets(str);
         assertEquals(str, output);
     }
 
     @Test(timeout = 50)
     public void testRemoveHuggingBrackets3(){
-        var bd = new BracketDealer();
-        var str = "[CSC(MAT)(APM)[BCH]]";
-        var output = bd.removeHuggingBrackets(str);
+        BracketDealer bd = new BracketDealer();
+        String str = "[CSC(MAT)(APM)[BCH]]";
+        String output = bd.removeHuggingBrackets(str);
         assertEquals(str.substring(1, str.length() - 1), output);
     }
 }
