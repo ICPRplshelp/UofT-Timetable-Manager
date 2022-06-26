@@ -22,12 +22,13 @@ public class BreadthRequirement {
     /**
      * Returns the credit weight this course contributes
      * to a particular breadth requirement.
+     *
      * @param brCategory the br category to test
      * @return the amount of credits it contributes to the br
      */
-    public double breadthWeight(int brCategory){
+    public double breadthWeight(int brCategory) {
         double divs = brFilled.size();
-        if(brFilled.contains(brCategory)){
+        if (brFilled.contains(brCategory)) {
             return courseWeight / divs;
         }
         return 0.0;  // otherwise
@@ -42,5 +43,24 @@ public class BreadthRequirement {
             sb.setLength(sb.length() - 2);
         }
         return sb.toString();
+    }
+
+    /**
+     * Keep track of the indices that are returned!!
+     *
+     * @return a double array of size 5, where each index
+     * corresponds to the credits it contributes
+     * to in each breadth requirement.
+     * For example, ANT100Y1 should result in {0.0, 0.0, 0.5, 0.5, 0.0}
+     */
+    public double[] getBreadthContributions() {
+        double[] soFar = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
+        if (brFilled.size() == 0)
+            return soFar;
+        // prevents division by zero errors.
+        for (int i = 0; i < 5; i++) {
+            soFar[i] = breadthWeight(i + 1);
+        }
+        return soFar;
     }
 }

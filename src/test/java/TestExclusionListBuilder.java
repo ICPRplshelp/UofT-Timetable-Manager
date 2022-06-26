@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 public class TestExclusionListBuilder {
 
     @Test(timeout = 50)
-    public void testExclusions(){
+    public void testExclusions() {
         String exl = "MAT235Y1, MAT257Y1, MATB41H3, MATB42H3, MATB43H3 & MAT368H5, MAT232H5 & MAT236H5";
         ExclusionListBuilder exb = new ExclusionListBuilder();
         TemplateList extt = exb.buildRequisiteList(exl);

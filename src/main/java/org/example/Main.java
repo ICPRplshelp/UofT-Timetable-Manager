@@ -5,6 +5,7 @@ import org.example.coursegetter.usecases.internal.CourseSearcherIndividual;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("STARTING");
         CourseSearcherGetter csgTemp = new CourseSearcherGetter();
         CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
         // CREATE A BREAKPOINT AND DEBUG HERE TO TEST COURSES
