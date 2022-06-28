@@ -1,4 +1,4 @@
-package org.example.globalusecases;
+package org.example.DONOTUSE;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
