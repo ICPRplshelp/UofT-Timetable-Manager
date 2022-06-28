@@ -18,7 +18,7 @@ public class Course {
     public final String courseTitle;
     public final String corequisite;
     public final Meetings meetings;
-    // public final int level;
+    public final int level;
     // public final int brq;
     public final BreadthRequirement brc;
 
@@ -38,13 +38,41 @@ public class Course {
         this.courseTitle = (String) cInfo.get("courseTitle");
         this.corequisite = (String) cInfo.get("corequisite");
         this.meetings = new Meetings((Map<String, Object>) cInfo.get("meetings"));
-        // this.brq = calculateBrq(this.breadthCategories);
         this.brc = new BreadthRequirement(this.breadthCategories, this.creditValue);
-        // this.level = Integer.parseInt(String.valueOf(this.code.charAt(3)));
+        this.level = getLevelFromCourseCode(this.code);
     }
 
     @Override
     public String toString() {
         return this.code + "-" + this.section;
+    }
+
+    private int getLevelFromCourseCode(String cc){
+        char levelChar = cc.charAt(3);
+        switch (levelChar) {
+            case '0':
+                return 0;
+            case '2':
+            case 'B':
+                return 2;
+            case '3':
+            case 'C':
+                return 3;
+            case '4':
+            case 'D':
+                return 4;
+            case '5':
+                return 5;
+            case '6':
+                return 6;
+            case '7':
+                return 7;
+            case '8':
+                return 8;
+            case '9':
+                return 9;
+            default:
+                return 1;
+        }
     }
 }
