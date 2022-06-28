@@ -52,14 +52,14 @@ public class CourseStorageObtainer {
      * @return the course information as a map from course code
      * to course information.
      */
-    protected Map<String, Course> getCourses(String rawJson){
+    private Map<String, Course> getCourses(String rawJson){
         Map<String, Course> mapToExport = new HashMap<>();
         JSONObject jsonObject = new JSONObject(rawJson);
         // https://stackoverflow.com/a/68996237
         for (String key : jsonObject.keySet()) {
             Object val = jsonObject.get(key);
             Course crs = new Course(((JSONObject) val).toMap());
-            mapToExport.put(key, crs);
+            mapToExport.put(key.substring(0, 10), crs);
         }
         return mapToExport;
     }

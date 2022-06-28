@@ -43,22 +43,6 @@ public class Course {
         // this.level = Integer.parseInt(String.valueOf(this.code.charAt(3)));
     }
 
-    /**
-     * Calculates the breadth requirement of a course
-     * based on its breadth requirement description.
-     * @param brqDesc the breadth category description.
-     * @return the BRQ number or 0 if it doesn't fullfill in any
-     * breadth requirement.
-     */
-    private int calculateBrq(String brqDesc){
-        for(int i = 1; i <= 5; i++){
-            if(brqDesc.contains(Integer.toString(i))){
-                return i;
-            }
-        }
-        return 0;
-    }
-
     @Override
     public String toString() {
         return this.code + "-" + this.section;

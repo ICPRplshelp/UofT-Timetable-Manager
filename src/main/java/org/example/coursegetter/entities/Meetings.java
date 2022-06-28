@@ -5,6 +5,9 @@ import java.util.*;
 /**
  * This class lists the lectures, tutorials, and practicals for a single
  * course.
+ * Iterating through each of them will always iterate them in
+ * order of the lecture code.
+ * Meaning LEC0101 < LEC0201 < LEC0301 < LEC0302 < LEC5101.
  * Note that MAT135H1-F and MAT135H1-S are considered
  * completely different courses for the purposes
  * of defining this class.

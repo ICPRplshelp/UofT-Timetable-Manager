@@ -28,7 +28,8 @@ public class CourseInputValidator {
      *
      * @param input a course entry in the form CSC110Y1-F.
      * @return the course entry that can be searched in the
-     * UofT timetable API - CSC110Y1-F-20229.
+     * UofT timetable API - CSC110Y1-F (do not include the
+     * session number)
      * Null if the course is in an invalid format.
      */
     String courseOfferingToSearchableCourse(String input) {

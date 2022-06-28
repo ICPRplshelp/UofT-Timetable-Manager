@@ -1,11 +1,14 @@
 package org.example.coursegetter.entities;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 public class CourseStorage {
     private final Map<String, Course> courses;
+    private final Set<String> courseList;
+
 
     public String getSession() {
         return session;
@@ -23,12 +26,15 @@ public class CourseStorage {
     public CourseStorage(Map<String, Course> courseMap, String session) {
         this.courses = courseMap;
         this.session = session;
+        Set<String> tempKeySet = courses.keySet();
+        courseList = new HashSet<>();
+        tempKeySet.forEach(key -> courseList.add(key.substring(0, 8)));
     }
 
     /**
      * Gets a course.
      *
-     * @param fullCourseCode the course code, in a format similar to CSC110Y1-F-20229
+     * @param fullCourseCode the course code, in a format similar to CSC110Y1-F
      * @return the Course if one is found, or null otherwise.
      */
     public Course getCourse(String fullCourseCode){
@@ -37,25 +43,21 @@ public class CourseStorage {
 
     /**
      * Gets a set of all the course offering codes.
+     * The set may not be modified.
      *
      * @return a set of all the course codes.
      */
     public Set<String> getCourseOfferingListAsString(){
-        Set<String> tempKeySet = courses.keySet();
-        Set<String> newSet = new java.util.HashSet<>();
-        tempKeySet.forEach(key -> newSet.add(key.substring(0, key.length() - 6)));
-        return Collections.unmodifiableSet(newSet);
+        return Collections.unmodifiableSet(courses.keySet());
     }
 
     /**
      * Gets a set of all the course codes.
+     * The set may not be modified.
      *
      * @return a set of all the course codes.
      */
     public Set<String> getCourseListAsString(){
-        Set<String> tempKeySet = courses.keySet();
-        Set<String> newSet = new java.util.HashSet<>();
-        tempKeySet.forEach(key -> newSet.add(key.substring(0, key.length() - 8)));
-        return Collections.unmodifiableSet(newSet);
+        return Collections.unmodifiableSet(courseList);
     }
 }

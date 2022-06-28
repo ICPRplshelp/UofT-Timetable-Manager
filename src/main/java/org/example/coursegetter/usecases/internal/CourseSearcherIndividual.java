@@ -52,13 +52,13 @@ public class CourseSearcherIndividual {
     public Course getCourseOfferingByCode(String crsCode) {
         String searchableCourse = courseInputValidator.courseOfferingToSearchableCourse(crsCode);
         if(searchableCourse == null) return null;
-        searchableCourse += "-" + courseStorage.getSession();
         return courseStorage.getCourse(searchableCourse);
     }
 
     /**
      * Returns a set of all courses that can be reached from the given course
      * storage.
+     * The set may not be modified.
      *
      * @return a set of all courses that can be reached from the given course storage.
      */
@@ -69,6 +69,7 @@ public class CourseSearcherIndividual {
     /**
      * Returns a set of all courses that can be reached from the given course
      * storage.
+     * The set may not be modified.
      *
      * @return a set of all courses that can be reached from the given course storage.
      */
