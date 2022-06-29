@@ -23,6 +23,7 @@ public class Course {
     public final BreadthRequirement brc;
 
     public Course(Map<String, Object> cInfo){
+
         this.orgName = (String) cInfo.get("orgName");
         this.code = (String) cInfo.get("code");
         this.creditValue = this.code.charAt(6) == 'Y' ? 1 : 0.5;
@@ -40,6 +41,8 @@ public class Course {
         this.meetings = new Meetings((Map<String, Object>) cInfo.get("meetings"));
         this.brc = new BreadthRequirement(this.breadthCategories, this.creditValue);
         this.level = getLevelFromCourseCode(this.code);
+
+
     }
 
     @Override

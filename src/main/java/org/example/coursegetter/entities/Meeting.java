@@ -14,6 +14,7 @@ public class Meeting {
     public final String waitlist;
     public final String online;
     private final Set<ScheduleEntry> scheduleEntryList = new TreeSet<>();
+    public final List<EnrollmentControl> enrollmentControls;
 
     public Meeting(Map<String, Object> mInfo) {
         this.cancel = (String) mInfo.get("cancel");
@@ -40,6 +41,11 @@ public class Meeting {
                 }
             }
         }
+        this.enrollmentControls = new ArrayList<>();
+        List<Map<String, String>> tempEnrollmentControl = (List<Map<String, String>>) mInfo.get("enrollmentControls");
+        if (tempEnrollmentControl != null)
+            tempEnrollmentControl.forEach(ec ->
+                    this.enrollmentControls.add(new EnrollmentControl(ec)));
     }
 
     /**

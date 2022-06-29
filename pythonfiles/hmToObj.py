@@ -12,11 +12,35 @@ import pyperclip
 
 
 OBJ_STR = R"""
-assignedRoom1;
-assignedRoom2;
-meetingStartTime;
-meetingDay;
-meetingEndTime;""".strip()
+
+                        postId": null,
+                        postCode": null,
+                        postName": null,
+                        subjectId": "1",
+                        subjectCode": "*",
+                        subjectName": "",
+                        designationId": "1",
+                        designationCode": "*",
+                        designationName": "",
+                        yearOfStudy": "1",
+                        typeOfProgramId": null,
+                        typeOfProgramCode": null,
+                        typeOfProgramName": null,
+                        primaryOrgId": "6",
+                        primaryOrgCode": "ARTSC",
+                        primaryOrgName": "Faculty of Arts and Science",
+                        secondaryOrgId": "1",
+                        secondaryOrgCode": "*",
+                        secondaryOrgName": "",
+                        assocOrgId": "1",
+                        assocOrgCode": "*",
+                        assocOrgName": "",
+                        adminOrgId": "1",
+                        adminOrgCode": "*",
+                        adminOrgName": ""
+
+
+""".strip()
 
 
 # assume everything is a strong.
@@ -26,12 +50,14 @@ meetingEndTime;""".strip()
 
 def make_code(key_list_raw: str, hm_name: str) -> str:
     key_list_1 = key_list_raw.split('\n')
-    key_list = [x.removesuffix(';') for x in key_list_1]
-    lines_new = [f'this.{x} = (String) {hm_name}.get("{x}");' for x in key_list]
+    key_list = [x.removesuffix(';').split('"')[0] for x in key_list_1]
+    lines_new = [f'this.{x} = (String) {hm_name}.get("{x.strip()}");' for x in key_list]
     final_str = "\n".join(lines_new)
     pyperclip.copy(final_str)
     print(final_str)
+    for kl in key_list:
+        print(kl.strip())
 
 
 if __name__ == '__main__':
-    make_code(OBJ_STR, 'sInfo')
+    make_code(OBJ_STR, 'controls')
