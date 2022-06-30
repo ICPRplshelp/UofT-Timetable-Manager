@@ -26,7 +26,7 @@ public class Course {
 
         this.orgName = (String) cInfo.get("orgName");
         this.code = (String) cInfo.get("code");
-        this.creditValue = this.code.charAt(6) == 'Y' ? 1 : 0.5;
+
         this.webTimetableInstructions = (String) cInfo.get("webTimetableInstructions");
         this.org = (String) cInfo.get("org");
         this.session = (String) cInfo.get("session");
@@ -39,10 +39,14 @@ public class Course {
         this.courseTitle = (String) cInfo.get("courseTitle");
         this.corequisite = (String) cInfo.get("corequisite");
         this.meetings = new Meetings((Map<String, Object>) cInfo.get("meetings"));
+        this.creditValue = calculateCourseCreditValue();
         this.brc = new BreadthRequirement(this.breadthCategories, this.creditValue);
         this.level = getLevelFromCourseCode(this.code);
+    }
 
-
+    private double calculateCourseCreditValue(){
+        if(org.equals("PDC")) return 0.0;
+        else return this.code.charAt(6) == 'Y' ? 1 : 0.5;
     }
 
     @Override

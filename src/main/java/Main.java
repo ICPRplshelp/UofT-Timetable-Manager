@@ -13,7 +13,7 @@ public class Main {
                 .meetings.getLectures().get("LEC0201").getScheduleEntries();
         System.out.println(ts);
 
-        var tls = courseSearcherIndividual.getCourseOfferingByCode("MAT137Y1-Y").meetings.getLectures().get("LEC0101").enrollmentControls.toString();
+        var tls = courseSearcherIndividual.getCourseOfferingByCode("CSB196H1-S").meetings.getLectures().get("LEC0101").enrollmentControls.toString();
         System.out.println(tls);
     }
 }
