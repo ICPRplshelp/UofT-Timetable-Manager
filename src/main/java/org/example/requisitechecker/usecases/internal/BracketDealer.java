@@ -133,6 +133,10 @@ public class BracketDealer {
         return parts;
     }
 
+    /**
+     * Replaces substrings looking like "and" and "or" with
+     * commas and slashes, respectively.
+     */
     public String narrowAndOrSymbols(String input){
         return input.replaceAll(" ", "")
                 .replace("\n", "")
