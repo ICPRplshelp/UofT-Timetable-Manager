@@ -6,12 +6,21 @@ import java.util.Map;
 
 public class ScheduleEntry implements Comparable<ScheduleEntry> {
     private final String assignedRoom1;  // room in the fall.
+
+    public String getAssignedRoom1() {
+        return assignedRoom1;
+    }
+
+    public String getAssignedRoom2() {
+        return assignedRoom2;
+    }
+
     // always null if the course
     // is an S course.
     private final String assignedRoom2;  // room in the winter.
-    public final String meetingStartTime;
-    public final String meetingDay;
-    public final String meetingEndTime;
+    private final String meetingStartTime;
+    private final String meetingDay;
+    private final String meetingEndTime;
 
 
     public ScheduleEntry(Map<String, Object> sInfo) {

@@ -79,4 +79,15 @@ public class TestPrerequisiteListBuilder {
         boolean state = rql.check(mc);
         assertTrue(state);
     }
+
+    @Test(timeout = 46000000)
+    public void testENG485_1() {
+        PrerequisiteListBuilder m = new PrerequisiteListBuilder();
+        String courseStr = "4.0 ENG credits (including ENG202H1, ENG203H1, ENG250H1, ENG252H1) and any 9.0 credits";
+        RequisiteList rql = m.buildRequisiteList(courseStr);
+        // System.out.println(rql);
+        ArrayList<String> mc = new ArrayList<>(List.of("ENG202H1", "ENG203H1", "ENG250H1", "ENG252H1"));
+        boolean state = rql.check(mc);
+        assertTrue(state);
+    }
 }

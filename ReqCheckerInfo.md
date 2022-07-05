@@ -60,3 +60,4 @@ A course with this as its prerequisite string is assumed to have no prerequisite
 - This program will not enforce minimum grades.
 - For exclusions, the program will look at every course code inside the exclusion tree and add it to the exclusion list. That's it. Most courses won't cause any problems, but courses
   stating "except" in the exclusion list may cause problems. Some examples are AST101H1, AST201H1.
+- This program is not obliged to be correct on any prerequisite string that uses English.

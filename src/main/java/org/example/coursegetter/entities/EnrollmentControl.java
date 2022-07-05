@@ -2,33 +2,34 @@ package org.example.coursegetter.entities;
 
 import java.util.*;
 
+// TODO: Choose which variables to keep, and make getters for them
 public class EnrollmentControl {
-    public final String postId;
-    public final String postCode;
-    public final String postName;
-    public final String subjectId;
-    public final String subjectCode;
-    public final String subjectName;
-    public final String designationId;
-    public final String designationCode;
-    public final String designationName;
-    public final String yearOfStudy;
-    public final String typeOfProgramId;
-    public final String typeOfProgramCode;
-    public final String typeOfProgramName;
-    public final String primaryOrgId;
-    public final String primaryOrgCode;
-    public final String primaryOrgName;
-    public final String secondaryOrgId;
-    public final String secondaryOrgCode;
-    public final String secondaryOrgName;
-    public final String assocOrgId;
-    public final String assocOrgCode;
-    public final String assocOrgName;
-    public final String adminOrgId;
-    public final String adminOrgCode;
-    public final String adminOrgName;
-    public final String restrictedGroup;
+    private final String postId;
+    private final String postCode;
+    private final String postName;
+    private final String subjectId;
+    private final String subjectCode;
+    private final String subjectName;
+    private final String designationId;
+    private final String designationCode;
+    private final String designationName;
+    private final String yearOfStudy;
+    private final String typeOfProgramId;
+    private final String typeOfProgramCode;
+    private final String typeOfProgramName;
+    private final String primaryOrgId;
+    private final String primaryOrgCode;
+    private final String primaryOrgName;
+    private final String secondaryOrgId;
+    private final String secondaryOrgCode;
+    private final String secondaryOrgName;
+    private final String assocOrgId;
+    private final String assocOrgCode;
+    private final String assocOrgName;
+    private final String adminOrgId;
+    private final String adminOrgCode;
+    private final String adminOrgName;
+    private final String restrictedGroup;
 
     public EnrollmentControl(Map<String, String> controls) {
         this.postId = controls.get("postId");

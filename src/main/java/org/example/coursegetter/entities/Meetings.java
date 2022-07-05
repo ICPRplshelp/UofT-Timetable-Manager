@@ -24,7 +24,7 @@ public class Meetings {
         for (Object hmv : mInfo1.values()) {
             Map<String, Object> hmv2 = (Map<String, Object>) hmv;
             Meeting tempMeeting = new Meeting(hmv2);
-            switch (tempMeeting.teachingMethod) {
+            switch (tempMeeting.getTeachingMethod()) {
                 case "LEC":
                     lectures.put(tempMeeting.toString(), tempMeeting);
                     break;

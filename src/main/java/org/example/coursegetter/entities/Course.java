@@ -3,22 +3,90 @@ package org.example.coursegetter.entities;
 import java.util.Map;
 
 public class Course {
-    public final double creditValue;
-    public final String orgName;
-    public final String code;
-    public final String webTimetableInstructions;
-    public final String org;
-    public final String session;
-    public final String prerequisite;
-    public final String exclusion;
-    public final String section;
-    public final String courseDescription;
-    public final String breadthCategories;
-    public final String deliveryInstructions;
-    public final String courseTitle;
-    public final String corequisite;
-    public final Meetings meetings;
-    public final int level;
+    public double getCreditValue() {
+        return creditValue;
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getWebTimetableInstructions() {
+        return webTimetableInstructions;
+    }
+
+    public String getOrg() {
+        return org;
+    }
+
+    public String getSession() {
+        return session;
+    }
+
+    public String getPrerequisite() {
+        return prerequisite;
+    }
+
+    public String getExclusion() {
+        return exclusion;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public String getCourseDescription() {
+        return courseDescription;
+    }
+
+    public String getBreadthCategories() {
+        return breadthCategories;
+    }
+
+    public String getDeliveryInstructions() {
+        return deliveryInstructions;
+    }
+
+    public String getCourseTitle() {
+        return courseTitle;
+    }
+
+    public String getCorequisite() {
+        return corequisite;
+    }
+
+    public Meetings getMeetings() {
+        return meetings;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public BreadthRequirement getBrc() {
+        return brc;
+    }
+
+    private final double creditValue;
+    private final String orgName;
+    private final String code;
+    private final String webTimetableInstructions;
+    private final String org;
+    private final String session;
+    private final String prerequisite;
+    private final String exclusion;
+    private final String section;
+    private final String courseDescription;
+    private final String breadthCategories;
+    private final String deliveryInstructions;
+    private final String courseTitle;
+    private final String corequisite;
+    private final Meetings meetings;
+    private final int level;
     // public final int brq;
     public final BreadthRequirement brc;
 
