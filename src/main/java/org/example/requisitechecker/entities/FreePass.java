@@ -12,10 +12,13 @@ public class FreePass extends TemplateList {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "-";
     }
 
     @Override
-    public boolean alwaysTrue() {return true;}
+    public boolean alwaysTrue() {
+        return true;
+    }
+
 }

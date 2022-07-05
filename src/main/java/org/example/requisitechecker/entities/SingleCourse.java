@@ -8,9 +8,10 @@ public class SingleCourse extends TemplateList {
 
     /**
      * Constructs this class.
+     *
      * @param crs a course like CSC110Y1.
      */
-    public SingleCourse(String crs){
+    public SingleCourse(String crs) {
         this.crs = crs;
     }
 
@@ -18,6 +19,7 @@ public class SingleCourse extends TemplateList {
     public boolean check(Collection<String> courses) {
         return courses.contains(crs);
     }
+
 
     @Override
     public String toString() {

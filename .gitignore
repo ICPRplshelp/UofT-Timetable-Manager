@@ -2,3 +2,5 @@
 
 # Project exclude paths
 /target/
+pythonfilesDONOTMARK/outputInstructors.json
+pythonfilesDONOTMARK/whoTaughtTheCourse.py

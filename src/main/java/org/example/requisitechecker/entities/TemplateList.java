@@ -12,9 +12,13 @@ public abstract class TemplateList {
      * Given a collection of courses, this method
      * checks if the collection of courses meets
      * the requirements of this TemplateList.
+     *
      * @param courses a set of courses to check.
      * @return the result
      */
     public abstract boolean check(Collection<String> courses);
-    public boolean alwaysTrue() { return false; }
+
+    public boolean alwaysTrue() {
+        return false;
+    }
 }

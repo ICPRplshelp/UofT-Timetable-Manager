@@ -13,7 +13,8 @@ public class FalsePass extends TemplateList {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "-";
     }
+
 }
