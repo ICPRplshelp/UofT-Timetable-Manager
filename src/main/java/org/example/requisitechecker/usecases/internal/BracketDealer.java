@@ -92,6 +92,7 @@ public class BracketDealer {
      * it's nested inside () and [].
      *
      * @param s the string to pass in
+     * @param aor whether to split commas or slashes, and its variants.
      * @return the result
      */
     public List<String> quickNestlessSplit(String s, AOR aor) {
