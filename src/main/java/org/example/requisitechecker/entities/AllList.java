@@ -3,10 +3,10 @@ package org.example.requisitechecker.entities;
 import java.util.Collection;
 import java.util.Set;
 
-public class AllList extends TemplateList {
-    private final Set<TemplateList> crses;
+public class AllList extends RequisiteList {
+    private final Set<RequisiteList> crses;
 
-    public AllList(Set<TemplateList> crses) {
+    public AllList(Set<RequisiteList> crses) {
         this.crses = crses;
     }
 
@@ -22,7 +22,7 @@ public class AllList extends TemplateList {
             return true;
         // only one condition must fail for this entire
         // check to fail
-        for (TemplateList crs : crses) {
+        for (RequisiteList crs : crses) {
             boolean state = !crs.check(courses);
             if (state)
                 return false;

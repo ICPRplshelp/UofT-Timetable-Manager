@@ -2,8 +2,8 @@ package org.example.requisitechecker.usecases.internal;
 
 import org.example.requisitechecker.entities.AnyList;
 import org.example.requisitechecker.entities.FalsePass;
+import org.example.requisitechecker.entities.RequisiteList;
 import org.example.requisitechecker.entities.SingleCourse;
-import org.example.requisitechecker.entities.TemplateList;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,7 +23,7 @@ public class ExclusionListBuilder extends RequisiteListBuilder {
      * are checked.
      * </p><p>
      * If, given a collection of courses you've completed,
-     * an exclusion TemplateList returns true, it means you can't
+     * an exclusion RequisiteList returns true, it means you can't
      * take that course without it being marked Extra.
      * </p><p>
      * Unlike prerequisite and corequisite lists, an exclusion list
@@ -41,12 +41,12 @@ public class ExclusionListBuilder extends RequisiteListBuilder {
      * If there are no exclusions, the exclusion list will
      * always return false.
      */
-    public TemplateList buildRequisiteList(String reqStr) {
+    public RequisiteList buildRequisiteList(String reqStr) {
         if (reqStr == null) return new FalsePass();
         reqStr = bd.narrowAndOrSymbols(reqStr);
         Set<String> foundCourses = courseRegexSearcher.lookForAllCourses(reqStr);
         if (foundCourses.size() == 0) return new FalsePass();
-        Set<TemplateList> courseSet = new HashSet<>();
+        Set<RequisiteList> courseSet = new HashSet<>();
         foundCourses.forEach(crs -> courseSet.add(new SingleCourse(crs)));
         return new AnyList(courseSet);
     }

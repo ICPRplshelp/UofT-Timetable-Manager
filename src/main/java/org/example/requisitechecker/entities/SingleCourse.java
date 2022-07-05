@@ -2,7 +2,7 @@ package org.example.requisitechecker.entities;
 
 import java.util.Collection;
 
-public class SingleCourse extends TemplateList {
+public class SingleCourse extends RequisiteList {
 
     private final String crs;
 

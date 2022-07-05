@@ -23,9 +23,9 @@ public class PrerequisiteListBuilder extends RequisiteListBuilder {
      * Grade minimums and custom descriptions are not checked.
      *
      * @param reqStr a course string like "(MAT135H1, MAT136H1), MAT137Y1, MAT157Y1"
-     * @return the TemplateList associated with the course string.
+     * @return the RequisiteList associated with the course string.
      */
-    public TemplateList buildRequisiteList(String reqStr) {
+    public RequisiteList buildRequisiteList(String reqStr) {
         if (reqStr == null) return new FreePass();
         reqStr = bd.narrowAndOrSymbols(reqStr);
         return buildReqListHelper(reqStr);
@@ -34,9 +34,9 @@ public class PrerequisiteListBuilder extends RequisiteListBuilder {
     /**
      * Helper to build a requisite list.
      * @param courseStr a course string like "(MAT135H1, MAT136H1), MAT137Y1, MAT157Y1"
-     * @return the TemplateList associated with the course string.
+     * @return the RequisiteList associated with the course string.
      */
-    private TemplateList buildReqListHelper(String courseStr) {
+    private RequisiteList buildReqListHelper(String courseStr) {
         AOR andState = AOR.AND;
         List<String> courseList = bd.quickNestlessSplit(courseStr, AOR.AND);
         if (courseList.size() == 1) {
@@ -45,7 +45,7 @@ public class PrerequisiteListBuilder extends RequisiteListBuilder {
         }  // the above checks if no ANDs in courseStr; below checks if it's a single course
         if (courseList.size() == 1) return narrowDownCourse(courseList);
         if (courseList.size() == 0) return new FreePass();  // no course -> free pass
-        Set<TemplateList> courseSetSoFar = new HashSet<>();
+        Set<RequisiteList> courseSetSoFar = new HashSet<>();
         courseList.forEach(crs -> createAndAddTemplateList(crs.trim(), courseSetSoFar));
         return andState == AOR.AND ? new AllList(courseSetSoFar) : new AnyList(courseSetSoFar);
     }
@@ -56,8 +56,8 @@ public class PrerequisiteListBuilder extends RequisiteListBuilder {
      * @param crs the course string
      * @param coursesSetSoFar the template list to add on
      */
-    private void createAndAddTemplateList(String crs, Set<TemplateList> coursesSetSoFar) {
-        TemplateList ctl = buildReqListHelper(bd.removeHuggingBrackets(crs));
+    private void createAndAddTemplateList(String crs, Set<RequisiteList> coursesSetSoFar) {
+        RequisiteList ctl = buildReqListHelper(bd.removeHuggingBrackets(crs));
         if (!(ctl.alwaysTrue())) coursesSetSoFar.add(ctl);
     }
 
@@ -69,7 +69,7 @@ public class PrerequisiteListBuilder extends RequisiteListBuilder {
      * otherwise.
      * It only accounts for the first course that appears.
      */
-    private TemplateList narrowDownCourse(List<String> courseList) {
+    private RequisiteList narrowDownCourse(List<String> courseList) {
         String attempt = courseRegexSearcher.lookForCourse(courseList.get(0));
         if (attempt != null) return new SingleCourse(attempt);
         else return new FreePass();

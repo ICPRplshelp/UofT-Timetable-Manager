@@ -5,7 +5,7 @@ import java.util.Collection;
 /**
  * This always returns false when checked.
  */
-public class FalsePass extends TemplateList {
+public class FalsePass extends RequisiteList {
 
     @Override
     public boolean check(Collection<String> courses) {
