@@ -1,5 +1,9 @@
+import org.example.coursegetter.usecases.CourseSearcherGetter;
+import org.example.coursegetter.usecases.internal.CourseSearcherIndividual;
 import org.example.requisitechecker.entities.RequisiteList;
+import org.example.requisitechecker.usecases.RequisiteChecker;
 import org.example.requisitechecker.usecases.internal.ExclusionListBuilder;
+import org.example.requisitechecker.usecases.internal.PrerequisiteListBuilder;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -26,6 +30,19 @@ public class TestExclusionListBuilder {
         RequisiteList extt = exb.buildRequisiteList(exl);
         ArrayList<String> mc = new ArrayList<>(List.of("PHY100H1"));
         assertTrue(extt.check(mc));
+    }
+
+    @Test(timeout = 10000)
+    public void testEX() {
+        PrerequisiteListBuilder m = new PrerequisiteListBuilder();
+        CourseSearcherGetter csgTemp = new CourseSearcherGetter();
+        CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
+        courseSearcherIndividual.getAllCoursesOfferingList().forEach(crs -> {
+            String pr = courseSearcherIndividual.getCourseOfferingByCode(crs).getExclusion();
+            RequisiteChecker rqc = new RequisiteChecker(pr, true);
+            rqc.check(List.of("CSC110Y1"));
+            assertTrue(true);
+        });
     }
 
 }

@@ -129,7 +129,9 @@ public class BracketDealer {
                 current.append(c);
             }
         }
-        if (bracketLevel != 0) return null;
+        // TODO: unbalanced?
+        if (bracketLevel != 0) {
+            return parts;}
         return parts;
     }
 
