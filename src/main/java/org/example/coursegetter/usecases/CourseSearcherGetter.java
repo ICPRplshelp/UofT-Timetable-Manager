@@ -1,8 +1,6 @@
 package org.example.coursegetter.usecases;
 
 import org.example.coursegetter.entities.CourseStorage;
-import org.example.coursegetter.usecases.internal.CourseStorageObtainer;
-import org.example.coursegetter.usecases.internal.CourseSearcherIndividual;
 
 /**
  * Get the course searcher WITHOUT violating clean architecture!!!!

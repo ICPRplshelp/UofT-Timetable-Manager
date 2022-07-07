@@ -1,11 +1,11 @@
-package org.example.coursegetter.usecases.internal;
+package org.example.coursegetter.usecases;
 
 import org.example.requisitechecker.usecases.internal.CourseRegexSearcher;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CourseInputValidator {
+class CourseInputValidator {
 
     private final Pattern[] coursePatterns = {Pattern.compile("[A-Z]{3}[0-4]\\d{2}[HY][01]-[FSY]"),
             Pattern.compile("[A-Z]{3}[0-4]\\d{2}[HY][01][FSY]"),

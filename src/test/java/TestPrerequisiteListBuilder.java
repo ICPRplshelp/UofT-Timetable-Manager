@@ -1,5 +1,5 @@
 import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.coursegetter.usecases.internal.CourseSearcherIndividual;
+import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.example.requisitechecker.entities.RequisiteList;
 import org.example.requisitechecker.usecases.RequisiteChecker;
 import org.example.requisitechecker.usecases.internal.PrerequisiteListBuilder;

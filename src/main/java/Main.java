@@ -1,7 +1,6 @@
-import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.entities.ScheduleEntry;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.coursegetter.usecases.internal.CourseSearcherIndividual;
+import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.example.requisitechecker.usecases.RequisiteChecker;
 
 import java.util.*;

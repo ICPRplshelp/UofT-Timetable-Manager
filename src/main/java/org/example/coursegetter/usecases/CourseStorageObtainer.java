@@ -1,4 +1,4 @@
-package org.example.coursegetter.usecases.internal;
+package org.example.coursegetter.usecases;
 
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.entities.CourseStorage;
@@ -18,7 +18,7 @@ import java.util.Map;
  * It would be much better if we obtained this from the UofT API,
  * but no, I'm not doing it.
  */
-public class CourseStorageObtainer {
+class CourseStorageObtainer {
 
     /**
      * Locally extracts every course, which is saved in this repository.

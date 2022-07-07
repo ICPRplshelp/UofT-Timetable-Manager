@@ -1,4 +1,5 @@
 import org.example.requisitechecker.usecases.internal.BracketDealer;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -10,7 +11,7 @@ public class TestBracketDealer {
         BracketDealer bd = new BracketDealer();
         String str = "(MAT)(APM)(PB)(CSC)";
         String output = bd.removeHuggingBrackets(str);
-        assertEquals(str, output);
+        Assert.assertEquals(str, output);
     }
 
     @Test(timeout = 50)
@@ -18,7 +19,7 @@ public class TestBracketDealer {
         BracketDealer bd = new BracketDealer();
         String str = "[MAT](APM)(PB)[CSC]";
         String output = bd.removeHuggingBrackets(str);
-        assertEquals(str, output);
+        Assert.assertEquals(str, output);
     }
 
     @Test(timeout = 50)
@@ -26,6 +27,6 @@ public class TestBracketDealer {
         BracketDealer bd = new BracketDealer();
         String str = "[CSC(MAT)(APM)[BCH]]";
         String output = bd.removeHuggingBrackets(str);
-        assertEquals(str.substring(1, str.length() - 1), output);
+        Assert.assertEquals(str.substring(1, str.length() - 1), output);
     }
 }

@@ -1,6 +1,6 @@
 package org.example.coursegetter;
 
-import org.example.coursegetter.usecases.internal.CourseSearcherIndividual;
+import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 
 /**

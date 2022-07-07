@@ -1,5 +1,5 @@
 import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.coursegetter.usecases.internal.CourseSearcherIndividual;
+import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

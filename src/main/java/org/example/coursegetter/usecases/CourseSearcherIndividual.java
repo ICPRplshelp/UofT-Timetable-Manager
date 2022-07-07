@@ -1,4 +1,4 @@
-package org.example.coursegetter.usecases.internal;
+package org.example.coursegetter.usecases;
 
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.entities.CourseStorage;
@@ -20,7 +20,7 @@ public class CourseSearcherIndividual {
     private final CourseStorage courseStorage;
     private final CourseInputValidator courseInputValidator = new CourseInputValidator();
 
-    public CourseSearcherIndividual(CourseStorage courseStorage) {
+    CourseSearcherIndividual(CourseStorage courseStorage) {
         this.courseStorage = courseStorage;
     }
 
