@@ -19,6 +19,7 @@ class CourseInputValidator {
      * @return the first regex match of a course, or null otherwise.
      **/
     String courseToSearchableCourse(String input) {
+
         return cRgxSearcher.lookForCourse(input);
     }
 

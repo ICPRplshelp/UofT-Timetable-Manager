@@ -10,6 +10,10 @@ public class CourseRegexSearcher {
     // a course pattern matching any undergraduate UofT courses.
     // "[A-Z]{3}[0-5]\\d{2}[H|Y][0159]|[A-Z]{3}[A-D]\\d{2}[H|Y]3"
     // "[A-Z]{3}[0-4]\\d{2}[H|Y][019]"
+
+    // AAA100H1-F
+    // AAA100H1
+
     private final Pattern coursePattern = Pattern.compile("[A-Z]{3}[0-5]\\d{2}[HY][0159]|[A-Z]{3}[A-D]\\d{2}[HY]3");
 
 

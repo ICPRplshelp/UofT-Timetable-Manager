@@ -2,15 +2,28 @@
 
 The name of this project is to be added.
 
-## Running the program
+Do not mark any changes made to the
+project after Phase 1 due date.
 
-There is no way to run the program at this time.
 
 ## Dependencies
 
 This project uses **Java 18.**
 I'm unsure if it is backwards compatible.
 If you seem to be getting errors, ensure that your JDK is Java 18.
+
+## Running the project
+
+Run the main file.
+It should be visible
+somewhere in the project.
+If running Main does not work, you
+may need to edit your run
+configurations such that the
+working directory is set
+to `$MODULE_WORKING_DIR$`.
+Otherwise, exceptions regarding files
+not being found may arise.
 
 ## DEFINITIONS
 
