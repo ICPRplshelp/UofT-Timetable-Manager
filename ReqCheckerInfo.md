@@ -12,7 +12,7 @@ https://artsci.calendar.utoronto.ca/how-use-calendar
 ## Prerequisites vs. Exclusions
 
 Prerequisites, corequisites, and recommend preparation are treated the same way.
-Exclusions are treated differently due to how ambitiously they are written on the timetable.
+Exclusions are treated differently due to how ambigiously they are written on the timetable.
 
 While prerequisites are read as described on ArtSci's calendar,
 exclusions are read by taking everything that looks like a course
