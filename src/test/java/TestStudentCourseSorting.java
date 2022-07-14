@@ -6,10 +6,32 @@ import org.junit.Test;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static java.util.Map.entry;
 
 public class TestStudentCourseSorting {
-
+    private Course returnCourseFromName(String courseName){
+        Map<String, Object> courseInfo = Map.ofEntries(
+                entry("orgName", "orgName"),
+                entry("code", courseName),
+                entry("webTimetableInstructions", "webTimetableInstructions"),
+                entry("org", "org"),
+                entry("session", "session"),
+                entry("prerequisite", "prerequisite"),
+                entry("exclusion", "exclusion"),
+                entry("section", "section"),
+                entry("courseDescription", "courseDescription"),
+                entry("breadthCategories", "breadthCategories"),
+                entry("deliveryInstructions", "deliveryInstructions"),
+                entry("courseTitle", "courseTitle"),
+                entry("corequisite", "corequisite"),
+                entry("meetings", new HashMap<String, Object>())
+        );
+        return new Course(courseInfo);
+    }
 
     @Test(timeout = 50)
     public void testCompareCourseLevel() {
@@ -18,7 +40,7 @@ public class TestStudentCourseSorting {
 
         ArrayList<Course> courseArrayList = new ArrayList<>();
         for (String courseName: courseList) {
-            courseArrayList.add(new Course(courseName));
+            courseArrayList.add(returnCourseFromName(courseName));
         }
 
         Student student = new Student();
@@ -44,7 +66,7 @@ public class TestStudentCourseSorting {
 
         ArrayList<Course> courseArrayList = new ArrayList<>();
         for (String courseName: courseList) {
-            courseArrayList.add(new Course(courseName));
+            courseArrayList.add(returnCourseFromName(courseName));
         }
 
         Student student = new Student();
@@ -70,7 +92,7 @@ public class TestStudentCourseSorting {
 
         ArrayList<Course> courseArrayList = new ArrayList<>();
         for (String courseName: courseList) {
-            courseArrayList.add(new Course(courseName));
+            courseArrayList.add(returnCourseFromName(courseName));
         }
 
         Student student = new Student();
@@ -96,7 +118,7 @@ public class TestStudentCourseSorting {
 
         ArrayList<Course> courseArrayList = new ArrayList<>();
         for (String courseName: courseList) {
-            courseArrayList.add(new Course(courseName));
+            courseArrayList.add(returnCourseFromName(courseName));
         }
 
         Student student = new Student();

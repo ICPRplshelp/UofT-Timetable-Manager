@@ -92,29 +92,6 @@ public class Course implements Comparable<Course> {
     // public final int brq;
     public final BreadthRequirement brc;
 
-    public Course(String code){
-        // this is mainly for test cases
-        this.code = code;
-
-        this.orgName = null;
-
-        this.webTimetableInstructions = null;
-        this.org = null;
-        this.session = null;
-        this.prerequisite = null;
-        this.exclusion = null;
-        this.section = null;
-        this.courseDescription = null;
-        this.breadthCategories = null;
-        this.deliveryInstructions = null;
-        this.courseTitle = null;
-        this.corequisite = null;
-        this.meetings = null;
-        this.creditValue = 0.0;
-        this.brc = null;
-        this.level = getLevelFromCourseCode(this.code);
-    }
-
     public Course(Map<String, Object> cInfo){
 
         this.orgName = (String) cInfo.get("orgName");
