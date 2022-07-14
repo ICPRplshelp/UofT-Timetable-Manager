@@ -1,10 +1,9 @@
-package org.example.studentdata;
+package org.example.studentdata.entities;
 
 import org.example.coursegetter.entities.Course;
+import org.example.coursegetter.entities.CourseChoice;
 
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -20,9 +19,9 @@ public class Student {
     // on the front-end side of this app
 
     // Exactly the same algorithm.
-    public List<Course> plannedFCourses;
-    public List<Course> plannedSCourses;
-    public List<Course> plannedYCourses;
+    public List<CourseChoice> plannedFCourses;
+    public List<CourseChoice> plannedSCourses;
+    public List<CourseChoice> plannedYCourses;
     // Use cases may only touch these lists, so let the
     // use cases do whatever we want to them
 
