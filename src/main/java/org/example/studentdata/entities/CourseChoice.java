@@ -1,6 +1,10 @@
 package org.example.studentdata.entities;
 
 import org.example.coursegetter.entities.Course;
+import org.example.coursegetter.entities.TeachingMethods;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CourseChoice implements Comparable<CourseChoice> {
     public String getLectureSection() {
@@ -55,6 +59,7 @@ public class CourseChoice implements Comparable<CourseChoice> {
     public int compareTo(CourseChoice o) {
         return course.compareTo(o.course);
     }
+
 
     /**
      * @return false if and only if the lecture session for this choice is missing.

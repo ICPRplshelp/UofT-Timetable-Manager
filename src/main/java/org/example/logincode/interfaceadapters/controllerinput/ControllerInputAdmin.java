@@ -1,4 +1,4 @@
-package org.example.logincode.interfaceadapters.controllerInput;
+package org.example.logincode.interfaceadapters.controllerinput;
 
 import org.example.logincode.interfaceadapters.Presenter;
 import org.example.logincode.usecases.AccountManager;

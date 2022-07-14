@@ -71,24 +71,16 @@ public class ScheduleEntry implements Comparable<ScheduleEntry> {
      */
     public DayOfWeek getDay() {
         if(meetingDay == null) return null;
-        switch(meetingDay) {
-            case "MO":
-                return DayOfWeek.MONDAY;
-            case "TU":
-                return DayOfWeek.TUESDAY;
-            case "WE":
-                return DayOfWeek.WEDNESDAY;
-            case "TH":
-                return DayOfWeek.THURSDAY;
-            case "FR":
-                return DayOfWeek.FRIDAY;
-            case "SA":
-                return DayOfWeek.SATURDAY;
-            case "SU":
-                return DayOfWeek.SUNDAY;
-            default:
-                return null;
-        }
+        return switch (meetingDay) {
+            case "MO" -> DayOfWeek.MONDAY;
+            case "TU" -> DayOfWeek.TUESDAY;
+            case "WE" -> DayOfWeek.WEDNESDAY;
+            case "TH" -> DayOfWeek.THURSDAY;
+            case "FR" -> DayOfWeek.FRIDAY;
+            case "SA" -> DayOfWeek.SATURDAY;
+            case "SU" -> DayOfWeek.SUNDAY;
+            default -> null;
+        };
     }
 
     @Override

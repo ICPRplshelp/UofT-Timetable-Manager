@@ -4,9 +4,9 @@ import org.example.logincode.usecases.AccountCreator;
 import org.example.logincode.usecases.AccountLogin;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
-import org.example.logincode.interfaceadapters.controllerInput.ControllerInput;
-import org.example.logincode.interfaceadapters.controllerInput.ControllerInputFactory;
-import org.example.logincode.interfaceadapters.controllerInput.LoggedInState;
+import org.example.logincode.interfaceadapters.controllerinput.ControllerInput;
+import org.example.logincode.interfaceadapters.controllerinput.ControllerInputFactory;
+import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;
 
 public class Controller {
 

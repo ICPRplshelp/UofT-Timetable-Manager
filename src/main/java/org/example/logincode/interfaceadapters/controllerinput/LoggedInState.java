@@ -1,4 +1,4 @@
-package org.example.logincode.interfaceadapters.controllerInput;
+package org.example.logincode.interfaceadapters.controllerinput;
 
 /**
  * The page to be returned.
