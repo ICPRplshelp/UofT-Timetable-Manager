@@ -1,5 +1,5 @@
 import org.example.coursegetter.entities.Course;
-import org.example.coursegetter.entities.CourseChoice;
+import org.example.studentdata.entities.CourseChoice;
 import org.example.studentdata.entities.Student;
 import org.junit.Assert;
 import org.junit.Test;
@@ -54,7 +54,7 @@ public class TestStudentCourseSorting {
         String[] actualCourseList = new String[actualCourseArrayList.size()];
 
         for (int i = 0; i < actualCourseArrayList.size(); i++) {
-            actualCourseList[i] = actualCourseArrayList.get(i).course.getCode();
+            actualCourseList[i] = actualCourseArrayList.get(i).getCourse().getCode();
         }
 
         Assert.assertEquals(expectedCourseList, actualCourseList);
@@ -80,7 +80,7 @@ public class TestStudentCourseSorting {
         String[] actualCourseList = new String[actualCourseArrayList.size()];
 
         for (int i = 0; i < actualCourseArrayList.size(); i++) {
-            actualCourseList[i] = actualCourseArrayList.get(i).course.getCode();
+            actualCourseList[i] = actualCourseArrayList.get(i).getCourse().getCode();
         }
 
         Assert.assertEquals(expectedCourseList, actualCourseList);
@@ -106,7 +106,7 @@ public class TestStudentCourseSorting {
         String[] actualCourseList = new String[actualCourseArrayList.size()];
 
         for (int i = 0; i < actualCourseArrayList.size(); i++) {
-            actualCourseList[i] = actualCourseArrayList.get(i).course.getCode();
+            actualCourseList[i] = actualCourseArrayList.get(i).getCourse().getCode();
         }
 
         Assert.assertEquals(expectedCourseList, actualCourseList);
@@ -132,7 +132,7 @@ public class TestStudentCourseSorting {
         String[] actualCourseList = new String[actualCourseArrayList.size()];
 
         for (int i = 0; i < actualCourseArrayList.size(); i++) {
-            actualCourseList[i] = actualCourseArrayList.get(i).course.getCode();
+            actualCourseList[i] = actualCourseArrayList.get(i).getCourse().getCode();
         }
 
         Assert.assertEquals(expectedCourseList, actualCourseList);
