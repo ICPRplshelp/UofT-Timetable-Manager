@@ -69,4 +69,15 @@ public abstract class ControllerInput {
      * if and only if the input resulted in the default c ase.
      */
     public abstract boolean inputParser(String input);
+
+    /**
+     * This command is to be run if the user types a command
+     * that is not supported by the current
+     * controller input.
+     * @return false always.
+     */
+    protected boolean failedAction(){
+        presenter.genericFailedAction("invalid");
+        return false;
+    }
 }

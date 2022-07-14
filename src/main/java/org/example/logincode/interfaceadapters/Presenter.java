@@ -1,5 +1,6 @@
 package org.example.logincode.interfaceadapters;
 
+import org.example.PresenterPrinter;
 import org.example.logincode.interfaceadapters.controllerInput.LoggedInState;
 
 import java.text.ParseException;
@@ -16,7 +17,6 @@ public class Presenter {
             "Enter 'setpassword' to change your password",
             "Enter 'secretadmin' to make yourself an admin"});
     Collection<String> loggedInAdminOnlyPrompt = List.of(new String[]{
-            "Enter 'history' to see your login history",
             "Enter 'ban' to temporarily ban a user",
             "Enter 'delete' to delete a user",
             "Enter 'new' to create a new AdminUser",
@@ -24,6 +24,7 @@ public class Presenter {
             "Enter 'back' to return to the standard user prompt"
     });
     Scanner scanner = new Scanner(System.in);
+    PresenterPrinter prt = new PresenterPrinter();
 
 
     public Presenter() {
@@ -38,14 +39,14 @@ public class Presenter {
                 return dashboardView(loggedInAdminOnlyPrompt);
             }
             default -> {
-                System.out.println("Invalid input");
+                prt.println("Invalid input");
                 return "AAA";
             }
         }
     }
 
     public void startView() {
-        System.out.println("Enter 'register' to register, 'login' to login, or 'exit' to exit: ");
+        prt.println("Enter 'register' to register, 'login' to login, or 'exit' to exit: ");
     }
 
     /**
@@ -57,53 +58,48 @@ public class Presenter {
         // register and login both use this method since their procedures are identical
         String[] inputs = new String[2];
 
-        System.out.println("Enter Username: ");
+        prt.println("Enter Username: ");
         inputs[0] = scanner.nextLine();
 
-        System.out.println("Enter Password: ");
+        prt.println("Enter Password: ");
         inputs[1] = scanner.nextLine();
 
         return inputs;
     }
 
     public String enterUsername() {
-        System.out.println("Enter username of target user: ");
+        prt.println("Enter username of target user: ");
         return scanner.nextLine();
     }
 
     public Date enterDate() throws ParseException {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-        System.out.println("Enter date in the format dd/MM/yyyy: ");
-        String input = scanner.nextLine();
+        prt.println("Enter date in the format dd/MM/yyyy: ");
+        String input = prt.askWithMessage("Enter date in the format dd/MM/yyyy: ");
         return dateFormatter.parse(input);
     }
 
 
     public void registerConfirm(boolean isSuccessful) {
         if (isSuccessful) {
-            System.out.println("Account successfully created.");
+            prt.println("Account successfully created.");
         } else {
-            System.out.println("Username already taken. Please choose another username");
+            prt.println("Username already taken. Please choose another username");
         }
     }
 
     public void loginConfirm(boolean isSuccessful) {
         if (isSuccessful) {
-            System.out.println("You have successfully logged in");
+            prt.println("You have successfully logged in");
         } else {
-            System.out.println("Incorrect username or password");
+            prt.println("Incorrect username or password");
         }
     }
 
     public String[] passwordChangePrompt() {
         String[] inputs = new String[2];
-
-        System.out.println("Old password: ");
-        inputs[0] = scanner.nextLine();
-
-        System.out.println("New password: ");
-        inputs[1] = scanner.nextLine();
-
+        inputs[0] = prt.askWithMessage("Old password: ");
+        inputs[1] = prt.askWithMessage("New password: ");
         return inputs;
     }
 
@@ -114,67 +110,66 @@ public class Presenter {
      * @return the user input.
      */
     public String dashboardView(Collection<String> messages) {
-        messages.forEach(System.out::println);
-        return scanner.nextLine();
+        return prt.askWithMessage(String.join("\n", messages));
     }
 
 
     public void banUserConfirm(boolean isSuccessful, String username) {
         if (isSuccessful) {
-            System.out.println("You have successfully banned " + username);
+            prt.println("You have successfully banned " + username);
         } else {
-            System.out.println("You do not have permission, the user does not exist, you tried to ban an admin, or you tried to ban yourself.");
+            prt.println("You do not have permission, the user does not exist, you tried to ban an admin, or you tried to ban yourself.");
         }
     }
 
     public void deleteUserConfirm(boolean isSuccessful, String username) {
         if (isSuccessful) {
-            System.out.println("You have successfully deleted " + username);
+            prt.println("You have successfully deleted " + username);
         } else {
-            System.out.println("You don't have permission, the user does not exist, the user has perms that prevents it from being deleted, or you tried to delete yourself.");
+            prt.println("You don't have permission, the user does not exist, the user has perms that prevents it from being deleted, or you tried to delete yourself.");
         }
     }
 
     public void createNewAdminConfirm(boolean isSuccessful, String username) {
         if (isSuccessful) {
-            System.out.println("You have successfully created a new Admin " + username);
+            prt.println("You have successfully created a new Admin " + username);
         } else {
-            System.out.println("You do not have permission or the user already exists");
+            prt.println("You do not have permission or the user already exists");
         }
     }
 
     public void promoteUserConfirm(boolean isSuccessful, String username) {
         if (isSuccessful) {
-            System.out.println("You have successfully promoted " + username);
+            prt.println("You have successfully promoted " + username);
         } else {
-            System.out.println("You do not have permission or the user does not exist");
+            prt.println("You do not have permission or the user does not exist");
         }
     }
 
     public void genericFailedAction(String reason) {
         switch (reason) {
-            case "invalid" -> System.out.println("Invalid input.");
-            case "noPerms" -> System.out.println("You do not have the admin permission.");
+            case "invalid" -> prt.println("Invalid input.");
+            case "noPerms" -> prt.println("You do not have the admin permission.");
             case "invalidPassword" ->
-                    System.out.println("The password you were asked to enter that is to be checked was incorrect");
-            default -> System.out.println("Action failed.");
+                    prt.println("The password you were asked to enter that is to be checked was incorrect");
+            default -> prt.println("Action failed.");
         }
     }
 
     public void parseFailure() {
-        System.out.println("Failed to parse string to date");
+        prt.println("Failed to parse string to date");
     }
 
     public void printHistory(String history) {
-        System.out.println(history);
+        prt.println(history);
     }
 
     public void genericError() {
-        System.out.println("An error has occurred.");
+        prt.println("An error has occurred.");
     }
 
     public void exitProgram() {
-        System.out.println("You have exited the program.");
+        prt.println("You have exited the program.");
     }
 
 
