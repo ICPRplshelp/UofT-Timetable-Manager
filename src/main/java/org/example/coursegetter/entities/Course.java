@@ -146,9 +146,20 @@ public class Course implements Comparable<Course> {
         // Priority 2: The last two digits of the course code - CSC258H1 -> 58
         // Priority 3: campus - 1 < 0 < 5 < 3 < 9 < 2 < 4 < 6 < 7 < 8, left is higher
         // Priority 4: sorted alphabetically the first 3 letters of the course code
+        int x1 = compareCourseDigits(o);
+        if (x1 != 0) return x1;
+        int x = compareCampus(o);
+        if (x != 0) return x;
+        return compareCourseOrg(o);
+    }
 
+    private int compareCourseOrg(Course o) {
+        String thisFaculty = this.code.substring(0,3).toLowerCase();
+        String otherFaculty = o.code.substring(0,3).toLowerCase();
+        return thisFaculty.compareTo(otherFaculty);
+    }
 
-
+    private int compareCourseDigits(Course o) {
         int thisCourseDigits = Integer.parseInt(this.code.substring(3, 6));
         int otherCourseDigits = Integer.parseInt(o.code.substring(3, 6));
 
@@ -157,7 +168,10 @@ public class Course implements Comparable<Course> {
         }else if (thisCourseDigits < otherCourseDigits){
             return -1;
         }
+        return 0;
+    }
 
+    private int compareCampus(Course o) {
         int[] campusPriority = {1,0,5,3,6,2,7,8,9,4};
 
         int thisCampusPriority = campusPriority[Integer.parseInt(String.valueOf(this.code.charAt(7)))];
@@ -168,10 +182,6 @@ public class Course implements Comparable<Course> {
         }else if (thisCampusPriority < otherCampusPriority){
             return -1;
         }
-
-        String thisFaculty = this.code.substring(0,3).toLowerCase();
-        String otherFaculty = o.code.substring(0,3).toLowerCase();
-
-        return thisFaculty.compareTo(otherFaculty);
+        return 0;
     }
 }
