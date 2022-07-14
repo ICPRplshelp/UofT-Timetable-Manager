@@ -2,7 +2,9 @@ package org.example.coursegetter.entities;
 
 import java.util.Map;
 
-public class Course {
+public class Course implements Comparable<Course> {
+    // Course offering Regex: [A-Z]{3}[0-4]\d{2}[H|Y][0159]-[FSY]
+    // Course Regex [A-Z]{3}[0-4]\d{2}[H|Y][0159][FSY]
     public double getCreditValue() {
         return creditValue;
     }
@@ -90,6 +92,29 @@ public class Course {
     // public final int brq;
     public final BreadthRequirement brc;
 
+    public Course(String code){
+        // this is mainly for test cases
+        this.code = code;
+
+        this.orgName = null;
+
+        this.webTimetableInstructions = null;
+        this.org = null;
+        this.session = null;
+        this.prerequisite = null;
+        this.exclusion = null;
+        this.section = null;
+        this.courseDescription = null;
+        this.breadthCategories = null;
+        this.deliveryInstructions = null;
+        this.courseTitle = null;
+        this.corequisite = null;
+        this.meetings = null;
+        this.creditValue = 0.0;
+        this.brc = null;
+        this.level = getLevelFromCourseCode(this.code);
+    }
+
     public Course(Map<String, Object> cInfo){
 
         this.orgName = (String) cInfo.get("orgName");
@@ -124,30 +149,52 @@ public class Course {
 
     private int getLevelFromCourseCode(String cc){
         char levelChar = cc.charAt(3);
-        switch (levelChar) {
-            case '0':
-                return 0;
-            case '2':
-            case 'B':
-                return 2;
-            case '3':
-            case 'C':
-                return 3;
-            case '4':
-            case 'D':
-                return 4;
-            case '5':
-                return 5;
-            case '6':
-                return 6;
-            case '7':
-                return 7;
-            case '8':
-                return 8;
-            case '9':
-                return 9;
-            default:
-                return 1;
+        return switch (levelChar) {
+            case '0' -> 0;
+            case '2', 'B' -> 2;
+            case '3', 'C' -> 3;
+            case '4', 'D' -> 4;
+            case '5' -> 5;
+            case '6' -> 6;
+            case '7' -> 7;
+            case '8' -> 8;
+            case '9' -> 9;
+            default -> 1;
+        };
+    }
+
+    @Override
+    public int compareTo(Course o) {
+        // Priority 1: level of the course - 1 < 2 < 3 < 4
+        // Priority 2: The last two digits of the course code - CSC258H1 -> 58
+        // Priority 3: campus - 1 < 0 < 5 < 3 < 9 < 2 < 4 < 6 < 7 < 8, left is higher
+        // Priority 4: sorted alphabetically the first 3 letters of the course code
+
+
+
+        int thisCourseDigits = Integer.parseInt(this.code.substring(3, 6));
+        int otherCourseDigits = Integer.parseInt(o.code.substring(3, 6));
+
+        if (thisCourseDigits > otherCourseDigits){
+            return 1;
+        }else if (thisCourseDigits < otherCourseDigits){
+            return -1;
         }
+
+        int[] campusPriority = {1,0,5,3,6,2,7,8,9,4};
+
+        int thisCampusPriority = campusPriority[Integer.parseInt(String.valueOf(this.code.charAt(7)))];
+        int otherCampusPriority = campusPriority[Integer.parseInt(String.valueOf(o.code.charAt(7)))];
+
+        if (thisCampusPriority > otherCampusPriority){
+            return 1;
+        }else if (thisCampusPriority < otherCampusPriority){
+            return -1;
+        }
+
+        String thisFaculty = this.code.substring(0,3).toLowerCase();
+        String otherFaculty = o.code.substring(0,3).toLowerCase();
+
+        return thisFaculty.compareTo(otherFaculty);
     }
 }
