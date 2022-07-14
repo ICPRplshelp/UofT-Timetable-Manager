@@ -2,7 +2,7 @@
 
 The name of this project is to be added.
 
-Do not mark any changes made to the
+Please do not mark any changes made to the
 project after Phase 1 due date.
 
 
@@ -25,7 +25,7 @@ to `$MODULE_WORKING_DIR$`.
 Otherwise, exceptions regarding files
 not being found may arise.
 
-## DEFINITIONS
+## Definitions
 
 A **course** can only tell us the course title,
 and has no information about the timings it is offered or whether it is offered in the fall or the winter.
