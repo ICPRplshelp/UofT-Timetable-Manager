@@ -31,6 +31,8 @@ public class EnrollmentControl {
     private final String adminOrgName;
     private final String restrictedGroup;
 
+
+
     public EnrollmentControl(Map<String, String> controls) {
         this.postId = controls.get("postId");
         this.postCode = controls.get("postCode");
@@ -58,6 +60,13 @@ public class EnrollmentControl {
         this.adminOrgCode = controls.get("adminOrgCode");
         this.adminOrgName = controls.get("adminOrgName");
         this.restrictedGroup = controls.get("restrictedGroup");
+    }
+
+    /**
+     * @return true if this enrollment control states a year of study of 1.
+     */
+    public boolean isFirstYearOnly(){
+        return this.yearOfStudy.equals("1");
     }
 
     /**

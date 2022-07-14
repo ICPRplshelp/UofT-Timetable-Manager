@@ -17,7 +17,7 @@ public class Main {
                 .getMeetings().getLectures().get("LEC0201").getScheduleEntries();
         System.out.println(ts);
 
-        String tls = courseSearcherIndividual.getCourseOfferingByCode("CSB196H1-S").getMeetings().getLectures().get("LEC0101").enrollmentControls.toString();
+        String tls = courseSearcherIndividual.getCourseOfferingByCode("CSB196H1-S").getMeetings().getLectures().get("LEC0101").getEnrollmentControls().toString();
         System.out.println(tls);
 
         var codeList = courseSearcherIndividual.getAllCoursesOfferingList();

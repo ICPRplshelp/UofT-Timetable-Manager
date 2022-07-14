@@ -58,7 +58,7 @@ public class Meeting {
     private final String waitlist;
     private final String online;
     private final Set<ScheduleEntry> scheduleEntryList = new TreeSet<>();
-    public final List<EnrollmentControl> enrollmentControls;
+    private final List<EnrollmentControl> enrollmentControls;
 
     public Meeting(Map<String, Object> mInfo) {
         this.cancel = (String) mInfo.get("cancel");
