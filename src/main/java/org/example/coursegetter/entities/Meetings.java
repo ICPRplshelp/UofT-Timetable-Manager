@@ -25,15 +25,9 @@ public class Meetings {
             Map<String, Object> hmv2 = (Map<String, Object>) hmv;
             Meeting tempMeeting = new Meeting(hmv2);
             switch (tempMeeting.getTeachingMethod()) {
-                case "LEC":
-                    lectures.put(tempMeeting.toString(), tempMeeting);
-                    break;
-                case "TUT":
-                    tutorials.put(tempMeeting.toString(), tempMeeting);
-                    break;
-                case "PRA":
-                    practicals.put(tempMeeting.toString(), tempMeeting);
-                    break;
+                case "LEC" -> lectures.put(tempMeeting.toString(), tempMeeting);
+                case "TUT" -> tutorials.put(tempMeeting.toString(), tempMeeting);
+                case "PRA" -> practicals.put(tempMeeting.toString(), tempMeeting);
             }
         }
     }
@@ -41,6 +35,9 @@ public class Meetings {
     /**
      * Iterating through this should always iterate
      * in sorted order.
+     *
+     * Always in the format AAA0000 (no dash in between)
+     *
      * Meaning LEC0101, LEC0202, LEC0301, LEC0302, LEC5101
      * @return An unmodifiable view of the courses' lectures.
      */

@@ -29,7 +29,6 @@ public abstract class ControllerInput {
     protected AccountManager manager;
     protected StorageManager accountStorageManager;
     protected Presenter presenter;
-    private final HashMap<String, PInputs> enumMap = new HashMap<>();
 
 
     /**
@@ -44,25 +43,11 @@ public abstract class ControllerInput {
                            StorageManager accountStorageManager,
                            Presenter presenter) {
         // I made an entire python app to quickly process enums
-        enumMap.put("register", PInputs.REGISTER);
-        enumMap.put("login", PInputs.LOGIN);
-        enumMap.put("history", PInputs.HISTORY);
-        enumMap.put("adminview", PInputs.ADMIN_VIEW);
-        enumMap.put("ban", PInputs.BAN);
-        enumMap.put("delete", PInputs.DELETE);
-        enumMap.put("new", PInputs.NEW);
-        enumMap.put("promote", PInputs.PROMOTE);
-        enumMap.put("back", PInputs.BACK);
-        enumMap.put("secretadmin", PInputs.SECRET_ADMIN);
-        enumMap.put("setpassword", PInputs.SET_PASSWORD);
         this.manager = manager;
         this.accountStorageManager = accountStorageManager;
         this.presenter = presenter;
     }
 
-    public PInputs inputToEnum(String candidateInput) {
-        return enumMap.get(candidateInput);
-    }
 
     /**
      * Takes an input.
@@ -80,33 +65,8 @@ public abstract class ControllerInput {
      *
      * @param input the input sent by the user.
      *              THE INPUT IS NULLABLE!!!
-     * @return whether the input was accepted or not.
+     * @return whether the input was accepted or not. Return false
+     * if and only if the input resulted in the default c ase.
      */
-    public abstract boolean inputParser(PInputs input);
-
-
-    /**
-     * Takes a string input, converts it into an enum,
-     * and calls the PInputs version of this method.
-     * <p>
-     * This method may be safely executed by its inheritors,
-     * and the overridden version of inputParser(PInputs ...)
-     * will be run.
-     * <p>
-     * Classes that use this method must check curState
-     * immediately afterwards to know if the window
-     * has been switched or not.
-     *
-     * @param candidateInput the input to pass into the
-     *                       PInputs version of this
-     *                       method.
-     * @return whether the input was accepted or not.
-     */
-    public final boolean inputParser(String candidateInput) {
-        PInputs cand = inputToEnum(candidateInput);
-        if (cand == null) {
-            cand = PInputs.INVALID_INPUT;
-        }
-        return inputParser(cand);
-    }
+    public abstract boolean inputParser(String input);
 }

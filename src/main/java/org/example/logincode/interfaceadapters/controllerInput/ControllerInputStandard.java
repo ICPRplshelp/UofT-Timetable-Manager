@@ -12,21 +12,21 @@ public class ControllerInputStandard extends ControllerInput {
     }
 
     @Override
-    public boolean inputParser(PInputs input) {
+    public boolean inputParser(String input) {
         switch (input) {
-            case HISTORY -> {
+            case "history" -> {
                 String ts = manager.getAccountHistoryAsString();
                 presenter.printHistory(ts);
             }
-            case ADMIN_VIEW -> {
+            case "adminview" -> {
                 if (!manager.validatePermission("admin")) {
                     presenter.genericFailedAction("noPerms");
                 } else {
                     curState = LoggedInState.ADMIN;
                 }
             }
-            case SECRET_ADMIN -> manager.makeMeAnAdmin();
-            case SET_PASSWORD -> {
+            case "secretadmin" -> manager.makeMeAnAdmin();
+            case "setpassword" -> {
                 String[] newPswds = presenter.passwordChangePrompt();
                 boolean pswdSuccess = manager.setPassword(newPswds[0], newPswds[1]);
                 if (!pswdSuccess) {

@@ -16,7 +16,7 @@ public class ControllerInputAdmin extends ControllerInputStandard {
         this.curState = LoggedInState.ADMIN;
     }
 
-    public boolean inputParser(PInputs input) {
+    public boolean inputParser(String input) {
         boolean superState = super.inputParser(input);
 
         // guard clause: stop if the super call was successful
@@ -27,7 +27,7 @@ public class ControllerInputAdmin extends ControllerInputStandard {
         // if the super call was not successful
         AdminAccountManager adminAccountManager = new AdminAccountManager(manager, accountStorageManager);
         switch (input) {
-            case BAN -> {
+            case "ban" -> {
                 String userToBan = presenter.enterUsername();
                 Date unbanDate = new Date();
                 try {
@@ -43,7 +43,7 @@ public class ControllerInputAdmin extends ControllerInputStandard {
                 // banUser(userToBan, unbanDate);
             }
 
-            case DELETE -> {
+            case "delete" -> {
                 String userToDelete = presenter.enterUsername();
                 boolean delUserSuccess = adminAccountManager.deleteUser(userToDelete);
                 presenter.deleteUserConfirm(delUserSuccess, userToDelete);
@@ -51,18 +51,18 @@ public class ControllerInputAdmin extends ControllerInputStandard {
                 // deleteUser(userToDelete);
             }
 
-            case NEW -> {
+            case "new" -> {
                 String[] inputs = presenter.enterCredentials();
                 boolean isCreated = adminAccountManager.createNewAdminUser(inputs[0], inputs[1]);
                 presenter.createNewAdminConfirm(isCreated, inputs[0]);
             }
 
-            case PROMOTE -> {
+            case "promote" -> {
                 String userToPromote = presenter.enterUsername();
                 presenter.promoteUserConfirm(adminAccountManager.addPermission(userToPromote, "admin"), userToPromote);
                 // promoteUserToAdmin(userToPromote);
             }
-            case BACK -> curState = LoggedInState.STANDARD;default -> {
+            case "back" -> curState = LoggedInState.STANDARD;default -> {
                 presenter.genericFailedAction("invalid");
                 return false;
             }

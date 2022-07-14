@@ -5,3 +5,5 @@
 pythonfilesDONOTMARK/outputInstructors.json
 pythonfilesDONOTMARK/whoTaughtTheCourse.py
 *.ser
+courselocationtracker/
+*.csv
