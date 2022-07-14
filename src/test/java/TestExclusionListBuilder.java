@@ -39,8 +39,8 @@ public class TestExclusionListBuilder {
         CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
         courseSearcherIndividual.getAllCoursesOfferingList().forEach(crs -> {
             String pr = courseSearcherIndividual.getCourseOfferingByCode(crs).getExclusion();
-            RequisiteChecker rqc = new RequisiteChecker(pr, true);
-            rqc.check(List.of("CSC110Y1"));
+            RequisiteChecker rqc = new RequisiteChecker();
+            rqc.checkExclusions(List.of("CSC110Y1"), pr);
             assertTrue(true);
         });
     }

@@ -13,28 +13,34 @@ import static org.junit.Assert.assertTrue;
 
 public class TestPrerequisiteListBuilder {
 
-    @Test(timeout = 10000)
+
+    /**
+     * The first three tests ehnsures the program does not
+     * break whilst constructing requisite lists
+     * of all courses.
+     */
+    @Test(timeout = 100000)
     public void testRQ() {
         PrerequisiteListBuilder m = new PrerequisiteListBuilder();
         CourseSearcherGetter csgTemp = new CourseSearcherGetter();
         CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
         courseSearcherIndividual.getAllCoursesOfferingList().forEach(crs -> {
             String pr = courseSearcherIndividual.getCourseOfferingByCode(crs).getPrerequisite();
-            RequisiteChecker rqc = new RequisiteChecker(pr);
-            rqc.check(List.of("CSC110Y1"));
+            RequisiteChecker rqc = new RequisiteChecker();
+            rqc.check(List.of("CSC110Y1"), pr);
             assertTrue(true);
         });
     }
 
-    @Test(timeout = 10000)
+    @Test(timeout = 100000)
     public void testCRQ() {
         PrerequisiteListBuilder m = new PrerequisiteListBuilder();
         CourseSearcherGetter csgTemp = new CourseSearcherGetter();
         CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
         courseSearcherIndividual.getAllCoursesOfferingList().forEach(crs -> {
             String pr = courseSearcherIndividual.getCourseOfferingByCode(crs).getCorequisite();
-            RequisiteChecker rqc = new RequisiteChecker(pr);
-            rqc.check(List.of("CSC110Y1"));
+            RequisiteChecker rqc = new RequisiteChecker();
+            rqc.check(List.of("CSC110Y1"), pr);
             assertTrue(true);
         });
     }
