@@ -45,12 +45,10 @@ public class TestStudentCourseSorting {
         }
 
         Student student = new Student();
-        student.plannedFCourses = courseArrayList;
-        student.plannedSCourses = new ArrayList<>();
-        student.plannedYCourses = new ArrayList<>();
+        student.addToPlannedFCourses(courseArrayList);
         student.sortAllCourseLists();
 
-        List<CourseChoice> actualCourseArrayList = student.plannedFCourses;
+        List<CourseChoice> actualCourseArrayList = student.getPlannedFCourses();
         String[] actualCourseList = new String[actualCourseArrayList.size()];
 
         for (int i = 0; i < actualCourseArrayList.size(); i++) {
@@ -71,12 +69,10 @@ public class TestStudentCourseSorting {
         }
 
         Student student = new Student();
-        student.plannedFCourses = courseArrayList;
-        student.plannedSCourses = new ArrayList<>();
-        student.plannedYCourses = new ArrayList<>();
+        student.addToPlannedFCourses(courseArrayList);
         student.sortAllCourseLists();
 
-        List<CourseChoice> actualCourseArrayList = student.plannedFCourses;
+        List<CourseChoice> actualCourseArrayList = student.getPlannedFCourses();
         String[] actualCourseList = new String[actualCourseArrayList.size()];
 
         for (int i = 0; i < actualCourseArrayList.size(); i++) {
@@ -97,12 +93,10 @@ public class TestStudentCourseSorting {
         }
 
         Student student = new Student();
-        student.plannedFCourses = courseArrayList;
-        student.plannedSCourses = new ArrayList<>();
-        student.plannedYCourses = new ArrayList<>();
+        student.addToPlannedFCourses(courseArrayList);
         student.sortAllCourseLists();
 
-        List<CourseChoice> actualCourseArrayList = student.plannedFCourses;
+        List<CourseChoice> actualCourseArrayList = student.getPlannedFCourses();
         String[] actualCourseList = new String[actualCourseArrayList.size()];
 
         for (int i = 0; i < actualCourseArrayList.size(); i++) {
@@ -123,12 +117,10 @@ public class TestStudentCourseSorting {
         }
 
         Student student = new Student();
-        student.plannedFCourses = courseArrayList;
-        student.plannedSCourses = new ArrayList<>();
-        student.plannedYCourses = new ArrayList<>();
+        student.addToPlannedFCourses(courseArrayList);
         student.sortAllCourseLists();
 
-        List<CourseChoice> actualCourseArrayList = student.plannedFCourses;
+        List<CourseChoice> actualCourseArrayList = student.getPlannedFCourses();
         String[] actualCourseList = new String[actualCourseArrayList.size()];
 
         for (int i = 0; i < actualCourseArrayList.size(); i++) {
