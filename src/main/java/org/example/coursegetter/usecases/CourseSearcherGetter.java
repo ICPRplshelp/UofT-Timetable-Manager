@@ -1,6 +1,7 @@
 package org.example.coursegetter.usecases;
 
-import org.example.coursegetter.entities.CourseStorage;
+import org.example.coursegetter.entities.Session;
+import org.example.coursegetter.entities.SessionStorage;
 
 /**
  * Get the course searcher WITHOUT violating clean architecture!!!!
@@ -15,7 +16,7 @@ public class CourseSearcherGetter {
 
     public CourseSearcherGetter(){
         CourseStorageObtainer clt = new CourseStorageObtainer();
-        CourseStorage cls = clt.obtainAllCourses();
+        SessionStorage cls = clt.obtainAllCourses();
         csr = new CourseSearcherIndividual(cls);
     }
 }

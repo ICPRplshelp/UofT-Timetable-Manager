@@ -1,16 +1,14 @@
 package org.example.coursegetter.usecases;
 
 import org.example.coursegetter.entities.Course;
-import org.example.coursegetter.entities.CourseStorage;
+import org.example.coursegetter.entities.Session;
+import org.example.coursegetter.entities.SessionStorage;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * The course list obtainer that obtains courses from a local
@@ -24,10 +22,20 @@ class CourseStorageObtainer {
      * Locally extracts every course, which is saved in this repository.
      * @return a CourseStorage object holding every FW2022-2023 course.
      */
-    public CourseStorage obtainAllCourses(){
+    public SessionStorage obtainAllCourses(){
+        Set<String> sessions = new HashSet<>(List.of(new String[]{"20195", "20199", "20205", "20209", "20215", "20219", "20225", "20229"}));
+
+        SessionStorage sessionStorage = new SessionStorage();
+        for (String session: sessions) {
+            sessionStorage.addSession(session, obtainSessionCourses(session));
+        }
+        return sessionStorage;
+    }
+
+    private Session obtainSessionCourses(String session){
 
         // URL url = getClass().getResource("coursesCSC.json");
-        String pathToFile = "src/coursesMASTER.json";
+        String pathToFile = "src/courses" + session + ".json";
         String crsJsonAsStr;
         try {
             crsJsonAsStr = Files.readString(Path.of(pathToFile));
@@ -37,7 +45,8 @@ class CourseStorageObtainer {
         // fo.readFile(pathToFile);
 
         Map<String, Course> crses = getCourses(crsJsonAsStr);
-        return new CourseStorage(crses, "20229");
+        return new Session(crses, session);
+
     }
 
     // This should be moved to its own class only if we're going

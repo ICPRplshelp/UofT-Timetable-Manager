@@ -24,8 +24,8 @@ public class TestPrerequisiteListBuilder {
         PrerequisiteListBuilder m = new PrerequisiteListBuilder();
         CourseSearcherGetter csgTemp = new CourseSearcherGetter();
         CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
-        courseSearcherIndividual.getAllCoursesOfferingList().forEach(crs -> {
-            String pr = courseSearcherIndividual.getCourseOfferingByCode(crs).getPrerequisite();
+        courseSearcherIndividual.getAllCoursesOfferingList("20229").forEach(crs -> {
+            String pr = courseSearcherIndividual.getCourseOfferingByCode("20229", crs).getPrerequisite();
             RequisiteChecker rqc = new RequisiteChecker();
             rqc.check(List.of("CSC110Y1"), pr);
             assertTrue(true);
@@ -37,8 +37,8 @@ public class TestPrerequisiteListBuilder {
         PrerequisiteListBuilder m = new PrerequisiteListBuilder();
         CourseSearcherGetter csgTemp = new CourseSearcherGetter();
         CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
-        courseSearcherIndividual.getAllCoursesOfferingList().forEach(crs -> {
-            String pr = courseSearcherIndividual.getCourseOfferingByCode(crs).getCorequisite();
+        courseSearcherIndividual.getAllCoursesOfferingList("20229").forEach(crs -> {
+            String pr = courseSearcherIndividual.getCourseOfferingByCode("20229", crs).getCorequisite();
             RequisiteChecker rqc = new RequisiteChecker();
             rqc.check(List.of("CSC110Y1"), pr);
             assertTrue(true);

@@ -1,7 +1,8 @@
 package org.example.coursegetter.usecases;
 
 import org.example.coursegetter.entities.Course;
-import org.example.coursegetter.entities.CourseStorage;
+import org.example.coursegetter.entities.Session;
+import org.example.coursegetter.entities.SessionStorage;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,11 +18,11 @@ import java.util.Set;
  */
 public class CourseSearcherIndividual {
 
-    private final CourseStorage courseStorage;
+    private final SessionStorage sessionStorage;
     private final CourseInputValidator courseInputValidator = new CourseInputValidator();
 
-    CourseSearcherIndividual(CourseStorage courseStorage) {
-        this.courseStorage = courseStorage;
+    CourseSearcherIndividual(SessionStorage sessionStorage) {
+        this.sessionStorage = sessionStorage;
     }
 
     /**
@@ -30,13 +31,13 @@ public class CourseSearcherIndividual {
      * @param crsCode the course code such as MAT135H1
      * @return a collection of courses such as MAT135H1-F, MAT135H1-S, MAT135H1-Y
      */
-    public Collection<Course> getCourseByCourseCode(String crsCode){
+    public Collection<Course> getCourseByCourseCode(String session, String crsCode){
         crsCode = courseInputValidator.courseToSearchableCourse(crsCode);
         ArrayList<Course> courseList = new ArrayList<>();
         String[] suffixes = {"-F", "-S", "-Y"};
         for(String suffix : suffixes){
             String courseToSearch = crsCode + suffix;
-            Course tempCourse = getCourseOfferingByCode(courseToSearch);
+            Course tempCourse = getCourseOfferingByCode(session, courseToSearch);
             if(tempCourse != null)
                 courseList.add(tempCourse);
         }
@@ -49,10 +50,10 @@ public class CourseSearcherIndividual {
      * @param crsCode the course code, in a format similar to CSC110Y1-F
      * @return the Course if one is found, or null otherwise.
      */
-    public Course getCourseOfferingByCode(String crsCode) {
+    public Course getCourseOfferingByCode(String session, String crsCode) {
         String searchableCourse = courseInputValidator.courseOfferingToSearchableCourse(crsCode);
         if(searchableCourse == null) return null;
-        return courseStorage.getCourse(searchableCourse);
+        return sessionStorage.getSession(session).getCourse(searchableCourse);
     }
 
     /**
@@ -62,8 +63,8 @@ public class CourseSearcherIndividual {
      *
      * @return a set of all courses that can be reached from the given course storage.
      */
-    public Set<String> getAllCoursesOfferingList(){
-        return courseStorage.getCourseOfferingListAsString();
+    public Set<String> getAllCoursesOfferingList(String session){
+        return sessionStorage.getSession(session).getCourseOfferingListAsString();
     }
 
     /**
@@ -73,8 +74,8 @@ public class CourseSearcherIndividual {
      *
      * @return a set of all courses that can be reached from the given course storage.
      */
-    public Set<String> getAllCoursesList(){
-        return courseStorage.getCourseListAsString();
+    public Set<String> getAllCoursesList(String session){
+        return sessionStorage.getSession(session).getCourseListAsString();
     }
 
 }
