@@ -40,7 +40,7 @@ public class RequisiteChecker {
      */
     public boolean checkExclusions(Collection<String> coursesAsString,
                                    String exclusionsAsString){
-        var temp = elb.buildRequisiteList(exclusionsAsString);
+        RequisiteList temp = elb.buildRequisiteList(exclusionsAsString);
         return temp.check(coursesAsString);
     }
 }

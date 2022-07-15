@@ -2,6 +2,7 @@ import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.example.requisitechecker.entities.RequisiteList;
 import org.example.requisitechecker.usecases.RequisiteChecker;
+import org.example.requisitechecker.usecases.RequisiteCheckerMemoized;
 import org.example.requisitechecker.usecases.internal.PrerequisiteListBuilder;
 import org.junit.Test;
 
@@ -122,5 +123,18 @@ public class TestPrerequisiteListBuilder {
         ArrayList<String> mc = new ArrayList<>(List.of("ENG202H1", "ENG203H1", "ENG250H1", "ENG252H1"));
         boolean state = rql.check(mc);
         assertTrue(state);
+    }
+
+    @Test
+    public void testMemoization(){
+        RequisiteCheckerMemoized rc = new RequisiteCheckerMemoized();
+        ArrayList<String> mc = new ArrayList<>(List.of("MAT137Y1", "MAT223H1"));
+        String courseStr = "[(MAT135H1, MAT136H1)/ (MAT135H5, MAT136H5)/ MAT134Y5/ MAT135Y5/ (MATA30H3/ MATA31H3, MATA36H3), MAT138H1/ MAT102H5/ MAT246H1]/ MAT137Y1/ MAT137Y5/ (MATA30H3/ MATA31H3, MATA37H3)/ MAT157Y1/ MAT157Y5, MAT223H1/ MATA22H3/ MATA23H3/ MAT240H1/ MAT240H5";
+        boolean state = rc.check(mc, courseStr);
+        state = rc.check(mc, courseStr);
+        state = rc.check(mc, courseStr);
+        state = rc.check(mc, courseStr);
+        state = rc.check(mc, courseStr);
+        state = rc.check(mc, courseStr);
     }
 }
