@@ -1,13 +1,11 @@
 package org.example.studentdata.entities;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 
-// TODO: This is an entity. Place it in an entity package.
 public class Student {
-
-    // TODO: Delete all TODOs after completely finishing them
 
     // all Strings MUST match the regex of a course offering.
     // e.g. CSC110Y1-F
@@ -22,8 +20,26 @@ public class Student {
     // Use cases may only touch these lists, so let the
     // use cases do whatever we want to them
 
-    // TODO: Implement a way to move all courses in plannedFCourses to the one below
-    public List<String> previousCourses;
+    public List<CourseChoice> previousCourses = new ArrayList<>();
+
+    public void flushFCourses(){
+        flushCourses(plannedFCourses);
+    }
+
+    public void flushSCourses(){
+        flushCourses(plannedSCourses);
+    }
+
+    public void flushYCourses(){
+        flushCourses(plannedYCourses);
+    }
+
+    private void flushCourses(List<CourseChoice> plannedCourses){
+        previousCourses.addAll(plannedCourses);
+        plannedCourses.clear();
+
+
+    }
 
     /**
      * Sort all the course lists.
