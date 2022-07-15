@@ -10,10 +10,10 @@ import java.util.Date;
 
 public class ControllerInputAdmin extends ControllerInput {
 
-
     public ControllerInputAdmin(AccountManager manager, StorageManager accountStorageManager, Presenter presenter) {
         super(manager, accountStorageManager, presenter);
         this.curState = LoggedInState.ADMIN;
+        commandsList = new String[]{"ban", "delete", "new", "promote", "back"};
     }
 
     public boolean inputParser(String input) {

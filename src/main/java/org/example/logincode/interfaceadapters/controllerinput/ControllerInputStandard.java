@@ -9,6 +9,7 @@ public class ControllerInputStandard extends ControllerInput {
     public ControllerInputStandard(AccountManager manager, StorageManager accountStorageManager, Presenter presenter) {
         super(manager, accountStorageManager, presenter);
         curState = LoggedInState.STANDARD;
+        commandsList = new String[]{"history", "adminview", "setpassword", "secretadmin"};
     }
 
     @Override

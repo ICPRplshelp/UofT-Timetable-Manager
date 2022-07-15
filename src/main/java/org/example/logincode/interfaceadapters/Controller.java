@@ -119,6 +119,10 @@ public class Controller {
         accountStorageManager.updateSave();
     }
 
+    public String[] getCommandList() {
+        ControllerInput cInput = controllerInputFactory.getControllerInput(loggedInState);
+        return cInput.commandsList;
+    }
     enum LoginState {
         LOGGED_OUT, LOGGED_IN
     }

@@ -18,7 +18,7 @@ public class Main {
         login(controller, presenter, scanner);
 
         String tLine2;
-        tLine2 = controller.presenter.printAndAskPrompt(controller.getLoggedInState());
+        tLine2 = controller.presenter.printAndAskPrompt(controller.getCommandList());
 
         eventLoop(controller, tLine2);
 
@@ -29,7 +29,7 @@ public class Main {
     private void eventLoop(Controller controller, String tLine2) {
         while (!tLine2.equals("exit")) {
             controller.inputParser(tLine2);
-            tLine2 = controller.presenter.printAndAskPrompt(controller.getLoggedInState());
+            tLine2 = controller.presenter.printAndAskPrompt(controller.getCommandList());
         }
     }
 

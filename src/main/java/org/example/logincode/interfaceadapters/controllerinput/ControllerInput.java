@@ -28,7 +28,7 @@ public abstract class ControllerInput {
     protected StorageManager accountStorageManager;
     protected Presenter presenter;
 
-
+    public String[] commandsList;
     /**
      * The constructor for this class.
      * All overrides MUST assign it a CRState.

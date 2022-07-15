@@ -11,6 +11,7 @@ public class Presenter {
 
 
     // Collection<String> loggedOutPrompt = List.of("PLEASE LOG IN");
+    // Will remove the following prompts after merge
     Collection<String> loggedInStandardPrompt = List.of(new String[]{
             "Enter 'history' to see your login history",
             "Enter 'adminview' to enter the admin view if you are an admin",
@@ -23,6 +24,18 @@ public class Presenter {
             "Enter 'promote' to promote an existing User to Admin",
             "Enter 'back' to return to the standard user prompt"
     });
+
+    Map<String, String> userPrompts = Map.of(
+            "history", "see your login history",
+            "adminview", "enter the admin view if you are an admin",
+            "setpassword", "change your password",
+            "secretadmin", "make yourself an admin",
+            "ban", "make yourself an admin",
+            "delete", "temporarily ban a user",
+            "new", "delete a user",
+            "promote", "promote an existing User to Admin",
+            "back", "return to the standard user prompt"
+    );
     Scanner scanner = new Scanner(System.in);
     PresenterPrinter prt = new PresenterPrinter();
 
@@ -43,6 +56,18 @@ public class Presenter {
                 return "AAA";
             }
         }
+    }
+
+    public String printAndAskPrompt(String[] commandsList) {
+        return dashboardView(inputPromptHelper(commandsList));
+    }
+
+    public Collection<String> inputPromptHelper(String[] commandsList) {
+        Collection<String> returnCollection = new ArrayList<String>();
+        for(String item: commandsList) {
+            returnCollection.add("Enter '" + item + "' " + userPrompts.get(item));
+        }
+        return returnCollection;
     }
 
     public void startView() {
