@@ -20,7 +20,7 @@ public class Main {
         String tls = courseSearcherIndividual.getCourseOfferingByCode("CSB196H1-S").getMeetings().getLectures().get("LEC0101").getEnrollmentControls().toString();
         System.out.println(tls);
 
-        var codeList = courseSearcherIndividual.getAllCoursesOfferingList();
+        Set<String> codeList = courseSearcherIndividual.getAllCoursesOfferingList();
 
         // Set of courses that list sta237h1 as an exclusion
         // System.out.println(excSF);

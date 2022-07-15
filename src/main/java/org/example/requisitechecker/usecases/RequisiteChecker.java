@@ -26,7 +26,7 @@ public class RequisiteChecker {
      */
     public boolean check(Collection<String> coursesAsString,
                          String requisiteAsString){
-        var temp = plb.buildRequisiteList(requisiteAsString);
+        RequisiteList temp = plb.buildRequisiteList(requisiteAsString);
         return temp.check(coursesAsString);
     }
 
