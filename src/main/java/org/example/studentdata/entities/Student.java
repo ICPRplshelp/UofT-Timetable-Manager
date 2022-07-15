@@ -1,8 +1,10 @@
 package org.example.studentdata.entities;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import org.example.coursegetter.entities.Course;
+import org.example.coursegetter.entities.Session;
+import org.example.coursegetter.entities.SessionStorage;
+
+import java.util.*;
 
 
 public class Student {
@@ -19,6 +21,8 @@ public class Student {
     private final List<CourseChoice> plannedYCourses  = new ArrayList<>();
     // Use cases may only touch these lists, so let the
     // use cases do whatever we want to them
+
+    public final SessionStorage previousCourses = new SessionStorage();
 
 
     public void addToPlannedFCourses(List<CourseChoice> plannedCourses){
@@ -45,25 +49,29 @@ public class Student {
         return plannedYCourses;
     }
 
-    public List<CourseChoice> previousCourses = new ArrayList<>();
+    private void flushCourses(){
+        List<CourseChoice> plannedCourses = new ArrayList<>();
+        plannedCourses.addAll(plannedFCourses);
+        plannedCourses.addAll(plannedSCourses);
+        plannedCourses.addAll(plannedYCourses);
 
-    public void flushFCourses(){
-        flushCourses(plannedFCourses);
-    }
+        if (plannedCourses.size() == 0){
+            return;
+        }
 
-    public void flushSCourses(){
-        flushCourses(plannedSCourses);
-    }
+        String session_name = plannedCourses.get(0).getCourse().getSession();
+        Map<String, Course> courseMap = new HashMap<>();
 
-    public void flushYCourses(){
-        flushCourses(plannedYCourses);
-    }
+        for (CourseChoice courseChoice: plannedCourses) {
+            courseMap.put(courseChoice.getCourse().getCode(), courseChoice.getCourse());
+        }
 
-    private void flushCourses(List<CourseChoice> plannedCourses){
-        previousCourses.addAll(plannedCourses);
-        plannedCourses.clear();
+        Session session = new Session(courseMap, session_name);
+        previousCourses.addSession(session_name, session);
 
-
+        plannedFCourses.clear();
+        plannedSCourses.clear();
+        plannedYCourses.clear();
     }
 
     /**
