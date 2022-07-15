@@ -14,7 +14,7 @@ public class TestBreadthRequirements {
         // CREATE A BREAKPOINT AND DEBUG HERE TO TEST COURSES
         System.out.println("DONE");
 
-        double[] ts = courseSearcherIndividual.getCourseOfferingByCode("ANT100Y1-Y")
+        double[] ts = courseSearcherIndividual.getCourseOfferingByCode("20229","ANT100Y1-Y")
                 .brc.getBreadthContributions();
 
         assertEquals(Math.round(ts[0] * 2), 0);
@@ -30,7 +30,7 @@ public class TestBreadthRequirements {
         // CREATE A BREAKPOINT AND DEBUG HERE TO TEST COURSES
         System.out.println("DONE");
 
-        double[] ts = courseSearcherIndividual.getCourseOfferingByCode("APM306Y1-Y")
+        double[] ts = courseSearcherIndividual.getCourseOfferingByCode("20229","APM306Y1-Y")
                 .brc.getBreadthContributions();
 
         assertEquals(Math.round(ts[0] * 2), 0);
@@ -46,7 +46,7 @@ public class TestBreadthRequirements {
         // CREATE A BREAKPOINT AND DEBUG HERE TO TEST COURSES
         System.out.println("DONE");
 
-        double[] ts = courseSearcherIndividual.getCourseOfferingByCode("MAT135H1-F")
+        double[] ts = courseSearcherIndividual.getCourseOfferingByCode("20229","MAT135H1-F")
                 .brc.getBreadthContributions();
 
         assertEquals(Math.round(ts[0] * 2), 0);
@@ -62,7 +62,7 @@ public class TestBreadthRequirements {
         // CREATE A BREAKPOINT AND DEBUG HERE TO TEST COURSES
         System.out.println("DONE");
 
-        double[] ts = courseSearcherIndividual.getCourseOfferingByCode("MAT137Y1-Y")
+        double[] ts = courseSearcherIndividual.getCourseOfferingByCode("20229","MAT137Y1-Y")
                 .brc.getBreadthContributions();
 
         assertEquals(Math.round(ts[0] * 2), 0);

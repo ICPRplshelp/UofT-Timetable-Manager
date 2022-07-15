@@ -37,8 +37,8 @@ public class TestExclusionListBuilder {
         PrerequisiteListBuilder m = new PrerequisiteListBuilder();
         CourseSearcherGetter csgTemp = new CourseSearcherGetter();
         CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
-        courseSearcherIndividual.getAllCoursesOfferingList().forEach(crs -> {
-            String pr = courseSearcherIndividual.getCourseOfferingByCode(crs).getExclusion();
+        courseSearcherIndividual.getAllCoursesOfferingList("20229").forEach(crs -> {
+            String pr = courseSearcherIndividual.getCourseOfferingByCode("20229", crs).getExclusion();
             RequisiteChecker rqc = new RequisiteChecker();
             rqc.checkExclusions(List.of("CSC110Y1"), pr);
             assertTrue(true);

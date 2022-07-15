@@ -1,13 +1,11 @@
 package org.example.studentdata.entities;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 
-// TODO: This is an entity. Place it in an entity package.
 public class Student {
-
-    // TODO: Delete all TODOs after completely finishing them
 
     // all Strings MUST match the regex of a course offering.
     // e.g. CSC110Y1-F
@@ -16,14 +14,57 @@ public class Student {
     // on the front-end side of this app
 
     // Exactly the same algorithm.
-    public List<CourseChoice> plannedFCourses;
-    public List<CourseChoice> plannedSCourses;
-    public List<CourseChoice> plannedYCourses;
+    private final List<CourseChoice> plannedFCourses  = new ArrayList<>();
+    private final List<CourseChoice> plannedSCourses  = new ArrayList<>();
+    private final List<CourseChoice> plannedYCourses  = new ArrayList<>();
     // Use cases may only touch these lists, so let the
     // use cases do whatever we want to them
 
-    // TODO: Implement a way to move all courses in plannedFCourses to the one below
-    public List<String> previousCourses;
+
+    public void addToPlannedFCourses(List<CourseChoice> plannedCourses){
+        plannedFCourses.addAll(plannedCourses);
+    }
+
+    public void addToPlannedSCourses(List<CourseChoice> plannedCourses){
+        plannedSCourses.addAll(plannedCourses);
+    }
+
+    public void addToPlannedYCourses(List<CourseChoice> plannedCourses){
+        plannedYCourses.addAll(plannedCourses);
+    }
+
+    public List<CourseChoice> getPlannedFCourses() {
+        return plannedFCourses;
+    }
+
+    public List<CourseChoice> getPlannedSCourses() {
+        return plannedSCourses;
+    }
+
+    public List<CourseChoice> getPlannedYCourses() {
+        return plannedYCourses;
+    }
+
+    public List<CourseChoice> previousCourses = new ArrayList<>();
+
+    public void flushFCourses(){
+        flushCourses(plannedFCourses);
+    }
+
+    public void flushSCourses(){
+        flushCourses(plannedSCourses);
+    }
+
+    public void flushYCourses(){
+        flushCourses(plannedYCourses);
+    }
+
+    private void flushCourses(List<CourseChoice> plannedCourses){
+        previousCourses.addAll(plannedCourses);
+        plannedCourses.clear();
+
+
+    }
 
     /**
      * Sort all the course lists.

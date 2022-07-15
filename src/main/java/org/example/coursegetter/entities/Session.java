@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class CourseStorage {
+public class Session {
     private final Map<String, Course> courses;
     private final Set<String> courseList;
 
@@ -23,11 +23,12 @@ public class CourseStorage {
      * @param courseMap a map of courses.
      * @param session the session of the courses.
      */
-    public CourseStorage(Map<String, Course> courseMap, String session) {
+    public Session(Map<String, Course> courseMap, String session) {
         this.courses = courseMap;
         this.session = session;
         Set<String> tempKeySet = courses.keySet();
         courseList = new HashSet<>();
+
         tempKeySet.forEach(key -> courseList.add(key.substring(0, 8)));
     }
 
