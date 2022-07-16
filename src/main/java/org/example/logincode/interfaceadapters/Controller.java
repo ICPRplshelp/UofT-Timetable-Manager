@@ -1,5 +1,7 @@
 package org.example.logincode.interfaceadapters;
 
+import org.example.coursegetter.entities.Course;
+import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.logincode.usecases.AccountCreator;
 import org.example.logincode.usecases.AccountLogin;
 import org.example.logincode.usecases.AccountManager;
@@ -18,8 +20,8 @@ public class Controller {
     // determines which "window" to show a logged-in user (maps to one of the ControllerInputs)
     private LoggedInState loggedInState = LoggedInState.STANDARD;  // always start with the standard presenter window
     private LoginState loginState = LoginState.LOGGED_OUT;
-
-    private final ControllerInputFactory controllerInputFactory = new ControllerInputFactory(manager, accountStorageManager, presenter);
+    private final CourseSearcherGetter csg = new CourseSearcherGetter();
+    private final ControllerInputFactory controllerInputFactory = new ControllerInputFactory(manager, accountStorageManager, presenter, csg);
 
     /**
      * The method needed to set up the enum map. This contains a lot of boilerplate code, though.

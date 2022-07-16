@@ -17,7 +17,9 @@ import java.util.Set;
  */
 public class CourseCommunicator {
     private final Course course;
-
+    public CourseCommunicator(String course, String session, CourseSearcherIndividual csi){
+        this.course = csi.getCourseOfferingByCode(session, course);
+    }
     public CourseCommunicator(Course course) {
         this.course = course;
     }

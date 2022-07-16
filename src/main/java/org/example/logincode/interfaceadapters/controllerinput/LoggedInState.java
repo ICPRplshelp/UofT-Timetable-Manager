@@ -5,5 +5,6 @@ package org.example.logincode.interfaceadapters.controllerinput;
  */
 public enum LoggedInState {
     STANDARD,  // ControllerInputStandard
-    ADMIN
+    ADMIN,
+    COURSE_SEARCHER
 }
