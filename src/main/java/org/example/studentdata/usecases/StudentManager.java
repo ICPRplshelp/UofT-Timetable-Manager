@@ -41,7 +41,7 @@ public class StudentManager {
         return true;
     }
 
-    public boolean specifySection(Course course, String sectionType, String sectionNum) {
+    public boolean specifySection(Course course, String lecSection, String tutSection, String praSection) {
         return true;
     }
 
@@ -52,21 +52,27 @@ public class StudentManager {
             case "S" -> returnCourses = student.getPlannedSCourses();
             case "Y" -> returnCourses = student.getPlannedYCourses();
             default -> {
-                return "Error"; }
+                returnCourses = student.getPlannedFCourses();
+                returnCourses.addAll(student.getPlannedSCourses());
+                returnCourses.addAll(student.getPlannedYCourses()); }
         }
 
-        List<String> coursesList = toCourseNameHelper(returnCourses);
+        Collection<String> coursesList = toCourseNameHelper(returnCourses);
         return String.join(", ", coursesList);
 
     }
 
-    private List<String> toCourseNameHelper(Collection<CourseChoice> coursesList) {
+    private Collection<String> toCourseNameHelper(Collection<CourseChoice> coursesList) {
         return coursesList.stream()
                 .map(CourseChoice::getCourse).toList().stream()
-                .map(Course::getCourseTitle)
+                .map(Course::getOfferingCode)
                 .collect(Collectors.toList());
     }
     public String getCourseHistory() {
-        return "placeholder";
+        List<String> coursesList = student.getAllPreviousCourses().stream()
+                .map(Course::getOfferingCode).toList();
+        return String.join(", ", coursesList);
     }
+
+
 }
