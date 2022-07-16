@@ -56,6 +56,10 @@ public class Student {
         this.previousCourses.removeAll(previousCourses);
     }
 
+    public Collection<CourseChoice> getPlannedCourses(){
+        return plannedCourses;
+    }
+
     public Collection<CourseChoice> getPlannedFCourses() {
         Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals("F"));
         return temp.collect(Collectors.toList());
