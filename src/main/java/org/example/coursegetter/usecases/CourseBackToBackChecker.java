@@ -33,7 +33,7 @@ public class CourseBackToBackChecker {
      * For example if a course is 10:00-11:00 and another is 11:00-12:00 on the same day method will return Array with schedules
      */
 
-    public ArrayList<E> checkIfCoursesBackToBack(CourseChoice Course1, CourseChoice Course2) {
+    public ArrayList<ScheduleEntry> checkIfCoursesBackToBack(CourseChoice Course1, CourseChoice Course2) {
         String lectureCode = Course1.getLectureSection();
         String lectureCode2 = Course2.getLectureSection();
         String tutorialCode = Course1.getTutSection();
