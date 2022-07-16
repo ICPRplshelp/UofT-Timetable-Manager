@@ -3,7 +3,6 @@ package org.example.timetable.interfaceadapters;
 import org.example.PresenterPrinter;
 import org.example.studentdata.entities.CourseChoice;
 import org.example.timetable.entities.CourseWarning;
-import org.example.timetable.entities.Section;
 import org.example.timetable.entities.Timetable;
 
 public class Presenter {
@@ -11,21 +10,21 @@ public class Presenter {
     PresenterPrinter prt = new PresenterPrinter();
 
     public void printAllTimetableInformation(Timetable timetable) {
-        for (Section section: Section.values()) {
-            printSectionInformation(timetable, section);
-        }
+        printSectionInformation(timetable, "F");
+        printSectionInformation(timetable, "S");
+        printSectionInformation(timetable, "Y");
     }
 
-    private String sectionToString(Section section){
+    private String sectionFullName(String section){
         return switch (section){
-            case F -> "Fall";
-            case S -> "Winter";
-            case Y -> "Year";
+            case "F" -> "Fall";
+            case "S" -> "Winter";
+            case "Y" -> "Year";
         };
     }
 
-    private void printSectionInformation(Timetable timetable, Section section){
-        prt.println(sectionToString(section));
+    private void printSectionInformation(Timetable timetable, String section){
+        prt.println(sectionFullName(section));
         for (CourseChoice courseChoice: timetable.getPlannedCourses(section)){
             printCourseInformation(courseChoice, timetable.getWarning(courseChoice));
         }
