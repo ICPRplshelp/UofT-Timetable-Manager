@@ -1,4 +1,4 @@
-package org.example.enrollmentissues.entities;
+package org.example.enrollmentissues.entities.internal;
 
 import org.example.coursegetter.entities.ScheduleEntry;
 
