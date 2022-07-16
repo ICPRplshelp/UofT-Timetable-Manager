@@ -57,17 +57,19 @@ public class Student {
     }
 
     public Collection<CourseChoice> getPlannedFCourses() {
-        Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals("F"));
-        return temp.collect(Collectors.toList());
+        return getPlannedCourses("F");
     }
 
     public Collection<CourseChoice> getPlannedSCourses() {
-        Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals("S"));
-        return temp.collect(Collectors.toList());
+        return getPlannedCourses("S");
     }
 
     public Collection<CourseChoice> getPlannedYCourses() {
-        Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals("Y"));
+        return getPlannedCourses("Y");
+    }
+
+    private Collection<CourseChoice> getPlannedCourses(String section){
+        Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals(section));
         return temp.collect(Collectors.toList());
     }
 
