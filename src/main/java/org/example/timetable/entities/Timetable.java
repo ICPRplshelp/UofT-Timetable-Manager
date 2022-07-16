@@ -6,9 +6,9 @@ import org.example.timetable.entities.warningtypes.TimetableWarning;
 import java.util.*;
 
 public class Timetable {
-    private final List<CourseChoice> plannedFCourses  = new ArrayList<>();
-    private final List<CourseChoice> plannedSCourses  = new ArrayList<>();
-    private final List<CourseChoice> plannedYCourses  = new ArrayList<>();
+    private final Set<CourseChoice> plannedFCourses  = new HashSet<>();
+    private final Set<CourseChoice> plannedSCourses  = new HashSet<>();
+    private final Set<CourseChoice> plannedYCourses  = new HashSet<>();
 
     private final Map<CourseChoice, CourseWarning> warnings = new HashMap<>();
 
