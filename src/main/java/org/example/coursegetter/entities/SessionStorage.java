@@ -1,7 +1,9 @@
 package org.example.coursegetter.entities;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class SessionStorage {
     private final Map<String, Session> sessions = new HashMap<>();
@@ -24,5 +26,8 @@ public class SessionStorage {
      */
     public Session getSession(String session){
         return sessions.get(session);
+    }
+    public Set<String> listAllSessions(){
+        return Collections.unmodifiableSet(sessions.keySet());
     }
 }

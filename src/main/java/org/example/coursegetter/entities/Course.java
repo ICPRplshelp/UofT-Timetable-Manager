@@ -58,6 +58,10 @@ public class Course implements Comparable<Course> {
         return code;
     }
 
+    public String getOfferingCode() {
+        return code + "-" + getSection();
+    }
+
     public String getWebTimetableInstructions() {
         return webTimetableInstructions;
     }
@@ -119,14 +123,15 @@ public class Course implements Comparable<Course> {
      * lecture meetings in this course, the meeting's
      * enrollment controls says only first year students
      * can enroll in it.
+     *
      * @return whether this course is first year only.
      */
     public boolean firstYearOnly() {
         for (Meeting met : this.meetings.getLectures().values()) {
-            if(!(met.getEnrollmentIndicator().equals("R1") ||
+            if (!(met.getEnrollmentIndicator().equals("R1") ||
                     met.getEnrollmentIndicator().equals("R2"))) return false;
 
-            for(EnrollmentControl ec : met.getEnrollmentControls()){
+            for (EnrollmentControl ec : met.getEnrollmentControls()) {
                 if (!ec.isFirstYearOnly()) return false;
             }
         }
