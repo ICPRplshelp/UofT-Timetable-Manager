@@ -1,88 +1,75 @@
 package org.example.studentdata.entities;
 
 import org.example.coursegetter.entities.Course;
-import org.example.coursegetter.entities.Session;
-import org.example.coursegetter.entities.SessionStorage;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class Student {
+    private final Set<CourseChoice> plannedCourses = new TreeSet<>();
+    private final Set<Course> previousCourses = new TreeSet<>();
 
-    // all Strings MUST match the regex of a course offering.
-    // e.g. CSC110Y1-F
-    // the courses a student plans to take
-    // based on the order it was added by the student
-    // on the front-end side of this app
-
-    // Exactly the same algorithm.
-    private final List<CourseChoice> plannedFCourses  = new ArrayList<>();
-    private final List<CourseChoice> plannedSCourses  = new ArrayList<>();
-    private final List<CourseChoice> plannedYCourses  = new ArrayList<>();
-    // Use cases may only touch these lists, so let the
-    // use cases do whatever we want to them
-
-    public final SessionStorage previousCourses = new SessionStorage();
-
-
-    public void addToPlannedFCourses(List<CourseChoice> plannedCourses){
-        plannedFCourses.addAll(plannedCourses);
-    }
-
-    public void addToPlannedSCourses(List<CourseChoice> plannedCourses){
-        plannedSCourses.addAll(plannedCourses);
-    }
-
-    public void addToPlannedYCourses(List<CourseChoice> plannedCourses){
-        plannedYCourses.addAll(plannedCourses);
-    }
-
-    public List<CourseChoice> getPlannedFCourses() {
-        return plannedFCourses;
-    }
-
-    public List<CourseChoice> getPlannedSCourses() {
-        return plannedSCourses;
-    }
-
-    public List<CourseChoice> getPlannedYCourses() {
-        return plannedYCourses;
-    }
-
-    private void flushCourses(){
-        List<CourseChoice> plannedCourses = new ArrayList<>();
-        plannedCourses.addAll(plannedFCourses);
-        plannedCourses.addAll(plannedSCourses);
-        plannedCourses.addAll(plannedYCourses);
-
-        if (plannedCourses.size() == 0){
-            return;
-        }
-
-        String session_name = plannedCourses.get(0).getCourse().getSession();
-        Map<String, Course> courseMap = new HashMap<>();
-
-        for (CourseChoice courseChoice: plannedCourses) {
-            courseMap.put(courseChoice.getCourse().getCode(), courseChoice.getCourse());
-        }
-
-        Session session = new Session(courseMap, session_name);
-        previousCourses.addSession(session_name, session);
-
-        plannedFCourses.clear();
-        plannedSCourses.clear();
-        plannedYCourses.clear();
+    /**
+     * Returns a collection of courses the
+     * student has already passed in all previous sections.
+     *
+     * @return a collection of courses the student has
+     * already taken in previous sessions.
+     */
+    public Collection<Course> getAllPreviousCourses() {
+        return previousCourses;
     }
 
     /**
-     * Sort all the course lists.
+     * Add all passed in courses to the collection of planned courses.
+     * You may not add the same course twice, or it will be discarded.
+     * @param plannedCourses a collection of planned courses.
      */
-    public void sortAllCourseLists(){
-        Collections.sort(plannedFCourses);
-        Collections.sort(plannedSCourses);
-        Collections.sort(plannedYCourses);
+    public void addToPlannedCourses(Collection<CourseChoice> plannedCourses){
+        this.plannedCourses.addAll(plannedCourses);
     }
 
+    /**
+     * Add all passed in courses to the collection of previous courses.
+     * You may not add the same course twice, or it will be discarded.
+     * @param previousCourses a collection of planned courses.
+     */
+    public void addToPreviousCourses(Collection<Course> previousCourses){
+        this.previousCourses.addAll(previousCourses);
+    }
+
+    /**
+     * Remove all passed in courses to the collection of previous courses.
+     * @param plannedCourses a collection of planned courses.
+     */
+    public void removeFromPlannedCourses(Collection<CourseChoice> plannedCourses){
+        this.plannedCourses.removeAll(plannedCourses);
+    }
+
+    /**
+     * Remove all passed in courses to the collection of previous courses.
+     * @param previousCourses a collection of planned courses.
+     */
+    public void removeFromPreviousCourses(Collection<Course> previousCourses){
+        this.previousCourses.removeAll(previousCourses);
+    }
+
+    public Collection<CourseChoice> getPlannedFCourses() {
+        Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals("F"));
+        return temp.collect(Collectors.toList());
+    }
+
+    public Collection<CourseChoice> getPlannedSCourses() {
+        Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals("S"));
+        return temp.collect(Collectors.toList());
+    }
+
+    public Collection<CourseChoice> getPlannedYCourses() {
+        Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals("Y"));
+        return temp.collect(Collectors.toList());
+    }
 
 
 }
