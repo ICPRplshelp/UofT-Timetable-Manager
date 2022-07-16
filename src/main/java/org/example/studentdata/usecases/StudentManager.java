@@ -41,7 +41,7 @@ public class StudentManager {
         return true;
     }
 
-    public boolean specifySection(Course course, String sectionType, String sectionNum) {
+    public boolean specifySection(Course course, String lecSection, String tutSection, String praSection) {
         return true;
     }
 
