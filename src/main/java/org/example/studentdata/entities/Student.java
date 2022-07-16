@@ -1,6 +1,7 @@
 package org.example.studentdata.entities;
 
 import org.example.coursegetter.entities.Course;
+import org.example.timetable.entities.Timetable;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,7 +10,13 @@ import java.util.stream.Stream;
 
 public class Student {
     private final Set<CourseChoice> plannedCourses = new TreeSet<>();
-    private final Set<Course> previousCourses = new TreeSet<>();
+    private final Set<Course> previousCourses;
+
+    private Timetable timetable;
+
+    public Student() {
+        previousCourses = new TreeSet<>();
+    }
 
     /**
      * Returns a collection of courses the
@@ -61,17 +68,19 @@ public class Student {
     }
 
     public Collection<CourseChoice> getPlannedFCourses() {
-        Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals("F"));
-        return temp.collect(Collectors.toList());
+        return getPlannedCourses("F");
     }
 
     public Collection<CourseChoice> getPlannedSCourses() {
-        Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals("S"));
-        return temp.collect(Collectors.toList());
+        return getPlannedCourses("S");
     }
 
     public Collection<CourseChoice> getPlannedYCourses() {
-        Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals("Y"));
+        return getPlannedCourses("Y");
+    }
+
+    private Collection<CourseChoice> getPlannedCourses(String section){
+        Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals(section));
         return temp.collect(Collectors.toList());
     }
 

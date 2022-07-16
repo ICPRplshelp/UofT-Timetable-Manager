@@ -33,7 +33,7 @@ public abstract class ScheduleIssue extends Issue {
     }
 
     /**
-     * @return A collection of ScheduleEntry objects causing the problem.
+     * @return A collection of ScheduleEntry objects of this course that is victim to the problem.
      */
     public abstract Collection<ScheduleEntryIdentifier> getCellProblems();
 
