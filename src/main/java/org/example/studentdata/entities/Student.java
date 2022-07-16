@@ -24,6 +24,10 @@ public class Student {
 
     public final SessionStorage previousCourses = new SessionStorage();
 
+    public Student(){
+
+    }
+
 
     public void addToPlannedFCourses(List<CourseChoice> plannedCourses){
         plannedFCourses.addAll(plannedCourses);
