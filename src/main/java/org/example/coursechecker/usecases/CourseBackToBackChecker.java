@@ -16,11 +16,11 @@ public class CourseBackToBackChecker {
      * returns an ArrayList of ArrayLists that contain two ScheduleEntry of courses that are back to back
      */
 
-    public ArrayList<ArrayList<ScheduleEntry>> backToBackCourseChoices(List<CourseChoice> listCourses){
-        ArrayList<ArrayList<ScheduleEntry>> backToBackCourses = new ArrayList<>();
+    public List<List<ScheduleEntry>> backToBackCourseChoices(List<CourseChoice> listCourses){
+        List<List<ScheduleEntry>> backToBackCourses = new ArrayList<>();
         for (int i = 0; i < listCourses.size(); i++) {
             for (CourseChoice listCourse : listCourses) {
-                backToBackCourses.add(chkIfCoursesBackToBack(listCourses.get(i), listCourse));
+                backToBackCourses.add(checkIfCoursesBackToBack(listCourses.get(i), listCourse));
             }
         }
         backToBackCourses.remove(null);
@@ -33,7 +33,7 @@ public class CourseBackToBackChecker {
      * For example if a course is 10:00-11:00 and another is 11:00-12:00 on the same day method will return True
      */
 
-    public ArrayList<ScheduleEntry> chkIfCoursesBackToBack(CourseChoice Course1, CourseChoice Course2) {
+    public List<ScheduleEntry> checkIfCoursesBackToBack(CourseChoice Course1, CourseChoice Course2) {
         String lectureCode = Course1.getLectureSection();
         String lectureCode2 = Course2.getLectureSection();
         String tutorialCode = Course1.getTutSection();
@@ -55,7 +55,7 @@ public class CourseBackToBackChecker {
         return null;
     }
 
-    private ArrayList<ScheduleEntry> backToBackHelper(Iterator<ScheduleEntry> c1, Iterator<ScheduleEntry> iterator2) {
+    private List<ScheduleEntry> backToBackHelper(Iterator<ScheduleEntry> c1, Iterator<ScheduleEntry> iterator2) {
         ScheduleEntry current;
 
         while(c1.hasNext() ) {
