@@ -7,9 +7,11 @@ import org.example.timetable.entities.Timetable;
 
 import java.util.List;
 
+import org.example.timetable.entities.Timetable;
+
 public class TimetableManager {
 
-    Timetable timetable;
+    private final Timetable timetable;
     public TimetableManager(Timetable timetable) {
         this.timetable = timetable;
     }
@@ -24,4 +26,8 @@ public class TimetableManager {
     //public List<CourseChoice> createPermutation() {
 
     //}
+
+    public Timetable getTimetable() {
+        return timetable;
+    }
 }
