@@ -63,6 +63,10 @@ public class Student {
         this.previousCourses.removeAll(previousCourses);
     }
 
+    public Collection<CourseChoice> getPlannedCourses(){
+        return plannedCourses;
+    }
+
     public Collection<CourseChoice> getPlannedFCourses() {
         return getPlannedCourses("F");
     }
