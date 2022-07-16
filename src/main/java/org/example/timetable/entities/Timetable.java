@@ -12,6 +12,25 @@ public class Timetable {
 
     private final Map<CourseChoice, CourseWarning> warnings = new HashMap<>();
 
+    public Set<CourseChoice> getPlannedCourses(Section section) {
+        return switch (section){
+            case F -> plannedFCourses;
+            case S -> plannedSCourses;
+            case Y -> plannedYCourses;
+        };
+    }
 
+    public void addWarning(CourseChoice courseChoice, TimetableWarning timetableWarning){
+        if (!warnings.containsKey(courseChoice)){
+            warnings.put(courseChoice, new CourseWarning());
+        }
 
+        warnings.get(courseChoice).addWarning(timetableWarning);
+
+    }
+
+    public CourseWarning getWarning(CourseChoice courseChoice) {
+        return warnings.get(courseChoice);
+    }
 }
+
