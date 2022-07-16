@@ -1,4 +1,4 @@
-package org.example.coursegetter.usecases;
+package org.example.coursechecker.usecases;
 
 import org.example.coursegetter.entities.ScheduleEntry;
 import org.example.studentdata.entities.CourseChoice;
@@ -20,7 +20,7 @@ public class CourseBackToBackChecker {
         ArrayList<ArrayList<ScheduleEntry>> backToBackCourses = new ArrayList<>();
         for (int i = 0; i < listCourses.size(); i++) {
             for (CourseChoice listCourse : listCourses) {
-                backToBackCourses.add(checkIfCoursesBackToBack(listCourses.get(i), listCourse));
+                backToBackCourses.add(chkIfCoursesBackToBack(listCourses.get(i), listCourse));
             }
         }
         backToBackCourses.remove(null);
@@ -30,10 +30,10 @@ public class CourseBackToBackChecker {
 
     /**
      * Check if two courses are back to back time-wise
-     * For example if a course is 10:00-11:00 and another is 11:00-12:00 on the same day method will return Array with schedules
+     * For example if a course is 10:00-11:00 and another is 11:00-12:00 on the same day method will return True
      */
 
-    public ArrayList<ScheduleEntry> checkIfCoursesBackToBack(CourseChoice Course1, CourseChoice Course2) {
+    public ArrayList<ScheduleEntry> chkIfCoursesBackToBack(CourseChoice Course1, CourseChoice Course2) {
         String lectureCode = Course1.getLectureSection();
         String lectureCode2 = Course2.getLectureSection();
         String tutorialCode = Course1.getTutSection();
@@ -70,7 +70,7 @@ public class CourseBackToBackChecker {
 
 //                System.out.println(c2.next());
                 if (current.getDay().equals(current2.getDay()) && ((a == b) || (c == d))){
-                    ArrayList<ScheduleEntry> newArray = new ArrayList<ScheduleEntry>();
+                    ArrayList<ScheduleEntry> newArray = new ArrayList<>();
                     newArray.add(current); newArray.add(current2);
                     return newArray;
                 }
@@ -78,7 +78,5 @@ public class CourseBackToBackChecker {
         }
         return null;
     }
-
-    public double getCourseBacktoBackDistance(ArrayList)
 
 }
