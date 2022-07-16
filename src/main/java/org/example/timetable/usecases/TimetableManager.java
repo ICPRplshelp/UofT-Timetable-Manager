@@ -5,6 +5,7 @@ import org.example.studentdata.entities.CourseChoice;
 import org.example.studentdata.entities.Student;
 import org.example.timetable.entities.Timetable;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.example.timetable.entities.Timetable;
@@ -16,7 +17,7 @@ public class TimetableManager {
         this.timetable = timetable;
     }
 
-    public boolean addToTimeTable(List<CourseChoice> courseList) {
+    public boolean addToTimeTable(Collection<CourseChoice> courseList) {
         for (CourseChoice courseChoice : courseList) {
             timetable.addToTimetable(courseChoice);
         }
@@ -30,4 +31,5 @@ public class TimetableManager {
     public Timetable getTimetable() {
         return timetable;
     }
+    public void clearTimetable() {}
 }
