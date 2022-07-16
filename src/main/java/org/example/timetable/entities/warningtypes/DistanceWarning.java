@@ -10,7 +10,7 @@ public class DistanceWarning extends TimetableWarning{
 
     @Override
     public String toString(){
-        return "Long travel dist. with subseq crs";
+        return "Long travel dist. with previous crs";
     }
 
 }
