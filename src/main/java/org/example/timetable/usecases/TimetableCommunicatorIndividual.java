@@ -6,10 +6,7 @@ import org.example.timetable.entities.Timetable;
 import org.example.timetable.entities.warningtypes.TimetableWarning;
 import org.example.timetable.entities.warningtypes.WarningType;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Communicates things relevant in Timetable to the controller
@@ -45,29 +42,29 @@ public class TimetableCommunicatorIndividual {
     private Set<TimetableWarning> getAllWarnsFromCourseChoice() {
         CourseWarning courseWarning = timetable.getWarning(cc);
         if(courseWarning == null) return new HashSet<>();
-        Set<TimetableWarning> allWarns = courseWarning.getAllWarnings();
-        return allWarns;
+        return courseWarning.getAllWarnings();
     }
 
     public List<String> getSectionsFromCourse() {
         List<String> outputSoFar = new ArrayList<>();
-        if (!cc.checkLec()) {
-            outputSoFar.add("LEC????");
-        } else if (cc.getLectureSection() != null) {
+        if(Objects.isNull(cc.getLectureSection())){
+            if(!cc.checkLec()) outputSoFar.add("LEC????");
+        } else {
             outputSoFar.add(cc.getLectureSection());
         }
 
-        if (!cc.checkTut()) {
-            outputSoFar.add("TUT????");
-        } else if (cc.getTutSection() != null) {
+        if(Objects.isNull(cc.getTutSection())){
+            if(!cc.checkTut()) outputSoFar.add("TUT????");
+        } else {
             outputSoFar.add(cc.getTutSection());
         }
 
-        if (!cc.checkPra()) {
-            outputSoFar.add("PRA????");
-        } else if (cc.getPraSection() != null) {
+        if(Objects.isNull(cc.getPraSection())){
+            if(!cc.checkPra()) outputSoFar.add("PRA????");
+        } else {
             outputSoFar.add(cc.getPraSection());
         }
+
 
         return outputSoFar;
     }
