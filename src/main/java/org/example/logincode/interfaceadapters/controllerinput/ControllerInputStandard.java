@@ -1,13 +1,13 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
-import org.example.logincode.interfaceadapters.Presenter;
+import org.example.logincode.interfaceadapters.LoginPresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 
 public class ControllerInputStandard extends ControllerInput {
 
-    public ControllerInputStandard(AccountManager manager, StorageManager accountStorageManager, Presenter presenter) {
-        super(manager, accountStorageManager, presenter);
+    public ControllerInputStandard(AccountManager manager, StorageManager accountStorageManager, LoginPresenter loginPresenter) {
+        super(manager, accountStorageManager, loginPresenter);
         curState = LoggedInState.STANDARD;
         commandsList = new String[]{"history", "adminview", "setpassword", "secretadmin"};
     }
@@ -29,16 +29,16 @@ public class ControllerInputStandard extends ControllerInput {
     }
 
     private void changePassword() {
-        String[] newPswds = presenter.passwordChangePrompt();
+        String[] newPswds = loginPresenter.passwordChangePrompt();
         boolean pswdSuccess = manager.setPassword(newPswds[0], newPswds[1]);
         if (!pswdSuccess) {
-            presenter.genericFailedAction("invPassword");
+            loginPresenter.genericFailedAction("invPassword");
         }
     }
 
     private void switchToAdminView() {
         if (!manager.validatePermission("admin")) {
-            presenter.genericFailedAction("noPerms");
+            loginPresenter.genericFailedAction("noPerms");
         } else {
             curState = LoggedInState.ADMIN;
         }
@@ -46,7 +46,7 @@ public class ControllerInputStandard extends ControllerInput {
 
     private void printUserHistory() {
         String ts = manager.getAccountHistoryAsString();
-        presenter.printHistory(ts);
+        loginPresenter.printHistory(ts);
     }
 
 }
