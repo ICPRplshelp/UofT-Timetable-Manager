@@ -9,6 +9,8 @@ import java.util.Collection;
 
 public class Controller {
 
+
+
     private final Presenter presenter = new Presenter();
     private final TimetableCommunicatorBulk tcb;
 
@@ -18,9 +20,6 @@ public class Controller {
         this.tcb = tcb;
     }
 
-    public void createTimeTable(){
-        timetableManager = new TimetableManager(new Timetable());
-    }
 
     public void presentTimeTable(){
         Collection<TimetableCommunicatorIndividual> indvC = tcb.getIndividualCommunicators();

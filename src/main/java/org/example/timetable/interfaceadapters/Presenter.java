@@ -29,12 +29,6 @@ public class Presenter {
          this.warningsMap = warningsMap;
     }
 
-    public void printAllTimetableInformation(Timetable timetable) {
-        printSectionInformation(timetable, "F");
-        printSectionInformation(timetable, "S");
-        printSectionInformation(timetable, "Y");
-    }
-
     private String sectionFullName(String section){
         return switch (section){
             case "F" -> "Fall";
@@ -45,7 +39,6 @@ public class Presenter {
 
     public void printTimetableInformation(Collection<TimetableCommunicatorIndividual> tcis){
         tcis.forEach(this::printCourseInformation);
-
     }
 
     private void printCourseInformation(TimetableCommunicatorIndividual tci){
@@ -61,17 +54,6 @@ public class Presenter {
         List<String> tempListString = List.of(cc, sectionsString, warningsString);
         String finalString = String.join(" // ", tempListString);
         prt.println(finalString);
-
     }
 
-    private void printSectionInformation(Timetable timetable, String section){
-        prt.println(sectionFullName(section));
-        for (CourseChoice courseChoice: timetable.getPlannedCourses(section)){
-            printCourseInformation(courseChoice, timetable.getWarning(courseChoice));
-        }
-    }
-
-    private void printCourseInformation(CourseChoice courseChoice, CourseWarning courseWarning){
-        prt.println(courseChoice.toString() + " " + courseWarning.toString());
-    }
 }
