@@ -3,6 +3,7 @@ package org.example.studentdata.usecases;
 import org.example.coursegetter.entities.Course;
 import org.example.studentdata.entities.CourseChoice;
 import org.example.studentdata.entities.Student;
+import org.example.timetable.entities.Timetable;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,8 +18,13 @@ public class StudentManager {
         this.student = student;
     }
 
+    public Timetable getTimetable() {
+        return student.getTimetable();
+    }
+
     // TODO: implement (alex + hanmin?)
     // I'm gonna make this better soon
+    // THE FOLLOWING METHODS ARE TO BE DELETED ONCE TIMETABLEMANAGER IS FINALIZED.
     public boolean addPlannedCourse(List<CourseChoice> courseList) {
         student.addToPlannedCourses(courseList);
         return true;
