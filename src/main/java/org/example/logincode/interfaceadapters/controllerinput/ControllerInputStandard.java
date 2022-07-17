@@ -17,6 +17,7 @@ public class ControllerInputStandard extends ControllerInput {
         switch (input) {
             case "history" -> printUserHistory();
             case "adminview" -> switchToAdminView();
+            case "ttview" -> this.curState = LoggedInState.TIMETABLE;
             case "secretadmin" -> manager.makeMeAnAdmin();
             case "setpassword" -> changePassword();
             default -> {

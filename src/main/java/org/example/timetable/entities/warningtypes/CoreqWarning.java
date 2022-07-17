@@ -4,8 +4,10 @@ import org.example.timetable.entities.WarningLevel;
 
 public class CoreqWarning extends TimetableWarning{
 
-    public CoreqWarning(){
-        warninglevel = WarningLevel.CRITICAL;
+    public CoreqWarning()
+    {
+        warningType = WarningType.CRQ;
+        warningLevel = WarningLevel.CRITICAL;
     }
 
     @Override

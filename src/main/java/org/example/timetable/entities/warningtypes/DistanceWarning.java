@@ -5,12 +5,12 @@ import org.example.timetable.entities.WarningLevel;
 public class DistanceWarning extends TimetableWarning{
 
     public DistanceWarning(){
-        warninglevel = WarningLevel.WEAK_WARNING;
+        warningType = WarningType.DIST;
     }
 
     @Override
     public String toString(){
-        return "Long travel dist. with subseq crs";
+        return "Long travel dist. with previous crs";
     }
 
 }
