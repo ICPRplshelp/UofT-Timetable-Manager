@@ -7,6 +7,7 @@ import org.example.timetable.entities.warningtypes.TimetableWarning;
 import org.example.timetable.entities.warningtypes.WarningType;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -27,21 +28,23 @@ public class TimetableCommunicatorIndividual {
         this.cc = cc;
     }
 
-    public String getCourseCode(){
+    public String getCourseCode() {
         return cc.getCourse().getOfferingCode();
     }
 
 
-    public List<WarningType> getWarningTypesList(){
+    public List<WarningType> getWarningTypesList() {
         List<WarningType> soFar = new ArrayList<>();
         Set<TimetableWarning> allWarns = getAllWarnsFromCourseChoice();
-        for(TimetableWarning ttw : allWarns){
+        for (TimetableWarning ttw : allWarns) {
             soFar.add(ttw.getWarningType());
         }
         return soFar;
     }
+
     private Set<TimetableWarning> getAllWarnsFromCourseChoice() {
         CourseWarning courseWarning = timetable.getWarning(cc);
+        if(courseWarning == null) return new HashSet<>();
         Set<TimetableWarning> allWarns = courseWarning.getAllWarnings();
         return allWarns;
     }

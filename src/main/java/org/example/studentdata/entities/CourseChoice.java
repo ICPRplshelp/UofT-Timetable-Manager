@@ -41,6 +41,10 @@ public class CourseChoice implements Comparable<CourseChoice> {
     private String tutSection;
     private String praSection;
 
+    public CourseChoice(Course course){
+        this.course = course;
+    }
+
     public CourseChoice(Course course, String lectureSection, String tutSection,
                         String praSection) {
         this.course = course;

@@ -34,6 +34,7 @@ public class Presenter {
             case "F" -> "Fall";
             case "S" -> "Winter";
             case "Y" -> "Year";
+            default -> "idk";
         };
     }
 

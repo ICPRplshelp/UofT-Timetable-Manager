@@ -12,6 +12,10 @@ public class Student {
     private final Set<CourseChoice> plannedCourses = new TreeSet<>();
     private final Set<Course> previousCourses;
 
+    public Timetable getTimetable() {
+        return timetable;
+    }
+
     private final Timetable timetable;
 
     public Student() {
