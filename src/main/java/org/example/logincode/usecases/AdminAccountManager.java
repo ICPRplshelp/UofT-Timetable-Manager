@@ -112,11 +112,9 @@ public class AdminAccountManager extends AccountManager {
 
                 // return true; // this account has been deleted.
             } else {
-                // System.out.println("F");
                 return false; // this user does not exist!
             }
         } else {
-            // System.out.println("BRUH");
             return false; // tentative: you do not have the permissions to do this!
         }
     }
