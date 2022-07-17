@@ -3,6 +3,8 @@ package org.example.logincode.usecases;
 import org.example.logincode.entities.AccountStorage;
 
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class lets you load accounts from a CSV
@@ -10,6 +12,7 @@ import java.io.*;
  * Only if passwords were hashed...
  */
 public class StorageLoader {
+    private static final Logger LOGGER = Logger.getLogger( StorageLoader.class.getName() );
     private final boolean disable = false;
     protected AccountStorage accountStorage;
 
@@ -50,10 +53,10 @@ public class StorageLoader {
             fileOut.close();
         }
         catch (NotSerializableException nse) {
-            System.out.println("Couldn't save anything? [1]");
+            LOGGER.log(Level.WARNING, "Couldn't save anything? [1]");
         } catch (IOException i) {
             i.printStackTrace();
-            System.out.println("Couldn't save anything?");
+            LOGGER.log(Level.WARNING, "Couldn't save anything?");
 
         }
     }
