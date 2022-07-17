@@ -71,10 +71,6 @@ public class StudentManager {
         return true;
     }
 
-    public boolean specifySection(Course course, String lecSection, String tutSection, String praSection) {
-        return true;
-    }
-
     public String getPlannedCourses(String session) {
         Collection<CourseChoice> returnCourses;
         switch (session) {
