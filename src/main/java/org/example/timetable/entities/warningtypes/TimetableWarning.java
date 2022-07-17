@@ -2,7 +2,9 @@ package org.example.timetable.entities.warningtypes;
 
 import org.example.timetable.entities.WarningLevel;
 
-abstract public class TimetableWarning implements Comparable<TimetableWarning> {
+import java.io.Serializable;
+
+abstract public class TimetableWarning implements Serializable,  Comparable<TimetableWarning> {
     protected WarningType warningType;
     protected WarningLevel warningLevel = WarningLevel.WARNING;
 

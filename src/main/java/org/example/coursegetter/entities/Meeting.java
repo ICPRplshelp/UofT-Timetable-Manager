@@ -1,8 +1,9 @@
 package org.example.coursegetter.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Meeting {
+public class Meeting  implements Serializable {
     public String getCancel() {
         return cancel;
     }
