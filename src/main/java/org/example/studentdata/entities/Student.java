@@ -12,15 +12,14 @@ public class Student {
     private final Set<CourseChoice> plannedCourses = new TreeSet<>();
     private final Set<Course> previousCourses;
 
-
-
-    private Timetable timetable;
-
     public Timetable getTimetable() {
         return timetable;
     }
 
+    private final Timetable timetable;
+
     public Student() {
+        this.timetable = new Timetable(plannedCourses);
         previousCourses = new TreeSet<>();
     }
 
@@ -69,6 +68,10 @@ public class Student {
         this.previousCourses.removeAll(previousCourses);
     }
 
+    public Collection<CourseChoice> getPlannedCourses(){
+        return plannedCourses;
+    }
+
     public Collection<CourseChoice> getPlannedFCourses() {
         return getPlannedCourses("F");
     }
@@ -84,6 +87,10 @@ public class Student {
     private Collection<CourseChoice> getPlannedCourses(String section){
         Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals(section));
         return temp.collect(Collectors.toList());
+    }
+
+    private void updateTimetable(){
+
     }
 
 

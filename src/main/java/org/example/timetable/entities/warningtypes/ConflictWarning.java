@@ -8,7 +8,8 @@ public class ConflictWarning extends TimetableWarning{
     private final Collection<String> courseConflict;
 
     public ConflictWarning(Collection<String> courseConflict){
-        warninglevel = WarningLevel.WARNING;
+        warningType = WarningType.CONFLICT;
+        warningLevel = WarningLevel.WARNING;
         this.courseConflict = courseConflict;
     }
 

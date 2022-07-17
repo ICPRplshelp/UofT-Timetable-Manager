@@ -5,7 +5,9 @@ import org.example.timetable.entities.WarningLevel;
 public class ExclusionWarning extends TimetableWarning{
 
     public ExclusionWarning(){
-        warninglevel = WarningLevel.CRITICAL;
+
+        this.warningType = WarningType.EXC;
+        warningLevel = WarningLevel.CRITICAL;
     }
 
     @Override

@@ -41,6 +41,10 @@ public class CourseChoice implements Comparable<CourseChoice> {
     private String tutSection;
     private String praSection;
 
+    public CourseChoice(Course course){
+        this.course = course;
+    }
+
     public CourseChoice(Course course, String lectureSection, String tutSection,
                         String praSection) {
         this.course = course;
@@ -53,6 +57,27 @@ public class CourseChoice implements Comparable<CourseChoice> {
 
     public CourseChoice(Course course, String lectureSection, String tutSection){
         this(course, lectureSection, tutSection, null);
+    }
+
+    @Override
+    public String toString(){
+        String lecture = "L????";
+        String tutorial = "T????";
+        String practical = "P????";
+
+        if (lectureSection != null){
+            lecture = lectureSection;
+        }
+
+        if (tutSection != null){
+            tutorial = tutSection;
+        }
+
+        if (praSection != null){
+            practical = praSection;
+        }
+
+        return course.getCode() + " " + lecture + " " + tutorial + practical;
     }
 
     @Override
@@ -72,14 +97,14 @@ public class CourseChoice implements Comparable<CourseChoice> {
      * @return false if and only if the tutorial session for this choice is missing.
      */
     public boolean checkTut(){
-        return !this.course.getMeetings().hasLectures() || tutSection != null;
+        return !this.course.getMeetings().hasTutorials() || tutSection != null;
     }
 
     /**
      * @return false if and only if the practical session for this choice is missing.
      */
     public boolean checkPra(){
-        return !this.course.getMeetings().hasLectures() || praSection != null;
+        return !this.course.getMeetings().hasPracticals() || praSection != null;
     }
 
 }

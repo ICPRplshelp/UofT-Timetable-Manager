@@ -33,6 +33,7 @@ public class StorageManager {
         try {
             this.loadedStorage = new StorageLoader("accountInformation.ser");
         } catch (Exception e) {
+            System.out.println("Couldn't load anything?");
             this.loadedStorage = new StorageLoader();
         }
         this.accountStorage = loadedStorage.accountStorage;

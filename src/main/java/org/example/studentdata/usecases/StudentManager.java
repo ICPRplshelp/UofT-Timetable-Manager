@@ -5,7 +5,6 @@ import org.example.studentdata.entities.CourseChoice;
 import org.example.studentdata.entities.Student;
 import org.example.timetable.entities.Timetable;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,21 +28,46 @@ public class StudentManager {
         student.addToPlannedCourses(courseList);
         return true;
     }
+    public boolean addPlannedCourse(CourseChoice courseChoice) {
+        student.addToPlannedCourses(List.of(courseChoice));
+        return true;
+    }
 
-    public boolean removePlannedCourse(List<CourseChoice> courseList) {
+    public boolean removePlannedCourse(CourseChoice courseChoice) {
+
+        removePlannedCourses(List.of(courseChoice));
+        return true;
+    }
+
+
+
+    public boolean removePlannedCourses(List<CourseChoice> courseList) {
         student.removeFromPlannedCourses(courseList);
         return true;
     }
 
-    public boolean addPreviousCourse(Collection<CourseChoice> courseList) {
+
+
+    public boolean addPreviousCourses(Collection<CourseChoice> courseList) {
         student.addToPreviousCourses(courseList.stream()
                 .map(CourseChoice::getCourse).toList());
         return true;
     }
 
-    public boolean removePreviousCourse(Collection<CourseChoice> courseList) {
+    public boolean addPreviousCourse(CourseChoice course){
+        if (course == null) return false;
+        student.addToPreviousCourses(List.of(course.getCourse()));
+        return true;
+    }
+
+    public boolean removePreviousCourses(Collection<CourseChoice> courseList) {
         student.removeFromPreviousCourses(courseList.stream()
                 .map(CourseChoice::getCourse).toList());
+        return true;
+    }
+    public boolean removePreviousCourse(CourseChoice course){
+        if (course == null) return false;
+        student.removeFromPreviousCourses(List.of(course.getCourse()));
         return true;
     }
 

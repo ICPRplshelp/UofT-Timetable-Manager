@@ -1,4 +1,7 @@
-package org.example.enrollmentissues.entities;
+package org.example.enrollmentissues.entities.internal;
+
+import org.example.enrollmentissues.entities.Problem;
+import org.example.enrollmentissues.entities.WarningLevel;
 
 public abstract class Issue {
     public final Problem getProblem() {

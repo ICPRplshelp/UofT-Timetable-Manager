@@ -14,7 +14,7 @@ public class Account implements Serializable{
     private final DateEntries accountHistory;
 
     // I'm using student here because it seems like Student is storing all the data that a 'StudentData' entity should have.
-    private Student student;
+    private final Student student;
 
     /**
      * Constructs the account.
@@ -31,17 +31,10 @@ public class Account implements Serializable{
         this.accountHistory = new DateEntries();
         this.permissions = new Permissions();
 //        this.permissionLevel = 0;  // the default permission level is 0
+        student = new Student();
     }
 
-    public Account(String username, String password,
-                   BanStatus banStatus, DateEntries accountHistory,
-                   Permissions permissions) {
-        this.username = username;
-        this.password = password;
-        this.banStatus = banStatus;
-        this.accountHistory = accountHistory;
-        this.permissions = permissions;
-    }
+
 
     public String getUsername() {
         return username;
@@ -89,7 +82,4 @@ public class Account implements Serializable{
         return student;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
 }

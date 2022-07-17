@@ -52,8 +52,7 @@ public class Presenter {
                 return dashboardView(loggedInAdminOnlyPrompt);
             }
             default -> {
-                prt.println("Invalid input");
-                return "AAA";
+                return dashboardView(List.of("I would like to list some commands but I cant"));
             }
         }
     }
@@ -63,11 +62,16 @@ public class Presenter {
     }
 
     public Collection<String> inputPromptHelper(String[] commandsList) {
-        Collection<String> returnCollection = new ArrayList<String>();
-        for(String item: commandsList) {
-            returnCollection.add("Enter '" + item + "' " + userPrompts.get(item));
+        try{    Collection<String> returnCollection = new ArrayList<String>();
+            for(String item: commandsList) {
+                returnCollection.add("Enter '" + item + "' " +
+                        Objects.requireNonNullElse(userPrompts.get(item), "idk"));
+            }
+            return returnCollection;
+        } catch (NullPointerException e){
+            return List.of("We couldn't come up with a command list.");
         }
-        return returnCollection;
+
     }
 
     public void startView() {
