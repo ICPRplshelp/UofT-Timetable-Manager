@@ -56,6 +56,27 @@ public class CourseChoice implements Comparable<CourseChoice> {
     }
 
     @Override
+    public String toString(){
+        String lecture = "L????";
+        String tutorial = "T????";
+        String practical = "P????";
+
+        if (lectureSection != null){
+            lecture = lectureSection;
+        }
+
+        if (tutSection != null){
+            tutorial = tutSection;
+        }
+
+        if (praSection != null){
+            practical = praSection;
+        }
+
+        return course.getCode() + " " + lecture + " " + tutorial + practical;
+    }
+
+    @Override
     public int compareTo(CourseChoice o) {
         return course.compareTo(o.course);
     }
