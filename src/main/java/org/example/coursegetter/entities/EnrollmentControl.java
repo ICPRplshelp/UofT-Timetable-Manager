@@ -1,9 +1,10 @@
 package org.example.coursegetter.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
 // TODO: Choose which variables to keep, and make getters for them
-public class EnrollmentControl {
+public class EnrollmentControl implements Serializable {
     private final String postId;
     private final String postCode;
     private final String postName;

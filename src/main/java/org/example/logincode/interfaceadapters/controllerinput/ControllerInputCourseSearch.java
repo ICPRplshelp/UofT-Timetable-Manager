@@ -8,7 +8,6 @@ import org.example.logincode.interfaceadapters.Presenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 
-import java.time.LocalTime;
 import java.util.Collection;
 
 public class ControllerInputCourseSearch extends ControllerInput {
@@ -31,23 +30,48 @@ public class ControllerInputCourseSearch extends ControllerInput {
 
     @Override
     public boolean inputParser(String input) {
-        return false;
+        switch (input) {
+            case "record" -> recordPastCourse();
+            case "search" -> promptSearchCourse();
+            case "add" -> addCourseToTimetable();
+            default -> {
+                return failedAction();
+            }
+        }
+        return true;
+    }
+
+    private void recordPastCourse() {
+
+//        String course = "CSC110Y1";
     }
 
     // I need all of its lecture sections (no need for timings)
     private void promptSearchCourse(){
-        String searchedCourse = "CSC110Y1-F";
-        String session = "20229";
+
+        // placeholder
+        String searchedCourse = presenter.enterCourse();
+        String session = presenter.enterSession();
+
         // use CourseSearcherCommunicator to extract searched courses without
         // the need to violate clean architecture.
         CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);
         CourseCommunicator courseCommunicator = csc.searchCourse(session, searchedCourse);
-        Collection<String> lectures = courseCommunicator.getLectures();
-        Collection<String> tutorials = courseCommunicator.getTutorials();
-        Collection<String> practicals = courseCommunicator.getPracticals();
 
+        if (courseCommunicator == null) {
+            presenter.genericFailedAction("invalid");
+        } else {
+            Collection<String> lectures = courseCommunicator.getLectures();
+            Collection<String> tutorials = courseCommunicator.getTutorials();
+            Collection<String> practicals = courseCommunicator.getPracticals();
 
+            presenter.printCourseSessionsByType("LEC", lectures);
+            presenter.printCourseSessionsByType("TUT", tutorials);
+            presenter.printCourseSessionsByType("PRA", practicals);
+        }
+    }
 
+    private void addCourseToTimetable() {
 
     }
 

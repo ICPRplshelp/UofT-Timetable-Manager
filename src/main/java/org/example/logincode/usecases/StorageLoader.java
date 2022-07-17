@@ -48,7 +48,8 @@ public class StorageLoader {
             out.writeObject(tempAccountStorage);
             out.close();
             fileOut.close();
-        } catch (NotSerializableException nse) {
+        }
+        catch (NotSerializableException nse) {
             System.out.println("Couldn't save anything? [1]");
         } catch (IOException i) {
             i.printStackTrace();
@@ -56,6 +57,7 @@ public class StorageLoader {
 
         }
     }
+
 }
 
 

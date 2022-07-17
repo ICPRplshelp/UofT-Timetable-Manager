@@ -3,11 +3,12 @@ package org.example.timetable.entities;
 import org.example.studentdata.entities.CourseChoice;
 import org.example.timetable.entities.warningtypes.TimetableWarning;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Timetable {
+public class Timetable  implements Serializable {
 
 
     private final Collection<CourseChoice> plannedCourses;

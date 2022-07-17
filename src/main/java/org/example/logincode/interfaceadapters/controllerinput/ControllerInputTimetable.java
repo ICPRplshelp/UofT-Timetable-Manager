@@ -49,21 +49,53 @@ public class ControllerInputTimetable extends ControllerInput {
             case "addcourse" -> {
                 String rqc = prt.askWithMessage("What course would you like to add?");
                 Course temp = csg.getCourseSearcher().getCourseOfferingByCode("20229", rqc);
-                CourseChoice cc = new CourseChoice(temp);
-                sm.addPlannedCourse(cc);
+                boolean addedCourseState = sm.addBlankPlannedCourse(temp);
+                if(addedCourseState){
+                    prt.println("Added the course.");
+                } else {
+                    prt.println("Couldn't add the course - it either didn't exist or was a duplicate.");
+                }
             }
             case "addmeetingtocourse" -> {
-                // TODO: ADD A LEC, TUT, PRA TO AN EXISTING COURSE
-
+                String courseCode = prt.askWithMessage("What course would you add a section to?");
+                if (sm.getPlannedCourseByString(courseCode) != null) {
+                    String sectionCode = prt.askWithMessage("What section would you like to add?");
+                    boolean setCourseState = sm.setCourseChoice(sm.getPlannedCourseByString(courseCode), sectionCode);
+                    if(setCourseState) {
+                        prt.println("Meeting added.");
+                    } else prt.println("That course doesn't have this meeting.");
+                }
+                return true;
             }
             case "addprevcourse" -> {
+                String courseCode = prt.askWithMessage("What course would you like to add?");
+                String session = prt.askWithMessage("In which session did you take this course?"); // instructions for year + 9 / 5 etc.?
+                Course temp = csg.getCourseSearcher().getCourseOfferingByCode(session, courseCode);
+                boolean setCourseState = sm.addPreviousCourse(temp);
+                if (setCourseState){
+                    prt.println("Course added.");
+                }else prt.println("That course is not available in that session.");
 
+                return setCourseState;
             }
             case "delcourse" -> {
+                String courseCode = prt.askWithMessage("What course would you like to delete?");
 
+                boolean setCourseState = sm.removePlannedCourse(sm.getPlannedCourseByString(courseCode));
+                if (setCourseState){
+                    prt.println("Course removed.");
+                }else prt.println("You do not currently have that course.");
+
+                return setCourseState;
             }
             case "delprevcourse" -> {
+                String courseCode = prt.askWithMessage("What previous course would you like to remove?");
+                boolean setCourseState = sm.removePreviousCourse(sm.getPreviousCourseByString(courseCode));
+                if (setCourseState){
+                    prt.println("Course removed.");
+                }else prt.println("You have not enrolled in that course before.");
 
+                return setCourseState;
             }
             case "donothing" -> {return true;}
 

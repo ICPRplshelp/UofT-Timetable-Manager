@@ -62,7 +62,6 @@ public class ControllerInputAdmin extends ControllerInput {
             unbanDate = presenter.enterDate();
         } catch (ParseException e) {
             // Unsure if this is supposed to be printed to screen; put into presenter for now.
-            // System.out.println("Failed to parse string to date");
             presenter.parseFailure();
         }
         boolean banCheck = adminAccountManager.banUser(userToBan, unbanDate);

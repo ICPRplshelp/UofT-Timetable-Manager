@@ -3,10 +3,11 @@ package org.example.studentdata.entities;
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.entities.TeachingMethods;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseChoice implements Comparable<CourseChoice> {
+public class CourseChoice implements Comparable<CourseChoice>, Serializable {
     public String getLectureSection() {
         return lectureSection;
     }
