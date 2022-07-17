@@ -30,6 +30,22 @@ public class Timetable {
         }
     }
 
+    /**
+     *
+     * @return all planned course choices so far.
+     */
+    public Collection<CourseChoice> getPlannedCourses(){
+        Collection<CourseChoice> f = getPlannedCourses("F");
+        Collection<CourseChoice> s = getPlannedCourses("S");
+        Collection<CourseChoice> y = getPlannedCourses("Y");
+        return Stream.concat(f.stream(), Stream.concat(s.stream(), y.stream())).collect(Collectors.toList());
+    }
+
+    /**
+     *
+     * @param section target section.
+     * @return all planned course choices for the target section.
+     */
     public Collection<CourseChoice> getPlannedCourses(String section){
         switch (section) {
             case "F" -> { return plannedFCourses;}
@@ -54,6 +70,7 @@ public class Timetable {
         warnings.get(courseChoice).addWarning(timetableWarning);
 
     }
+
 
     public CourseWarning getWarning(CourseChoice courseChoice) {
         return warnings.get(courseChoice);

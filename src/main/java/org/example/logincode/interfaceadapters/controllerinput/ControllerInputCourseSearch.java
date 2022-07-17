@@ -1,11 +1,15 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
 import org.example.coursegetter.usecases.CourseCommunicator;
+import org.example.coursegetter.usecases.CourseSearcherCommunicator;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.example.logincode.interfaceadapters.Presenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
+
+import java.time.LocalTime;
+import java.util.Collection;
 
 public class ControllerInputCourseSearch extends ControllerInput {
 
@@ -36,6 +40,12 @@ public class ControllerInputCourseSearch extends ControllerInput {
         String session = "20229";
         // use CourseSearcherCommunicator to extract searched courses without
         // the need to violate clean architecture.
+        CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);
+        CourseCommunicator courseCommunicator = csc.searchCourse(session, searchedCourse);
+        Collection<String> lectures = courseCommunicator.getLectures();
+        Collection<String> tutorials = courseCommunicator.getTutorials();
+        Collection<String> practicals = courseCommunicator.getPracticals();
+
 
 
 
