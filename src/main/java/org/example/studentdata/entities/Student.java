@@ -1,6 +1,7 @@
 package org.example.studentdata.entities;
 
 import org.example.coursegetter.entities.Course;
+import org.example.timetable.entities.Timetable;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,7 +10,13 @@ import java.util.stream.Stream;
 
 public class Student {
     private final Set<CourseChoice> plannedCourses = new TreeSet<>();
-    private final Set<Course> previousCourses = new TreeSet<>();
+    private final Set<Course> previousCourses;
+
+    private Timetable timetable;
+
+    public Student() {
+        previousCourses = new TreeSet<>();
+    }
 
     /**
      * Returns a collection of courses the
@@ -54,6 +61,10 @@ public class Student {
      */
     public void removeFromPreviousCourses(Collection<Course> previousCourses){
         this.previousCourses.removeAll(previousCourses);
+    }
+
+    public Collection<CourseChoice> getPlannedCourses(){
+        return plannedCourses;
     }
 
     public Collection<CourseChoice> getPlannedFCourses() {
