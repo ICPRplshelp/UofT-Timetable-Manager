@@ -62,6 +62,7 @@ public class Presenter {
     }
 
     public Collection<String> inputPromptHelper(String[] commandsList) {
+        if(Objects.isNull(commandsList)) return List.of("No command string?");
         try{    Collection<String> returnCollection = new ArrayList<String>();
             for(String item: commandsList) {
                 returnCollection.add("Enter '" + item + "' " +

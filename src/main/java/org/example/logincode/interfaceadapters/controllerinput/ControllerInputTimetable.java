@@ -49,15 +49,23 @@ public class ControllerInputTimetable extends ControllerInput {
             case "addcourse" -> {
                 String rqc = prt.askWithMessage("What course would you like to add?");
                 Course temp = csg.getCourseSearcher().getCourseOfferingByCode("20229", rqc);
-                return sm.addBlankPlannedCourse(temp);
+                boolean addedCourseState = sm.addBlankPlannedCourse(temp);
+                if(addedCourseState){
+                    prt.println("Added the course.");
+                } else {
+                    prt.println("Couldn't add the course - it either didn't exist or was a duplicate");
+                }
             }
             case "addmeetingtocourse" -> {
                 String courseCode = prt.askWithMessage("What course would you add a section to?");
                 if (sm.getPlannedCourseByString(courseCode) != null) {
                     String sectionCode = prt.askWithMessage("What section would you like to add?");
-                    return sm.setCourseChoice(sm.getPlannedCourseByString(courseCode), sectionCode);
+                    boolean setCourseState = sm.setCourseChoice(sm.getPlannedCourseByString(courseCode), sectionCode);
+                    if(setCourseState) {
+                        prt.println("Meeting added.");
+                    } else prt.println("That course doesn't have this meeting");
                 }
-                return false;
+                return true;
             }
             case "addprevcourse" -> {
                 String courseCode = prt.askWithMessage("What course would you like to add?");

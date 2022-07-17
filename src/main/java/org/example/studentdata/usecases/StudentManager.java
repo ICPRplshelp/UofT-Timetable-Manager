@@ -56,12 +56,12 @@ public class StudentManager {
     }
 
     public boolean setCourseChoice(CourseChoice course, String section) {
-        String prefix = section.substring(0, Math.min(section.length(), 2));
-        String number = section.substring(Math.min(section.length(), 3), Math.min(section.length(), 6));
-        switch (prefix) {
-            case "lec" -> course.setLectureSection("L" + number);
-            case "tut" -> course.setLectureSection("T" + number);
-            case "pra" -> course.setLectureSection("P" + number);
+        String prefix = section.substring(0, Math.min(section.length(), 3));
+        String number = section.substring(Math.min(section.length(), 3), Math.min(section.length(), 7));
+        switch (prefix.toLowerCase()) {
+            case "lec" -> course.setLectureSection("LEC" + number);
+            case "tut" -> course.setTutSection("TUT" + number);
+            case "pra" -> course.setPraSection("PRA" + number);
             default -> { return false;}
         }
         return true;
@@ -106,7 +106,7 @@ public class StudentManager {
 
     public CourseChoice getPlannedCourseByString(String courseCode) {
         for (CourseChoice course : student.getPlannedCourses()) {
-            if (courseCode.equals(course.getCourse().getCode())) {
+            if (courseCode.equals(course.getCourse().getOfferingCode())) {
                 return course;
             }
         }
