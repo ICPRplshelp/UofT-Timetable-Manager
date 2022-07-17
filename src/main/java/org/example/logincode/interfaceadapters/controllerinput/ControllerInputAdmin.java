@@ -1,6 +1,6 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
-import org.example.logincode.interfaceadapters.Presenter;
+import org.example.logincode.interfaceadapters.LoginPresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.AdminAccountManager;
 import org.example.logincode.usecases.StorageManager;
@@ -10,8 +10,8 @@ import java.util.Date;
 
 public class ControllerInputAdmin extends ControllerInput {
 
-    public ControllerInputAdmin(AccountManager manager, StorageManager accountStorageManager, Presenter presenter) {
-        super(manager, accountStorageManager, presenter);
+    public ControllerInputAdmin(AccountManager manager, StorageManager accountStorageManager, LoginPresenter loginPresenter) {
+        super(manager, accountStorageManager, loginPresenter);
         this.curState = LoggedInState.ADMIN;
         commandsList = new String[]{"ban", "delete", "new", "promote", "back"};
     }
@@ -36,36 +36,36 @@ public class ControllerInputAdmin extends ControllerInput {
     }
 
     private void promoteUserToAdmin(AdminAccountManager adminAccountManager) {
-        String userToPromote = presenter.enterUsername();
-        presenter.promoteUserConfirm(adminAccountManager.addPermission(userToPromote, "admin"), userToPromote);
+        String userToPromote = loginPresenter.enterUsername();
+        loginPresenter.promoteUserConfirm(adminAccountManager.addPermission(userToPromote, "admin"), userToPromote);
         // promoteUserToAdmin(userToPromote);
     }
 
     private void createNewAdminUser(AdminAccountManager adminAccountManager) {
-        String[] inputs = presenter.enterCredentials();
+        String[] inputs = loginPresenter.enterCredentials();
         boolean isCreated = adminAccountManager.createNewAdminUser(inputs[0], inputs[1]);
-        presenter.createNewAdminConfirm(isCreated, inputs[0]);
+        loginPresenter.createNewAdminConfirm(isCreated, inputs[0]);
     }
 
     private void deleteUser(AdminAccountManager adminAccountManager) {
-        String userToDelete = presenter.enterUsername();
+        String userToDelete = loginPresenter.enterUsername();
         boolean delUserSuccess = adminAccountManager.deleteUser(userToDelete);
-        presenter.deleteUserConfirm(delUserSuccess, userToDelete);
+        loginPresenter.deleteUserConfirm(delUserSuccess, userToDelete);
 
         // deleteUser(userToDelete);
     }
 
     private void banUser(AdminAccountManager adminAccountManager) {
-        String userToBan = presenter.enterUsername();
+        String userToBan = loginPresenter.enterUsername();
         Date unbanDate = new Date();
         try {
-            unbanDate = presenter.enterDate();
+            unbanDate = loginPresenter.enterDate();
         } catch (ParseException e) {
             // Unsure if this is supposed to be printed to screen; put into presenter for now.
-            presenter.parseFailure();
+            loginPresenter.parseFailure();
         }
         boolean banCheck = adminAccountManager.banUser(userToBan, unbanDate);
-        presenter.banUserConfirm(banCheck, userToBan);
+        loginPresenter.banUserConfirm(banCheck, userToBan);
 
         // banUser(userToBan, unbanDate);
     }

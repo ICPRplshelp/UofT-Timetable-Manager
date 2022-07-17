@@ -1,6 +1,6 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
-import org.example.logincode.interfaceadapters.Presenter;
+import org.example.logincode.interfaceadapters.LoginPresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 
@@ -26,7 +26,7 @@ public abstract class ControllerInput {
     protected LoggedInState curState;
     protected AccountManager manager;
     protected StorageManager accountStorageManager;
-    protected Presenter presenter;
+    protected LoginPresenter loginPresenter;
 
     public String[] commandsList;
     /**
@@ -35,15 +35,15 @@ public abstract class ControllerInput {
      *
      * @param manager               always the same manager in the controller class
      * @param accountStorageManager ^
-     * @param presenter             ^
+     * @param loginPresenter             ^
      */
     public ControllerInput(AccountManager manager,
                            StorageManager accountStorageManager,
-                           Presenter presenter) {
+                           LoginPresenter loginPresenter) {
         // I made an entire python app to quickly process enums
         this.manager = manager;
         this.accountStorageManager = accountStorageManager;
-        this.presenter = presenter;
+        this.loginPresenter = loginPresenter;
     }
 
 
@@ -75,7 +75,7 @@ public abstract class ControllerInput {
      * @return false always.
      */
     protected boolean failedAction(){
-        presenter.genericFailedAction("invalid");
+        loginPresenter.genericFailedAction("invalid");
         return false;
     }
 }

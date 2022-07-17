@@ -4,7 +4,7 @@ import org.example.coursegetter.usecases.CourseCommunicator;
 import org.example.coursegetter.usecases.CourseSearcherCommunicator;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.CourseSearcherIndividual;
-import org.example.logincode.interfaceadapters.Presenter;
+import org.example.logincode.interfaceadapters.LoginPresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 
@@ -20,11 +20,11 @@ public class ControllerInputCourseSearch extends ControllerInput {
      *
      * @param manager               always the same manager in the controller class
      * @param accountStorageManager ^
-     * @param presenter             ^
+     * @param loginPresenter             ^
      */
-    public ControllerInputCourseSearch(AccountManager manager, StorageManager accountStorageManager, Presenter presenter,
+    public ControllerInputCourseSearch(AccountManager manager, StorageManager accountStorageManager, LoginPresenter loginPresenter,
                                        CourseSearcherGetter csg) {
-        super(manager, accountStorageManager, presenter);
+        super(manager, accountStorageManager, loginPresenter);
         this.courseSearcher = csg.getCourseSearcher();
     }
 
@@ -50,8 +50,8 @@ public class ControllerInputCourseSearch extends ControllerInput {
     private void promptSearchCourse(){
 
         // placeholder
-        String searchedCourse = presenter.enterCourse();
-        String session = presenter.enterSession();
+        String searchedCourse = loginPresenter.enterCourse();
+        String session = loginPresenter.enterSession();
 
         // use CourseSearcherCommunicator to extract searched courses without
         // the need to violate clean architecture.
@@ -59,15 +59,15 @@ public class ControllerInputCourseSearch extends ControllerInput {
         CourseCommunicator courseCommunicator = csc.searchCourse(session, searchedCourse);
 
         if (courseCommunicator == null) {
-            presenter.genericFailedAction("invalid");
+            loginPresenter.genericFailedAction("invalid");
         } else {
             Collection<String> lectures = courseCommunicator.getLectures();
             Collection<String> tutorials = courseCommunicator.getTutorials();
             Collection<String> practicals = courseCommunicator.getPracticals();
 
-            presenter.printCourseSessionsByType("LEC", lectures);
-            presenter.printCourseSessionsByType("TUT", tutorials);
-            presenter.printCourseSessionsByType("PRA", practicals);
+            loginPresenter.printCourseSessionsByType("LEC", lectures);
+            loginPresenter.printCourseSessionsByType("TUT", tutorials);
+            loginPresenter.printCourseSessionsByType("PRA", practicals);
         }
     }
 
