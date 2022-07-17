@@ -62,6 +62,7 @@ public class Presenter {
     }
 
     public Collection<String> inputPromptHelper(String[] commandsList) {
+        if(Objects.isNull(commandsList)) return List.of("No command string?");
         try{    Collection<String> returnCollection = new ArrayList<String>();
             for(String item: commandsList) {
                 returnCollection.add("Enter '" + item + "' " +
@@ -183,6 +184,24 @@ public class Presenter {
                     prt.println("The password you were asked to enter that is to be checked was incorrect");
             default -> prt.println("Action failed.");
         }
+    }
+
+    public String enterCourse() {
+        prt.println("Enter course code: ");
+        return scanner.nextLine();
+    }
+
+    public String enterSession() {
+        prt.println("Enter course session: ");
+        return scanner.nextLine();
+    }
+
+    public void printCourseSessionsByType(String type, Collection<String> sessions) {
+        prt.println(type);
+        for (String s : sessions) {
+            prt.println(s);
+        }
+        prt.println("");    // spacer
     }
 
     public void parseFailure() {

@@ -10,7 +10,7 @@ import java.io.*;
  * Only if passwords were hashed...
  */
 public class StorageLoader {
-    private final boolean disable = false;
+    private final boolean disable = true;
     protected AccountStorage accountStorage;
 
     public StorageLoader(AccountStorage accountStorage) {
