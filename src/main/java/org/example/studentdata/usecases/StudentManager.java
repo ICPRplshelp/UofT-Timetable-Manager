@@ -43,7 +43,9 @@ public class StudentManager {
     }
 
     public boolean removePlannedCourse(CourseChoice courseChoice) {
-
+        if (courseChoice == null){
+            return false;
+        }
         removePlannedCourses(List.of(courseChoice));
         return true;
     }
