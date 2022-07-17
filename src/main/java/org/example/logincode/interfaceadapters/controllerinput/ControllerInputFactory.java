@@ -45,6 +45,10 @@ public class ControllerInputFactory {
                 return new ControllerInputCourseSearch(manager, storageManager, presenter,
                         csg);
             }
+            case TIMETABLE -> {
+                return new ControllerInputTimetable(manager, storageManager,
+                        presenter, csg);
+            }
             default -> {
                 return null;
             }

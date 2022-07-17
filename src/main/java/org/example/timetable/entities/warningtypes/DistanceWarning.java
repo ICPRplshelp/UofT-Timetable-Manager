@@ -5,7 +5,7 @@ import org.example.timetable.entities.WarningLevel;
 public class DistanceWarning extends TimetableWarning{
 
     public DistanceWarning(){
-        warninglevel = WarningLevel.WEAK_WARNING;
+        warningType = WarningType.DIST;
     }
 
     @Override
