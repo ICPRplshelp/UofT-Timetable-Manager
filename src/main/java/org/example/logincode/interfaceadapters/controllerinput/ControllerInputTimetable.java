@@ -52,6 +52,10 @@ public class ControllerInputTimetable extends ControllerInput {
                 CourseChoice cc = new CourseChoice(temp);
                 sm.addPlannedCourse(cc);
             }
+            case "addmeetingtocourse" -> {
+                // TODO: ADD A LEC, TUT, PRA TO AN EXISTING COURSE
+
+            }
             case "addprevcourse" -> {
 
             }
