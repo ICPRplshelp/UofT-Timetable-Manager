@@ -35,6 +35,9 @@ public class StudentManager {
     }
 
     public boolean addBlankPlannedCourse(Course course) {
+        if (course == null){
+            return false;
+        }
         addPlannedCourse(new CourseChoice(course));
         return true;
     }
