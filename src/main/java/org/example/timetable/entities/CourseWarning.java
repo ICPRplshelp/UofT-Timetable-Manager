@@ -2,11 +2,12 @@ package org.example.timetable.entities;
 
 import org.example.timetable.entities.warningtypes.TimetableWarning;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class CourseWarning {
+public class CourseWarning  implements Serializable {
 
     private final Map<WarningLevel, Set<TimetableWarning>> warnings = new HashMap<>();
 

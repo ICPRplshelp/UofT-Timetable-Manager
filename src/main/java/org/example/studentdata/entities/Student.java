@@ -3,12 +3,13 @@ package org.example.studentdata.entities;
 import org.example.coursegetter.entities.Course;
 import org.example.timetable.entities.Timetable;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
-public class Student {
+public class Student implements Serializable {
     private final Set<CourseChoice> plannedCourses = new TreeSet<>();
     private final Set<Course> previousCourses;
 

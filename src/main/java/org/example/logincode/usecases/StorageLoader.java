@@ -10,7 +10,7 @@ import java.io.*;
  * Only if passwords were hashed...
  */
 public class StorageLoader {
-    private final boolean disable = true;
+    private final boolean disable = false;
     protected AccountStorage accountStorage;
 
     public StorageLoader(AccountStorage accountStorage) {
@@ -48,7 +48,8 @@ public class StorageLoader {
             out.writeObject(tempAccountStorage);
             out.close();
             fileOut.close();
-        } catch (NotSerializableException nse) {
+        }
+        catch (NotSerializableException nse) {
             System.out.println("Couldn't save anything? [1]");
         } catch (IOException i) {
             i.printStackTrace();

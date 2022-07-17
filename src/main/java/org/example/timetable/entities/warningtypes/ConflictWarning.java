@@ -4,7 +4,7 @@ import org.example.timetable.entities.WarningLevel;
 
 import java.util.Collection;
 
-public class ConflictWarning extends TimetableWarning{
+public class ConflictWarning extends TimetableWarning {
     private final Collection<String> courseConflict;
 
     public ConflictWarning(Collection<String> courseConflict){
