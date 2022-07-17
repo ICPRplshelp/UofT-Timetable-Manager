@@ -49,21 +49,29 @@ public class ControllerInputTimetable extends ControllerInput {
             case "addcourse" -> {
                 String rqc = prt.askWithMessage("What course would you like to add?");
                 Course temp = csg.getCourseSearcher().getCourseOfferingByCode("20229", rqc);
-                CourseChoice cc = new CourseChoice(temp);
-                sm.addPlannedCourse(cc);
+                return sm.addBlankPlannedCourse(temp);
             }
             case "addmeetingtocourse" -> {
-                // TODO: ADD A LEC, TUT, PRA TO AN EXISTING COURSE
-
+                String courseCode = prt.askWithMessage("What course would you add a section to?");
+                if (sm.getPlannedCourseByString(courseCode) != null) {
+                    String sectionCode = prt.askWithMessage("What section would you like to add?");
+                    return sm.setCourseChoice(sm.getPlannedCourseByString(courseCode), sectionCode);
+                }
+                return false;
             }
             case "addprevcourse" -> {
-
+                String courseCode = prt.askWithMessage("What course would you like to add?");
+                String session = prt.askWithMessage("In which session did you take this course?"); // instructions for year + 9 / 5 etc.?
+                Course temp = csg.getCourseSearcher().getCourseOfferingByCode(session, courseCode);
+                return sm.addPreviousCourse(temp);
             }
             case "delcourse" -> {
-
+                String courseCode = prt.askWithMessage("What course would you like to delete?");
+                return sm.removePlannedCourse(sm.getPlannedCourseByString(courseCode));
             }
             case "delprevcourse" -> {
-
+                String courseCode = prt.askWithMessage("What previous course would you like to remove?");
+                return sm.removePreviousCourse(sm.getPreviousCourseByString(courseCode));
             }
             case "donothing" -> {return true;}
 

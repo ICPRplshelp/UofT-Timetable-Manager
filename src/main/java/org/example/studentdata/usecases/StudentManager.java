@@ -7,6 +7,7 @@ import org.example.timetable.entities.Timetable;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class StudentManager {
@@ -33,71 +34,92 @@ public class StudentManager {
         return true;
     }
 
+    public boolean addBlankPlannedCourse(Course course) {
+        addPlannedCourse(new CourseChoice(course));
+        return true;
+    }
+
     public boolean removePlannedCourse(CourseChoice courseChoice) {
 
         removePlannedCourses(List.of(courseChoice));
         return true;
     }
 
+    public CourseChoice getCourseChoice(Course course) {
+        Collection<CourseChoice> courseChoiceList = student.getPlannedCourses();
+        for (CourseChoice courseChoice: courseChoiceList) {
+            if (courseChoice.getCourse() == course) {
+                return courseChoice;
+            }
+        }
+        return null;
+    }
 
+    public boolean setCourseChoice(CourseChoice course, String section) {
+        String prefix = section.substring(0, Math.min(section.length(), 2));
+        String number = section.substring(Math.min(section.length(), 3), Math.min(section.length(), 6));
+        switch (prefix) {
+            case "lec" -> course.setLectureSection("L" + number);
+            case "tut" -> course.setLectureSection("T" + number);
+            case "pra" -> course.setLectureSection("P" + number);
+            default -> { return false;}
+        }
+        return true;
+    }
 
     public boolean removePlannedCourses(List<CourseChoice> courseList) {
         student.removeFromPlannedCourses(courseList);
         return true;
     }
 
-
-
-    public boolean addPreviousCourses(Collection<CourseChoice> courseList) {
-        student.addToPreviousCourses(courseList.stream()
-                .map(CourseChoice::getCourse).toList());
+    public boolean addPreviousCourses(Collection<Course> courseList) {
+        student.addToPreviousCourses(courseList);
         return true;
     }
 
-    public boolean addPreviousCourse(CourseChoice course){
+    public boolean addPreviousCourse(Course course){
         if (course == null) return false;
-        student.addToPreviousCourses(List.of(course.getCourse()));
+        student.addToPreviousCourses(List.of(course));
         return true;
     }
 
-    public boolean removePreviousCourses(Collection<CourseChoice> courseList) {
-        student.removeFromPreviousCourses(courseList.stream()
-                .map(CourseChoice::getCourse).toList());
+    public boolean removePreviousCourses(Collection<Course> courseList) {
+        student.removeFromPreviousCourses(courseList);
         return true;
     }
-    public boolean removePreviousCourse(CourseChoice course){
+    public boolean removePreviousCourse(Course course){
         if (course == null) return false;
-        student.removeFromPreviousCourses(List.of(course.getCourse()));
+        student.removeFromPreviousCourses(List.of(course));
         return true;
     }
 
-    public String getPlannedCourses(String session) {
-        Collection<CourseChoice> returnCourses;
-        switch (session) {
-            case "F" -> returnCourses = student.getPlannedFCourses();
-            case "S" -> returnCourses = student.getPlannedSCourses();
-            case "Y" -> returnCourses = student.getPlannedYCourses();
-            default -> {
-                returnCourses = student.getPlannedFCourses();
-                returnCourses.addAll(student.getPlannedSCourses());
-                returnCourses.addAll(student.getPlannedYCourses()); }
-        }
-
-        Collection<String> coursesList = toCourseNameHelper(returnCourses);
-        return String.join(", ", coursesList);
-
+    public boolean checkPlannedCourseExists(Course course) {
+        return (student.getPlannedCourses().stream()
+                .map(CourseChoice::getCourse).toList().contains(course));
     }
 
-    private Collection<String> toCourseNameHelper(Collection<CourseChoice> coursesList) {
-        return coursesList.stream()
-                .map(CourseChoice::getCourse).toList().stream()
-                .map(Course::getOfferingCode)
-                .collect(Collectors.toList());
-    }
     public String getCourseHistory() {
         List<String> coursesList = student.getAllPreviousCourses().stream()
                 .map(Course::getOfferingCode).toList();
         return String.join(", ", coursesList);
+    }
+
+    public CourseChoice getPlannedCourseByString(String courseCode) {
+        for (CourseChoice course : student.getPlannedCourses()) {
+            if (courseCode.equals(course.getCourse().getCode())) {
+                return course;
+            }
+        }
+        return null;
+    }
+
+    public Course getPreviousCourseByString(String courseCode) {
+        for (Course course : student.getAllPreviousCourses()) {
+            if (courseCode.equals(course.getCode())) {
+                return course;
+            }
+        }
+        return null;
     }
 
 
