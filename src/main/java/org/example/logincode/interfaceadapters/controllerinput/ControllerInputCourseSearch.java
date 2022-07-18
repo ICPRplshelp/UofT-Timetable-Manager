@@ -1,6 +1,7 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
 import org.example.coursegetter.usecases.CourseCommunicator;
+import org.example.coursegetter.usecases.CourseSearcherByKeyword;
 import org.example.coursegetter.usecases.CourseSearcherCommunicator;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.CourseSearcherIndividual;
@@ -48,17 +49,17 @@ public class ControllerInputCourseSearch extends ControllerInput {
     // I need all of its lecture sections (no need for timings)
     private void promptSearchCourse(){
 
-        String keyword = loginPresenter.enterCourse();
-        String session = loginPresenter.enterSession();
+        String keyword = presenter.enterCourse();
+        String session = presenter.enterSession();
 
         CourseSearcherByKeyword csk = new CourseSearcherByKeyword(courseSearcher);
         List<String> courseCodes = csk.getCoursesByKeyword(keyword, session);
 
         if (courseCodes.size() == 0) {
-            loginPresenter.genericFailedAction("invalid");
+            presenter.genericFailedAction("invalid");
         } else {
             // placeholder for now. need to refactor printCourseSessionsByType to be more generalized
-            loginPresenter.printCourseSessionsByType("placeholder", courseCodes);
+            presenter.printCourseSessionsByType("placeholder", courseCodes);
         }
     }
 
