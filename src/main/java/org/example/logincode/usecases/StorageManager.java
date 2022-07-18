@@ -36,7 +36,7 @@ public class StorageManager {
         try {
             this.loadedStorage = new StorageLoader("accountInformation.ser");
         } catch (Exception e) {
-            LOGGER.log(Level.WARNING, "Couldn't load anything?");
+            LOGGER.log(Level.WARNING, "Couldn't load anything. Perhaps the program was run for the first time?");
             this.loadedStorage = new StorageLoader();
         }
         this.accountStorage = loadedStorage.accountStorage;
