@@ -1,31 +1,74 @@
-package org.example.coursechecker.usecases;
+package org.example.coursecomparer.usecases;
 
 import org.example.coursegetter.entities.Meeting;
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.entities.Meetings;
 import org.example.coursegetter.entities.ScheduleEntry;
 import org.example.studentdata.entities.CourseChoice;
+import org.example.timetable.entities.Timetable;
 
 import java.time.LocalTime;
 import java.util.*;
 
 
 public class CourseBackToBackChecker {
+
+
     /**
      * Check if courses are back to back in a list of CourseChoice
      * returns an ArrayList of ArrayLists that contain two ScheduleEntry of courses that are back to back
      */
+//    public List<List<ScheduleEntry>> backToBackCourseChoices(List<CourseChoice> listCourses){
+//        List<List<ScheduleEntry>> backToBackCourses = new ArrayList<>();
+//        for (int i = 0; i < listCourses.size(); i++) {
+//            for (CourseChoice listCourse : listCourses) {
+//                backToBackCourses.add(checkIfCoursesBackToBack(listCourses.get(i), listCourse));
+//            }
+//        }
+//        backToBackCourses.remove(null);
+//        return backToBackCourses;
+//    }
 
-    public List<List<ScheduleEntry>> backToBackCourseChoices(List<CourseChoice> listCourses){
+    public boolean checkTimetableCourseBackToBack(Timetable studentTimetable){
+        Collection<CourseChoice> fallCourses = studentTimetable.getPlannedCourses("F");
+        Collection<CourseChoice> winterCourses = studentTimetable.getPlannedCourses("S");
+        Collection<CourseChoice> yearCourses = studentTimetable.getPlannedCourses("Y");
+        Collection<CourseChoice> fallAndYearCourses = combineCourses(yearCourses, fallCourses);
+        Collection<CourseChoice> winterAndYearCourses = combineCourses(yearCourses, winterCourses);
+        List<List<ScheduleEntry>> fallCoursesBackToBack = checkSemesterBackToBack(fallAndYearCourses);
+        List<List<ScheduleEntry>> winterCoursesBackToBack = checkSemesterBackToBack(winterAndYearCourses);
+        List<List<List<ScheduleEntry>>> timeTableBackToBack = new ArrayList<>();
+        timeTableBackToBack.add(winterCoursesBackToBack);
+        timeTableBackToBack.add(fallCoursesBackToBack);
+        for (List<List<ScheduleEntry>> lists : timeTableBackToBack) {
+            if (!lists.isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Collection<CourseChoice> combineCourses(Collection<CourseChoice> yearCourses, Collection<CourseChoice> regularCourses){
+        regularCourses.addAll(yearCourses);
+        return regularCourses;
+    }
+
+    /**
+     * Check if courses are back to back in a collection of CourseChoice
+     * returns an ArrayList of ArrayLists that contain two ScheduleEntry of courses that are back to back
+     */
+    public List<List<ScheduleEntry>> checkSemesterBackToBack(Collection<CourseChoice> listCourses){
         List<List<ScheduleEntry>> backToBackCourses = new ArrayList<>();
-        for (int i = 0; i < listCourses.size(); i++) {
-            for (CourseChoice listCourse : listCourses) {
-                backToBackCourses.add(checkIfCoursesBackToBack(listCourses.get(i), listCourse));
+        for (CourseChoice listCourse1 : listCourses) {
+            for (CourseChoice listCourse2 : listCourses) {
+                backToBackCourses.add(checkIfCoursesBackToBack(listCourse1, listCourse2));
             }
         }
         backToBackCourses.remove(null);
         return backToBackCourses;
     }
+
+
 
 
     /**

@@ -1,16 +1,6 @@
-package org.example.logincode.interfaceadapters;
+package org.example.logincode.interfaceadapters.presenters;
 
-import org.example.PresenterPrinter;
-import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-public class TimetablePresenter extends Presenter{
-
-    Scanner scanner = new Scanner(System.in);
-    PresenterPrinter prt = new PresenterPrinter();
+public class TimetablePresenter extends Presenter {
 
 
     public TimetablePresenter() {

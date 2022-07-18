@@ -1,7 +1,10 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
 import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.logincode.interfaceadapters.LoginPresenter;
+import org.example.logincode.interfaceadapters.presenters.AdminPresenter;
+import org.example.logincode.interfaceadapters.presenters.CoursePresenter;
+import org.example.logincode.interfaceadapters.presenters.StandardPresenter;
+import org.example.logincode.interfaceadapters.presenters.TimetablePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 
@@ -9,16 +12,18 @@ public class ControllerInputFactory {
 
     private AccountManager manager;
     private final StorageManager storageManager;
-    private final LoginPresenter loginPresenter;
     private final CourseSearcherGetter csg;
+
+    private final StandardPresenter standardPresenter = new StandardPresenter();
+    private final AdminPresenter adminPresenter = new AdminPresenter();
+    private final CoursePresenter coursePresenter = new CoursePresenter();
+    private final TimetablePresenter timetablePresenter = new TimetablePresenter();
 
     public ControllerInputFactory(AccountManager manager,
                                   StorageManager storageManager,
-                                  LoginPresenter loginPresenter,
                                   CourseSearcherGetter csg){
         this.manager = manager;
         this.storageManager = storageManager;
-        this.loginPresenter = loginPresenter;
         this.csg = csg;
     }
 
@@ -32,22 +37,19 @@ public class ControllerInputFactory {
      *
      * @return the ControllerInput to return
      */
-    public ControllerInput getControllerInput(LoggedInState typeOf
-                                              ){
+    public ControllerInput getControllerInput(LoggedInState typeOf){
         switch (typeOf) {
             case STANDARD -> {
-                return new ControllerInputStandard(manager, storageManager, loginPresenter);
+                return new ControllerInputStandard(manager, storageManager, standardPresenter);
             }
             case ADMIN -> {
-                return new ControllerInputAdmin(manager, storageManager, loginPresenter);
+                return new ControllerInputAdmin(manager, storageManager, adminPresenter);
             }
             case COURSE_SEARCHER -> {
-                return new ControllerInputCourseSearch(manager, storageManager, loginPresenter,
-                        csg);
+                return new ControllerInputCourseSearch(manager, storageManager, coursePresenter, csg);
             }
             case TIMETABLE -> {
-                return new ControllerInputTimetable(manager, storageManager,
-                        loginPresenter, csg);
+                return new ControllerInputTimetable(manager, storageManager, timetablePresenter, csg);
             }
             default -> {
                 return null;

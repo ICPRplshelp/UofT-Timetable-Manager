@@ -5,8 +5,11 @@ import org.example.logincode.entities.AccountStorage;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class StorageManager {
+    private static final Logger LOGGER = Logger.getLogger( StorageManager.class.getName() );
 
     public AccountStorage accountStorage;
     StorageLoader loadedStorage;
@@ -33,7 +36,7 @@ public class StorageManager {
         try {
             this.loadedStorage = new StorageLoader("accountInformation.ser");
         } catch (Exception e) {
-            System.out.println("Couldn't load anything?");
+            LOGGER.log(Level.WARNING, "Couldn't load anything. Perhaps the program was run for the first time?");
             this.loadedStorage = new StorageLoader();
         }
         this.accountStorage = loadedStorage.accountStorage;
