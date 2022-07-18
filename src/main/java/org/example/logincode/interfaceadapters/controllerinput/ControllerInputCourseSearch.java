@@ -31,9 +31,8 @@ public class ControllerInputCourseSearch extends ControllerInput {
     @Override
     public boolean inputParser(String input) {
         switch (input) {
-            case "record" -> recordPastCourse();
             case "search" -> promptSearchCourse();
-            case "add" -> addCourseToTimetable();
+            case "sections" -> promptSearchSections();
             default -> {
                 return failedAction();
             }
@@ -41,26 +40,45 @@ public class ControllerInputCourseSearch extends ControllerInput {
         return true;
     }
 
-    private void recordPastCourse() {
-
-//        String course = "CSC110Y1";
-    }
-
     // I need all of its lecture sections (no need for timings)
     private void promptSearchCourse(){
+
+        // THIS METHOD IS CURRENTLY DEPRECATED
+
+//        String keyword = presenter.enterCourse();
+//        String session = presenter.enterSession();
+
+        // use CourseSearcherCommunicator to extract searched courses without
+        // the need to violate clean architecture.
+//        CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);
+//        CourseCommunicator courseCommunicator = csc.searchCourse(session, keyword);
+//
+//        if (courseCommunicator == null) {
+//            presenter.genericFailedAction("invalid");
+//        } else {
+////            Collection<String> lectures = courseCommunicator.getLectures();
+////            Collection<String> tutorials = courseCommunicator.getTutorials();
+////            Collection<String> practicals = courseCommunicator.getPracticals();
+////
+////            presenter.printCourseSessionsByType("LEC", lectures);
+////            presenter.printCourseSessionsByType("TUT", tutorials);
+////            presenter.printCourseSessionsByType("PRA", practicals);
+//        }
+    }
+
+    private void promptSearchSections(){
 
         // placeholder
         String searchedCourse = loginPresenter.enterCourse();
         String session = loginPresenter.enterSession();
 
-        // use CourseSearcherCommunicator to extract searched courses without
-        // the need to violate clean architecture.
         CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);
         CourseCommunicator courseCommunicator = csc.searchCourse(session, searchedCourse);
 
         if (courseCommunicator == null) {
             loginPresenter.genericFailedAction("invalid");
         } else {
+            // find alt way to print sections if available
             Collection<String> lectures = courseCommunicator.getLectures();
             Collection<String> tutorials = courseCommunicator.getTutorials();
             Collection<String> practicals = courseCommunicator.getPracticals();
@@ -69,10 +87,6 @@ public class ControllerInputCourseSearch extends ControllerInput {
             loginPresenter.printCourseSessionsByType("TUT", tutorials);
             loginPresenter.printCourseSessionsByType("PRA", practicals);
         }
-    }
-
-    private void addCourseToTimetable() {
-
     }
 
 }
