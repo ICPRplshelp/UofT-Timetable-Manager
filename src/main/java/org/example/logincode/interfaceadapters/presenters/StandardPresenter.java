@@ -1,6 +1,6 @@
-package org.example.logincode.interfaceadapters;
+package org.example.logincode.interfaceadapters.presenters;
 
-public class StandardPresenter extends Presenter{
+public class StandardPresenter extends Presenter {
 
 
     public String[] passwordChangePrompt() {

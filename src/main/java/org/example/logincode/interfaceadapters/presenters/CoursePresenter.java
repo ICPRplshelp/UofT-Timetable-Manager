@@ -1,11 +1,8 @@
-package org.example.logincode.interfaceadapters;
-
-import org.example.PresenterPrinter;
+package org.example.logincode.interfaceadapters.presenters;
 
 import java.util.Collection;
-import java.util.Scanner;
 
-public class CoursePresenter extends Presenter{
+public class CoursePresenter extends Presenter {
     public String enterCourse() {
         prt.println("Enter course code: ");
         return scanner.nextLine();

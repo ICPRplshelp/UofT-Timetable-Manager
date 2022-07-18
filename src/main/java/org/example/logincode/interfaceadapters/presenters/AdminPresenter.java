@@ -1,12 +1,9 @@
-package org.example.logincode.interfaceadapters;
-
-import org.example.PresenterPrinter;
+package org.example.logincode.interfaceadapters.presenters;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Scanner;
 
 public class AdminPresenter extends StandardPresenter{
     /**

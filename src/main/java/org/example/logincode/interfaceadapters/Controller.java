@@ -1,6 +1,7 @@
 package org.example.logincode.interfaceadapters;
 
 import org.example.coursegetter.usecases.CourseSearcherGetter;
+import org.example.logincode.interfaceadapters.presenters.LoginPresenter;
 import org.example.logincode.usecases.AccountCreator;
 import org.example.logincode.usecases.AccountLogin;
 import org.example.logincode.usecases.AccountManager;

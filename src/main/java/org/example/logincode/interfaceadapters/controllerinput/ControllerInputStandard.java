@@ -1,7 +1,6 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
-import org.example.logincode.interfaceadapters.StandardPresenter;
-import org.example.logincode.interfaceadapters.TimetablePresenter;
+import org.example.logincode.interfaceadapters.presenters.StandardPresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 

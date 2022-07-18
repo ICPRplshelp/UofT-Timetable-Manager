@@ -6,7 +6,7 @@ import org.example.coursegetter.usecases.CourseSearcherCommunicator;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.CourseSearcherIndividual;
 
-import org.example.logincode.interfaceadapters.CoursePresenter;
+import org.example.logincode.interfaceadapters.presenters.CoursePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 

@@ -1,6 +1,6 @@
-package org.example.logincode.interfaceadapters;
+package org.example.logincode.interfaceadapters.presenters;
 
-public class TimetablePresenter extends Presenter{
+public class TimetablePresenter extends Presenter {
 
 
     public TimetablePresenter() {
