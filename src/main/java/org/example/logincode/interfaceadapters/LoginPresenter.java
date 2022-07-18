@@ -2,8 +2,6 @@ package org.example.logincode.interfaceadapters;
 
 import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class LoginPresenter extends Presenter{
@@ -15,7 +13,9 @@ public class LoginPresenter extends Presenter{
             "Enter 'history' to see your login history",
             "Enter 'adminview' to enter the admin view if you are an admin",
             "Enter 'setpassword' to change your password",
-            "Enter 'secretadmin' to make yourself an admin"});
+            "Enter 'secretadmin' to make yourself an admin",
+            "Enter 'ttview' to enter the timetable view"
+    });
     Collection<String> loggedInAdminOnlyPrompt = List.of(new String[]{
             "Enter 'ban' to temporarily ban a user",
             "Enter 'delete' to delete a user",
@@ -24,7 +24,17 @@ public class LoginPresenter extends Presenter{
             "Enter 'back' to return to the standard user prompt"
     });
 
-    Map<String, String> userPrompts = Map.of(
+    Collection<String> timetablePrompt = List.of(new String[]{
+            "Enter 'view' to view the current timetable",
+            "Enter 'addcourse' to add a course",
+            "Enter 'addmeetingtocourse' to add a lecture time to a course",
+            "Enter 'addprevcourse' to add a previously taken course",
+            "Enter 'delcourse' to delete a current course",
+            "Enter 'delprevcourse' to delete a previously taken course",
+            "Enter 'back' to return to the standard user prompt"
+    });
+
+    Map<String, String> userPrompt = Map.of(
             "history", "see your login history",
             "adminview", "enter the admin view if you are an admin",
             "setpassword", "change your password",
@@ -35,6 +45,7 @@ public class LoginPresenter extends Presenter{
             "promote", "promote an existing User to Admin",
             "back", "return to the standard user prompt"
     );
+
     public LoginPresenter() {
     }
 
@@ -45,6 +56,9 @@ public class LoginPresenter extends Presenter{
             }
             case ADMIN -> {
                 return dashboardView(loggedInAdminOnlyPrompt);
+            }
+            case TIMETABLE -> {
+                return dashboardView(timetablePrompt);
             }
             default -> {
                 return dashboardView(List.of("I would like to list some commands but I cant"));
@@ -61,7 +75,7 @@ public class LoginPresenter extends Presenter{
         try{    Collection<String> returnCollection = new ArrayList<String>();
             for(String item: commandsList) {
                 returnCollection.add("Enter '" + item + "' " +
-                        Objects.requireNonNullElse(userPrompts.get(item), "idk"));
+                        Objects.requireNonNullElse(userPrompt.get(item), "idk"));
             }
             return returnCollection;
         } catch (NullPointerException e){
