@@ -37,6 +37,10 @@ public class ControllerInputTimetable extends ControllerInput {
         StudentManagerBuilder smb = new StudentManagerBuilder();
         sm = smb.buildStudentManager(manager);
         this.csg = csg;
+
+        this.curState = LoggedInState.TIMETABLE;
+
+        commandsList = new String[]{"view", "addcourse", "addmeetingtocourse", "addprevcourse", "delcourse", "delprevcourse", "back"};
     }
 
     @Override
@@ -98,6 +102,10 @@ public class ControllerInputTimetable extends ControllerInput {
 
                 return setCourseState;
             }
+            case "back" -> {
+                curState = LoggedInState.STANDARD;
+            }
+
             case "donothing" -> {return true;}
 
         }
