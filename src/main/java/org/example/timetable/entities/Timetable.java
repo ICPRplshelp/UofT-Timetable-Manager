@@ -35,6 +35,10 @@ public class Timetable  implements Serializable {
         return plannedCourses;
     }
 
+    public Collection<CourseChoice> getPlannedCourses(String section){
+        Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals(section));
+        return temp.collect(Collectors.toList());
+    }
 
     public void addWarning(CourseChoice courseChoice, TimetableWarning timetableWarning){
         if (!warnings.containsKey(courseChoice)){
