@@ -31,6 +31,19 @@ public class Presenter {
         return inputs;
     }
 
+    public Collection<String> inputPromptHelper(String[] commandsList, Map<String, String> userPrompt) {
+        if(Objects.isNull(commandsList)) return List.of("No command string?");
+        try{    Collection<String> returnCollection = new ArrayList<String>();
+            for(String item: commandsList) {
+                returnCollection.add("Enter '" + item + "' " +
+                        Objects.requireNonNullElse(userPrompt.get(item), "idk"));
+            }
+            return returnCollection;
+        } catch (NullPointerException e){
+            return List.of("We couldn't come up with a command list.");
+        }
+    }
+
     public void genericFailedAction(String reason) {
         switch (reason) {
             case "invalid" -> prt.println("Invalid input.");
@@ -40,4 +53,14 @@ public class Presenter {
             default -> prt.println("Action failed.");
         }
     }
+    /**
+     * Prints all elements in messages and returns what the user sent.
+     *
+     * @param messages a collection of messages to send to the user.
+     * @return the user input.
+     */
+    public String dashboardView(Collection<String> messages) {
+        return prt.askWithMessage(String.join("\n", messages));
+    }
 }
+

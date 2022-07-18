@@ -1,9 +1,24 @@
 package org.example.logincode.interfaceadapters;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
 public class TimetablePresenter extends Presenter{
-
-
+    Map<String, String> userPrompt = Map.of(
+        "view", "view the current timetable",
+        "addcourse", "add a course",
+        "addmeetingtocourse", "add a lecture time to a course",
+        "addprevcourse", "add a previously taken course",
+        "delcourse", "delete a current course",
+        "delprevcourse", "delete a previously taken course",
+        "back", "return to the standard user prompt"
+    );
     public TimetablePresenter() {
+    }
+
+    public String printAndAskPrompt(String[] commandsList) {
+        return dashboardView(inputPromptHelper(commandsList, userPrompt));
     }
 
     public String addCourse() {
