@@ -13,7 +13,7 @@ public class ControllerInputStandard extends ControllerInput {
         super(manager, accountStorageManager, presenter);
         this.presenter = presenter;
         curState = LoggedInState.STANDARD;
-        commandsList = new String[]{"history", "adminview", "setpassword", "secretadmin"};
+        commandsList = new String[]{"history", "adminview", "coursesearch", "ttview", "setpassword", "secretadmin"};
     }
 
     @Override
@@ -21,9 +21,10 @@ public class ControllerInputStandard extends ControllerInput {
         switch (input) {
             case "history" -> printUserHistory();
             case "adminview" -> switchToAdminView();
+            case "coursesearch" -> this.curState = LoggedInState.COURSE_SEARCHER;
             case "ttview" -> this.curState = LoggedInState.TIMETABLE;
-            case "secretadmin" -> manager.makeMeAnAdmin();
             case "setpassword" -> changePassword();
+            case "secretadmin" -> manager.makeMeAnAdmin();
             default -> {
                 return failedAction();
             }

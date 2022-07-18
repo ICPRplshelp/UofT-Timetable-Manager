@@ -34,16 +34,35 @@ public class LoginPresenter extends Presenter{
             "Enter 'back' to return to the standard user prompt"
     });
 
-    Map<String, String> userPrompt = Map.of(
-            "history", "see your login history",
-            "adminview", "enter the admin view if you are an admin",
-            "setpassword", "change your password",
-            "secretadmin", "make yourself an admin",
-            "ban", "make yourself an admin",
-            "delete", "temporarily ban a user",
-            "new", "delete a user",
-            "promote", "promote an existing User to Admin",
-            "back", "return to the standard user prompt"
+    Map<String, String> userPrompt = Map.ofEntries(
+
+            // Standard user actions
+            Map.entry("history", "see your login history"),
+            Map.entry("adminview", "enter the admin view if you are an admin"),
+            Map.entry("coursesearch", "enter course search view"),
+            Map.entry("ttview", "see your timetable"),
+            Map.entry("setpassword", "change your password"),
+            Map.entry("secretadmin", "make yourself an admin"),
+
+            // Admin actions
+            Map.entry("ban", "temporarily ban a user"),
+            Map.entry("delete", "delete a user"),
+            Map.entry("new", "make a new Admin"),
+            Map.entry("promote", "promote an existing User to Admin"),
+
+            // Course search actions
+            Map.entry("search", "search up courses by keyword"),
+            Map.entry("sections", "see LEC/TUT/PRA sections of a course"),
+
+            // Timetable actions
+            Map.entry("view", "view the current timetable"),
+            Map.entry("addcourse", "add a course"),
+            Map.entry("addmeetingtocourse", "add a lecture time to a course"),
+            Map.entry("addprevcourse",  "add a previously taken course"),
+            Map.entry("delcourse", "delete a current course"),
+            Map.entry("delprevcourse", "delete a previously taken course"),
+
+            Map.entry("back", "return to the standard user prompt")
     );
 
     public LoginPresenter() {
@@ -74,7 +93,7 @@ public class LoginPresenter extends Presenter{
         if(Objects.isNull(commandsList)) return List.of("No command string?");
         try{    Collection<String> returnCollection = new ArrayList<String>();
             for(String item: commandsList) {
-                returnCollection.add("Enter '" + item + "' " +
+                returnCollection.add("Enter '" + item + "' to " +
                         Objects.requireNonNullElse(userPrompt.get(item), "idk"));
             }
             return returnCollection;
