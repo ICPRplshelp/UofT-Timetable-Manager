@@ -1,6 +1,7 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
 import org.example.coursegetter.usecases.CourseCommunicator;
+import org.example.coursegetter.usecases.CourseSearcherByKeyword;
 import org.example.coursegetter.usecases.CourseSearcherCommunicator;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.CourseSearcherIndividual;
@@ -45,26 +46,24 @@ public class ControllerInputCourseSearch extends ControllerInput {
         return true;
     }
 
-    // I need all of its lecture sections (no need for timings)
     private void promptSearchCourse(){
 
-        String keyword = loginPresenter.enterCourse();
-        String session = loginPresenter.enterSession();
+        String keyword = presenter.enterCourse();
+        String session = presenter.enterSession();
 
         CourseSearcherByKeyword csk = new CourseSearcherByKeyword(courseSearcher);
         List<String> courseCodes = csk.getCoursesByKeyword(keyword, session);
 
         if (courseCodes.size() == 0) {
-            loginPresenter.genericFailedAction("invalid");
+            presenter.genericFailedAction("invalid");
         } else {
-            // placeholder for now. need to refactor printCourseSessionsByType to be more generalized
-            loginPresenter.printCourseSessionsByType("placeholder", courseCodes);
+            String title = String.format("Search Results for '%s': ", keyword);
+            presenter.printListAndTitle(title, courseCodes);
         }
     }
 
     private void promptSearchSections(){
 
-        // placeholder
         String searchedCourse = presenter.enterCourse();
         String session = presenter.enterSession();
 
@@ -79,9 +78,9 @@ public class ControllerInputCourseSearch extends ControllerInput {
             Collection<String> tutorials = courseCommunicator.getTutorials();
             Collection<String> practicals = courseCommunicator.getPracticals();
 
-            presenter.printCourseSessionsByType("LEC", lectures);
-            presenter.printCourseSessionsByType("TUT", tutorials);
-            presenter.printCourseSessionsByType("PRA", practicals);
+            presenter.printListAndTitle("LEC", lectures);
+            presenter.printListAndTitle("TUT", tutorials);
+            presenter.printListAndTitle("PRA", practicals);
         }
     }
 

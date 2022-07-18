@@ -16,11 +16,12 @@ public class CoursePresenter extends Presenter{
         return scanner.nextLine();
     }
 
-    public void printCourseSessionsByType(String type, Collection<String> sessions) {
-        prt.println(type);
-        for (String s : sessions) {
+    public void printListAndTitle(String title, Collection<String> listToPrint) {
+        prt.println(title);
+        for (String s : listToPrint) {
             prt.println(s);
         }
         prt.println("");    // spacer
     }
+
 }
