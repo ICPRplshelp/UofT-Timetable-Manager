@@ -1,24 +1,24 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
 import org.example.coursegetter.usecases.CourseSearcherGetter;
+import org.example.logincode.interfaceadapters.LoginPresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
-import org.example.logincode.interfaceadapters.Presenter;
 
 public class ControllerInputFactory {
 
     private AccountManager manager;
     private final StorageManager storageManager;
-    private final Presenter presenter;
+    private final LoginPresenter loginPresenter;
     private final CourseSearcherGetter csg;
 
     public ControllerInputFactory(AccountManager manager,
                                   StorageManager storageManager,
-                                  Presenter presenter,
+                                  LoginPresenter loginPresenter,
                                   CourseSearcherGetter csg){
         this.manager = manager;
         this.storageManager = storageManager;
-        this.presenter = presenter;
+        this.loginPresenter = loginPresenter;
         this.csg = csg;
     }
 
@@ -36,18 +36,18 @@ public class ControllerInputFactory {
                                               ){
         switch (typeOf) {
             case STANDARD -> {
-                return new ControllerInputStandard(manager, storageManager, presenter);
+                return new ControllerInputStandard(manager, storageManager, loginPresenter);
             }
             case ADMIN -> {
-                return new ControllerInputAdmin(manager, storageManager, presenter);
+                return new ControllerInputAdmin(manager, storageManager, loginPresenter);
             }
             case COURSE_SEARCHER -> {
-                return new ControllerInputCourseSearch(manager, storageManager, presenter,
+                return new ControllerInputCourseSearch(manager, storageManager, loginPresenter,
                         csg);
             }
             case TIMETABLE -> {
                 return new ControllerInputTimetable(manager, storageManager,
-                        presenter, csg);
+                        loginPresenter, csg);
             }
             default -> {
                 return null;

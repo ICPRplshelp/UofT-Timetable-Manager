@@ -4,7 +4,7 @@ import org.example.coursegetter.usecases.CourseCommunicator;
 import org.example.coursegetter.usecases.CourseSearcherCommunicator;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.CourseSearcherIndividual;
-import org.example.logincode.interfaceadapters.Presenter;
+import org.example.logincode.interfaceadapters.LoginPresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 
@@ -20,20 +20,19 @@ public class ControllerInputCourseSearch extends ControllerInput {
      *
      * @param manager               always the same manager in the controller class
      * @param accountStorageManager ^
-     * @param presenter             ^
+     * @param loginPresenter             ^
      */
-    public ControllerInputCourseSearch(AccountManager manager, StorageManager accountStorageManager, Presenter presenter,
+    public ControllerInputCourseSearch(AccountManager manager, StorageManager accountStorageManager, LoginPresenter loginPresenter,
                                        CourseSearcherGetter csg) {
-        super(manager, accountStorageManager, presenter);
+        super(manager, accountStorageManager, loginPresenter);
         this.courseSearcher = csg.getCourseSearcher();
     }
 
     @Override
     public boolean inputParser(String input) {
         switch (input) {
-            case "record" -> recordPastCourse();
             case "search" -> promptSearchCourse();
-            case "add" -> addCourseToTimetable();
+            case "sections" -> promptSearchSections();
             default -> {
                 return failedAction();
             }
@@ -41,38 +40,53 @@ public class ControllerInputCourseSearch extends ControllerInput {
         return true;
     }
 
-    private void recordPastCourse() {
-
-//        String course = "CSC110Y1";
-    }
-
     // I need all of its lecture sections (no need for timings)
     private void promptSearchCourse(){
 
-        // placeholder
-        String searchedCourse = presenter.enterCourse();
-        String session = presenter.enterSession();
+        // THIS METHOD IS CURRENTLY DEPRECATED
+
+//        String keyword = presenter.enterCourse();
+//        String session = presenter.enterSession();
 
         // use CourseSearcherCommunicator to extract searched courses without
         // the need to violate clean architecture.
+//        CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);
+//        CourseCommunicator courseCommunicator = csc.searchCourse(session, keyword);
+//
+//        if (courseCommunicator == null) {
+//            presenter.genericFailedAction("invalid");
+//        } else {
+////            Collection<String> lectures = courseCommunicator.getLectures();
+////            Collection<String> tutorials = courseCommunicator.getTutorials();
+////            Collection<String> practicals = courseCommunicator.getPracticals();
+////
+////            presenter.printCourseSessionsByType("LEC", lectures);
+////            presenter.printCourseSessionsByType("TUT", tutorials);
+////            presenter.printCourseSessionsByType("PRA", practicals);
+//        }
+    }
+
+    private void promptSearchSections(){
+
+        // placeholder
+        String searchedCourse = loginPresenter.enterCourse();
+        String session = loginPresenter.enterSession();
+
         CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);
         CourseCommunicator courseCommunicator = csc.searchCourse(session, searchedCourse);
 
         if (courseCommunicator == null) {
-            presenter.genericFailedAction("invalid");
+            loginPresenter.genericFailedAction("invalid");
         } else {
+            // find alt way to print sections if available
             Collection<String> lectures = courseCommunicator.getLectures();
             Collection<String> tutorials = courseCommunicator.getTutorials();
             Collection<String> practicals = courseCommunicator.getPracticals();
 
-            presenter.printCourseSessionsByType("LEC", lectures);
-            presenter.printCourseSessionsByType("TUT", tutorials);
-            presenter.printCourseSessionsByType("PRA", practicals);
+            loginPresenter.printCourseSessionsByType("LEC", lectures);
+            loginPresenter.printCourseSessionsByType("TUT", tutorials);
+            loginPresenter.printCourseSessionsByType("PRA", practicals);
         }
-    }
-
-    private void addCourseToTimetable() {
-
     }
 
 }
