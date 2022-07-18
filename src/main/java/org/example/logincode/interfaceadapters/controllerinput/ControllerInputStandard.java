@@ -11,6 +11,7 @@ public class ControllerInputStandard extends ControllerInput {
 
     public ControllerInputStandard(AccountManager manager, StorageManager accountStorageManager, StandardPresenter presenter) {
         super(manager, accountStorageManager, presenter);
+        this.presenter = presenter;
         curState = LoggedInState.STANDARD;
         commandsList = new String[]{"history", "adminview", "setpassword", "secretadmin"};
     }
