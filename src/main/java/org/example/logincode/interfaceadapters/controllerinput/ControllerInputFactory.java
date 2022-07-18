@@ -1,7 +1,10 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
 import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.logincode.interfaceadapters.*;
+import org.example.logincode.interfaceadapters.presenters.AdminPresenter;
+import org.example.logincode.interfaceadapters.presenters.CoursePresenter;
+import org.example.logincode.interfaceadapters.presenters.StandardPresenter;
+import org.example.logincode.interfaceadapters.presenters.TimetablePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 

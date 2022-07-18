@@ -1,4 +1,4 @@
-package org.example.logincode.interfaceadapters;
+package org.example.logincode.interfaceadapters.presenters;
 
 import org.example.PresenterPrinter;
 import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;

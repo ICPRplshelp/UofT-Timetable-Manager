@@ -2,8 +2,7 @@ package org.example.logincode.interfaceadapters.controllerinput;
 
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.logincode.interfaceadapters.Presenter;
-import org.example.logincode.interfaceadapters.TimetablePresenter;
+import org.example.logincode.interfaceadapters.presenters.TimetablePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 import org.example.studentdata.usecases.StudentManager;
