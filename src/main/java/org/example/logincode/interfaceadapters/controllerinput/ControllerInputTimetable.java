@@ -29,9 +29,10 @@ public class ControllerInputTimetable extends ControllerInput {
      * @param accountStorageManager ^
      * @param presenter             ^
      */
-    public ControllerInputTimetable(AccountManager manager, StorageManager accountStorageManager, Presenter presenter,
+    public ControllerInputTimetable(AccountManager manager, StorageManager accountStorageManager, TimetablePresenter presenter,
                                     CourseSearcherGetter csg) {
         super(manager, accountStorageManager, presenter);
+        this.presenter = presenter;
         ttc = new TimetableController(getTCB());
         StudentManagerBuilder smb = new StudentManagerBuilder();
         sm = smb.buildStudentManager(manager);

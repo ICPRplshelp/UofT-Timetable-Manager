@@ -15,6 +15,7 @@ public class ControllerInputAdmin extends ControllerInput {
 
     public ControllerInputAdmin(AccountManager manager, StorageManager accountStorageManager, AdminPresenter presenter) {
         super(manager, accountStorageManager, presenter);
+        this.presenter = presenter;
         this.curState = LoggedInState.ADMIN;
         commandsList = new String[]{"ban", "delete", "new", "promote", "back"};
     }

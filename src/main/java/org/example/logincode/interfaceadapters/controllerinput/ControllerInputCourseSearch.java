@@ -27,6 +27,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
     public ControllerInputCourseSearch(AccountManager manager, StorageManager accountStorageManager, CoursePresenter presenter,
                                        CourseSearcherGetter csg) {
         super(manager, accountStorageManager, presenter);
+        this.presenter = presenter;
         this.courseSearcher = csg.getCourseSearcher();
     }
 
