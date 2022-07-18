@@ -1,4 +1,4 @@
-package org.example.coursechecker.usecases;
+package org.example.coursecomparer.usecases;
 
 import org.example.coursegetter.entities.Meeting;
 import org.example.coursegetter.entities.Course;
