@@ -39,8 +39,9 @@ public class ControllerInputCourseSearch extends ControllerInput {
     @Override
     public boolean inputParser(String input) {
         switch (input) {
-            case "search" -> promptSearchCourse();
-            case "sections" -> promptSearchSections();
+            case "search" -> searchCurrentCourses();
+            case "searchpastcourses" -> searchPastCourses();
+            case "sections" -> searchSections();
             default -> {
                 return failedAction();
             }
@@ -48,7 +49,22 @@ public class ControllerInputCourseSearch extends ControllerInput {
         return true;
     }
 
-    private void promptSearchCourse(){
+    private void searchCurrentCourses(){
+
+        String keyword = presenter.enterCourse();
+
+        CourseSearcherByKeyword csk = new CourseSearcherByKeyword(courseSearcher);
+        List<String> courseCodes = csk.getCoursesByKeyword(keyword, "20229");
+
+        if (courseCodes.size() == 0) {
+            presenter.genericFailedAction("invalid");
+        } else {
+            String title = String.format("Search Results for '%s': ", keyword);
+            presenter.printListAndTitle(title, courseCodes);
+        }
+    }
+
+    private void searchPastCourses(){
 
         String keyword = presenter.enterCourse();
         String session = presenter.enterSession();
@@ -64,7 +80,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
         }
     }
 
-    private void promptSearchSections(){
+    private void searchSections(){
 
         String searchedCourse = presenter.enterCourse();
         String session = presenter.enterSession();
