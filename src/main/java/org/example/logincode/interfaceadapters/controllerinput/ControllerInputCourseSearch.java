@@ -1,14 +1,12 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
-import org.example.coursegetter.usecases.CourseCommunicator;
-import org.example.coursegetter.usecases.CourseSearcherCommunicator;
-import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.coursegetter.usecases.CourseSearcherIndividual;
+import org.example.coursegetter.usecases.*;
 import org.example.logincode.interfaceadapters.LoginPresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 
 import java.util.Collection;
+import java.util.List;
 
 public class ControllerInputCourseSearch extends ControllerInput {
 
@@ -43,27 +41,18 @@ public class ControllerInputCourseSearch extends ControllerInput {
     // I need all of its lecture sections (no need for timings)
     private void promptSearchCourse(){
 
-        // THIS METHOD IS CURRENTLY DEPRECATED
+        String keyword = loginPresenter.enterCourse();
+        String session = loginPresenter.enterSession();
 
-//        String keyword = presenter.enterCourse();
-//        String session = presenter.enterSession();
+        CourseSearcherByKeyword csk = new CourseSearcherByKeyword(courseSearcher);
+        List<String> courseCodes = csk.getCoursesByKeyword(keyword, session);
 
-        // use CourseSearcherCommunicator to extract searched courses without
-        // the need to violate clean architecture.
-//        CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);
-//        CourseCommunicator courseCommunicator = csc.searchCourse(session, keyword);
-//
-//        if (courseCommunicator == null) {
-//            presenter.genericFailedAction("invalid");
-//        } else {
-////            Collection<String> lectures = courseCommunicator.getLectures();
-////            Collection<String> tutorials = courseCommunicator.getTutorials();
-////            Collection<String> practicals = courseCommunicator.getPracticals();
-////
-////            presenter.printCourseSessionsByType("LEC", lectures);
-////            presenter.printCourseSessionsByType("TUT", tutorials);
-////            presenter.printCourseSessionsByType("PRA", practicals);
-//        }
+        if (courseCodes.size() == 0) {
+            loginPresenter.genericFailedAction("invalid");
+        } else {
+            // placeholder for now. need to refactor printCourseSessionsByType to be more generalized
+            loginPresenter.printCourseSessionsByType("placeholder", courseCodes);
+        }
     }
 
     private void promptSearchSections(){
