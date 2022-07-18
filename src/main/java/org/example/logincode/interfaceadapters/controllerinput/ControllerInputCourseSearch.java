@@ -32,6 +32,8 @@ public class ControllerInputCourseSearch extends ControllerInput {
         super(manager, accountStorageManager, presenter);
         this.presenter = presenter;
         this.courseSearcher = csg.getCourseSearcher();
+        this.curState = LoggedInState.COURSE_SEARCHER;
+        commandsList = new String[]{"search", "sections"};
     }
 
     @Override
