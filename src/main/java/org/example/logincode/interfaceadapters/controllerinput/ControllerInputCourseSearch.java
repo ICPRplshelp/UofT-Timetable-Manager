@@ -4,7 +4,7 @@ import org.example.coursegetter.usecases.CourseCommunicator;
 import org.example.coursegetter.usecases.CourseSearcherCommunicator;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.CourseSearcherIndividual;
-import org.example.logincode.interfaceadapters.LoginPresenter;
+import org.example.logincode.interfaceadapters.CoursePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 
@@ -14,17 +14,19 @@ public class ControllerInputCourseSearch extends ControllerInput {
 
     private final CourseSearcherIndividual courseSearcher;
 
+    protected CoursePresenter presenter;
+
     /**
      * The constructor for this class.
      * All overrides MUST assign it a CRState.
      *
      * @param manager               always the same manager in the controller class
      * @param accountStorageManager ^
-     * @param loginPresenter             ^
+     * @param presenter             ^
      */
-    public ControllerInputCourseSearch(AccountManager manager, StorageManager accountStorageManager, LoginPresenter loginPresenter,
+    public ControllerInputCourseSearch(AccountManager manager, StorageManager accountStorageManager, CoursePresenter presenter,
                                        CourseSearcherGetter csg) {
-        super(manager, accountStorageManager, loginPresenter);
+        super(manager, accountStorageManager, presenter);
         this.courseSearcher = csg.getCourseSearcher();
     }
 
@@ -50,8 +52,8 @@ public class ControllerInputCourseSearch extends ControllerInput {
     private void promptSearchCourse(){
 
         // placeholder
-        String searchedCourse = loginPresenter.enterCourse();
-        String session = loginPresenter.enterSession();
+        String searchedCourse = presenter.enterCourse();
+        String session = presenter.enterSession();
 
         // use CourseSearcherCommunicator to extract searched courses without
         // the need to violate clean architecture.
@@ -59,15 +61,15 @@ public class ControllerInputCourseSearch extends ControllerInput {
         CourseCommunicator courseCommunicator = csc.searchCourse(session, searchedCourse);
 
         if (courseCommunicator == null) {
-            loginPresenter.genericFailedAction("invalid");
+            presenter.genericFailedAction("invalid");
         } else {
             Collection<String> lectures = courseCommunicator.getLectures();
             Collection<String> tutorials = courseCommunicator.getTutorials();
             Collection<String> practicals = courseCommunicator.getPracticals();
 
-            loginPresenter.printCourseSessionsByType("LEC", lectures);
-            loginPresenter.printCourseSessionsByType("TUT", tutorials);
-            loginPresenter.printCourseSessionsByType("PRA", practicals);
+            presenter.printCourseSessionsByType("LEC", lectures);
+            presenter.printCourseSessionsByType("TUT", tutorials);
+            presenter.printCourseSessionsByType("PRA", practicals);
         }
     }
 
