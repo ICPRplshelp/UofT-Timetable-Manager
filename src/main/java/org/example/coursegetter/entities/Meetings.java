@@ -1,5 +1,6 @@
 package org.example.coursegetter.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -12,7 +13,7 @@ import java.util.*;
  * completely different courses for the purposes
  * of defining this class.
  */
-public class Meetings {
+public class Meetings  implements Serializable {
     // lectures
     // tutorials
     // practicals

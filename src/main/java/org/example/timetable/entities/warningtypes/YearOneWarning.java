@@ -5,7 +5,8 @@ import org.example.timetable.entities.WarningLevel;
 public class YearOneWarning extends TimetableWarning{
 
     public YearOneWarning(){
-        warninglevel = WarningLevel.CRITICAL;
+
+        warningType = WarningType.FYF;
     }
 
     @Override

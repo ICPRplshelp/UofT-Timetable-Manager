@@ -1,6 +1,5 @@
 package org.example.logincode.interfaceadapters;
 
-import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.logincode.usecases.AccountCreator;
 import org.example.logincode.usecases.AccountLogin;
@@ -13,7 +12,7 @@ import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;
 public class Controller {
 
     private final StorageManager accountStorageManager = new StorageManager();
-    Presenter presenter = new Presenter();
+    LoginPresenter loginPresenter = new LoginPresenter();
     private AccountManager manager;
 
 
@@ -21,7 +20,7 @@ public class Controller {
     private LoggedInState loggedInState = LoggedInState.STANDARD;  // always start with the standard presenter window
     private LoginState loginState = LoginState.LOGGED_OUT;
     private final CourseSearcherGetter csg = new CourseSearcherGetter();
-    private final ControllerInputFactory controllerInputFactory = new ControllerInputFactory(manager, accountStorageManager, presenter, csg);
+    private final ControllerInputFactory controllerInputFactory = new ControllerInputFactory(manager, accountStorageManager, csg);
 
     /**
      * The method needed to set up the enum map. This contains a lot of boilerplate code, though.
@@ -45,11 +44,11 @@ public class Controller {
      */
     public void loggedOutMenu(String input) {
         if (input.equals("register")) {
-            String[] inputs = presenter.enterCredentials();
+            String[] inputs = loginPresenter.enterCredentials();
             register(inputs[0], inputs[1]);
 
         } else if (input.equals("login")) {
-            String[] inputs = presenter.enterCredentials();
+            String[] inputs = loginPresenter.enterCredentials();
             login(inputs[0], inputs[1]);
         }
 
@@ -69,7 +68,7 @@ public class Controller {
 
         ControllerInput cInput = controllerInputFactory.getControllerInput(loggedInState);
         if (cInput == null) {
-            presenter.genericFailedAction("invalid");
+            loginPresenter.genericFailedAction("invalid");
             return;  // oops, invalid
         }
         // run the input and have it perform the operation with the input
@@ -89,9 +88,9 @@ public class Controller {
         AccountCreator tempSystem = new AccountCreator(accountStorageManager);
 
         if (tempSystem.createAccount(username, password) != null) {
-            presenter.registerConfirm(true);
+            loginPresenter.registerConfirm(true);
         } else {
-            presenter.registerConfirm(false);
+            loginPresenter.registerConfirm(false);
             inputParser("register");
         }
         accountStorageManager.updateSave();
@@ -110,14 +109,14 @@ public class Controller {
         AccountLogin tempSystem = new AccountLogin(accountStorageManager);
         boolean loginState = tempSystem.validateLogin(username, password);
         if (!loginState) {
-            presenter.loginConfirm(false);
+            loginPresenter.loginConfirm(false);
             return;  // oops, the login failed. Now what? Try again?
         }
         // by this point, the login must be successful
         manager = new AccountManager(username, accountStorageManager);
         controllerInputFactory.setManager(manager);
         this.loginState = LoginState.LOGGED_IN;
-        presenter.loginConfirm(true);
+        loginPresenter.loginConfirm(true);
         accountStorageManager.updateSave();
     }
 

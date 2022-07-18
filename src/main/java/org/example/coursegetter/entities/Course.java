@@ -1,8 +1,9 @@
 package org.example.coursegetter.entities;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class Course implements Comparable<Course> {
+public class Course implements Comparable<Course>, Serializable {
     // public final int brq;
     public final BreadthRequirement brc;
     private final double creditValue;

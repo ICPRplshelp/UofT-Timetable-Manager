@@ -3,18 +3,24 @@ package org.example.studentdata.entities;
 import org.example.coursegetter.entities.Course;
 import org.example.timetable.entities.Timetable;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
-public class Student {
+public class Student implements Serializable {
     private final Set<CourseChoice> plannedCourses = new TreeSet<>();
     private final Set<Course> previousCourses;
 
-    private Timetable timetable;
+    public Timetable getTimetable() {
+        return timetable;
+    }
+
+    private final Timetable timetable;
 
     public Student() {
+        this.timetable = new Timetable(plannedCourses);
         previousCourses = new TreeSet<>();
     }
 
@@ -82,6 +88,10 @@ public class Student {
     private Collection<CourseChoice> getPlannedCourses(String section){
         Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals(section));
         return temp.collect(Collectors.toList());
+    }
+
+    private void updateTimetable(){
+
     }
 
 

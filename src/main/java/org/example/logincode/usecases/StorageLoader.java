@@ -1,16 +1,19 @@
 package org.example.logincode.usecases;
 
-import java.io.*;
 import org.example.logincode.entities.AccountStorage;
+
+import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class lets you load accounts from a CSV
  * and also lets you export account data to a CSV.
  * Only if passwords were hashed...
- *
  */
 public class StorageLoader {
-
+    private static final Logger LOGGER = Logger.getLogger( StorageLoader.class.getName() );
+    private final boolean disable = false;
     protected AccountStorage accountStorage;
 
     public StorageLoader(AccountStorage accountStorage) {
@@ -40,17 +43,24 @@ public class StorageLoader {
 
 
     public void updateAccounts(AccountStorage tempAccountStorage) {
+
+        if (disable) return;
         try {
             FileOutputStream fileOut = new FileOutputStream("accountInformation.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(tempAccountStorage);
             out.close();
             fileOut.close();
+        }
+        catch (NotSerializableException nse) {
+            LOGGER.log(Level.WARNING, "Couldn't save anything? [1]");
         } catch (IOException i) {
             i.printStackTrace();
+            LOGGER.log(Level.WARNING, "Couldn't save anything?");
 
+        }
     }
-    }
+
 }
 
 

@@ -1,6 +1,7 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
-import org.example.logincode.interfaceadapters.Presenter;
+import org.example.logincode.interfaceadapters.AdminPresenter;
+import org.example.logincode.interfaceadapters.TimetablePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.AdminAccountManager;
 import org.example.logincode.usecases.StorageManager;
@@ -10,8 +11,11 @@ import java.util.Date;
 
 public class ControllerInputAdmin extends ControllerInput {
 
-    public ControllerInputAdmin(AccountManager manager, StorageManager accountStorageManager, Presenter presenter) {
+    protected AdminPresenter presenter;
+
+    public ControllerInputAdmin(AccountManager manager, StorageManager accountStorageManager, AdminPresenter presenter) {
         super(manager, accountStorageManager, presenter);
+        this.presenter = presenter;
         this.curState = LoggedInState.ADMIN;
         commandsList = new String[]{"ban", "delete", "new", "promote", "back"};
     }
@@ -62,7 +66,6 @@ public class ControllerInputAdmin extends ControllerInput {
             unbanDate = presenter.enterDate();
         } catch (ParseException e) {
             // Unsure if this is supposed to be printed to screen; put into presenter for now.
-            // System.out.println("Failed to parse string to date");
             presenter.parseFailure();
         }
         boolean banCheck = adminAccountManager.banUser(userToBan, unbanDate);

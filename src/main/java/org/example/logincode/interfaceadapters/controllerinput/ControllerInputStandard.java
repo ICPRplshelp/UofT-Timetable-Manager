@@ -1,13 +1,17 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
-import org.example.logincode.interfaceadapters.Presenter;
+import org.example.logincode.interfaceadapters.StandardPresenter;
+import org.example.logincode.interfaceadapters.TimetablePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 
 public class ControllerInputStandard extends ControllerInput {
 
-    public ControllerInputStandard(AccountManager manager, StorageManager accountStorageManager, Presenter presenter) {
+    protected StandardPresenter presenter;
+
+    public ControllerInputStandard(AccountManager manager, StorageManager accountStorageManager, StandardPresenter presenter) {
         super(manager, accountStorageManager, presenter);
+        this.presenter = presenter;
         curState = LoggedInState.STANDARD;
         commandsList = new String[]{"history", "adminview", "setpassword", "secretadmin"};
     }
@@ -17,6 +21,7 @@ public class ControllerInputStandard extends ControllerInput {
         switch (input) {
             case "history" -> printUserHistory();
             case "adminview" -> switchToAdminView();
+            case "ttview" -> this.curState = LoggedInState.TIMETABLE;
             case "secretadmin" -> manager.makeMeAnAdmin();
             case "setpassword" -> changePassword();
             default -> {

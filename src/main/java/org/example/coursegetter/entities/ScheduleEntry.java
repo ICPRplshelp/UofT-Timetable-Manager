@@ -1,10 +1,11 @@
 package org.example.coursegetter.entities;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Map;
 
-public class ScheduleEntry implements Comparable<ScheduleEntry> {
+public class ScheduleEntry implements Comparable<ScheduleEntry>, Serializable {
     private final String assignedRoom1;  // room in the fall.
 
     public String getAssignedRoom1() {

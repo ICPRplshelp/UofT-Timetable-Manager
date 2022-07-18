@@ -6,6 +6,10 @@ import java.util.Collection;
 
 public class AccountManager {
 
+    public Account getAccount() {
+        return account;
+    }
+
     protected final Account account;
     // protected Set<String> commandList;
     StorageManager accountStorageManager;
