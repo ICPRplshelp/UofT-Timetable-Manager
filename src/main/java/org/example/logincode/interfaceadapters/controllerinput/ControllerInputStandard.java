@@ -1,13 +1,17 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
-import org.example.logincode.interfaceadapters.LoginPresenter;
+import org.example.logincode.interfaceadapters.StandardPresenter;
+import org.example.logincode.interfaceadapters.TimetablePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 
 public class ControllerInputStandard extends ControllerInput {
 
-    public ControllerInputStandard(AccountManager manager, StorageManager accountStorageManager, LoginPresenter loginPresenter) {
-        super(manager, accountStorageManager, loginPresenter);
+    protected StandardPresenter presenter;
+
+    public ControllerInputStandard(AccountManager manager, StorageManager accountStorageManager, StandardPresenter presenter) {
+        super(manager, accountStorageManager, presenter);
+        this.presenter = presenter;
         curState = LoggedInState.STANDARD;
         commandsList = new String[]{"history", "adminview", "setpassword", "secretadmin"};
     }
@@ -29,16 +33,16 @@ public class ControllerInputStandard extends ControllerInput {
     }
 
     private void changePassword() {
-        String[] newPswds = loginPresenter.passwordChangePrompt();
+        String[] newPswds = presenter.passwordChangePrompt();
         boolean pswdSuccess = manager.setPassword(newPswds[0], newPswds[1]);
         if (!pswdSuccess) {
-            loginPresenter.genericFailedAction("invPassword");
+            presenter.genericFailedAction("invPassword");
         }
     }
 
     private void switchToAdminView() {
         if (!manager.validatePermission("admin")) {
-            loginPresenter.genericFailedAction("noPerms");
+            presenter.genericFailedAction("noPerms");
         } else {
             curState = LoggedInState.ADMIN;
         }
@@ -46,7 +50,7 @@ public class ControllerInputStandard extends ControllerInput {
 
     private void printUserHistory() {
         String ts = manager.getAccountHistoryAsString();
-        loginPresenter.printHistory(ts);
+        presenter.printHistory(ts);
     }
 
 }

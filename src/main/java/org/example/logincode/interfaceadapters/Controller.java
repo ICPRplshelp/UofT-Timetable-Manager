@@ -20,7 +20,7 @@ public class Controller {
     private LoggedInState loggedInState = LoggedInState.STANDARD;  // always start with the standard presenter window
     private LoginState loginState = LoginState.LOGGED_OUT;
     private final CourseSearcherGetter csg = new CourseSearcherGetter();
-    private final ControllerInputFactory controllerInputFactory = new ControllerInputFactory(manager, accountStorageManager, loginPresenter, csg);
+    private final ControllerInputFactory controllerInputFactory = new ControllerInputFactory(manager, accountStorageManager, csg);
 
     /**
      * The method needed to set up the enum map. This contains a lot of boilerplate code, though.

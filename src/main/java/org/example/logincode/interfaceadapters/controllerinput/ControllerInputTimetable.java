@@ -2,7 +2,7 @@ package org.example.logincode.interfaceadapters.controllerinput;
 
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.logincode.interfaceadapters.LoginPresenter;
+import org.example.logincode.interfaceadapters.Presenter;
 import org.example.logincode.interfaceadapters.TimetablePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
@@ -16,7 +16,8 @@ public class ControllerInputTimetable extends ControllerInput {
     private final CourseSearcherGetter csg;
     private StudentManager sm;
 
-    private TimetablePresenter timetablePresenter = new TimetablePresenter();
+    protected TimetablePresenter presenter;
+
     private TimetableController ttc;
     private TimetableCommunicatorBulkBuilder timetableCommunicatorBulkBuilder = new TimetableCommunicatorBulkBuilder();
 
@@ -26,15 +27,20 @@ public class ControllerInputTimetable extends ControllerInput {
      *
      * @param manager               always the same manager in the controller class
      * @param accountStorageManager ^
-     * @param loginPresenter             ^
+     * @param presenter             ^
      */
-    public ControllerInputTimetable(AccountManager manager, StorageManager accountStorageManager, LoginPresenter loginPresenter,
+    public ControllerInputTimetable(AccountManager manager, StorageManager accountStorageManager, TimetablePresenter presenter,
                                     CourseSearcherGetter csg) {
-        super(manager, accountStorageManager, loginPresenter);
+        super(manager, accountStorageManager, presenter);
+        this.presenter = presenter;
         ttc = new TimetableController(getTCB());
         StudentManagerBuilder smb = new StudentManagerBuilder();
         sm = smb.buildStudentManager(manager);
         this.csg = csg;
+
+        this.curState = LoggedInState.TIMETABLE;
+
+        commandsList = new String[]{"view", "addcourse", "addmeetingtocourse", "addprevcourse", "delcourse", "delprevcourse", "back"};
     }
 
     @Override
@@ -46,56 +52,60 @@ public class ControllerInputTimetable extends ControllerInput {
                 return true;
             }
             case "addcourse" -> {
-                String rqc = timetablePresenter.addCourse();
+                String rqc = presenter.addCourse();
                 Course temp = csg.getCourseSearcher().getCourseOfferingByCode("20229", rqc);
                 boolean addedCourseState = sm.addBlankPlannedCourse(temp);
                 if(addedCourseState){
-                    timetablePresenter.addCourseConfirmation();
+                    presenter.addCourseConfirmation();
                 } else {
-                    timetablePresenter.addCourseError();
+                    presenter.addCourseError();
                 }
             }
             case "addmeetingtocourse" -> {
-                String courseCode = timetablePresenter.addMeetingToCourse();
+                String courseCode = presenter.addMeetingToCourse();
                 if (sm.getPlannedCourseByString(courseCode) != null) {
-                    String sectionCode = timetablePresenter.addSectionToCourse();
+                    String sectionCode = presenter.addSectionToCourse();
                     boolean setCourseState = sm.setCourseChoice(sm.getPlannedCourseByString(courseCode), sectionCode);
                     if(setCourseState) {
-                        timetablePresenter.addMeetingConfirmation();
-                    } else timetablePresenter.addMeetingError();
+                        presenter.addMeetingConfirmation();
+                    } else presenter.addMeetingError();
                 }
                 return true;
             }
             case "addprevcourse" -> {
-                String courseCode = timetablePresenter.addPrevCourse();
-                String session = timetablePresenter.addPrevSessionCourse(); // instructions for year + 9 / 5 etc.?
+                String courseCode = presenter.addPrevCourse();
+                String session = presenter.addPrevSessionCourse(); // instructions for year + 9 / 5 etc.?
                 Course temp = csg.getCourseSearcher().getCourseOfferingByCode(session, courseCode);
                 boolean setCourseState = sm.addPreviousCourse(temp);
                 if (setCourseState){
-                    timetablePresenter.addPrevCourseConfirmation(session);
-                }else timetablePresenter.addPrevCourseError();
+                    presenter.addPrevCourseConfirmation(session);
+                }else presenter.addPrevCourseError();
 
                 return setCourseState;
             }
             case "delcourse" -> {
-                String courseCode = timetablePresenter.deleteCourse();
+                String courseCode = presenter.deleteCourse();
 
                 boolean setCourseState = sm.removePlannedCourse(sm.getPlannedCourseByString(courseCode));
                 if (setCourseState){
-                    timetablePresenter.deleteCourseConfirmation();
-                }else timetablePresenter.deleteCourseError();
+                    presenter.deleteCourseConfirmation();
+                }else presenter.deleteCourseError();
 
                 return setCourseState;
             }
             case "delprevcourse" -> {
-                String courseCode = timetablePresenter.deletePrevCourse();
+                String courseCode = presenter.deletePrevCourse();
                 boolean setCourseState = sm.removePreviousCourse(sm.getPreviousCourseByString(courseCode));
                 if (setCourseState){
-                    timetablePresenter.deletePrevCourseConfirmation();
-                }else timetablePresenter.deletePrevCourseError();
+                    presenter.deletePrevCourseConfirmation();
+                }else presenter.deletePrevCourseError();
 
                 return setCourseState;
             }
+            case "back" -> {
+                curState = LoggedInState.STANDARD;
+            }
+
             case "donothing" -> {return true;}
 
         }

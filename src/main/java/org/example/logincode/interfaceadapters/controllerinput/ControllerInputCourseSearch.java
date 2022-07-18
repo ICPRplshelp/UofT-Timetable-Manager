@@ -1,7 +1,11 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
-import org.example.coursegetter.usecases.*;
-import org.example.logincode.interfaceadapters.LoginPresenter;
+import org.example.coursegetter.usecases.CourseCommunicator;
+import org.example.coursegetter.usecases.CourseSearcherCommunicator;
+import org.example.coursegetter.usecases.CourseSearcherGetter;
+import org.example.coursegetter.usecases.CourseSearcherIndividual;
+
+import org.example.logincode.interfaceadapters.CoursePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 
@@ -12,17 +16,20 @@ public class ControllerInputCourseSearch extends ControllerInput {
 
     private final CourseSearcherIndividual courseSearcher;
 
+    protected CoursePresenter presenter;
+
     /**
      * The constructor for this class.
      * All overrides MUST assign it a CRState.
      *
      * @param manager               always the same manager in the controller class
      * @param accountStorageManager ^
-     * @param loginPresenter             ^
+     * @param presenter             ^
      */
-    public ControllerInputCourseSearch(AccountManager manager, StorageManager accountStorageManager, LoginPresenter loginPresenter,
+    public ControllerInputCourseSearch(AccountManager manager, StorageManager accountStorageManager, CoursePresenter presenter,
                                        CourseSearcherGetter csg) {
-        super(manager, accountStorageManager, loginPresenter);
+        super(manager, accountStorageManager, presenter);
+        this.presenter = presenter;
         this.courseSearcher = csg.getCourseSearcher();
     }
 
@@ -58,23 +65,23 @@ public class ControllerInputCourseSearch extends ControllerInput {
     private void promptSearchSections(){
 
         // placeholder
-        String searchedCourse = loginPresenter.enterCourse();
-        String session = loginPresenter.enterSession();
+        String searchedCourse = presenter.enterCourse();
+        String session = presenter.enterSession();
 
         CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);
         CourseCommunicator courseCommunicator = csc.searchCourse(session, searchedCourse);
 
         if (courseCommunicator == null) {
-            loginPresenter.genericFailedAction("invalid");
+            presenter.genericFailedAction("invalid");
         } else {
             // find alt way to print sections if available
             Collection<String> lectures = courseCommunicator.getLectures();
             Collection<String> tutorials = courseCommunicator.getTutorials();
             Collection<String> practicals = courseCommunicator.getPracticals();
 
-            loginPresenter.printCourseSessionsByType("LEC", lectures);
-            loginPresenter.printCourseSessionsByType("TUT", tutorials);
-            loginPresenter.printCourseSessionsByType("PRA", practicals);
+            presenter.printCourseSessionsByType("LEC", lectures);
+            presenter.printCourseSessionsByType("TUT", tutorials);
+            presenter.printCourseSessionsByType("PRA", practicals);
         }
     }
 

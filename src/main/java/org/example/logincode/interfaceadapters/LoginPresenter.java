@@ -2,8 +2,6 @@ package org.example.logincode.interfaceadapters;
 
 import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class LoginPresenter extends Presenter{
@@ -15,7 +13,9 @@ public class LoginPresenter extends Presenter{
             "Enter 'history' to see your login history",
             "Enter 'adminview' to enter the admin view if you are an admin",
             "Enter 'setpassword' to change your password",
-            "Enter 'secretadmin' to make yourself an admin"});
+            "Enter 'secretadmin' to make yourself an admin",
+            "Enter 'ttview' to enter the timetable view"
+    });
     Collection<String> loggedInAdminOnlyPrompt = List.of(new String[]{
             "Enter 'ban' to temporarily ban a user",
             "Enter 'delete' to delete a user",
@@ -24,7 +24,17 @@ public class LoginPresenter extends Presenter{
             "Enter 'back' to return to the standard user prompt"
     });
 
-    Map<String, String> userPrompts = Map.of(
+    Collection<String> timetablePrompt = List.of(new String[]{
+            "Enter 'view' to view the current timetable",
+            "Enter 'addcourse' to add a course",
+            "Enter 'addmeetingtocourse' to add a lecture time to a course",
+            "Enter 'addprevcourse' to add a previously taken course",
+            "Enter 'delcourse' to delete a current course",
+            "Enter 'delprevcourse' to delete a previously taken course",
+            "Enter 'back' to return to the standard user prompt"
+    });
+
+    Map<String, String> userPrompt = Map.of(
             "history", "see your login history",
             "adminview", "enter the admin view if you are an admin",
             "setpassword", "change your password",
@@ -35,6 +45,7 @@ public class LoginPresenter extends Presenter{
             "promote", "promote an existing User to Admin",
             "back", "return to the standard user prompt"
     );
+
     public LoginPresenter() {
     }
 
@@ -45,6 +56,9 @@ public class LoginPresenter extends Presenter{
             }
             case ADMIN -> {
                 return dashboardView(loggedInAdminOnlyPrompt);
+            }
+            case TIMETABLE -> {
+                return dashboardView(timetablePrompt);
             }
             default -> {
                 return dashboardView(List.of("I would like to list some commands but I cant"));
@@ -61,7 +75,7 @@ public class LoginPresenter extends Presenter{
         try{    Collection<String> returnCollection = new ArrayList<String>();
             for(String item: commandsList) {
                 returnCollection.add("Enter '" + item + "' " +
-                        Objects.requireNonNullElse(userPrompts.get(item), "idk"));
+                        Objects.requireNonNullElse(userPrompt.get(item), "idk"));
             }
             return returnCollection;
         } catch (NullPointerException e){
@@ -74,35 +88,7 @@ public class LoginPresenter extends Presenter{
         prt.println("Enter 'register' to register, 'login' to login, or 'exit' to exit: ");
     }
 
-    /**
-     * Forces the user to enter the credentials. Return their input.
-     *
-     * @return A string array: [username, password].
-     */
-    public String[] enterCredentials() {
-        // register and login both use this method since their procedures are identical
-        String[] inputs = new String[2];
 
-        prt.println("Enter Username: ");
-        inputs[0] = scanner.nextLine();
-
-        prt.println("Enter Password: ");
-        inputs[1] = scanner.nextLine();
-
-        return inputs;
-    }
-
-    public String enterUsername() {
-        prt.println("Enter username of target user: ");
-        return scanner.nextLine();
-    }
-
-    public Date enterDate() throws ParseException {
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-        prt.println("Enter date in the format dd/MM/yyyy: ");
-        String input = prt.askWithMessage("Enter date in the format dd/MM/yyyy: ");
-        return dateFormatter.parse(input);
-    }
 
 
     public void registerConfirm(boolean isSuccessful) {
@@ -121,13 +107,6 @@ public class LoginPresenter extends Presenter{
         }
     }
 
-    public String[] passwordChangePrompt() {
-        String[] inputs = new String[2];
-        inputs[0] = prt.askWithMessage("Old password: ");
-        inputs[1] = prt.askWithMessage("New password: ");
-        return inputs;
-    }
-
     /**
      * Prints all elements in messages and returns what the user sent.
      *
@@ -139,77 +118,15 @@ public class LoginPresenter extends Presenter{
     }
 
 
-    public void banUserConfirm(boolean isSuccessful, String username) {
-        if (isSuccessful) {
-            prt.println("You have successfully banned " + username);
-        } else {
-            prt.println("You do not have permission, the user does not exist, you tried to ban an admin, or you tried to ban yourself.");
-        }
-    }
 
-    public void deleteUserConfirm(boolean isSuccessful, String username) {
-        if (isSuccessful) {
-            prt.println("You have successfully deleted " + username);
-        } else {
-            prt.println("You don't have permission, the user does not exist, the user has perms that prevents it from being deleted, or you tried to delete yourself.");
-        }
-    }
 
-    public void createNewAdminConfirm(boolean isSuccessful, String username) {
-        if (isSuccessful) {
-            prt.println("You have successfully created a new Admin " + username);
-        } else {
-            prt.println("You do not have permission or the user already exists");
-        }
-    }
 
-    public void promoteUserConfirm(boolean isSuccessful, String username) {
-        if (isSuccessful) {
-            prt.println("You have successfully promoted " + username);
-        } else {
-            prt.println("You do not have permission or the user does not exist");
-        }
-    }
 
-    public void genericFailedAction(String reason) {
-        switch (reason) {
-            case "invalid" -> prt.println("Invalid input.");
-            case "noPerms" -> prt.println("You do not have the admin permission.");
-            case "invalidPassword" ->
-                    prt.println("The password you were asked to enter that is to be checked was incorrect");
-            default -> prt.println("Action failed.");
-        }
-    }
 
-    public String enterCourse() {
-        prt.println("Enter course code: ");
-        return scanner.nextLine();
-    }
 
-    public String enterSession() {
-        prt.println("Enter course session: ");
-        return scanner.nextLine();
-    }
 
-    public void printCourseSessionsByType(String type, Collection<String> sessions) {
-        prt.println(type);
-        for (String s : sessions) {
-            prt.println(s);
-        }
-        prt.println("");    // spacer
-    }
 
-    public void parseFailure() {
-        prt.println("Failed to parse string to date");
-    }
 
-    public void printHistory(String history) {
-        prt.println(history);
-    }
-
-    public void genericError() {
-        prt.println("An error has occurred.");
-    }
 
     public void exitProgram() {
         prt.println("You have exited the program.");
