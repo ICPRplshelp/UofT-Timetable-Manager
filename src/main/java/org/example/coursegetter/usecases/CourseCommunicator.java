@@ -24,6 +24,18 @@ public class CourseCommunicator {
         this.course = course;
     }
 
+    public String getCourseTitle() { return this.course.getCourseTitle(); }
+
+    public String getCourseDescription() { return this.course.getCourseDescription(); }
+
+    public String getPrerequisite() { return this.course.getPrerequisite(); }
+
+    public String getExclusion() { return this.course.getExclusion(); }
+
+    public String getBreadthCategories() { return this.course.getBreadthCategories(); }
+
+    public String getDeliveryInstructions() { return this.course.getDeliveryInstructions(); }
+
     public Collection<String> getLectures() {
         return this.course.getMeetings().getLectures().keySet();
     }
@@ -33,7 +45,7 @@ public class CourseCommunicator {
     }
 
     public Collection<String> getPracticals() {
-        return this.course.getMeetings().getTutorials().keySet();
+        return this.course.getMeetings().getPracticals().keySet();
     }
 
     /**
