@@ -17,6 +17,10 @@ abstract public class TimetableWarning implements Serializable,  Comparable<Time
         else return warningType;
     }
 
+    public void setWarningType(WarningType warning){
+        warningType = warning;
+    }
+
     public WarningLevel getWarningLevel(){
         return warningLevel;
     }
