@@ -1,4 +1,4 @@
-package org.example.timetable.usecases;
+package org.example.timetable.usecases.internal;
 
 import org.example.coursegetter.entities.Meeting;
 import org.example.coursegetter.entities.ScheduleEntry;
@@ -24,7 +24,7 @@ public class CourseConflictChecker {
      */
 
     public void checkIfConflict(String c1, String c2) {
-        List<String> courseList1 = List.of(c1.split("-"));   // [CSC110Y1, F, LEC0101]
+        List<String> courseList1 = List.of(c1.split("-"));
         String courseCode = String.join("-", courseList1.get(0), courseList1.get(1));
         CourseChoice crs = CourseGetter(courseCode);
 
@@ -145,11 +145,11 @@ public class CourseConflictChecker {
     private boolean chkIfTimeConflict(LocalTime start, LocalTime start2, LocalTime end, LocalTime end2) {
         if ((start.compareTo(start2) > 0) && (start.compareTo(end2)) < 0) {
             return true;
-        }
-        else if ((end.compareTo(start2) > 0) && (end.compareTo(end2) < 0)) {
+        } else if ((end.compareTo(start2) > 0) && (end.compareTo(end2) < 0)) {
             return true;
-        }
-        else return (start.compareTo(start2) > 0) && (end.compareTo(end2) < 0);
+        } else if ((end.compareTo(end2) == 0) && (start.compareTo(start2) == 0)) {
+            return true;
+        } else return (start.compareTo(start2) > 0) && (end.compareTo(end2) < 0);
     }
 
     public HashMap<String, List<List<String>>> getConflictMap() {return conflictMap;}
