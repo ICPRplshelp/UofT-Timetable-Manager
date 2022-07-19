@@ -33,14 +33,15 @@ public class ControllerInputCourseSearch extends ControllerInput {
         this.presenter = presenter;
         this.courseSearcher = csg.getCourseSearcher();
         this.curState = LoggedInState.COURSE_SEARCHER;
-        commandsList = new String[]{"search", "sections"};
+        commandsList = new String[]{"search", "pastcourses", "courseinfo", "sections"};
     }
 
     @Override
     public boolean inputParser(String input) {
         switch (input) {
             case "search" -> searchCurrentCourses();
-            case "searchpastcourses" -> searchPastCourses();
+            case "pastcourses" -> searchPastCourses();
+            case "courseinfo" -> searchCourseInfo();
             case "sections" -> searchSections();
             default -> {
                 return failedAction();
@@ -80,6 +81,27 @@ public class ControllerInputCourseSearch extends ControllerInput {
         }
     }
 
+    private void searchCourseInfo(){
+
+        String searchedCourse = presenter.enterCourse();
+        String session = presenter.enterSession();
+
+        CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);
+        CourseCommunicator cc = csc.searchCourse(session, searchedCourse);
+
+        if (cc == null) {
+            presenter.genericFailedAction("invalid");
+        } else {
+            presenter.printText(searchedCourse + ": " + cc.getCourseTitle());
+            presenter.printText(cc.getCourseDescription());
+            presenter.printText(cc.getPrerequisite());
+            presenter.printText(cc.getExclusion());
+            presenter.printText(cc.getBreadthCategories());
+            presenter.printText(cc.getDeliveryInstructions());
+            presenter.printText("");    // spacer
+        }
+    }
+
     private void searchSections(){
 
         String searchedCourse = presenter.enterCourse();
@@ -91,7 +113,6 @@ public class ControllerInputCourseSearch extends ControllerInput {
         if (courseCommunicator == null) {
             presenter.genericFailedAction("invalid");
         } else {
-            // find alt way to print sections if available
             Collection<String> lectures = courseCommunicator.getLectures();
             Collection<String> tutorials = courseCommunicator.getTutorials();
             Collection<String> practicals = courseCommunicator.getPracticals();

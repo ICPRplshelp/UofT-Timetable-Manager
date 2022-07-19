@@ -21,4 +21,8 @@ public class CoursePresenter extends Presenter {
         prt.println("");    // spacer
     }
 
+    public void printText(String text) {
+        prt.println(text);
+    }
+
 }
