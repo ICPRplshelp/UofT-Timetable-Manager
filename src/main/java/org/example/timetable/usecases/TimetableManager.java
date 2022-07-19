@@ -25,17 +25,18 @@ public class TimetableManager {
 
     //}
 
-    public HashMap<String, List<List<String>>> checkIfTimetableConflict() {
-        List<CourseChoice> choiceList = timetable.getPlannedCourses().stream().toList();
-        CourseConflictChecker conflictChecker = new CourseConflictChecker(timetable);
-        for (int i = 0; i < choiceList.size(); i++) {
-            for (CourseChoice courseChoice : choiceList) {
-                conflictChecker.checkIfConflict(choiceList.get(i).getCourse().getCode(),
-                        courseChoice.getCourse().getCode());
-            }
-        }
-        return conflictChecker.getConflictMap();
-    }
+//    pushed back to phase 2
+//    public HashMap<String, List<List<String>>> checkIfTimetableConflict() {
+//        List<CourseChoice> choiceList = timetable.getPlannedCourses().stream().toList();
+//        CourseConflictChecker conflictChecker = new CourseConflictChecker(timetable);
+//        for (int i = 0; i < choiceList.size(); i++) {
+//            for (CourseChoice courseChoice : choiceList) {
+//                conflictChecker.checkIfConflict(choiceList.get(i).getCourse().getCode(),
+//                        courseChoice.getCourse().getCode());
+//            }
+//        }
+//        return conflictChecker.getConflictMap();
+//    }
 
     public Timetable getTimetable() {
         return timetable;
