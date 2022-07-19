@@ -22,7 +22,7 @@ public class CourseSearcherByKeyword {
         List<String> courseCodes = new ArrayList<String>();
 
         for (Course course : courseList) {
-            courseCodes.add(course.getCode());
+            courseCodes.add(course.getOfferingCode());
         }
 
         return courseCodes;

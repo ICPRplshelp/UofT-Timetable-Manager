@@ -52,6 +52,8 @@ public class LoginPresenter extends Presenter {
 
             // Course search actions
             Map.entry("search", "search up courses by keyword"),
+            Map.entry("pastcourses", "search up courses from past sessions by keyword"),
+            Map.entry("courseinfo", "search up info about a course"),
             Map.entry("sections", "see LEC/TUT/PRA sections of a course"),
 
             // Timetable actions
