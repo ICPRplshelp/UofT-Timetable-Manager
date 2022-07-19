@@ -1,5 +1,6 @@
 package org.example.timetable.entities;
 
+import org.example.timetable.entities.warningtypes.ExclusionWarning;
 import org.example.timetable.entities.warningtypes.TimetableWarning;
 
 import java.io.Serializable;
@@ -39,17 +40,17 @@ public class CourseWarning  implements Serializable {
     @Override
     public String toString(){
         ArrayList<String> result = new ArrayList<>();
-
         for (WarningLevel warningLevel: WarningLevel.values()) {
             Set<String> warningStrings = new HashSet<>();
-            for (TimetableWarning timetableWarning: warnings.get(warningLevel)) {
-                warningStrings.add(timetableWarning.toString());
-            }
 
-            result.add("[" + warningLevel.toString() + ": " + String.join(", ", warningStrings) + "]");
+            if (!(warnings.get(warningLevel) == null)) {
+                List<TimetableWarning> aList = new ArrayList<>(warnings.get(warningLevel));
+                return aList.get(0).getWarningLevel() + " WARNING " + aList.get(0).getWarningType() + " ERROR";
+            }
         }
-        return String.join(", ", result);
+        return "No warnings found";
     }
+
 
 
 }

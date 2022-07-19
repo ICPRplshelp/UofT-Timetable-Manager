@@ -3,6 +3,8 @@ package org.example.timetable.entities;
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.entities.Meeting;
 import org.example.coursegetter.entities.ScheduleEntry;
+import org.example.coursegetter.usecases.CourseSearcherGetter;
+import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.example.requisitechecker.usecases.RequisiteChecker;
 import org.example.studentdata.entities.CourseChoice;
 import org.example.timetable.entities.warningtypes.TimetableWarning;
@@ -29,20 +31,20 @@ public class Timetable  implements Serializable {
      * Adds a course to the timetable.
      *
      * @param courseChoice the course to add.
-     * @return whether the addition was successful.
      */
-    public boolean addToTimetable(CourseChoice courseChoice) {
-        return plannedCourses.add(courseChoice);
+    public void addToTimetable(CourseChoice courseChoice) {
+        plannedCourses.add(courseChoice);
+        checkWarnings();
     }
 
     /**
      * Removes a course from the timetable.
      *
      * @param courseChoice the course to remove.
-     * @return whether the removal was successful.
      */
-    public boolean removeFromTimetable(CourseChoice courseChoice) {
-        return plannedCourses.remove(courseChoice);
+    public void removeFromTimetable(CourseChoice courseChoice) {
+        plannedCourses.remove(courseChoice);
+        checkWarnings();
     }
 
     /**
@@ -65,10 +67,10 @@ public class Timetable  implements Serializable {
      */
     public void addWarning(CourseChoice courseChoice, TimetableWarning timetableWarning){
         if (!warnings.containsKey(courseChoice)){
-            warnings.put(courseChoice, new CourseWarning());
+            CourseWarning warning = new CourseWarning();
+            warning.addWarning(timetableWarning);
+            warnings.put(courseChoice, warning);
         }
-
-        warnings.get(courseChoice).addWarning(timetableWarning);
 
     }
 
@@ -77,10 +79,10 @@ public class Timetable  implements Serializable {
     }
 
     public void checkWarnings() {
-        List<CourseChoice> plannedCoursesList = new ArrayList<>();
+        List<CourseChoice> plannedCoursesList;
         plannedCoursesList = plannedCourses.stream().collect(Collectors.toList());
 
-        Collection<String> coursesAsString = new ArrayList<>();
+        List<String> coursesAsString = new ArrayList<>();
 
         for (int i = 0; i < plannedCoursesList.size(); i++) {
             coursesAsString.add(plannedCoursesList.get(i).getCourse().getCode());
@@ -89,7 +91,9 @@ public class Timetable  implements Serializable {
             }
 
             for (int n = 0; n < plannedCoursesList.size(); n ++) {
-                if (plannedCoursesList.get(i) != plannedCoursesList.get(n)) {
+                boolean lecExists = (plannedCoursesList.get(i).getLectureSection() != null &&
+                        plannedCoursesList.get(n).getLectureSection() != null);
+                if ((plannedCoursesList.get(i) != plannedCoursesList.get(n) && lecExists)) {
                     CourseChoice choice1 = plannedCoursesList.get(i);
                     CourseChoice choice2 = plannedCoursesList.get(n);
                     if (getCourseConflict(choice1, choice2)) {setWarningsHelper("CONFLICT", plannedCoursesList.get(i));}
@@ -99,11 +103,14 @@ public class Timetable  implements Serializable {
 
         for (CourseChoice courseChoice : plannedCoursesList) {
             RequisiteChecker checker = new RequisiteChecker();
-            if (!checker.checkExclusions(coursesAsString, courseChoice.getCourse().getExclusion())) {
+            if (checker.checkExclusions(coursesAsString, courseChoice.getCourse().getExclusion())) {
                 setWarningsHelper("EXC", courseChoice);
             }
             if (!checker.check(coursesAsString, courseChoice.getCourse().getCorequisite())) {
                 setWarningsHelper("CRQ", courseChoice);
+            }
+            if (checker.checkExclusions(coursesAsString, courseChoice.getCourse().getPrerequisite())) {
+                setWarningsHelper("PRQ", courseChoice);
             }
         }
 
@@ -113,15 +120,23 @@ public class Timetable  implements Serializable {
         TimetableWarning timetableWarning = new TimetableWarning() {};
         if (Objects.equals(Type, "EXC")) {
             timetableWarning.setWarningType(WarningType.EXC);
+            timetableWarning.setSeverity(WarningLevel.CRITICAL);
         } else if (Objects.equals(Type, "FYF")) {
             timetableWarning.setWarningType(WarningType.FYF);
+            timetableWarning.setSeverity(WarningLevel.SEVERE);
         } else if (Objects.equals(Type, "CRQ")) {
             timetableWarning.setWarningType(WarningType.CRQ);
+            timetableWarning.setSeverity(WarningLevel.CRITICAL);
         } else if (Objects.equals(Type, "CONFLICT")) {
             timetableWarning.setWarningType(WarningType.CONFLICT);
+            timetableWarning.setSeverity(WarningLevel.WARNING);
+        } else if (Objects.equals(Type, "PRQ")) {
+            timetableWarning.setWarningType(WarningType.PRQ);
+            timetableWarning.setSeverity(WarningLevel.SEVERE);
         }
 
         addWarning(courseChoice, timetableWarning);
+
 
     }
 
@@ -163,6 +178,7 @@ public class Timetable  implements Serializable {
             return true;
         } else return (start.compareTo(start2) > 0) && (end.compareTo(end2) < 0);
     }
+
 
 }
 
