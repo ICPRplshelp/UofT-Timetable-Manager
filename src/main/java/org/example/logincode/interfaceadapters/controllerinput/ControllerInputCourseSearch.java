@@ -43,6 +43,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
             case "pastcourses" -> searchPastCourses();
             case "courseinfo" -> searchCourseInfo();
             case "sections" -> searchSections();
+            case "back" -> this.curState = LoggedInState.STANDARD;
             default -> {
                 return failedAction();
             }
