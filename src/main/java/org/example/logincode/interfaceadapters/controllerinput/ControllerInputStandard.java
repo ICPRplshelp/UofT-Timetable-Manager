@@ -22,6 +22,7 @@ public class ControllerInputStandard extends ControllerInput {
             case "adminview" -> switchToAdminView();
             case "coursesearch" -> this.curState = LoggedInState.COURSE_SEARCHER;
             case "ttview" -> this.curState = LoggedInState.TIMETABLE;
+
             case "setpassword" -> changePassword();
             case "secretadmin" -> manager.makeMeAnAdmin();
             default -> {
