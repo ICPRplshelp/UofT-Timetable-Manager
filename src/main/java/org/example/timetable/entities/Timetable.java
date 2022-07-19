@@ -25,11 +25,22 @@ public class Timetable  implements Serializable {
 
     private final Map<CourseChoice, CourseWarning> warnings = new HashMap<>();
 
-
+    /**
+     * Adds a course to the timetable.
+     *
+     * @param courseChoice the course to add.
+     * @return whether the addition was successful.
+     */
     public boolean addToTimetable(CourseChoice courseChoice) {
         return plannedCourses.add(courseChoice);
     }
 
+    /**
+     * Removes a course from the timetable.
+     *
+     * @param courseChoice the course to remove.
+     * @return whether the removal was successful.
+     */
     public boolean removeFromTimetable(CourseChoice courseChoice) {
         return plannedCourses.remove(courseChoice);
     }
@@ -46,6 +57,12 @@ public class Timetable  implements Serializable {
         return temp.collect(Collectors.toList());
     }
 
+    /**
+     * Adds a warning to associate with a course.
+     *
+     * @param courseChoice the course to add a warning for.
+     * @param timetableWarning
+     */
     public void addWarning(CourseChoice courseChoice, TimetableWarning timetableWarning){
         if (!warnings.containsKey(courseChoice)){
             warnings.put(courseChoice, new CourseWarning());
