@@ -17,16 +17,18 @@ public class TimetableManager {
         this.timetable = timetable;
     }
 
+    /**
+     * Adds a list of courses to the timetable.
+     *
+     * @param courseList the list of courses to add.
+     * @return true;
+     */
     public boolean addToTimeTable(Collection<CourseChoice> courseList) {
         for (CourseChoice courseChoice : courseList) {
             timetable.addToTimetable(courseChoice);
         }
         return true;
     }
-
-    //public List<CourseChoice> createPermutation() {
-
-    //}
 
     public Timetable getTimetable() {
         return timetable;
