@@ -3,13 +3,15 @@ import org.example.coursegetter.entities.ScheduleEntry;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
-import java.util.List;
-
 public class CourseTimeslots {
+    private final int hours = 13;
+    private final int days = 5;
+    private final int timeOffset = 8;
+
     private final ScheduleEntry[][] courseTimeslots;
 
     public CourseTimeslots(){
-        this.courseTimeslots = new ScheduleEntry[12][5];
+        this.courseTimeslots = new ScheduleEntry[hours][days];
     }
 
 
@@ -22,8 +24,8 @@ public class CourseTimeslots {
         int day = courseDay.getValue();
         LocalTime courseStart = courseSchedule.getStartTime();
         LocalTime courseEnd = courseSchedule.getEndTime();
-        int courseStartHour = courseStart.getHour() - 9;
-        int courseEndHour = courseEnd.getHour() - 9;
+        int courseStartHour = courseStart.getHour() - timeOffset;
+        int courseEndHour = courseEnd.getHour() - timeOffset;
         for (int i = courseStartHour; i < courseEndHour; i++) {
             courseTimeslots[i][day] = courseSchedule;
         }
