@@ -58,6 +58,7 @@ public class LoginPresenter extends Presenter {
 
             // Timetable actions
             Map.entry("view", "view the current timetable"),
+            Map.entry("viewprevcourses", "view previous courses taken"),
             Map.entry("addcourse", "add a course"),
             Map.entry("addmeetingtocourse", "add a lecture time to a course"),
             Map.entry("addprevcourse",  "add a previously taken course"),

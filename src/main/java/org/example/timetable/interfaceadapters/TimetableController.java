@@ -1,5 +1,6 @@
 package org.example.timetable.interfaceadapters;
 
+import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.entities.Meeting;
 import org.example.coursegetter.entities.ScheduleEntry;
 import org.example.requisitechecker.usecases.RequisiteChecker;
@@ -36,6 +37,12 @@ public class TimetableController {
         new WarningCommunicator(tcb.getTimetable());
         Collection<TimetableCommunicatorIndividual> indvC = tcb.getIndividualCommunicators();
         presenter.printTimetableInformation(indvC);
+    }
+
+    public void presentPreviousCourses(){
+        Collection<Course> previousCourses = tcb.getTimetable().getPreviousCourses();
+        presenter.printPrevCourseInformation(previousCourses);
+
     }
 
 

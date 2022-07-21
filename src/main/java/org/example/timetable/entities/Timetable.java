@@ -22,6 +22,16 @@ public class Timetable  implements Serializable {
     private final Collection<CourseChoice> plannedCourses;
     private double previousCredits;
 
+    public Collection<Course> getPreviousCourses() {
+        return previousCourses;
+    }
+
+    public void setPreviousCourses(Collection<Course> previousCourses) {
+        this.previousCourses = previousCourses;
+    }
+
+    private Collection<Course> previousCourses;
+
     public Timetable (Collection<CourseChoice> plannedCourses){
         this.plannedCourses = plannedCourses;
     }

@@ -1,6 +1,7 @@
 package org.example.timetable.interfaceadapters;
 
 import org.example.PresenterPrinter;
+import org.example.coursegetter.entities.Course;
 import org.example.timetable.entities.warningtypes.WarningType;
 import org.example.timetable.usecases.TimetableCommunicatorIndividual;
 
@@ -43,7 +44,6 @@ public class Presenter {
     private void printCourseInformation(TimetableCommunicatorIndividual tci){
         String cc = tci.getCourseCode();
         List<String> sections = tci.getSectionsFromCourse();
-        // join the list above seperated by a space
         String sectionsString = String.join(" ", sections);
         StringBuilder sb = new StringBuilder();
         for (WarningType s : tci.getWarningTypesList()){
@@ -53,6 +53,12 @@ public class Presenter {
         List<String> tempListString = List.of(cc, sectionsString, warningsString);
         String finalString = String.join(" // ", tempListString);
         prt.println(finalString);
+    }
+
+    public void printPrevCourseInformation(Collection<Course> previousCourses) {
+        prt.println("Previous Courses:");
+        prt.println(String.valueOf(previousCourses));
+
     }
 
 }
