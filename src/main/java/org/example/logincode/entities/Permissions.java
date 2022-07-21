@@ -134,8 +134,10 @@ public class Permissions implements ReprAble, Serializable {
         } else return false;
     }
 
-    public void addPerm(Collection<String> perm) {
-        this.permissions.addAll(perm);
+    public void addPerm(Collection<String> perms) {
+        for (String perm: perms){
+            addPerm(perm);
+        }
     }
 
     public void removePerm(String perm) {
