@@ -3,7 +3,6 @@ package org.example.timetable.usecases;
 import org.example.studentdata.entities.CourseChoice;
 import org.example.timetable.entities.Timetable;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

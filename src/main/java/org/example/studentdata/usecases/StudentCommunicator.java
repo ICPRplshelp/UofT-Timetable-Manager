@@ -5,7 +5,6 @@ import org.example.studentdata.entities.CourseChoice;
 import org.example.studentdata.entities.Student;
 
 import java.util.Collection;
-import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 

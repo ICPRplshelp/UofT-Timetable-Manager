@@ -1,10 +1,7 @@
 package org.example.timetable.entities;
 
-import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.entities.Meeting;
 import org.example.coursegetter.entities.ScheduleEntry;
-import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.example.requisitechecker.usecases.RequisiteChecker;
 import org.example.studentdata.entities.CourseChoice;
 import org.example.timetable.entities.warningtypes.TimetableWarning;
@@ -16,7 +13,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Timetable  implements Serializable {
+public class Timetable implements Serializable {
 
 
     private final Collection<CourseChoice> plannedCourses;
@@ -45,6 +42,11 @@ public class Timetable  implements Serializable {
     public void removeFromTimetable(CourseChoice courseChoice) {
         plannedCourses.remove(courseChoice);
         checkWarnings();
+    }
+
+    public void clearTimetable(){
+        plannedCourses.clear();
+        warnings.clear();
     }
 
     /**
