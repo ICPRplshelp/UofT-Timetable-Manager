@@ -9,6 +9,7 @@ import org.example.timetable.entities.WarningLevel;
 import org.example.timetable.entities.warningtypes.TimetableWarning;
 import org.example.timetable.entities.warningtypes.WarningType;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,7 +23,7 @@ import java.util.stream.Collectors;
  * have.
  * That is the point of the use case.
  */
-public class WarningCommunicator {
+public class WarningCommunicator implements Serializable {
 
     public WarningCommunicator(Timetable timetable) {checkWarnings(timetable);}
 
