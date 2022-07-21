@@ -128,14 +128,16 @@ public class Permissions implements ReprAble, Serializable {
      * @return whether adding the permission was successful.
      */
     public boolean addPerm(String perm) {
-        if (perm.matches("[A-Za-z0-9]+")) {
+        if (perm.matches("[A-Za-z\\d]+")) {
             this.permissions.add(perm);
             return true;
         } else return false;
     }
 
-    public void addPerm(Collection<String> perm) {
-        this.permissions.addAll(perm);
+    public void addPerm(Collection<String> perms) {
+        for (String perm: perms){
+            addPerm(perm);
+        }
     }
 
     public void removePerm(String perm) {

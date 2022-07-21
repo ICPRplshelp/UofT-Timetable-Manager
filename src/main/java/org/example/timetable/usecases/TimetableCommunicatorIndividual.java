@@ -17,7 +17,7 @@ public class TimetableCommunicatorIndividual {
     private final CourseChoice cc;
 
 
-    // umm actually please don't use singletons haha
+    // umm, actually please don't use singletons haha
 
 
     public TimetableCommunicatorIndividual(Timetable timetable, CourseChoice cc) {

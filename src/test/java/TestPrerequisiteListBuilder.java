@@ -130,11 +130,12 @@ public class TestPrerequisiteListBuilder {
         RequisiteCheckerMemoized rc = new RequisiteCheckerMemoized();
         ArrayList<String> mc = new ArrayList<>(List.of("MAT137Y1", "MAT223H1"));
         String courseStr = "[(MAT135H1, MAT136H1)/ (MAT135H5, MAT136H5)/ MAT134Y5/ MAT135Y5/ (MATA30H3/ MATA31H3, MATA36H3), MAT138H1/ MAT102H5/ MAT246H1]/ MAT137Y1/ MAT137Y5/ (MATA30H3/ MATA31H3, MATA37H3)/ MAT157Y1/ MAT157Y5, MAT223H1/ MATA22H3/ MATA23H3/ MAT240H1/ MAT240H5";
-        boolean state = rc.check(mc, courseStr);
-        state = rc.check(mc, courseStr);
-        state = rc.check(mc, courseStr);
-        state = rc.check(mc, courseStr);
-        state = rc.check(mc, courseStr);
-        state = rc.check(mc, courseStr);
+
+        assertTrue(rc.check(mc, courseStr));
+        assertTrue(rc.check(mc, courseStr));
+        assertTrue(rc.check(mc, courseStr));
+        assertTrue(rc.check(mc, courseStr));
+        assertTrue(rc.check(mc, courseStr));
+        assertTrue(rc.check(mc, courseStr));
     }
 }

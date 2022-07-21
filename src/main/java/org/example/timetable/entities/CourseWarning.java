@@ -1,6 +1,5 @@
 package org.example.timetable.entities;
 
-import org.example.timetable.entities.warningtypes.ExclusionWarning;
 import org.example.timetable.entities.warningtypes.TimetableWarning;
 
 import java.io.Serializable;

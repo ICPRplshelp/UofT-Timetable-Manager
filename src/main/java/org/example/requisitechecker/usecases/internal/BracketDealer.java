@@ -40,7 +40,7 @@ public class BracketDealer {
             if(sCArray[i] == cl) depth--;
             // the very first one must start with op
             if(i == 0 && depth != 1) return false;
-            // depth can never hit zero unless i is at sCArray.length - 1
+            // depth can never hit zero unless i = sCArray.length - 1
             if(i != 0 && depth == 0){
                 return i == sCArray.length - 1;
             }
@@ -108,7 +108,7 @@ public class BracketDealer {
 
     private List<String> nestlessSplit(String s, Set<Character> separators, Set<Character> op, Set<Character> cl) {
         // prevents an exception from occurring
-        // PRECONDITIONS: length of seperators is at least 1
+        // PRECONDITIONS: length of separators is at least 1
         int bracketLevel = 0;
         char spR = 'a';
         // this is the worst way to get one element from a set
@@ -129,9 +129,6 @@ public class BracketDealer {
                 current.append(c);
             }
         }
-        // TODO: unbalanced?
-        if (bracketLevel != 0) {
-            return parts;}
         return parts;
     }
 

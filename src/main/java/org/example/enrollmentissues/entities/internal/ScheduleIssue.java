@@ -1,9 +1,6 @@
 package org.example.enrollmentissues.entities.internal;
 
-import org.example.coursegetter.entities.Course;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * A class representing a scheduling issue.
@@ -54,7 +51,7 @@ public abstract class ScheduleIssue {
      */
     public Collection<ScheduleEntryIdentifier> getCellVictims(){
         return meetingVictims;
-    };
+    }
 
     /**
      * Example: If CSC258's L0201 WE 11:00-12:00's meeting is causing this
@@ -67,7 +64,7 @@ public abstract class ScheduleIssue {
      */
     public Collection<ScheduleEntryIdentifier> getCellCulprits(){
         return meetingCulprits;
-    };
+    }
 
 
 }
