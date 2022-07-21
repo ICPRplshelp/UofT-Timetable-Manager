@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  */
 public class StorageLoader {
     private static final Logger LOGGER = Logger.getLogger( StorageLoader.class.getName() );
-    private final boolean disable = false;
+    private static final boolean disable = false;
     protected AccountStorage accountStorage;
 
     public StorageLoader(AccountStorage accountStorage) {
