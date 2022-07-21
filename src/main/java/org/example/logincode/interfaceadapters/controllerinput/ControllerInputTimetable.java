@@ -13,12 +13,12 @@ import org.example.timetable.usecases.TimetableCommunicatorBulkBuilder;
 
 public class ControllerInputTimetable extends ControllerInput {
     private final CourseSearcherGetter csg;
-    private StudentManager sm;
+    private final StudentManager sm;
 
     protected TimetablePresenter presenter;
 
-    private TimetableController ttc;
-    private TimetableCommunicatorBulkBuilder timetableCommunicatorBulkBuilder = new TimetableCommunicatorBulkBuilder();
+    private final TimetableController ttc;
+    private final TimetableCommunicatorBulkBuilder timetableCommunicatorBulkBuilder = new TimetableCommunicatorBulkBuilder();
 
     /**
      * The constructor for this class.

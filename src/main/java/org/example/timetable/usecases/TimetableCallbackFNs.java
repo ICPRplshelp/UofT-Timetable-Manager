@@ -3,8 +3,8 @@ package org.example.timetable.usecases;
 import org.example.studentdata.entities.Student;
 
 public class TimetableCallbackFNs {
-    private Student student;
-    private TimetableManager timetableManager;
+    private final Student student;
+    private final TimetableManager timetableManager;
 
     public TimetableCallbackFNs(Student student, TimetableManager timetableManager) {
         this.student = student;
