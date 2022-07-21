@@ -20,12 +20,13 @@ public class Timetable  implements Serializable {
 
 
     private final Collection<CourseChoice> plannedCourses;
+    private double previousCredits;
 
     public Timetable (Collection<CourseChoice> plannedCourses){
         this.plannedCourses = plannedCourses;
     }
 
-    private final Map<CourseChoice, CourseWarning> warnings = new HashMap<>();
+    public final Map<CourseChoice, CourseWarning> warnings = new HashMap<>();  //remember to change to private
 
     /**
      * Adds a course to the timetable.
@@ -68,6 +69,9 @@ public class Timetable  implements Serializable {
             CourseWarning warning = new CourseWarning();
             warning.addWarning(timetableWarning);
             warnings.put(courseChoice, warning);
+        } else {
+            CourseWarning warning = warnings.get(courseChoice);
+            warning.addWarning(timetableWarning);
         }
 
     }
@@ -76,5 +80,11 @@ public class Timetable  implements Serializable {
         return warnings.get(courseChoice);
     }
 
+    public void clearTimetable() {
+    }
+
+    public void clearWarnings() {warnings.clear();}
+    public double getPreviousCredits(){return previousCredits;}
+    public void setPreviousCredits(double Credits) {previousCredits = Credits;}
 }
 
