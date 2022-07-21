@@ -21,17 +21,6 @@ public class StudentManager {
     }
 
     /**
-     * Adds a list of planned courses to the student.
-     *
-     * @param courseList the list of courses to be added.
-     * @return true.
-     */
-    public boolean addPlannedCourse(List<CourseChoice> courseList) {
-        student.addToPlannedCourses(courseList);
-        return true;
-    }
-
-    /**
      * Adds a single planned course.
      *
      * @param courseChoice the course to add.
@@ -70,16 +59,6 @@ public class StudentManager {
         return true;
     }
 
-    public CourseChoice getCourseChoice(Course course) {
-        Collection<CourseChoice> courseChoiceList = student.getPlannedCourses();
-        for (CourseChoice courseChoice: courseChoiceList) {
-            if (courseChoice.getCourse() == course) {
-                return courseChoice;
-            }
-        }
-        return null;
-    }
-
     /**
      * Sets a meeting section for a planned course.
      *
@@ -111,17 +90,6 @@ public class StudentManager {
     }
 
     /**
-     * Adds a list of previous (taken) courses.
-     *
-     * @param courseList the list of past courses to add.
-     * @return true.
-     */
-    public boolean addPreviousCourses(Collection<Course> courseList) {
-        student.addToPreviousCourses(courseList);
-        return true;
-    }
-
-    /**
      * Adds a single previous (taken) course.
      *
      * @param course the past course to add.
@@ -130,17 +98,6 @@ public class StudentManager {
     public boolean addPreviousCourse(Course course){
         if (course == null) return false;
         student.addToPreviousCourses(List.of(course));
-        return true;
-    }
-
-    /**
-     * Removes a list of previous courses.
-     *
-     * @param courseList the past courses to remove.
-     * @return true.
-     */
-    public boolean removePreviousCourses(Collection<Course> courseList) {
-        student.removeFromPreviousCourses(courseList);
         return true;
     }
 
@@ -154,11 +111,6 @@ public class StudentManager {
         if (course == null) return false;
         student.removeFromPreviousCourses(List.of(course));
         return true;
-    }
-
-    public boolean checkPlannedCourseExists(Course course) {
-        return (student.getPlannedCourses().stream()
-                .map(CourseChoice::getCourse).toList().contains(course));
     }
 
     /**
