@@ -53,10 +53,6 @@ public class CourseChoice implements Comparable<CourseChoice>, Serializable {
         // TODO: Enforce correct choices in a use case class
     }
 
-    public CourseChoice(Course course, String lectureSection, String tutSection){
-        this(course, lectureSection, tutSection, null);
-    }
-
     @Override
     public String toString(){
         String lecture = "L????";
