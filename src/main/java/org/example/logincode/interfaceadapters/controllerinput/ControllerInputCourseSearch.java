@@ -33,7 +33,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
         this.presenter = presenter;
         this.courseSearcher = csg.getCourseSearcher();
         this.curState = LoggedInState.COURSE_SEARCHER;
-        commandsList = new String[]{"search", "pastcourses", "courseinfo", "sections"};
+        commandsList = new String[]{"search", "pastcourses", "courseinfo", "sections","back"};
     }
 
     @Override
