@@ -83,7 +83,7 @@ public class AccountManager {
     }
 
     /**
-     * Shhhh
+     * Shh
      */
     public void makeMeAnAdmin() {
         account.getPermissions().addPerm("admin");
