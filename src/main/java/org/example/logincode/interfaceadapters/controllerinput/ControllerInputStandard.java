@@ -34,9 +34,9 @@ public class ControllerInputStandard extends ControllerInput {
     }
 
     private void changePassword() {
-        String[] newPswds = presenter.passwordChangePrompt();
-        boolean pswdSuccess = manager.setPassword(newPswds[0], newPswds[1]);
-        if (!pswdSuccess) {
+        String[] newPasswords = presenter.passwordChangePrompt();
+        boolean passwordSuccess = manager.setPassword(newPasswords[0], newPasswords[1]);
+        if (!passwordSuccess) {
             presenter.genericFailedAction("invPassword");
         }
     }

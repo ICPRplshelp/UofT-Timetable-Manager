@@ -4,14 +4,14 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 public class CourseTimeslots {
-    private final int hours = 13;
-    private final int days = 5;
-    private final int timeOffset = 8;
+    private static final int HOURS = 13;
+    private static final int DAYS = 5;
+    private static final int TIMEOFFSET = 8;
 
     private final ScheduleEntry[][] courseTimeslots;
 
     public CourseTimeslots(){
-        this.courseTimeslots = new ScheduleEntry[hours][days];
+        this.courseTimeslots = new ScheduleEntry[HOURS][DAYS];
     }
 
 
@@ -24,8 +24,8 @@ public class CourseTimeslots {
         int day = courseDay.getValue();
         LocalTime courseStart = courseSchedule.getStartTime();
         LocalTime courseEnd = courseSchedule.getEndTime();
-        int courseStartHour = courseStart.getHour() - timeOffset;
-        int courseEndHour = courseEnd.getHour() - timeOffset;
+        int courseStartHour = courseStart.getHour() - TIMEOFFSET;
+        int courseEndHour = courseEnd.getHour() - TIMEOFFSET;
         for (int i = courseStartHour; i < courseEndHour; i++) {
             courseTimeslots[i][day] = courseSchedule;
         }

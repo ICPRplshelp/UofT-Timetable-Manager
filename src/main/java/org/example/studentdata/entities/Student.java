@@ -90,10 +90,6 @@ public class Student implements Serializable {
         return temp.collect(Collectors.toList());
     }
 
-    private void updateTimetable(){
-
-    }
-
 
 
 }
