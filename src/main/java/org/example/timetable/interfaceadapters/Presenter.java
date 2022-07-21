@@ -36,6 +36,7 @@ public class Presenter {
     }
 
     public void printTimetableInformation(Collection<TimetableCommunicatorIndividual> tcis){
+        prt.println("Timetable:");
         tcis.forEach(this::printCourseInformation);
     }
 
