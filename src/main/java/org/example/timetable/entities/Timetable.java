@@ -16,7 +16,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Timetable  implements Serializable {
+public class Timetable implements Serializable {
 
 
     private final Collection<CourseChoice> plannedCourses;
@@ -45,6 +45,11 @@ public class Timetable  implements Serializable {
     public void removeFromTimetable(CourseChoice courseChoice) {
         plannedCourses.remove(courseChoice);
         checkWarnings();
+    }
+
+    public void clearTimetable(){
+        plannedCourses.clear();
+        warnings.clear();
     }
 
     /**

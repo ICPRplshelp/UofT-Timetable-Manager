@@ -33,5 +33,7 @@ public class TimetableManager {
     public Timetable getTimetable() {
         return timetable;
     }
-    public void clearTimetable() {}
+    public void clearTimetable() {
+        timetable.clearTimetable();
+    }
 }
