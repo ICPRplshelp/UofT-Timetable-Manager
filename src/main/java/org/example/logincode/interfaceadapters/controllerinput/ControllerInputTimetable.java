@@ -41,6 +41,7 @@ public class ControllerInputTimetable extends ControllerInput {
 
         commandsList = new String[]{
                 "view",
+                "viewprevcourses",
                 "addcourse",
                 "addmeetingtocourse",
                 "addprevcourse",
@@ -55,6 +56,11 @@ public class ControllerInputTimetable extends ControllerInput {
         switch(input){
             case "view" -> {
                 ttc.presentTimeTable();
+                return true;
+            }
+
+            case "viewprevcourses" -> {
+                ttc.presentPreviousCourses();
                 return true;
             }
 
