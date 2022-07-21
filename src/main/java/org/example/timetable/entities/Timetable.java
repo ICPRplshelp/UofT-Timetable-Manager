@@ -20,6 +20,7 @@ public class Timetable  implements Serializable {
 
 
     private final Collection<CourseChoice> plannedCourses;
+    private double previousCredits;
 
     public Timetable (Collection<CourseChoice> plannedCourses){
         this.plannedCourses = plannedCourses;
@@ -83,5 +84,7 @@ public class Timetable  implements Serializable {
     }
 
     public void clearWarnings() {warnings.clear();}
+    public double getPreviousCredits(){return previousCredits;}
+    public void setPreviousCredits(double Credits) {previousCredits = Credits;}
 }
 

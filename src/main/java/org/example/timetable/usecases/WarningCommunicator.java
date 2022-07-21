@@ -37,7 +37,7 @@ public class WarningCommunicator implements Serializable {
 
         for (int i = 0; i < plannedCoursesList.size(); i++) {
             coursesAsString.add(plannedCoursesList.get(i).getCourse().getCode());
-            if (plannedCoursesList.get(i).getCourse().firstYearOnly()) {
+            if (plannedCoursesList.get(i).getCourse().firstYearOnly() && (timetable.getPreviousCredits() >=  4.0)) {
                 setWarningsHelper("FYF", plannedCoursesList.get(i), timetable);
             }
 
@@ -90,7 +90,6 @@ public class WarningCommunicator implements Serializable {
             timetableWarning.setWarningType(WarningType.CONFLICT);
             timetableWarning.setSeverity(WarningLevel.WARNING);
             timetable.addWarning(courseChoice, timetableWarning);
-            System.out.println(timetable.warnings.values());
         }
         if (Objects.equals(Type, "PRQ")) {
             timetableWarning.setWarningType(WarningType.PRQ);
