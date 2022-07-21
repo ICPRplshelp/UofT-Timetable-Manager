@@ -5,10 +5,7 @@ import org.example.coursegetter.entities.Course;
 import org.example.timetable.entities.warningtypes.WarningType;
 import org.example.timetable.usecases.TimetableCommunicatorIndividual;
 
-import java.util.Collection;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Presenter {
 
@@ -57,7 +54,12 @@ public class Presenter {
 
     public void printPrevCourseInformation(Collection<Course> previousCourses) {
         prt.println("Previous Courses:");
-        prt.println(String.valueOf(previousCourses));
+        List<Course> listCourse = new ArrayList<>(previousCourses);
+        List<String> listCourseCode = new ArrayList<>();
+        for (int i = 0; i < previousCourses.size(); i++) {
+            listCourseCode.add(listCourse.get(i).getCode());
+        }
+        prt.println(String.valueOf(listCourseCode));
 
     }
 
