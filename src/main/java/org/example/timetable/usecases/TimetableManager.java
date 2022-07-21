@@ -1,12 +1,8 @@
 package org.example.timetable.usecases;
 
-import org.example.coursegetter.entities.Course;
 import org.example.studentdata.entities.CourseChoice;
-import org.example.studentdata.entities.Student;
-import org.example.timetable.entities.Timetable;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.example.timetable.entities.Timetable;
 
@@ -33,5 +29,7 @@ public class TimetableManager {
     public Timetable getTimetable() {
         return timetable;
     }
-    public void clearTimetable() {}
+    public void clearTimetable() {
+        timetable.clearTimetable();
+    }
 }

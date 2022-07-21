@@ -4,10 +4,10 @@ import java.util.Collection;
 import java.util.Set;
 
 public class AllList extends RequisiteList {
-    private final Set<RequisiteList> crses;
+    private final Set<RequisiteList> requisiteListSet;
 
-    public AllList(Set<RequisiteList> crses) {
-        this.crses = crses;
+    public AllList(Set<RequisiteList> requisiteListSet) {
+        this.requisiteListSet = requisiteListSet;
     }
 
     /**
@@ -18,11 +18,11 @@ public class AllList extends RequisiteList {
      */
     @Override
     public boolean check(Collection<String> courses) {
-        if (crses.size() == 0)
+        if (requisiteListSet.size() == 0)
             return true;
         // only one condition must fail for this entire
         // check to fail
-        for (RequisiteList crs : crses) {
+        for (RequisiteList crs : requisiteListSet) {
             boolean state = !crs.check(courses);
             if (state)
                 return false;
@@ -32,11 +32,11 @@ public class AllList extends RequisiteList {
 
     @Override
     public String toString() {
-        return crses.toString();
+        return requisiteListSet.toString();
     }
 
     @Override
     public boolean alwaysTrue() {
-        return crses.size() == 0;
+        return requisiteListSet.size() == 0;
     }
 }

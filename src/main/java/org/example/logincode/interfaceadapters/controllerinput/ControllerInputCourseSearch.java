@@ -33,7 +33,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
         this.presenter = presenter;
         this.courseSearcher = csg.getCourseSearcher();
         this.curState = LoggedInState.COURSE_SEARCHER;
-        commandsList = new String[]{"search", "pastcourses", "courseinfo", "sections"};
+        commandsList = new String[]{"search", "pastcourses", "courseinfo", "sections","back"};
     }
 
     @Override
@@ -84,7 +84,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
 
     private void searchCourseInfo(){
 
-        String searchedCourse = presenter.enterCourse();
+        String searchedCourse = presenter.enterCourseOffering();
         String session = presenter.enterSession();
 
         CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);
@@ -105,7 +105,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
 
     private void searchSections(){
 
-        String searchedCourse = presenter.enterCourse();
+        String searchedCourse = presenter.enterCourseOffering();
         String session = presenter.enterSession();
 
         CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);

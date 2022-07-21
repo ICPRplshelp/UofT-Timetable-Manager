@@ -3,7 +3,6 @@ package org.example.requisitechecker.usecases;
 import org.example.requisitechecker.entities.RequisiteList;
 import org.example.requisitechecker.usecases.internal.ExclusionListBuilder;
 import org.example.requisitechecker.usecases.internal.PrerequisiteListBuilder;
-import org.example.requisitechecker.usecases.internal.RequisiteListBuilder;
 
 import java.util.Collection;
 

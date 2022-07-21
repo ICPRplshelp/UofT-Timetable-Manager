@@ -44,9 +44,9 @@ public class CourseConflictChecker {
 
     private CourseChoice CourseGetter(String courseCode) {
         List<CourseChoice> plannedCourses = new ArrayList<>(timetable.getPlannedCourses());
-        for (int i = 0; i < plannedCourses.size(); i++) {
-            if (plannedCourses.get(i).getCourse().getCode().equals(courseCode)) {
-                return plannedCourses.get(i);
+        for (CourseChoice plannedCourse : plannedCourses) {
+            if (plannedCourse.getCourse().getCode().equals(courseCode)) {
+                return plannedCourse;
             }
         }
         return null;

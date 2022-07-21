@@ -72,7 +72,7 @@ public class Controller {
             loginPresenter.genericFailedAction("invalid");
             return;  // oops, invalid
         }
-        // run the input and have it perform the operation with the input
+        // run the input and have it performs the operation with the input
         cInput.inputParser(input);
         // update the controller input
         if (cInput.getCurState() != null) {

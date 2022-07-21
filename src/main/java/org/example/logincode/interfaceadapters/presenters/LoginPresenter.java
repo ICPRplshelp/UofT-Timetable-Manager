@@ -93,7 +93,7 @@ public class LoginPresenter extends Presenter {
 
     public Collection<String> inputPromptHelper(String[] commandsList) {
         if(Objects.isNull(commandsList)) return List.of("No command string?");
-        try{    Collection<String> returnCollection = new ArrayList<String>();
+        try{    Collection<String> returnCollection = new ArrayList<>();
             for(String item: commandsList) {
                 returnCollection.add("Enter '" + item + "' to " +
                         Objects.requireNonNullElse(userPrompt.get(item), "idk"));

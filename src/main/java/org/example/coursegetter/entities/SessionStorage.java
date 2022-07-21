@@ -25,8 +25,12 @@ public class SessionStorage {
      * @return the Session if one is found, or null otherwise.
      */
     public Session getSession(String session){
-        return sessions.get(session);
+        if (sessions.containsKey(session)){
+            return sessions.get(session);
+        }
+        return null;
     }
+
     public Set<String> listAllSessions(){
         return Collections.unmodifiableSet(sessions.keySet());
     }

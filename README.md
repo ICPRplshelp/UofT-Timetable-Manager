@@ -14,9 +14,7 @@ If you seem to be getting errors, ensure that your JDK is Java 18.
 
 ## Running the project
 
-Run the main file.
-It should be visible
-somewhere in the project.
+Run the main file inside logincode/interfaceadapters
 If running Main does not work, you
 may need to edit your run
 configurations such that the
@@ -26,6 +24,16 @@ Otherwise, exceptions regarding files
 not being found may arise.
 
 ## Definitions
+
+A **course code** can only tell us the faculty and the digits.
+Examples:
+
+- CSC110
+- MAT137
+- CSC207
+
+`[A-Z]{3}[0-4]\d{2}`
+(Only UTSG courses)
 
 A **course** can only tell us the course title,
 and has no information about the timings it is offered or whether it is offered in the fall or the winter.
@@ -61,3 +69,4 @@ Examples:
 - deliveryInstructions
 - session: identifies the year when the course is offered. For example, 20229, which is F/W 2022-2023. 20235 is Summer 2023. Note that S courses are not given its own code, even though, in some course, Quercus pages, individual winter session numbers are given anyway.
 - section: F/S/Y. better just to call this variable FSY.
+

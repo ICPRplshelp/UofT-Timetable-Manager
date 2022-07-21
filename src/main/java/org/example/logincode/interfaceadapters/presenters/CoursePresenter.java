@@ -3,9 +3,15 @@ package org.example.logincode.interfaceadapters.presenters;
 import java.util.Collection;
 
 public class CoursePresenter extends Presenter {
+
     public String enterCourse() {
         prt.println("Enter course code: ");
-        return scanner.nextLine();
+        return scanner.nextLine().toUpperCase();
+    }
+
+    public String enterCourseOffering() {
+        prt.println("Enter course offering: ");
+        return scanner.nextLine().toUpperCase();
     }
 
     public String enterSession() {
