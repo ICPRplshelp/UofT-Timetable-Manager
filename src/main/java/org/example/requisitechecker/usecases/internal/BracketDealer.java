@@ -40,7 +40,7 @@ public class BracketDealer {
             if(sCArray[i] == cl) depth--;
             // the very first one must start with op
             if(i == 0 && depth != 1) return false;
-            // depth can never hit zero unless i is at sCArray.length - 1
+            // depth can never hit zero unless i = sCArray.length - 1
             if(i != 0 && depth == 0){
                 return i == sCArray.length - 1;
             }
