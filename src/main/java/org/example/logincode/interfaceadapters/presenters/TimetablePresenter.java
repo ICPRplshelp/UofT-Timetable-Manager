@@ -7,7 +7,7 @@ public class TimetablePresenter extends Presenter {
     }
 
     public String addCourse() {
-        prt.println("What course would you like to add?");
+        prt.println("What course would you like to add? Enter the course offering.");
         return scanner.nextLine();
     }
 
@@ -20,7 +20,7 @@ public class TimetablePresenter extends Presenter {
     }
 
     public String addMeetingToCourse() {
-        prt.println("What course would you add a section to?");
+        prt.println("What course would you like to add a section to? Enter the course offering.");
         return scanner.nextLine();
     }
 
@@ -38,7 +38,7 @@ public class TimetablePresenter extends Presenter {
     }
 
     public String addPrevCourse() {
-        prt.println("What previous course would you like to add?");
+        prt.println("What previous course would you like to add? Enter the course offering.");
         return scanner.nextLine();
     }
 
@@ -57,7 +57,7 @@ public class TimetablePresenter extends Presenter {
 
 
     public String deleteCourse() {
-        prt.println("What course would you like to delete?");
+        prt.println("What course would you like to delete? Enter the course offering.");
         return scanner.nextLine();
     }
 
@@ -71,7 +71,7 @@ public class TimetablePresenter extends Presenter {
 
 
     public String deletePrevCourse() {
-        prt.println("What previous course would you like to remove?");
+        prt.println("What previous course would you like to remove? Enter the course offering.");
         return scanner.nextLine();
     }
     public void deletePrevCourseConfirmation() {

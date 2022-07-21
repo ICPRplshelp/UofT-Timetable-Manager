@@ -84,7 +84,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
 
     private void searchCourseInfo(){
 
-        String searchedCourse = presenter.enterCourse();
+        String searchedCourse = presenter.enterCourseOffering();
         String session = presenter.enterSession();
 
         CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);
@@ -105,7 +105,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
 
     private void searchSections(){
 
-        String searchedCourse = presenter.enterCourse();
+        String searchedCourse = presenter.enterCourseOffering();
         String session = presenter.enterSession();
 
         CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);

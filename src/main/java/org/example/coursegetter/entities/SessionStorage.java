@@ -29,8 +29,8 @@ public class SessionStorage {
             return sessions.get(session);
         }
         return null;
-
     }
+
     public Set<String> listAllSessions(){
         return Collections.unmodifiableSet(sessions.keySet());
     }
