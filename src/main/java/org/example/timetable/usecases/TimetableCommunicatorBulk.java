@@ -9,10 +9,15 @@ import java.util.Collection;
 import java.util.List;
 
 public class TimetableCommunicatorBulk {
+
     private final Timetable timetable;
 
     public TimetableCommunicatorBulk(Timetable timetable) {
         this.timetable = timetable;
+    }
+
+    public Timetable getTimetable() {
+        return timetable;
     }
 
     /**
