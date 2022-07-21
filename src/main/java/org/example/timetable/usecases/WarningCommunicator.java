@@ -19,10 +19,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * When a course choice is passed into this thing,
- * it returns a collection of warnings the course might
- * have.
- * That is the point of the use case.
+ * When a timetable is passed into this thing,
+ * it updates warnings the timetable might have.
  */
 public class WarningCommunicator implements Serializable {
 
