@@ -152,6 +152,6 @@ public class CourseConflictChecker {
         } else return (start.compareTo(start2) > 0) && (end.compareTo(end2) < 0);
     }
 
-    public HashMap<String, List<List<String>>> getConflictMap() {return conflictMap;}
+
 
 }
