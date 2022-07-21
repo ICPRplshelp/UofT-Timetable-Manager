@@ -7,12 +7,6 @@ import java.util.Date;
 
 public class AdminAccountManager extends AccountManager {
 
-    // private final Set<String> commandList; // = new HashSet<String>(List.of(new String[]{"TH", "IS"}));
-    public AdminAccountManager(Account controlledAccount, StorageManager accountStorageManager) {
-        super(controlledAccount, accountStorageManager);
-        // new HashSet<String>(List.of(new String[]{"TH", "IS"}));
-    }
-
     public AdminAccountManager(AccountManager controlledAccountManager, StorageManager accountStorageManager) {
         super(controlledAccountManager.account, accountStorageManager);
         // new HashSet<String>(List.of(new String[]{"TH", "IS"}));
