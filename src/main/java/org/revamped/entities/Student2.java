@@ -10,10 +10,33 @@ import java.util.TreeSet;
  */
 public class Student2 {
 
+    /**
+     * Items are course codes.
+     * passedCourses and plannedCourses.keySet() do not have to be
+     * disjoint, although a warning should pop up
+     * if that is the case.
+     */
     public Set<String> getPassedCourses() {
         return Collections.unmodifiableSet(this.passedCourses);
     }
 
+    /**
+     * Keys are course codes (CSC110Y1-F);
+     * values are selected lecture sections (LEC0101, TUT0101)
+     * <p>
+     * All values must start with
+     * LEC, TUT, or PRA
+     * and if so, they may only be used once and only
+     * if a course requires it.
+     * <p>
+     * While it should be avoided at all costs, values may
+     * have LEC/TUT/PRAs that are not in the course.
+     * If that is the case, it should be treated by the program
+     * as that specific meeting never existed.
+     *
+     * Example:
+     * {"CSC110Y1-F": {"LEC0101", "TUT0101"}, "MAT137Y1-Y": {"LEC0101": "TUT0101"}}
+     */
     public Map<String, Set<String>> getPlannedCourses() {
         return Collections.unmodifiableMap(this.plannedCourses);
     }
@@ -39,6 +62,9 @@ public class Student2 {
      * have LEC/TUT/PRAs that are not in the course.
      * If that is the case, it should be treated by the program
      * as that specific meeting never existed.
+     *
+     * Example:
+     * {"CSC110Y1-F": {"LEC0101", "TUT0101"}, "MAT137Y1-Y": {"LEC0101": "TUT0101"}}
      */
     private Map<String, Set<String>> plannedCourses;
 
