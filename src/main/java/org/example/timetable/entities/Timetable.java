@@ -61,7 +61,7 @@ public class Timetable  implements Serializable {
      * Adds a warning to associate with a course.
      *
      * @param courseChoice the course to add a warning for.
-     * @param timetableWarning
+     * @param timetableWarning the timetableWarning to add to a course.
      */
     public void addWarning(CourseChoice courseChoice, TimetableWarning timetableWarning){
         if (!warnings.containsKey(courseChoice)){
@@ -75,8 +75,6 @@ public class Timetable  implements Serializable {
     public CourseWarning getWarning(CourseChoice courseChoice) {
         return warnings.get(courseChoice);
     }
-
-
 
 }
 
