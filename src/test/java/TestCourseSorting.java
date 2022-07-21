@@ -1,5 +1,4 @@
 import org.example.coursegetter.entities.Course;
-import org.example.studentdata.entities.Student;
 import org.junit.Assert;
 import org.junit.Test;
 

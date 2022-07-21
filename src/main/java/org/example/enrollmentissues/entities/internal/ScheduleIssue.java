@@ -1,9 +1,6 @@
 package org.example.enrollmentissues.entities.internal;
 
-import org.example.coursegetter.entities.Course;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * A class representing a scheduling issue.

@@ -1,9 +1,6 @@
 package org.example.timetable.interfaceadapters;
 
 import org.example.PresenterPrinter;
-import org.example.studentdata.entities.CourseChoice;
-import org.example.timetable.entities.CourseWarning;
-import org.example.timetable.entities.Timetable;
 import org.example.timetable.entities.warningtypes.WarningType;
 import org.example.timetable.usecases.TimetableCommunicatorIndividual;
 

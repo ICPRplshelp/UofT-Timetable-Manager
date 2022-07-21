@@ -1,7 +1,6 @@
 package org.example.courselocationtracker.entities;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 
 public class Building {
     private final Point location;
