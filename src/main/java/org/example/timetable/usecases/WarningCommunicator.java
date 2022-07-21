@@ -10,6 +10,7 @@ import org.example.timetable.entities.warningtypes.TimetableWarning;
 import org.example.timetable.entities.warningtypes.WarningType;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -28,6 +29,7 @@ public class WarningCommunicator implements Serializable {
     public WarningCommunicator(Timetable timetable) {checkWarnings(timetable);}
 
     public void checkWarnings(Timetable timetable)  {
+        timetable.clearWarnings();
         List<CourseChoice> plannedCoursesList;
         plannedCoursesList = timetable.getPlannedCourses().stream().collect(Collectors.toList());
 
@@ -68,25 +70,33 @@ public class WarningCommunicator implements Serializable {
 
     private void setWarningsHelper(String Type, CourseChoice courseChoice, Timetable timetable) {
         TimetableWarning timetableWarning = new TimetableWarning() {};
+
         if (Objects.equals(Type, "EXC")) {
             timetableWarning.setWarningType(WarningType.EXC);
             timetableWarning.setSeverity(WarningLevel.CRITICAL);
-        } else if (Objects.equals(Type, "FYF")) {
+            timetable.addWarning(courseChoice, timetableWarning);
+        }
+        if (Objects.equals(Type, "FYF")) {
             timetableWarning.setWarningType(WarningType.FYF);
             timetableWarning.setSeverity(WarningLevel.SEVERE);
-        } else if (Objects.equals(Type, "CRQ")) {
+            timetable.addWarning(courseChoice, timetableWarning);
+        }
+        if (Objects.equals(Type, "CRQ")) {
             timetableWarning.setWarningType(WarningType.CRQ);
             timetableWarning.setSeverity(WarningLevel.CRITICAL);
-        } else if (Objects.equals(Type, "CONFLICT")) {
+            timetable.addWarning(courseChoice, timetableWarning);
+        }
+        if (Objects.equals(Type, "CONFLICT")) {
             timetableWarning.setWarningType(WarningType.CONFLICT);
             timetableWarning.setSeverity(WarningLevel.WARNING);
-        } else if (Objects.equals(Type, "PRQ")) {
+            timetable.addWarning(courseChoice, timetableWarning);
+            System.out.println(timetable.warnings.values());
+        }
+        if (Objects.equals(Type, "PRQ")) {
             timetableWarning.setWarningType(WarningType.PRQ);
             timetableWarning.setSeverity(WarningLevel.SEVERE);
+            timetable.addWarning(courseChoice, timetableWarning);
         }
-
-        timetable.addWarning(courseChoice, timetableWarning);
-
 
     }
 
@@ -124,7 +134,11 @@ public class WarningCommunicator implements Serializable {
             return true;
         } else if ((end.compareTo(start2) > 0) && (end.compareTo(end2) < 0)) {
             return true;
-        } else if ((end.compareTo(end2) == 0) && (start.compareTo(start2) == 0)) {
+        } else if (end.compareTo(end2) == 0) {
+            return true;
+        } else if (start.compareTo(start2) == 0) {
+            return true;
+        } else if ((start.compareTo(start2) < 0) && (end.compareTo(end2) > 0)) {
             return true;
         } else return (start.compareTo(start2) > 0) && (end.compareTo(end2) < 0);
     }
