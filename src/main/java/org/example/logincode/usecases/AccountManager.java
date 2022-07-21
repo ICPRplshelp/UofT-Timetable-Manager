@@ -30,19 +30,6 @@ public class AccountManager {
      * @param permissions permissions to check.
      * @return whether permission exists.
      */
-    public boolean validatePermission(String[] permissions) {
-        return account.getPermissions().hasPerm(permissions);
-    }
-
-    /**
-     * Validate multiple permissions.
-     *
-     * @param permissions permissions to check.
-     * @return whether permission exists.
-     */
-    public boolean validatePermission(Collection<String> permissions) {
-        return account.getPermissions().hasPerm(permissions);
-    }
 
     /**
      * Creates a new AccountManager instance based on an account.
