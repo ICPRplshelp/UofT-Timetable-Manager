@@ -23,13 +23,6 @@ public class AccountManager {
     }
 
     /**
-     * Validate multiple permissions.
-     *
-     * @param permissions permissions to check.
-     * @return whether permission exists.
-     */
-
-    /**
      * Creates a new AccountManager instance based on an account.
      *
      * @param controlledAccount     the username to log in. The username better exist.
