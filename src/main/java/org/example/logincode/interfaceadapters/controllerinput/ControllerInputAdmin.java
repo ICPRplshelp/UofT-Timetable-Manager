@@ -12,6 +12,13 @@ public class ControllerInputAdmin extends ControllerInput {
 
     protected final AdminPresenter presenter;
 
+    /**
+     * The constructor for this class.
+     *
+     * @param manager               always the same manager in the controller class
+     * @param accountStorageManager ^
+     * @param presenter             ^
+     */
     public ControllerInputAdmin(AccountManager manager, StorageManager accountStorageManager, AdminPresenter presenter) {
         super(manager, accountStorageManager, presenter);
         this.presenter = presenter;

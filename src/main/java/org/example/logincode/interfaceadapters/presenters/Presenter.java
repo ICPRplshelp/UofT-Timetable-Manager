@@ -26,6 +26,10 @@ public class Presenter {
         return inputs;
     }
 
+    /** Presents a message regarding a failed action.
+     *
+     * @param reason the reason an action failed.
+     */
     public void genericFailedAction(String reason) {
         switch (reason) {
             case "invalid" -> prt.println("Invalid input.");
