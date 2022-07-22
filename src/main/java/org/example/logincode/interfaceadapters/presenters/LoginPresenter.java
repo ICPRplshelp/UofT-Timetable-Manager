@@ -1,7 +1,5 @@
 package org.example.logincode.interfaceadapters.presenters;
 
-import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;
-
 import java.util.*;
 
 public class LoginPresenter extends Presenter {
