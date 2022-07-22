@@ -13,11 +13,7 @@ public class BuildingComparator {
         this.bs = bs;
     }
 
-    public BuildingComparator() {
-        BuildingStorageConstructor tempBuildingStorageConstructor
-                = new BuildingStorageConstructor();
-        this.bs = tempBuildingStorageConstructor.makeAllBuildings();
-    }
+
 
     /**
      * Return the distance between the two potential building

@@ -40,25 +40,7 @@ public class Permissions implements ReprAble, Serializable {
         permissions.addAll(Arrays.asList(perms));
     }
 
-    /**
-     * Constructs this class, where the permissions are in an
-     * array of Strings.
-     *
-     * @param arrayOfPerms an array of permissions to add.
-     */
-    public Permissions(String[] arrayOfPerms) {
-        permissions = new HashSet<>(List.of(arrayOfPerms));
-    }
 
-    /**
-     * Constructs this class, where the permissions are in a
-     * collection of Strings.
-     *
-     * @param arrayOfPerms an array of permissions to add.
-     */
-    public Permissions(Collection<String> arrayOfPerms) {
-        permissions = new HashSet<>(arrayOfPerms);
-    }
 
     /**
      * Construct a Permission class with no permissions.
@@ -105,21 +87,6 @@ public class Permissions implements ReprAble, Serializable {
         return true;
     }
 
-    /**
-     * Checks if this account has ALL the permissions in perms.
-     *
-     * @param perms a collection of permission names to check.
-     * @return whether the account has all the permissions.
-     */
-    public boolean hasPerm(String[] perms) {
-        // I miss Python comprehensions
-        for (String perm : perms) {
-            if (!this.getPermissions().contains(perm)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * Attempt to add the permission.

@@ -11,9 +11,7 @@ public class Presenter {
     public void parseFailure() {
         prt.println("Failed to parse string to date");
     }
-    public void genericError() {
-        prt.println("An error has occurred.");
-    }
+
 
     public String[] enterCredentials() {
         // register and login both use this method since their procedures are identical

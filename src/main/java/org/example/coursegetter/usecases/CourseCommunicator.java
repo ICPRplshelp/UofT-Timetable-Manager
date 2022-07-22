@@ -17,9 +17,7 @@ import java.util.Set;
  */
 public class CourseCommunicator {
     private final Course course;
-    public CourseCommunicator(String course, String session, CourseSearcherIndividual csi){
-        this.course = csi.getCourseOfferingByCode(session, course);
-    }
+
     public CourseCommunicator(Course course) {
         this.course = course;
     }
@@ -77,9 +75,7 @@ public class CourseCommunicator {
      * @return the start time of the course's lecture code based on the day of week
      * it is offered.
      */
-    public LocalTime getStartTime(String lectureCode, DayOfWeek dayOfWeek) {
-        return getLocalTimeHelper(lectureCode, dayOfWeek, false);
-    }
+
 
     /**
      * Return the end time of the course's lecture code based on the day of week
