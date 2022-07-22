@@ -1,9 +1,9 @@
-package org.revamped.usecases;
+package org.phase2.studentrelated.usecases;
 
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.entities.Meetings;
 import org.example.coursegetter.entities.TeachingMethods;
-import org.revamped.entities.Student2;
+import org.phase2.studentrelated.entities.Student2;
 
 import java.util.*;
 
@@ -15,6 +15,13 @@ public class StudentManager {
     private final CrsSearcher pastSearcher;
     private final Student2 student;
 
+    /**
+     * Constructs this class.
+     * @param student the student to manage
+     * @param plannedSearcher a course searcher than can only obtain courses for the session 20229
+     * @param pastSearcher a course searcher than can obtain courses for the sessions 20199 - 20229, going for the
+     *                     latest session possible
+     */
     public StudentManager(Student2 student, CrsSearcher plannedSearcher, CrsSearcher pastSearcher) {
         this.student = student;
         this.plannedSearcher = plannedSearcher;
@@ -36,9 +43,7 @@ public class StudentManager {
     }
 
     /**
-     * Returns a list of courses the student has planned.
-     *
-     * @return a list of courses the student has planned.
+     * Adds crs to the planned courses if it exists; otherwise, cry about it.
      */
     public boolean addToPlannedCourses(String crs) {
         Course course = plannedSearcher.getCourse(crs);

@@ -1,4 +1,4 @@
-package org.revamped.entities;
+package org.phase2.studentrelated.entities;
 
 import java.util.Collections;
 import java.util.Map;

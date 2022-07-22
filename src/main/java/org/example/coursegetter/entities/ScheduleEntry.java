@@ -4,16 +4,17 @@ import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Map;
+import java.util.Objects;
 
 public class ScheduleEntry implements Comparable<ScheduleEntry>, Serializable {
     private final String assignedRoom1;  // room in the fall.
 
     public String getAssignedRoom1() {
-        return assignedRoom1;
+        return Objects.requireNonNullElse(assignedRoom1, "");
     }
 
     public String getAssignedRoom2() {
-        return assignedRoom2;
+        return Objects.requireNonNullElse(assignedRoom2, "");
     }
 
     // always null if the course
