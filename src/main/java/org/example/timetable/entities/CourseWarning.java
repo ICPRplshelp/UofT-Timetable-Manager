@@ -47,8 +47,8 @@ public class CourseWarning implements Serializable {
                 List<TimetableWarning> aList = new ArrayList<>(warnings.get(warningLevel));
                 List<WarningType> warnList = new ArrayList<>();
 
-                for (int i = 0; i < aList.size(); i++) {
-                    warnList.add(aList.get(i).getWarningType());
+                for (TimetableWarning timetableWarning : aList) {
+                    warnList.add(timetableWarning.getWarningType());
                 }
                 return warnList.toString();
             }
