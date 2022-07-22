@@ -7,7 +7,7 @@ import org.example.courselocationtracker.entities.BuildingStorage;
  * Compare the distance of two buildings between each other.
  */
 public class BuildingComparator {
-    BuildingStorage bs;
+    final BuildingStorage bs;
 
     public BuildingComparator(BuildingStorage bs) {
         this.bs = bs;

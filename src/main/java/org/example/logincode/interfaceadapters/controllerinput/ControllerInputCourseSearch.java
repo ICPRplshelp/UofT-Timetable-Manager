@@ -12,7 +12,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
 
     private final CourseSearcherIndividual courseSearcher;
 
-    protected CoursePresenter presenter;
+    protected final CoursePresenter presenter;
 
     /**
      * The constructor for this class.

@@ -77,17 +77,6 @@ public class CourseCommunicator {
         return daysSoFar;
     }
 
-    /**
-     * Return the start time of the course's lecture code based on the day of week
-     * it is offered.
-     * If we can't find a time, return MIDNIGHT.
-     *
-     * @param lectureCode e.g. LEC0101
-     * @param dayOfWeek   e.g. MO, WE, TU, ...
-     * @return the start time of the course's lecture code based on the day of week
-     * it is offered.
-     */
-
 
     /**
      * Return the end time of the course's lecture code based on the day of week

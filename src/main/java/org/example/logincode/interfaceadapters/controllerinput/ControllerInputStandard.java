@@ -6,7 +6,7 @@ import org.example.logincode.usecases.StorageManager;
 
 public class ControllerInputStandard extends ControllerInput {
 
-    protected StandardPresenter presenter;
+    protected final StandardPresenter presenter;
 
     public ControllerInputStandard(AccountManager manager, StorageManager accountStorageManager, StandardPresenter presenter) {
         super(manager, accountStorageManager, presenter);

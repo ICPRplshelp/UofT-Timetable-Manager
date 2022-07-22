@@ -66,14 +66,4 @@ public class CourseSearcherIndividual {
     public Set<String> getAllCoursesOfferingList(String session) {
         return sessionStorage.getSession(session).getCourseOfferingListAsString();
     }
-
-    /**
-     * Returns a set of all courses that can be reached from the given course
-     * storage.
-     * The set may not be modified.
-     *
-     * @return a set of all courses that can be reached from the given course storage.
-     */
-
-
 }

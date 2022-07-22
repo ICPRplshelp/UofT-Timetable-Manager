@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class ControllerInputAdmin extends ControllerInput {
 
-    protected AdminPresenter presenter;
+    protected final AdminPresenter presenter;
 
     public ControllerInputAdmin(AccountManager manager, StorageManager accountStorageManager, AdminPresenter presenter) {
         super(manager, accountStorageManager, presenter);

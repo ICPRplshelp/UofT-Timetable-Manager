@@ -31,7 +31,7 @@ public class WarningCommunicator implements Serializable {
     public void checkWarnings(Timetable timetable) {
         timetable.clearWarnings();
         List<CourseChoice> plannedCoursesList;
-        plannedCoursesList = timetable.getPlannedCourses().stream().collect(Collectors.toList());
+        plannedCoursesList = new ArrayList<>(timetable.getPlannedCourses());
 
         List<String> coursesAsString = new ArrayList<>();
 
@@ -41,13 +41,11 @@ public class WarningCommunicator implements Serializable {
                 setWarningsHelper("FYF", plannedCoursesList.get(i), timetable);
             }
 
-            for (int n = 0; n < plannedCoursesList.size(); n++) {
+            for (CourseChoice courseChoice : plannedCoursesList) {
                 boolean lecExists = (plannedCoursesList.get(i).getLectureSection() != null &&
-                        plannedCoursesList.get(n).getLectureSection() != null);
-                if ((plannedCoursesList.get(i) != plannedCoursesList.get(n) && lecExists)) {
-                    CourseChoice choice1 = plannedCoursesList.get(i);
-                    CourseChoice choice2 = plannedCoursesList.get(n);
-                    if (getCourseConflict(choice1, choice2)) {
+                        courseChoice.getLectureSection() != null);
+                if ((plannedCoursesList.get(i) != courseChoice && lecExists)) {
+                    if (getCourseConflict(plannedCoursesList.get(i), courseChoice)) {
                         setWarningsHelper("CONFLICT", plannedCoursesList.get(i), timetable);
                     }
                 }

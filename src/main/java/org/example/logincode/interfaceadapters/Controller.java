@@ -13,7 +13,7 @@ import org.example.logincode.usecases.StorageManager;
 public class Controller {
 
     private final StorageManager accountStorageManager = new StorageManager();
-    LoginPresenter loginPresenter = new LoginPresenter();
+    final LoginPresenter loginPresenter = new LoginPresenter();
     private AccountManager manager;
 
 
