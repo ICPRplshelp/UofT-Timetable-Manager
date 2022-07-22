@@ -1,4 +1,4 @@
-# CSC207 Project
+# CSC207 Project - PLEASE MARK THE PHASE 1 BRANCH (CHECK THE BRANCHES)
 
 The name of this project is to be added.
 
