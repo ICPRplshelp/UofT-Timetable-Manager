@@ -117,22 +117,6 @@ public class Course implements Comparable<Course>, Serializable {
         return this.code + "-" + this.section;
     }
 
-    private int getLevelFromCourseCode(String cc) {
-        char levelChar = cc.charAt(3);
-        return switch (levelChar) {
-            case '0' -> 0;
-            case '2', 'B' -> 2;
-            case '3', 'C' -> 3;
-            case '4', 'D' -> 4;
-            case '5' -> 5;
-            case '6' -> 6;
-            case '7' -> 7;
-            case '8' -> 8;
-            case '9' -> 9;
-            default -> 1;
-        };
-    }
-
     @Override
     public int compareTo(Course o) {
         // Priority 1: level of the course - 1 < 2 < 3 < 4
