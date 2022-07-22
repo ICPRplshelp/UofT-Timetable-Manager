@@ -16,7 +16,7 @@ import java.util.Scanner;
  */
 public class PresenterPrinter {
 
-    Scanner scanner = new Scanner(System.in);
+    final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         var pr = new PresenterPrinter();

@@ -9,14 +9,14 @@ public class LoginPresenter extends Presenter {
 
     // Collection<String> loggedOutPrompt = List.of("PLEASE LOG IN");
     // Will remove the following prompts after merge
-    Collection<String> loggedInStandardPrompt = List.of(new String[]{
+    final Collection<String> loggedInStandardPrompt = List.of(new String[]{
             "Enter 'history' to see your login history",
             "Enter 'adminview' to enter the admin view if you are an admin",
             "Enter 'setpassword' to change your password",
             "Enter 'secretadmin' to make yourself an admin",
             "Enter 'ttview' to enter the timetable view"
     });
-    Collection<String> loggedInAdminOnlyPrompt = List.of(new String[]{
+    final Collection<String> loggedInAdminOnlyPrompt = List.of(new String[]{
             "Enter 'ban' to temporarily ban a user",
             "Enter 'delete' to delete a user",
             "Enter 'new' to create a new AdminUser",
@@ -24,7 +24,7 @@ public class LoginPresenter extends Presenter {
             "Enter 'back' to return to the standard user prompt"
     });
 
-    Collection<String> timetablePrompt = List.of(new String[]{
+    final Collection<String> timetablePrompt = List.of(new String[]{
             "Enter 'view' to view the current timetable",
             "Enter 'addcourse' to add a course",
             "Enter 'addmeetingtocourse' to add a lecture time to a course",
@@ -34,7 +34,7 @@ public class LoginPresenter extends Presenter {
             "Enter 'back' to return to the standard user prompt"
     });
 
-    Map<String, String> userPrompt = Map.ofEntries(
+    final Map<String, String> userPrompt = Map.ofEntries(
 
             // Standard user actions
             Map.entry("history", "see your login history"),

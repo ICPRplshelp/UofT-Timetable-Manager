@@ -15,7 +15,7 @@ public class ControllerInputTimetable extends ControllerInput {
     private final CourseSearcherGetter csg;
     private final StudentManager sm;
 
-    protected TimetablePresenter presenter;
+    protected final TimetablePresenter presenter;
 
     private final TimetableController ttc;
     private final TimetableCommunicatorBulkBuilder timetableCommunicatorBulkBuilder = new TimetableCommunicatorBulkBuilder();

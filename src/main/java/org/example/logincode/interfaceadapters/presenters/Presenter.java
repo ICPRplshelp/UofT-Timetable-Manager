@@ -5,8 +5,8 @@ import org.example.PresenterPrinter;
 import java.util.Scanner;
 
 public class Presenter {
-    protected Scanner scanner = new Scanner(System.in);
-    protected PresenterPrinter prt = new PresenterPrinter();
+    protected final Scanner scanner = new Scanner(System.in);
+    protected final PresenterPrinter prt = new PresenterPrinter();
 
     public void parseFailure() {
         prt.println("Failed to parse string to date");

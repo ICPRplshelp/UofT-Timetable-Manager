@@ -10,8 +10,8 @@ import static org.junit.Assert.assertNull;
 
 public class TestStudentManager {
 
-    StudentManager sm = new StudentManager(new Student());
-    CourseSearcherGetter csg = new CourseSearcherGetter();
+    final StudentManager sm = new StudentManager(new Student());
+    final CourseSearcherGetter csg = new CourseSearcherGetter();
 
     @Test(timeout = 5600)
     public void testAddAndRemovePlannedCourse() {

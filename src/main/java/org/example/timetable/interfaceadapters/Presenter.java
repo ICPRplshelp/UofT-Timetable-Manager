@@ -9,8 +9,8 @@ import java.util.*;
 
 public class Presenter {
 
-    PresenterPrinter prt = new PresenterPrinter();
-    Map<WarningType, String> warningsMap;
+    final PresenterPrinter prt = new PresenterPrinter();
+    final Map<WarningType, String> warningsMap;
 
     public Presenter() {
         EnumMap<WarningType, String> warningsMap = new EnumMap<>(WarningType.class);

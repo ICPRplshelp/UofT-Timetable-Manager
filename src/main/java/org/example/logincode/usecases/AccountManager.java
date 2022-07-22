@@ -10,7 +10,7 @@ public class AccountManager {
 
     protected final Account account;
     // protected Set<String> commandList;
-    StorageManager accountStorageManager;
+    final StorageManager accountStorageManager;
 
     /**
      * Validate one permission.

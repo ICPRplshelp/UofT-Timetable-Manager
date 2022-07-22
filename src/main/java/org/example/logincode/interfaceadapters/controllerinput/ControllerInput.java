@@ -24,9 +24,9 @@ public abstract class ControllerInput {
 
     // which window should it be next?
     protected LoggedInState curState;
-    protected AccountManager manager;
-    protected StorageManager accountStorageManager;
-    protected Presenter presenter;
+    protected final AccountManager manager;
+    protected final StorageManager accountStorageManager;
+    protected final Presenter presenter;
 
     public String[] commandsList;
 

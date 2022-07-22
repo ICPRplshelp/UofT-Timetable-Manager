@@ -7,7 +7,7 @@ import org.example.logincode.entities.Account;
  */
 public class AccountCreator {
 
-    StorageManager accountStorageManager;
+    final StorageManager accountStorageManager;
 
     /**
      * Construct this class with an existing storage manager.
