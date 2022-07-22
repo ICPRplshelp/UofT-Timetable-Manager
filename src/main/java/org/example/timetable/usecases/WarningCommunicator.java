@@ -59,7 +59,7 @@ public class WarningCommunicator implements Serializable {
             if (!checker.check(coursesAsString, courseChoice.getCourse().getCorequisite())) {
                 setWarningsHelper("CRQ", courseChoice, timetable);
             }
-            if (checker.checkExclusions(coursesAsString, courseChoice.getCourse().getPrerequisite())) {
+            if (!checker.checkExclusions(coursesAsString, courseChoice.getCourse().getPrerequisite())) {
                 setWarningsHelper("PRQ", courseChoice, timetable);
             }
         }
