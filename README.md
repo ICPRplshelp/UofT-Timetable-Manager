@@ -1,5 +1,8 @@
 # CSC207 Project - PLEASE MARK THE PHASE 1 BRANCH (CHECK THE BRANCHES)
 
+https://github.com/ICPRplshelp/CSC207Project/tree/phase1only
+PHASE 1 BRANCH HERE
+
 The name of this project is to be added.
 
 Please do not mark any changes made to the
