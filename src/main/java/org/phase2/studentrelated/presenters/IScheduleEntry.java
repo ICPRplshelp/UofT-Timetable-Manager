@@ -5,8 +5,12 @@ import java.time.LocalTime;
 
 /**
  * ScheduleEntry implements this.
- * As long as something is this type,
- * presenters may access it.
+ *
+ * Anything implementing this may be used by a presenter
+ * given it is typed ICourse.
+ * For example,
+ * Set[IScheduleEntry] ise = getCourseInfo("CSC110Y1-F");
+ * is permitted in a presenter.
  */
 public interface IScheduleEntry {
 
