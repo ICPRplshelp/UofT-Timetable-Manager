@@ -17,9 +17,8 @@ public class Session {
      * Create a course storage.
      *
      * @param courseMap a map of courses.
-     * @param session   the session of the courses.
      */
-    public Session(Map<String, Course> courseMap, String session) {
+    public Session(Map<String, Course> courseMap) {
         this.courses = courseMap;
         Set<String> tempKeySet = courses.keySet();
         courseList = new HashSet<>();
