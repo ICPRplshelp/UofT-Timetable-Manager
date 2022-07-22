@@ -119,6 +119,8 @@ public class ControllerInputTimetable extends ControllerInput {
             if (setCourseState) {
                 presenter.addMeetingConfirmation();
             } else presenter.addMeetingError();
+        } else {
+            presenter.courseNotInTimetableError();
         }
         return true;
     }

@@ -37,6 +37,10 @@ public class TimetablePresenter extends Presenter {
         prt.println("That course doesn't have this meeting.");
     }
 
+    public void courseNotInTimetableError() {
+        prt.println("That course isn't in your timetable.");
+    }
+
     public String addPrevCourse() {
         prt.println("What previous course would you like to add? Enter the course offering.");
         return scanner.nextLine();
