@@ -51,45 +51,6 @@ public class BracketDealer {
     }
 
     /**
-     * Removes everything nested in brackets () and [].
-     *
-     * @param s the string to pass in
-     * @return the results
-     */
-    public String quickRemoveTextInBrackets(String s) {
-        if (s == null) return null;
-        for (char[] bracketPair : bracketPairs) {
-            assert s != null;
-            s = removeTextInBrackets(s, bracketPair[0], bracketPair[1]);
-        }
-        return s;
-    }
-
-    /**
-     * Removes everything nested in brackets you specify.
-     *
-     * @param s  to pass in
-     * @param op opening bracket
-     * @param cl closing bracket
-     * @return a copy of s, where all characters nested in brackets are
-     * removed.
-     * Returns null if the brackets are unbalanced.
-     * There is no way to escape brackets.
-     */
-    private String removeTextInBrackets(String s, char op, char cl) {
-        StringBuilder sb = new StringBuilder();
-        int bracketLevel = 0;
-        char[] chars = s.toCharArray();
-        for (char ch : chars) {
-            if (ch == op) bracketLevel += 1;
-            else if (ch == cl) bracketLevel -= 1;
-            else if (bracketLevel == 0) sb.append(ch);
-        }
-        if (bracketLevel != 0) return null;
-        return sb.toString();
-    }
-
-    /**
      * Same as Python's str.split(), but don't split anything if
      * it's nested inside () and [].
      *

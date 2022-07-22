@@ -55,13 +55,4 @@ public class PresenterPrinter {
         System.out.println(message);
     }
 
-    /**
-     * Prints the message to the standard output.
-     * This method name is shorter.
-     *
-     * @param message the message to print.
-     */
-    public void p(String message) {
-        System.out.println(message);
-    }
 }

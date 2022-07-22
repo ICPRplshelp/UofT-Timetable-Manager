@@ -24,15 +24,6 @@ public class Presenter {
         this.warningsMap = warningsMap;
     }
 
-    private String sectionFullName(String section) {
-        return switch (section) {
-            case "F" -> "Fall";
-            case "S" -> "Winter";
-            case "Y" -> "Year";
-            default -> "idk";
-        };
-    }
-
     public void printTimetableInformation(Collection<TimetableCommunicatorIndividual> tcis) {
         prt.println("Timetable:");
         tcis.forEach(this::printCourseInformation);

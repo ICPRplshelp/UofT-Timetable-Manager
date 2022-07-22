@@ -16,7 +16,7 @@ public class TestPrerequisiteListBuilder {
 
 
     /**
-     * The first three tests ehnsures the program does not
+     * The first three tests ensures the program does not
      * break whilst constructing requisite lists
      * of all courses.
      */

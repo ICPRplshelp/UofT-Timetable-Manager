@@ -7,11 +7,8 @@ public class Course implements Comparable<Course>, Serializable {
     // public final int brq;
     public final BreadthRequirement brc;
     private final double creditValue;
-    private final String orgName;
     private final String code;
-    private final String webTimetableInstructions;
     private final String org;
-    private final String session;
     private final String prerequisite;
     private final String exclusion;
     private final String section;
@@ -21,16 +18,12 @@ public class Course implements Comparable<Course>, Serializable {
     private final String courseTitle;
     private final String corequisite;
     private final Meetings meetings;
-    private final int level;
 
     public Course(Map<String, Object> cInfo) {
 
-        this.orgName = (String) cInfo.get("orgName");
         this.code = (String) cInfo.get("code");
 
-        this.webTimetableInstructions = (String) cInfo.get("webTimetableInstructions");
         this.org = (String) cInfo.get("org");
-        this.session = (String) cInfo.get("session");
         this.prerequisite = (String) cInfo.get("prerequisite");
         this.exclusion = (String) cInfo.get("exclusion");
         this.section = (String) cInfo.get("section");
@@ -42,7 +35,6 @@ public class Course implements Comparable<Course>, Serializable {
         this.meetings = new Meetings((Map<String, Object>) cInfo.get("meetings"));
         this.creditValue = calculateCourseCreditValue();
         this.brc = new BreadthRequirement(this.breadthCategories, this.creditValue);
-        this.level = getLevelFromCourseCode(this.code);
     }
 
     // Course offering Regex: [A-Z]{3}[0-4]\d{2}[H|Y][0159]-[FSY]
@@ -51,28 +43,12 @@ public class Course implements Comparable<Course>, Serializable {
         return creditValue;
     }
 
-    public String getOrgName() {
-        return orgName;
-    }
-
     public String getCode() {
         return code;
     }
 
     public String getOfferingCode() {
         return code + "-" + getSection();
-    }
-
-    public String getWebTimetableInstructions() {
-        return webTimetableInstructions;
-    }
-
-    public String getOrg() {
-        return org;
-    }
-
-    public String getSession() {
-        return session;
     }
 
     public String getPrerequisite() {
@@ -111,14 +87,6 @@ public class Course implements Comparable<Course>, Serializable {
         return meetings;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public BreadthRequirement getBrc() {
-        return brc;
-    }
-
     /**
      * A course is a first year only if and only if, for all
      * lecture meetings in this course, the meeting's
@@ -147,22 +115,6 @@ public class Course implements Comparable<Course>, Serializable {
     @Override
     public String toString() {
         return this.code + "-" + this.section;
-    }
-
-    private int getLevelFromCourseCode(String cc) {
-        char levelChar = cc.charAt(3);
-        return switch (levelChar) {
-            case '0' -> 0;
-            case '2', 'B' -> 2;
-            case '3', 'C' -> 3;
-            case '4', 'D' -> 4;
-            case '5' -> 5;
-            case '6' -> 6;
-            case '7' -> 7;
-            case '8' -> 8;
-            case '9' -> 9;
-            default -> 1;
-        };
     }
 
     @Override

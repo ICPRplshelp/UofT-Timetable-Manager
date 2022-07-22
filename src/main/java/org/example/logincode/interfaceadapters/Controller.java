@@ -33,10 +33,6 @@ public class Controller {
         return loginState;
     }
 
-    public LoggedInState getLoggedInState() {
-        return this.loggedInState;
-    }
-
     /**
      * This method represents the logged-out menu.
      * A user may only access this if they are logged out.
@@ -72,7 +68,7 @@ public class Controller {
             loginPresenter.genericFailedAction("invalid");
             return;  // oops, invalid
         }
-        // run the input and have it performs the operation with the input
+        // run the input and have it then perform the operation with the input
         cInput.inputParser(input);
         // update the controller input
         if (cInput.getCurState() != null) {
