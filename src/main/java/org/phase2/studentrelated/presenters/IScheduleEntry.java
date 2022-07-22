@@ -11,6 +11,11 @@ import java.time.LocalTime;
 public interface IScheduleEntry {
 
     /**
+     * Returns the course code.
+     */
+    String getCourseCode();
+
+    /**
      * Returns the F term meeting room.
      */
     String getAssignedRoom1();

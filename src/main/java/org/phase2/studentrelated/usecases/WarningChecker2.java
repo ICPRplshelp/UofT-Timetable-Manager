@@ -29,13 +29,6 @@ public class WarningChecker2 {
      */
     public Map<WarningType, Set<String>> checkCourseWarnings(Set<String> planned, Set<String> passed) {
 
-        // phase 1: prerequisite checks
-
-
-
-
-
-
 
         throw new RuntimeException();
     }
