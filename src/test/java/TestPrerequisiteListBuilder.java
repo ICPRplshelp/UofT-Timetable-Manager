@@ -22,7 +22,6 @@ public class TestPrerequisiteListBuilder {
      */
     @Test(timeout = 100000)
     public void testRQ() {
-        PrerequisiteListBuilder m = new PrerequisiteListBuilder();
         CourseSearcherGetter csgTemp = new CourseSearcherGetter();
         CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
         courseSearcherIndividual.getAllCoursesOfferingList("20229").forEach(crs -> {
@@ -35,7 +34,6 @@ public class TestPrerequisiteListBuilder {
 
     @Test(timeout = 100000)
     public void testCRQ() {
-        PrerequisiteListBuilder m = new PrerequisiteListBuilder();
         CourseSearcherGetter csgTemp = new CourseSearcherGetter();
         CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
         courseSearcherIndividual.getAllCoursesOfferingList("20229").forEach(crs -> {

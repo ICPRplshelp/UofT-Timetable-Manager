@@ -53,7 +53,7 @@ public class ControllerInputTimetable extends ControllerInput {
     @Override
     public boolean inputParser(String input) {
 
-        switch(input){
+        switch (input) {
             case "view" -> {
                 ttc.presentTimeTable();
                 return true;
@@ -86,14 +86,16 @@ public class ControllerInputTimetable extends ControllerInput {
 
             case "back" -> curState = LoggedInState.STANDARD;
 
-            case "donothing" -> {return true;}
+            case "donothing" -> {
+                return true;
+            }
 
         }
 
         return false;
     }
 
-    public TimetableCommunicatorBulk getTCB(){
+    public TimetableCommunicatorBulk getTCB() {
         return timetableCommunicatorBulkBuilder.buildit(manager);
     }
 
@@ -101,7 +103,7 @@ public class ControllerInputTimetable extends ControllerInput {
         String rqc = presenter.addCourse();
         Course temp = csg.getCourseSearcher().getCourseOfferingByCode("20229", rqc);
         boolean addedCourseState = sm.addBlankPlannedCourse(temp);
-        if(addedCourseState){
+        if (addedCourseState) {
             presenter.addCourseConfirmation();
         } else {
             presenter.addCourseError();
@@ -114,7 +116,7 @@ public class ControllerInputTimetable extends ControllerInput {
         if (sm.getPlannedCourseByString(courseCode) != null) {
             String sectionCode = presenter.addSectionToCourse();
             boolean setCourseState = sm.setCourseChoice(sm.getPlannedCourseByString(courseCode), sectionCode);
-            if(setCourseState) {
+            if (setCourseState) {
                 presenter.addMeetingConfirmation();
             } else presenter.addMeetingError();
         }
@@ -126,7 +128,7 @@ public class ControllerInputTimetable extends ControllerInput {
         String session = presenter.addPrevSessionCourse(); // instructions for year + 9 / 5 etc.?
         Course temp = csg.getCourseSearcher().getCourseOfferingByCode(session, courseCode);
         boolean setCourseState = sm.addPreviousCourse(temp);
-        if (setCourseState){
+        if (setCourseState) {
             presenter.addPrevCourseConfirmation(session);
         } else presenter.addPrevCourseError();
 
@@ -137,9 +139,9 @@ public class ControllerInputTimetable extends ControllerInput {
         String courseCode = presenter.deleteCourse();
 
         boolean setCourseState = sm.removePlannedCourse(sm.getPlannedCourseByString(courseCode));
-        if (setCourseState){
+        if (setCourseState) {
             presenter.deleteCourseConfirmation();
-        }else presenter.deleteCourseError();
+        } else presenter.deleteCourseError();
 
         return setCourseState;
     }
@@ -147,9 +149,9 @@ public class ControllerInputTimetable extends ControllerInput {
     private boolean delPrevCourse() {
         String courseCode = presenter.deletePrevCourse();
         boolean setCourseState = sm.removePreviousCourse(sm.getPreviousCourseByString(courseCode));
-        if (setCourseState){
+        if (setCourseState) {
             presenter.deletePrevCourseConfirmation();
-        }else presenter.deletePrevCourseError();
+        } else presenter.deletePrevCourseError();
 
         return setCourseState;
     }

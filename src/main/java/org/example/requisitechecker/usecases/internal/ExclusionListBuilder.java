@@ -34,7 +34,7 @@ public class ExclusionListBuilder extends RequisiteListBuilder {
      * </p>
      *
      * @param reqStr a copy-paste of any UofT prerequisite
-     *                  from the ArtSci timetable.
+     *               from the ArtSci timetable.
      * @return an exclusion template list.
      * If a set of courses is tested with it, checking will
      * return true if there's a single match.

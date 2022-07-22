@@ -59,7 +59,7 @@ public class ScheduleEntry implements Comparable<ScheduleEntry>, Serializable {
      * OR the course being an independent reading
      * or research opportunity program.
      */
-    public boolean isAsync(){
+    public boolean isAsync() {
         return this.meetingDay == null ||
                 this.meetingStartTime == null ||
                 this.meetingEndTime == null;
@@ -71,7 +71,7 @@ public class ScheduleEntry implements Comparable<ScheduleEntry>, Serializable {
      * meeting is async.
      */
     public DayOfWeek getDay() {
-        if(meetingDay == null) return null;
+        if (meetingDay == null) return null;
         return switch (meetingDay) {
             case "MO" -> DayOfWeek.MONDAY;
             case "TU" -> DayOfWeek.TUESDAY;
@@ -112,12 +112,12 @@ public class ScheduleEntry implements Comparable<ScheduleEntry>, Serializable {
         return this.getStartTime().compareTo(o.getStartTime());
     }
 
-    private int dealWithAsync(ScheduleEntry o){
-        if (this.isAsync() && !o.isAsync()){
+    private int dealWithAsync(ScheduleEntry o) {
+        if (this.isAsync() && !o.isAsync()) {
             return -1;
-        } else if (!this.isAsync() && o.isAsync()){
+        } else if (!this.isAsync() && o.isAsync()) {
             return 1;
-        } else if(this.isAsync() && o.isAsync()){
+        } else if (this.isAsync() && o.isAsync()) {
             return 2;
         } else return 0;
     }

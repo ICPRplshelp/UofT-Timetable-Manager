@@ -1,14 +1,14 @@
 package org.example.logincode.interfaceadapters;
 
 import org.example.coursegetter.usecases.CourseSearcherGetter;
+import org.example.logincode.interfaceadapters.controllerinput.ControllerInput;
+import org.example.logincode.interfaceadapters.controllerinput.ControllerInputFactory;
+import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;
 import org.example.logincode.interfaceadapters.presenters.LoginPresenter;
 import org.example.logincode.usecases.AccountCreator;
 import org.example.logincode.usecases.AccountLogin;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
-import org.example.logincode.interfaceadapters.controllerinput.ControllerInput;
-import org.example.logincode.interfaceadapters.controllerinput.ControllerInputFactory;
-import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;
 
 public class Controller {
 
@@ -125,6 +125,7 @@ public class Controller {
         ControllerInput cInput = controllerInputFactory.getControllerInput(loggedInState);
         return cInput.commandsList;
     }
+
     enum LoginState {
         LOGGED_OUT, LOGGED_IN
     }

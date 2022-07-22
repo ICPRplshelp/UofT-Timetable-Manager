@@ -1,7 +1,9 @@
 package org.example.coursegetter.entities;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 // TODO: Choose which variables to keep, and make getters for them
 public class EnrollmentControl implements Serializable {
@@ -31,7 +33,6 @@ public class EnrollmentControl implements Serializable {
     private final String adminOrgCode;
     private final String adminOrgName;
     private final String restrictedGroup;
-
 
 
     public EnrollmentControl(Map<String, String> controls) {
@@ -66,7 +67,7 @@ public class EnrollmentControl implements Serializable {
     /**
      * @return true if this enrollment control states a year of study of 1.
      */
-    public boolean isFirstYearOnly(){
+    public boolean isFirstYearOnly() {
         return this.yearOfStudy.equals("1");
     }
 
@@ -77,7 +78,7 @@ public class EnrollmentControl implements Serializable {
         String[] items = {
                 restrictedGroup != null ? "Group " + restrictedGroup : null,
                 postName != null && postCode != null ? postName + " (" +
-                postCode + ")" : null,
+                        postCode + ")" : null,
                 subjectName,
                 designationName,
                 yearOfStudy != null && !yearOfStudy.equals("*") ? "Year " + yearOfStudy : null,
@@ -89,7 +90,7 @@ public class EnrollmentControl implements Serializable {
         };
 
         List<String> itemsList = new ArrayList<>();
-        for (String it : items){
+        for (String it : items) {
             if (it != null && !it.equals("")) itemsList.add(it);
         }
         // System.out.println(itemsList);

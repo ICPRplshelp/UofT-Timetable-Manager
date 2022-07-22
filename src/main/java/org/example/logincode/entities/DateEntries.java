@@ -20,7 +20,6 @@ public class DateEntries implements ReprAble, Serializable {
     }
 
 
-
     public void addDate(Date curDate) {
         dates.add(curDate);
     }

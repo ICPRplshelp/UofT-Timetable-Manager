@@ -7,7 +7,7 @@ import org.example.timetable.entities.Timetable;
 
 
 public class TimetableCommunicatorBulkBuilder {
-    public TimetableCommunicatorBulk buildit(AccountManager accm){
+    public TimetableCommunicatorBulk buildit(AccountManager accm) {
         Student stud = accm.getAccount().getStudent();
         Timetable timetable = stud.getTimetable();
 

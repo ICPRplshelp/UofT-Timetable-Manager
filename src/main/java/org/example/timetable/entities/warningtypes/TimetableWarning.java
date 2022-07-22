@@ -4,7 +4,7 @@ import org.example.timetable.entities.WarningLevel;
 
 import java.io.Serializable;
 
-abstract public class TimetableWarning implements Serializable,  Comparable<TimetableWarning> {
+abstract public class TimetableWarning implements Serializable, Comparable<TimetableWarning> {
     protected WarningType warningType;
     protected WarningLevel warningLevel = WarningLevel.WARNING;
 
@@ -12,16 +12,16 @@ abstract public class TimetableWarning implements Serializable,  Comparable<Time
         this.warningLevel = severity;
     }
 
-    public WarningType getWarningType(){
+    public WarningType getWarningType() {
         if (warningType == null) return WarningType.UNKNOWN;
         else return warningType;
     }
 
-    public void setWarningType(WarningType warning){
+    public void setWarningType(WarningType warning) {
         warningType = warning;
     }
 
-    public WarningLevel getWarningLevel(){
+    public WarningLevel getWarningLevel() {
         return warningLevel;
     }
 

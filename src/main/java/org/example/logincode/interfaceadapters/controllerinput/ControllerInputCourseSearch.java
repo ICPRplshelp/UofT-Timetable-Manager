@@ -1,11 +1,6 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
-import org.example.coursegetter.usecases.CourseCommunicator;
-import org.example.coursegetter.usecases.CourseSearcherByKeyword;
-import org.example.coursegetter.usecases.CourseSearcherCommunicator;
-import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.coursegetter.usecases.CourseSearcherIndividual;
-
+import org.example.coursegetter.usecases.*;
 import org.example.logincode.interfaceadapters.presenters.CoursePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
@@ -33,7 +28,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
         this.presenter = presenter;
         this.courseSearcher = csg.getCourseSearcher();
         this.curState = LoggedInState.COURSE_SEARCHER;
-        commandsList = new String[]{"search", "pastcourses", "courseinfo", "sections","back"};
+        commandsList = new String[]{"search", "pastcourses", "courseinfo", "sections", "back"};
     }
 
     @Override
@@ -51,7 +46,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
         return true;
     }
 
-    private void searchCurrentCourses(){
+    private void searchCurrentCourses() {
 
         String keyword = presenter.searchCoursesByKeyword();
 
@@ -67,7 +62,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
         }
     }
 
-    private void searchPastCourses(){
+    private void searchPastCourses() {
 
         String keyword = presenter.searchCoursesByKeyword();
         String session = presenter.enterSession();
@@ -84,7 +79,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
         }
     }
 
-    private void searchCourseInfo(){
+    private void searchCourseInfo() {
 
         String searchedCourse = presenter.searchSingleCourse();
         String session = presenter.enterSession();
@@ -105,7 +100,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
         }
     }
 
-    private void searchSections(){
+    private void searchSections() {
 
         String searchedCourse = presenter.searchSingleCourse();
         String session = presenter.enterSession();

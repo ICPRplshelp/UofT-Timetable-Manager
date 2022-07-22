@@ -2,8 +2,6 @@ package org.example.logincode.usecases;
 
 import org.example.logincode.entities.Account;
 
-import java.util.Collection;
-
 public class AccountManager {
 
     public Account getAccount() {
@@ -34,7 +32,7 @@ public class AccountManager {
     /**
      * Creates a new AccountManager instance based on an account.
      *
-     * @param controlledAccount              the username to log in. The username better exist.
+     * @param controlledAccount     the username to log in. The username better exist.
      * @param accountStorageManager the account storage to check.
      */
     public AccountManager(Account controlledAccount, StorageManager accountStorageManager) {

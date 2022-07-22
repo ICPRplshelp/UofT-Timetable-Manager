@@ -3,9 +3,7 @@ package org.example.studentdata.usecases;
 import org.example.coursegetter.entities.Course;
 import org.example.studentdata.entities.CourseChoice;
 import org.example.studentdata.entities.Student;
-import org.example.timetable.entities.Timetable;
 
-import java.util.Collection;
 import java.util.List;
 
 public class StudentManager {
@@ -14,10 +12,6 @@ public class StudentManager {
 
     public StudentManager(Student student) {
         this.student = student;
-    }
-
-    public Timetable getTimetable() {
-        return student.getTimetable();
     }
 
     /**
@@ -38,7 +32,7 @@ public class StudentManager {
      * @return whether the course exists.
      */
     public boolean addBlankPlannedCourse(Course course) {
-        if (course == null){
+        if (course == null) {
             return false;
         }
         addPlannedCourse(new CourseChoice(course));
@@ -52,7 +46,7 @@ public class StudentManager {
      * @return whether the course exists.
      */
     public boolean removePlannedCourse(CourseChoice courseChoice) {
-        if (courseChoice == null){
+        if (courseChoice == null) {
             return false;
         }
         removePlannedCourses(List.of(courseChoice));
@@ -62,8 +56,8 @@ public class StudentManager {
     /**
      * Sets a meeting section for a planned course.
      *
-     * @param course    the course to set the meeting choice for.
-     * @param section   the section of the course.
+     * @param course  the course to set the meeting choice for.
+     * @param section the section of the course.
      * @return whether the section prefix is correct.
      */
     public boolean setCourseChoice(CourseChoice course, String section) {
@@ -73,7 +67,9 @@ public class StudentManager {
             case "lec" -> course.setLectureSection("LEC" + number);
             case "tut" -> course.setTutSection("TUT" + number);
             case "pra" -> course.setPraSection("PRA" + number);
-            default -> { return false;}
+            default -> {
+                return false;
+            }
         }
         return true;
     }
@@ -95,7 +91,7 @@ public class StudentManager {
      * @param course the past course to add.
      * @return whether the course exists.
      */
-    public boolean addPreviousCourse(Course course){
+    public boolean addPreviousCourse(Course course) {
         if (course == null) return false;
         student.addToPreviousCourses(List.of(course));
         return true;
@@ -107,21 +103,10 @@ public class StudentManager {
      * @param course the past course to remove.
      * @return whether the course exists.
      */
-    public boolean removePreviousCourse(Course course){
+    public boolean removePreviousCourse(Course course) {
         if (course == null) return false;
         student.removeFromPreviousCourses(List.of(course));
         return true;
-    }
-
-    /**
-     * Returns the course history of the student in the form of a string.
-     *
-     * @return the course history of the student.
-     */
-    public String getCourseHistory() {
-        List<String> coursesList = student.getAllPreviousCourses().stream()
-                .map(Course::getOfferingCode).toList();
-        return String.join(", ", coursesList);
     }
 
     /**

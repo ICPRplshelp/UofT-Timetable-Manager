@@ -14,7 +14,6 @@ public class BuildingComparator {
     }
 
 
-
     /**
      * Return the distance between the two potential building
      * codes.
@@ -27,7 +26,6 @@ public class BuildingComparator {
      * two buildings, in meters.
      * If either building does not exist, can't be found,
      * or is marked as TBA, return 0.
-     *
      */
     public double getDistance(String b1Str, String b2Str) {
         if (b1Str == null || b2Str == null) return 0;

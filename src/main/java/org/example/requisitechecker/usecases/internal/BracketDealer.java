@@ -12,12 +12,13 @@ public class BracketDealer {
      * (Hugging brackets) -> Hugging brackets
      * [Hugging brackets] -> Hugging brackets
      * ([Hugging brackets]) -> [Hugging brackets]
+     *
      * @param s the string to pass in. The brackets must be balanced.
      * @return s with the hugging brackets removed
      */
-    public String removeHuggingBrackets(String s){
-        for(char[] bp : bracketPairs){
-            if (validateHuggingBrackets(s, bp[0], bp[1])){
+    public String removeHuggingBrackets(String s) {
+        for (char[] bp : bracketPairs) {
+            if (validateHuggingBrackets(s, bp[0], bp[1])) {
                 s = s.substring(1, s.length() - 1);
                 return s;
             }
@@ -27,21 +28,22 @@ public class BracketDealer {
 
     /**
      * Does s have any hugging brackets?
-     * @param s the string to test
+     *
+     * @param s  the string to test
      * @param op opening bracket
      * @param cl closing bracket
      * @return whether s starts with op and ends with cl.
      */
-    private boolean validateHuggingBrackets(String s, char op, char cl){
+    private boolean validateHuggingBrackets(String s, char op, char cl) {
         int depth = 0;
         var sCArray = s.toCharArray();
-        for(int i = 0; i < sCArray.length; i++){
-            if(sCArray[i] == op) depth++;
-            if(sCArray[i] == cl) depth--;
+        for (int i = 0; i < sCArray.length; i++) {
+            if (sCArray[i] == op) depth++;
+            if (sCArray[i] == cl) depth--;
             // the very first one must start with op
-            if(i == 0 && depth != 1) return false;
+            if (i == 0 && depth != 1) return false;
             // depth can never hit zero unless i = sCArray.length - 1
-            if(i != 0 && depth == 0){
+            if (i != 0 && depth == 0) {
                 return i == sCArray.length - 1;
             }
         }
@@ -91,7 +93,7 @@ public class BracketDealer {
      * Same as Python's str.split(), but don't split anything if
      * it's nested inside () and [].
      *
-     * @param s the string to pass in
+     * @param s   the string to pass in
      * @param aor whether to split commas or slashes, and its variants.
      * @return the result
      */
@@ -136,7 +138,7 @@ public class BracketDealer {
      * Replaces substrings looking like "and" and "or" with
      * commas and slashes, respectively.
      */
-    public String narrowAndOrSymbols(String input){
+    public String narrowAndOrSymbols(String input) {
         return input.replaceAll(" ", "")
                 .replace("\n", "")
                 .replace("++", "pp")

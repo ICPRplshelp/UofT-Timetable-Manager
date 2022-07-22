@@ -11,9 +11,11 @@ import org.example.timetable.entities.warningtypes.TimetableWarning;
 import org.example.timetable.entities.warningtypes.WarningType;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -22,9 +24,11 @@ import java.util.stream.Collectors;
  */
 public class WarningCommunicator implements Serializable {
 
-    public WarningCommunicator(Timetable timetable) {checkWarnings(timetable);}
+    public WarningCommunicator(Timetable timetable) {
+        checkWarnings(timetable);
+    }
 
-    public void checkWarnings(Timetable timetable)  {
+    public void checkWarnings(Timetable timetable) {
         timetable.clearWarnings();
         List<CourseChoice> plannedCoursesList;
         plannedCoursesList = timetable.getPlannedCourses().stream().collect(Collectors.toList());
@@ -33,18 +37,19 @@ public class WarningCommunicator implements Serializable {
 
         for (int i = 0; i < plannedCoursesList.size(); i++) {
             coursesAsString.add(plannedCoursesList.get(i).getCourse().getCode());
-            if (plannedCoursesList.get(i).getCourse().firstYearOnly() && (timetable.getPreviousCredits() >=  4.0)) {
+            if (plannedCoursesList.get(i).getCourse().firstYearOnly() && (timetable.getPreviousCredits() >= 4.0)) {
                 setWarningsHelper("FYF", plannedCoursesList.get(i), timetable);
             }
 
-            for (int n = 0; n < plannedCoursesList.size(); n ++) {
+            for (int n = 0; n < plannedCoursesList.size(); n++) {
                 boolean lecExists = (plannedCoursesList.get(i).getLectureSection() != null &&
                         plannedCoursesList.get(n).getLectureSection() != null);
                 if ((plannedCoursesList.get(i) != plannedCoursesList.get(n) && lecExists)) {
                     CourseChoice choice1 = plannedCoursesList.get(i);
                     CourseChoice choice2 = plannedCoursesList.get(n);
                     if (getCourseConflict(choice1, choice2)) {
-                        setWarningsHelper("CONFLICT", plannedCoursesList.get(i), timetable);}
+                        setWarningsHelper("CONFLICT", plannedCoursesList.get(i), timetable);
+                    }
                 }
             }
         }
@@ -72,7 +77,8 @@ public class WarningCommunicator implements Serializable {
     }
 
     private void setWarningsHelper(String Type, CourseChoice courseChoice, Timetable timetable) {
-        TimetableWarning timetableWarning = new TimetableWarning() {};
+        TimetableWarning timetableWarning = new TimetableWarning() {
+        };
 
         if (Objects.equals(Type, "EXC")) {
             timetableWarning.setWarningType(WarningType.EXC);
@@ -114,7 +120,7 @@ public class WarningCommunicator implements Serializable {
 
             ScheduleEntry current2;
 
-            while(c2.hasNext()) {
+            while (c2.hasNext()) {
                 current2 = c2.next();
                 LocalTime a = current.getStartTime();
                 LocalTime b = current2.getStartTime();
@@ -123,7 +129,7 @@ public class WarningCommunicator implements Serializable {
 
                 boolean timeConflict = chkIfTimeConflict(a, b, c, d);
 
-                if (current.getDay().equals(current2.getDay()) && timeConflict){
+                if (current.getDay().equals(current2.getDay()) && timeConflict) {
                     return true;
                 }
             }

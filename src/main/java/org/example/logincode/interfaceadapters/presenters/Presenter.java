@@ -2,7 +2,7 @@ package org.example.logincode.interfaceadapters.presenters;
 
 import org.example.PresenterPrinter;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class Presenter {
     protected Scanner scanner = new Scanner(System.in);

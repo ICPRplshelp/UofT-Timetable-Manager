@@ -51,6 +51,7 @@ public class TimetablePresenter extends Presenter {
     public void addPrevCourseConfirmation(String session) {
         prt.println("Course added to session " + session + ".");
     }
+
     public void addPrevCourseError() {
         prt.println("That course is not available in that session.");
     }
@@ -65,6 +66,7 @@ public class TimetablePresenter extends Presenter {
     public void deleteCourseConfirmation() {
         prt.println("Course removed.");
     }
+
     public void deleteCourseError() {
         prt.println("You do not currently have that course.");
     }
@@ -74,9 +76,11 @@ public class TimetablePresenter extends Presenter {
         prt.println("What previous course would you like to remove? Enter the course code.");
         return scanner.nextLine();
     }
+
     public void deletePrevCourseConfirmation() {
         prt.println("Course removed.");
     }
+
     public void deletePrevCourseError() {
         prt.println("You have not enrolled in that course before.");
     }

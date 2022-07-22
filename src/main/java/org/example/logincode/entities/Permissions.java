@@ -1,7 +1,10 @@
 package org.example.logincode.entities;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This class represents the permissions a user has.
@@ -39,7 +42,6 @@ public class Permissions implements ReprAble, Serializable {
 
         permissions.addAll(Arrays.asList(perms));
     }
-
 
 
     /**

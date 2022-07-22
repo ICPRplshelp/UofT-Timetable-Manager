@@ -12,20 +12,20 @@ public class Presenter {
     PresenterPrinter prt = new PresenterPrinter();
     Map<WarningType, String> warningsMap;
 
-    public Presenter(){
-         EnumMap<WarningType, String> warningsMap = new EnumMap<>(WarningType.class);
-         warningsMap.put(WarningType.CONFLICT, "Conflicts with another course");
-         warningsMap.put(WarningType.CRQ, "Missing corequisite(s)");
-         warningsMap.put(WarningType.PRQ, "Missing prerequisite(s)");
-         warningsMap.put(WarningType.DIST, "Course has meeting location too far from b2b previous course");
-         warningsMap.put(WarningType.EXC, "You have an exclusion");
-         warningsMap.put(WarningType.FYF, "This course is Year 1 only");
-         warningsMap.put(WarningType.UNKNOWN, "Unknown warning");
-         this.warningsMap = warningsMap;
+    public Presenter() {
+        EnumMap<WarningType, String> warningsMap = new EnumMap<>(WarningType.class);
+        warningsMap.put(WarningType.CONFLICT, "Conflicts with another course");
+        warningsMap.put(WarningType.CRQ, "Missing corequisite(s)");
+        warningsMap.put(WarningType.PRQ, "Missing prerequisite(s)");
+        warningsMap.put(WarningType.DIST, "Course has meeting location too far from b2b previous course");
+        warningsMap.put(WarningType.EXC, "You have an exclusion");
+        warningsMap.put(WarningType.FYF, "This course is Year 1 only");
+        warningsMap.put(WarningType.UNKNOWN, "Unknown warning");
+        this.warningsMap = warningsMap;
     }
 
-    private String sectionFullName(String section){
-        return switch (section){
+    private String sectionFullName(String section) {
+        return switch (section) {
             case "F" -> "Fall";
             case "S" -> "Winter";
             case "Y" -> "Year";
@@ -33,17 +33,17 @@ public class Presenter {
         };
     }
 
-    public void printTimetableInformation(Collection<TimetableCommunicatorIndividual> tcis){
+    public void printTimetableInformation(Collection<TimetableCommunicatorIndividual> tcis) {
         prt.println("Timetable:");
         tcis.forEach(this::printCourseInformation);
     }
 
-    private void printCourseInformation(TimetableCommunicatorIndividual tci){
+    private void printCourseInformation(TimetableCommunicatorIndividual tci) {
         String cc = tci.getCourseCode();
         List<String> sections = tci.getSectionsFromCourse();
         String sectionsString = String.join(" ", sections);
         StringBuilder sb = new StringBuilder();
-        for (WarningType s : tci.getWarningTypesList()){
+        for (WarningType s : tci.getWarningTypesList()) {
             sb.append("[").append(warningsMap.get(s)).append("] ");
         }
         String warningsString = sb.toString();

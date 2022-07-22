@@ -61,7 +61,7 @@ public class LoginPresenter extends Presenter {
             Map.entry("viewprevcourses", "view previous courses taken"),
             Map.entry("addcourse", "add a course"),
             Map.entry("addmeetingtocourse", "add a lecture time to a course"),
-            Map.entry("addprevcourse",  "add a previously taken course"),
+            Map.entry("addprevcourse", "add a previously taken course"),
             Map.entry("delcourse", "delete a current course"),
             Map.entry("delprevcourse", "delete a previously taken course"),
 
@@ -93,14 +93,15 @@ public class LoginPresenter extends Presenter {
     }
 
     public Collection<String> inputPromptHelper(String[] commandsList) {
-        if(Objects.isNull(commandsList)) return List.of("No command string?");
-        try{    Collection<String> returnCollection = new ArrayList<>();
-            for(String item: commandsList) {
+        if (Objects.isNull(commandsList)) return List.of("No command string?");
+        try {
+            Collection<String> returnCollection = new ArrayList<>();
+            for (String item : commandsList) {
                 returnCollection.add("Enter '" + item + "' to " +
                         Objects.requireNonNullElse(userPrompt.get(item), "idk"));
             }
             return returnCollection;
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             return List.of("We couldn't come up with a command list.");
         }
 
@@ -109,8 +110,6 @@ public class LoginPresenter extends Presenter {
     public void startView() {
         prt.println("Enter 'register' to register, 'login' to login, or 'exit' to exit: ");
     }
-
-
 
 
     public void registerConfirm(boolean isSuccessful) {
@@ -138,16 +137,6 @@ public class LoginPresenter extends Presenter {
     public String dashboardView(Collection<String> messages) {
         return prt.askWithMessage(String.join("\n", messages));
     }
-
-
-
-
-
-
-
-
-
-
 
 
     public void exitProgram() {
