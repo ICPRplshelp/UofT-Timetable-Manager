@@ -1,5 +1,6 @@
 package org.example.timetable.usecases;
 
+import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.entities.Meeting;
 import org.example.coursegetter.entities.ScheduleEntry;
 import org.example.requisitechecker.usecases.RequisiteChecker;
@@ -12,10 +13,7 @@ import org.example.timetable.entities.warningtypes.WarningType;
 import java.io.Serializable;
 import java.sql.Time;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -51,6 +49,14 @@ public class WarningCommunicator implements Serializable {
             }
         }
 
+        List<String> coursesAsStringPRQ = new ArrayList<>(coursesAsString);
+        if (timetable.getPreviousCourses() != null) {
+            List<Course> previousCourses = new ArrayList<>(timetable.getPreviousCourses());
+            for (Course previousCourse : previousCourses) {
+                coursesAsStringPRQ.add(previousCourse.getCode());
+            }
+        }
+
         for (CourseChoice courseChoice : plannedCoursesList) {
             RequisiteChecker checker = new RequisiteChecker();
             if (checker.checkExclusions(coursesAsString, courseChoice.getCourse().getExclusion())) {
@@ -59,11 +65,10 @@ public class WarningCommunicator implements Serializable {
             if (!checker.check(coursesAsString, courseChoice.getCourse().getCorequisite())) {
                 setWarningsHelper("CRQ", courseChoice, timetable);
             }
-            if (!checker.checkExclusions(coursesAsString, courseChoice.getCourse().getPrerequisite())) {
+            if (!checker.check(coursesAsStringPRQ, courseChoice.getCourse().getPrerequisite())) {
                 setWarningsHelper("PRQ", courseChoice, timetable);
             }
         }
-
     }
 
     private void setWarningsHelper(String Type, CourseChoice courseChoice, Timetable timetable) {
