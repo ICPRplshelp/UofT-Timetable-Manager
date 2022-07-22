@@ -22,21 +22,13 @@ public class Timetable  implements Serializable {
     private final Collection<CourseChoice> plannedCourses;
     private double previousCredits;
 
-    public Collection<Course> getPreviousCourses() {
-        return previousCourses;
-    }
-
-    public void setPreviousCourses(Collection<Course> previousCourses) {
-        this.previousCourses = previousCourses;
-    }
-
     private Collection<Course> previousCourses;
 
     public Timetable (Collection<CourseChoice> plannedCourses){
         this.plannedCourses = plannedCourses;
     }
 
-    public final Map<CourseChoice, CourseWarning> warnings = new HashMap<>();  //remember to change to private
+    private final Map<CourseChoice, CourseWarning> warnings = new HashMap<>();
 
     /**
      * Adds a course to the timetable.
@@ -96,5 +88,13 @@ public class Timetable  implements Serializable {
     public void clearWarnings() {warnings.clear();}
     public double getPreviousCredits(){return previousCredits;}
     public void setPreviousCredits(double Credits) {previousCredits = Credits;}
+
+    public Collection<Course> getPreviousCourses() {
+        return previousCourses;
+    }
+
+    public void setPreviousCourses(Collection<Course> previousCourses) {
+        this.previousCourses = previousCourses;
+    }
 }
 
