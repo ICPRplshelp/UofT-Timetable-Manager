@@ -36,7 +36,12 @@ public class AdminAccountManager extends AccountManager {
             if (!accountStorageManager.checkAccountExists(username)) {
                 return false; // this user does not exist!
             }
+
             Account targetAccount = accountStorageManager.getAccount(username);
+
+            if (targetAccount.getBanStatus().isBanned()) {
+                return false; // the user is currently banned!
+            }
             Permissions tempPerm = targetAccount.getPermissions();
             tempPerm.addPerm(permission); // permission input must be in camelCase
             //accountStorageManager.loadedStorage.updateAccount(targetAccount);

@@ -20,7 +20,6 @@ public class AdminPresenter extends StandardPresenter {
 
     public Date enterDate() throws ParseException {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-        prt.println("Enter date in the format dd/MM/yyyy: ");
         String input = prt.askWithMessage("Enter date in the format dd/MM/yyyy: ");
         return dateFormatter.parse(input);
     }
@@ -45,7 +44,7 @@ public class AdminPresenter extends StandardPresenter {
         if (isSuccessful) {
             prt.println("You have successfully promoted " + username);
         } else {
-            prt.println("You do not have permission or the user does not exist");
+            prt.println("You do not have permission, the user does not exist, or the user is banned");
         }
     }
 
