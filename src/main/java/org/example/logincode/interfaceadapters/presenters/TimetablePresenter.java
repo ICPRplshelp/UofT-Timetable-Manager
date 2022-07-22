@@ -71,7 +71,7 @@ public class TimetablePresenter extends Presenter {
 
 
     public String deletePrevCourse() {
-        prt.println("What previous course would you like to remove? Enter the course offering.");
+        prt.println("What previous course would you like to remove? Enter the course code.");
         return scanner.nextLine();
     }
     public void deletePrevCourseConfirmation() {
