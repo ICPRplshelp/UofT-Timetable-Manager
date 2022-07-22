@@ -1,17 +1,14 @@
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.requisitechecker.usecases.RequisiteChecker;
 import org.example.studentdata.entities.CourseChoice;
 import org.example.studentdata.entities.Student;
 import org.example.studentdata.usecases.StudentInferrer;
-import org.example.timetable.entities.CourseWarning;
 import org.example.timetable.entities.Timetable;
 import org.example.timetable.usecases.WarningCommunicator;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 
 import static org.junit.Assert.assertEquals;
 
