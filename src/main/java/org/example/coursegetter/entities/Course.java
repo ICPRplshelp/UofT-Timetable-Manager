@@ -7,11 +7,8 @@ public class Course implements Comparable<Course>, Serializable {
     // public final int brq;
     public final BreadthRequirement brc;
     private final double creditValue;
-    private final String orgName;
     private final String code;
-    private final String webTimetableInstructions;
     private final String org;
-    private final String session;
     private final String prerequisite;
     private final String exclusion;
     private final String section;
@@ -21,7 +18,6 @@ public class Course implements Comparable<Course>, Serializable {
     private final String courseTitle;
     private final String corequisite;
     private final Meetings meetings;
-    private final int level;
 
     public Course(Map<String, Object> cInfo) {
 
@@ -51,28 +47,12 @@ public class Course implements Comparable<Course>, Serializable {
         return creditValue;
     }
 
-    public String getOrgName() {
-        return orgName;
-    }
-
     public String getCode() {
         return code;
     }
 
     public String getOfferingCode() {
         return code + "-" + getSection();
-    }
-
-    public String getWebTimetableInstructions() {
-        return webTimetableInstructions;
-    }
-
-    public String getOrg() {
-        return org;
-    }
-
-    public String getSession() {
-        return session;
     }
 
     public String getPrerequisite() {
@@ -109,14 +89,6 @@ public class Course implements Comparable<Course>, Serializable {
 
     public Meetings getMeetings() {
         return meetings;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public BreadthRequirement getBrc() {
-        return brc;
     }
 
     /**

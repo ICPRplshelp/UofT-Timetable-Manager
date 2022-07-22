@@ -10,11 +10,6 @@ public class Session {
     private final Set<String> courseList;
 
 
-    public String getSession() {
-        return session;
-    }
-
-    private final String session;
     // only UTSG courses are supported
 
 
@@ -26,7 +21,6 @@ public class Session {
      */
     public Session(Map<String, Course> courseMap, String session) {
         this.courses = courseMap;
-        this.session = session;
         Set<String> tempKeySet = courses.keySet();
         courseList = new HashSet<>();
 

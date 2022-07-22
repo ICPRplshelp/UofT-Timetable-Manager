@@ -4,60 +4,22 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Meeting implements Serializable {
-    public String getCancel() {
-        return cancel;
-    }
-
-    public String getSectionNumber() {
-        return sectionNumber;
-    }
-
-    public String getEnrollmentCapacity() {
-        return enrollmentCapacity;
-    }
 
     public String getTeachingMethod() {
         return teachingMethod;
-    }
-
-    public String getActualWaitlist() {
-        return actualWaitlist;
     }
 
     public String getEnrollmentIndicator() {
         return enrollmentIndicator;
     }
 
-    public String getActualEnrolment() {
-        return actualEnrolment;
-    }
-
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public String getWaitlist() {
-        return waitlist;
-    }
-
-    public String getOnline() {
-        return online;
-    }
-
     public List<EnrollmentControl> getEnrollmentControls() {
         return enrollmentControls;
     }
 
-    private final String cancel;
     private final String sectionNumber;
-    private final String enrollmentCapacity;
     private final String teachingMethod;
-    private final String actualWaitlist;
     private final String enrollmentIndicator;
-    private final String actualEnrolment;
-    private final String subtitle;
-    private final String waitlist;
-    private final String online;
     private final Set<ScheduleEntry> scheduleEntryList = new TreeSet<>();
     private final List<EnrollmentControl> enrollmentControls;
 

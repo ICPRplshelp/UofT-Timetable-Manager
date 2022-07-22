@@ -25,26 +25,6 @@ public class CourseSearcherIndividual {
     }
 
     /**
-     * Given a course code, this method searches for all course
-     * offerings by this course code.
-     *
-     * @param crsCode the course code such as MAT135H1
-     * @return a collection of courses such as MAT135H1-F, MAT135H1-S, MAT135H1-Y
-     */
-    public Collection<Course> getCourseByCourseCode(String session, String crsCode) {
-        crsCode = courseInputValidator.courseToSearchableCourse(crsCode);
-        ArrayList<Course> courseList = new ArrayList<>();
-        String[] suffixes = {"-F", "-S", "-Y"};
-        for (String suffix : suffixes) {
-            String courseToSearch = crsCode + suffix;
-            Course tempCourse = getCourseOfferingByCode(session, courseToSearch);
-            if (tempCourse != null)
-                courseList.add(tempCourse);
-        }
-        return courseList;
-    }
-
-    /**
      * Gets a course.
      *
      * @param crsCode the course code, in a format similar to CSC110Y1-F

@@ -12,13 +12,6 @@ public class ScheduleEntry implements Comparable<ScheduleEntry>, Serializable {
         return assignedRoom1;
     }
 
-    public String getAssignedRoom2() {
-        return assignedRoom2;
-    }
-
-    // always null if the course
-    // is an S course.
-    private final String assignedRoom2;  // room in the winter.
     private final String meetingStartTime;
     private final String meetingDay;
     private final String meetingEndTime;

@@ -33,10 +33,6 @@ public class Controller {
         return loginState;
     }
 
-    public LoggedInState getLoggedInState() {
-        return this.loggedInState;
-    }
-
     /**
      * This method represents the logged-out menu.
      * A user may only access this if they are logged out.
