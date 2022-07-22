@@ -21,12 +21,9 @@ public class Course implements Comparable<Course>, Serializable {
 
     public Course(Map<String, Object> cInfo) {
 
-        this.orgName = (String) cInfo.get("orgName");
         this.code = (String) cInfo.get("code");
 
-        this.webTimetableInstructions = (String) cInfo.get("webTimetableInstructions");
         this.org = (String) cInfo.get("org");
-        this.session = (String) cInfo.get("session");
         this.prerequisite = (String) cInfo.get("prerequisite");
         this.exclusion = (String) cInfo.get("exclusion");
         this.section = (String) cInfo.get("section");
@@ -38,7 +35,6 @@ public class Course implements Comparable<Course>, Serializable {
         this.meetings = new Meetings((Map<String, Object>) cInfo.get("meetings"));
         this.creditValue = calculateCourseCreditValue();
         this.brc = new BreadthRequirement(this.breadthCategories, this.creditValue);
-        this.level = getLevelFromCourseCode(this.code);
     }
 
     // Course offering Regex: [A-Z]{3}[0-4]\d{2}[H|Y][0159]-[FSY]
