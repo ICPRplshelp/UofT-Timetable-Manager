@@ -5,6 +5,7 @@ import org.example.studentdata.entities.Student;
 import org.example.studentdata.usecases.StudentInferrer;
 import org.example.timetable.entities.Timetable;
 
+
 public class TimetableCommunicatorBulkBuilder {
     public TimetableCommunicatorBulk buildit(AccountManager accm){
         Student stud = accm.getAccount().getStudent();

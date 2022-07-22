@@ -73,8 +73,6 @@ public class CourseSearcherIndividual {
      *
      * @return a set of all courses that can be reached from the given course storage.
      */
-    public Set<String> getAllCoursesList(String session){
-        return sessionStorage.getSession(session).getCourseListAsString();
-    }
+
 
 }

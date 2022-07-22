@@ -39,14 +39,7 @@ public class Timetable  implements Serializable {
         plannedCourses.add(courseChoice);
     }
 
-    /**
-     * Removes a course from the timetable.
-     *
-     * @param courseChoice the course to remove.
-     */
-    public void removeFromTimetable(CourseChoice courseChoice) {
-        plannedCourses.remove(courseChoice);
-    }
+
 
     /**
      * @return all planned course choices so far.
@@ -82,8 +75,6 @@ public class Timetable  implements Serializable {
         return warnings.get(courseChoice);
     }
 
-    public void clearTimetable() {
-    }
 
     public void clearWarnings() {warnings.clear();}
     public double getPreviousCredits(){return previousCredits;}
