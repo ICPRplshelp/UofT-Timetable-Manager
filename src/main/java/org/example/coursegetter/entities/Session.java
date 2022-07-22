@@ -7,7 +7,6 @@ import java.util.Set;
 
 public class Session {
     private final Map<String, Course> courses;
-    private final Set<String> courseList;
 
 
     // only UTSG courses are supported
@@ -20,10 +19,6 @@ public class Session {
      */
     public Session(Map<String, Course> courseMap) {
         this.courses = courseMap;
-        Set<String> tempKeySet = courses.keySet();
-        courseList = new HashSet<>();
-
-        tempKeySet.forEach(key -> courseList.add(key.substring(0, 8)));
     }
 
     /**
