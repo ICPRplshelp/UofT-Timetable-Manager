@@ -7,6 +7,12 @@ import org.example.timetable.entities.Timetable;
 
 
 public class TimetableCommunicatorBulkBuilder {
+    /**
+     * Builds the TimetableCommunicatorBulk.
+     *
+     * @param accm the account manager from the controller.
+     * @return the associated TimetableCommuniatorBulk.
+     */
     public TimetableCommunicatorBulk buildit(AccountManager accm) {
         Student stud = accm.getAccount().getStudent();
         Timetable timetable = stud.getTimetable();

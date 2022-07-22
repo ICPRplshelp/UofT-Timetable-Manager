@@ -15,6 +15,13 @@ public class CourseSearcherByKeyword {
         this.csi = csi;
     }
 
+    /**
+     * Finds courses by a keyword (i.e. the course title or part of the course title.
+     *
+     * @param keyword words used in the search.
+     * @param session the session in which to search for courses
+     * @return a list of course codes.
+     */
     public List<String> getCoursesByKeyword(String keyword, String session) {
         List<Course> courseList = filterCourseNames(keyword, session);
         Collections.sort(courseList);

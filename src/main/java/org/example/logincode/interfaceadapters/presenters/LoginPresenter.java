@@ -46,6 +46,12 @@ public class LoginPresenter extends Presenter {
         return dashboardView(inputPromptHelper(commandsList));
     }
 
+    /**
+     * Provides a list of prompts in the form of "Enter [command] to [action]" based on the map above.
+     *
+     * @param commandsList the list of commands available to the user
+     * @return the list of commands in prompt form.
+     */
     public Collection<String> inputPromptHelper(String[] commandsList) {
         if (Objects.isNull(commandsList)) return List.of("No command string?");
         try {

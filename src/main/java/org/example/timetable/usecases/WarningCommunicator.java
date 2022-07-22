@@ -27,6 +27,11 @@ public class WarningCommunicator implements Serializable {
         checkWarnings(timetable);
     }
 
+    /**
+     * Checks the warnings in the timetable, and adds all warnings found to the timetable.
+     *
+     * @param timetable the associated timetable.
+     */
     public void checkWarnings(Timetable timetable) {
         timetable.clearWarnings();
         List<CourseChoice> plannedCoursesList;
