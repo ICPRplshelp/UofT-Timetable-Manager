@@ -19,7 +19,6 @@ public class ScheduleEntry implements Comparable<ScheduleEntry>, Serializable {
 
     public ScheduleEntry(Map<String, Object> sInfo) {
         this.assignedRoom1 = (String) sInfo.get("assignedRoom1");
-        this.assignedRoom2 = (String) sInfo.get("assignedRoom2");
         this.meetingStartTime = (String) sInfo.get("meetingStartTime");
         this.meetingDay = (String) sInfo.get("meetingDay");
         this.meetingEndTime = (String) sInfo.get("meetingEndTime");
