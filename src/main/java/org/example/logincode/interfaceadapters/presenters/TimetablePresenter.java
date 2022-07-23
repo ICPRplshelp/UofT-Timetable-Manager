@@ -7,7 +7,7 @@ public class TimetablePresenter extends Presenter {
     }
 
     public String addCourse() {
-        prt.println("What course would you like to add?");
+        prt.println("What course would you like to add? Enter the course offering.");
         return scanner.nextLine();
     }
 
@@ -20,7 +20,7 @@ public class TimetablePresenter extends Presenter {
     }
 
     public String addMeetingToCourse() {
-        prt.println("What course would you add a section to?");
+        prt.println("What course would you like to add a section to? Enter the course offering.");
         return scanner.nextLine();
     }
 
@@ -38,7 +38,7 @@ public class TimetablePresenter extends Presenter {
     }
 
     public String addPrevCourse() {
-        prt.println("What previous course would you like to add?");
+        prt.println("What previous course would you like to add? Enter the course offering.");
         return scanner.nextLine();
     }
 
@@ -51,13 +51,14 @@ public class TimetablePresenter extends Presenter {
     public void addPrevCourseConfirmation(String session) {
         prt.println("Course added to session " + session + ".");
     }
+
     public void addPrevCourseError() {
         prt.println("That course is not available in that session.");
     }
 
 
     public String deleteCourse() {
-        prt.println("What course would you like to delete?");
+        prt.println("What course would you like to delete? Enter the course offering.");
         return scanner.nextLine();
     }
 
@@ -65,18 +66,21 @@ public class TimetablePresenter extends Presenter {
     public void deleteCourseConfirmation() {
         prt.println("Course removed.");
     }
+
     public void deleteCourseError() {
         prt.println("You do not currently have that course.");
     }
 
 
     public String deletePrevCourse() {
-        prt.println("What previous course would you like to remove?");
+        prt.println("What previous course would you like to remove? Enter the course code.");
         return scanner.nextLine();
     }
+
     public void deletePrevCourseConfirmation() {
         prt.println("Course removed.");
     }
+
     public void deletePrevCourseError() {
         prt.println("You have not enrolled in that course before.");
     }

@@ -13,7 +13,7 @@ import java.util.*;
  * completely different courses for the purposes
  * of defining this class.
  */
-public class Meetings  implements Serializable {
+public class Meetings implements Serializable {
     // lectures
     // tutorials
     // practicals
@@ -36,20 +36,22 @@ public class Meetings  implements Serializable {
     /**
      * Iterating through this should always iterate
      * in sorted order.
-     *
+     * <p>
      * Always in the format AAA0000 (no dash in between)
-     *
+     * <p>
      * Meaning LEC0101, LEC0202, LEC0301, LEC0302, LEC5101
+     *
      * @return An unmodifiable view of the courses' lectures.
      */
     public Map<String, Meeting> getLectures() {
-        return Collections.unmodifiableMap(lectures) ;
+        return Collections.unmodifiableMap(lectures);
     }
 
     /**
      * Iterating through this should always iterate
      * in sorted order.
      * Meaning TUT0101, TUT0202, TUT0301, TUT0302, TUT5101
+     *
      * @return An unmodifiable view of the courses' tutorials.
      */
     public Map<String, Meeting> getTutorials() {
@@ -60,6 +62,7 @@ public class Meetings  implements Serializable {
      * Iterating through this should always iterate
      * in sorted order.
      * Meaning PRA0101, PRA0202, PRA0301, PRA0302, PRA5101
+     *
      * @return An unmodifiable view of the courses' practicals.
      */
     public Map<String, Meeting> getPracticals() {

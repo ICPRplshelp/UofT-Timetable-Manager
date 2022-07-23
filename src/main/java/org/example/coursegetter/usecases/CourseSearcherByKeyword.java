@@ -19,7 +19,7 @@ public class CourseSearcherByKeyword {
         List<Course> courseList = filterCourseNames(keyword, session);
         Collections.sort(courseList);
 
-        List<String> courseCodes = new ArrayList<String>();
+        List<String> courseCodes = new ArrayList<>();
 
         for (Course course : courseList) {
             courseCodes.add(course.getOfferingCode());
@@ -29,7 +29,7 @@ public class CourseSearcherByKeyword {
     }
 
     private List<Course> filterCourseNames(String keyword, String session) {
-        List<Course> coursesSoFar = new ArrayList<Course>();
+        List<Course> coursesSoFar = new ArrayList<>();
 
         Set<String> allCourseOfferings = csi.getAllCoursesOfferingList(session);
 

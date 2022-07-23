@@ -1,6 +1,5 @@
 package org.example.coursegetter.usecases;
 
-import org.example.coursegetter.entities.Session;
 import org.example.coursegetter.entities.SessionStorage;
 
 /**
@@ -14,7 +13,7 @@ public class CourseSearcherGetter {
 
     private final CourseSearcherIndividual csr;
 
-    public CourseSearcherGetter(){
+    public CourseSearcherGetter() {
         CourseStorageObtainer clt = new CourseStorageObtainer();
         SessionStorage cls = clt.obtainAllCourses();
         csr = new CourseSearcherIndividual(cls);

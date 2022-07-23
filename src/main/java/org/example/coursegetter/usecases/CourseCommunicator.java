@@ -17,24 +17,34 @@ import java.util.Set;
  */
 public class CourseCommunicator {
     private final Course course;
-    public CourseCommunicator(String course, String session, CourseSearcherIndividual csi){
-        this.course = csi.getCourseOfferingByCode(session, course);
-    }
+
     public CourseCommunicator(Course course) {
         this.course = course;
     }
 
-    public String getCourseTitle() { return this.course.getCourseTitle(); }
+    public String getCourseTitle() {
+        return this.course.getCourseTitle();
+    }
 
-    public String getCourseDescription() { return this.course.getCourseDescription(); }
+    public String getCourseDescription() {
+        return this.course.getCourseDescription();
+    }
 
-    public String getPrerequisite() { return this.course.getPrerequisite(); }
+    public String getPrerequisite() {
+        return this.course.getPrerequisite();
+    }
 
-    public String getExclusion() { return this.course.getExclusion(); }
+    public String getExclusion() {
+        return this.course.getExclusion();
+    }
 
-    public String getBreadthCategories() { return this.course.getBreadthCategories(); }
+    public String getBreadthCategories() {
+        return this.course.getBreadthCategories();
+    }
 
-    public String getDeliveryInstructions() { return this.course.getDeliveryInstructions(); }
+    public String getDeliveryInstructions() {
+        return this.course.getDeliveryInstructions();
+    }
 
     public Collection<String> getLectures() {
         return this.course.getMeetings().getLectures().keySet();
@@ -77,9 +87,7 @@ public class CourseCommunicator {
      * @return the start time of the course's lecture code based on the day of week
      * it is offered.
      */
-    public LocalTime getStartTime(String lectureCode, DayOfWeek dayOfWeek) {
-        return getLocalTimeHelper(lectureCode, dayOfWeek, false);
-    }
+
 
     /**
      * Return the end time of the course's lecture code based on the day of week

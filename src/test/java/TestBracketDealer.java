@@ -2,8 +2,6 @@ import org.example.requisitechecker.usecases.internal.BracketDealer;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
 public class TestBracketDealer {
 
     @Test(timeout = 50)

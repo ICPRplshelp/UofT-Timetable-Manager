@@ -19,9 +19,6 @@ public class DateEntries implements ReprAble, Serializable {
         return dates.toString();
     }
 
-    public DateEntries(List<Date> dates) {
-        this.dates = dates;
-    }
 
     public void addDate(Date curDate) {
         dates.add(curDate);

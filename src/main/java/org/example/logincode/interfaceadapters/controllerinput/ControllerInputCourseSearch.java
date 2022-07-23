@@ -1,11 +1,6 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
-import org.example.coursegetter.usecases.CourseCommunicator;
-import org.example.coursegetter.usecases.CourseSearcherByKeyword;
-import org.example.coursegetter.usecases.CourseSearcherCommunicator;
-import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.coursegetter.usecases.CourseSearcherIndividual;
-
+import org.example.coursegetter.usecases.*;
 import org.example.logincode.interfaceadapters.presenters.CoursePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
@@ -33,7 +28,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
         this.presenter = presenter;
         this.courseSearcher = csg.getCourseSearcher();
         this.curState = LoggedInState.COURSE_SEARCHER;
-        commandsList = new String[]{"search", "pastcourses", "courseinfo", "sections"};
+        commandsList = new String[]{"search", "pastcourses", "courseinfo", "sections", "back"};
     }
 
     @Override
@@ -51,47 +46,49 @@ public class ControllerInputCourseSearch extends ControllerInput {
         return true;
     }
 
-    private void searchCurrentCourses(){
+    private void searchCurrentCourses() {
 
-        String keyword = presenter.enterCourse();
+        String keyword = presenter.searchCoursesByKeyword();
 
         CourseSearcherByKeyword csk = new CourseSearcherByKeyword(courseSearcher);
         List<String> courseCodes = csk.getCoursesByKeyword(keyword, "20229");
 
         if (courseCodes.size() == 0) {
-            presenter.genericFailedAction("invalid");
+            presenter.searchCoursesByKeywordError();
+            presenter.printText("");    // spacer
         } else {
             String title = String.format("Search Results for '%s': ", keyword);
             presenter.printListAndTitle(title, courseCodes);
         }
     }
 
-    private void searchPastCourses(){
+    private void searchPastCourses() {
 
-        String keyword = presenter.enterCourse();
+        String keyword = presenter.searchCoursesByKeyword();
         String session = presenter.enterSession();
 
         CourseSearcherByKeyword csk = new CourseSearcherByKeyword(courseSearcher);
         List<String> courseCodes = csk.getCoursesByKeyword(keyword, session);
 
         if (courseCodes.size() == 0) {
-            presenter.genericFailedAction("invalid");
+            presenter.searchCoursesByKeywordError();
+            presenter.printText("");    // spacer
         } else {
             String title = String.format("Search Results for '%s': ", keyword);
             presenter.printListAndTitle(title, courseCodes);
         }
     }
 
-    private void searchCourseInfo(){
+    private void searchCourseInfo() {
 
-        String searchedCourse = presenter.enterCourse();
+        String searchedCourse = presenter.searchSingleCourse();
         String session = presenter.enterSession();
 
         CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);
         CourseCommunicator cc = csc.searchCourse(session, searchedCourse);
 
         if (cc == null) {
-            presenter.genericFailedAction("invalid");
+            presenter.searchSingleCourseError();
         } else {
             presenter.printText(searchedCourse + ": " + cc.getCourseTitle());
             presenter.printText(cc.getCourseDescription());
@@ -103,16 +100,17 @@ public class ControllerInputCourseSearch extends ControllerInput {
         }
     }
 
-    private void searchSections(){
+    private void searchSections() {
 
-        String searchedCourse = presenter.enterCourse();
+        String searchedCourse = presenter.searchSingleCourse();
         String session = presenter.enterSession();
 
         CourseSearcherCommunicator csc = new CourseSearcherCommunicator(courseSearcher);
         CourseCommunicator courseCommunicator = csc.searchCourse(session, searchedCourse);
 
         if (courseCommunicator == null) {
-            presenter.genericFailedAction("invalid");
+            presenter.searchSingleCourseError();
+            presenter.printText("");    // spacer
         } else {
             Collection<String> lectures = courseCommunicator.getLectures();
             Collection<String> tutorials = courseCommunicator.getTutorials();

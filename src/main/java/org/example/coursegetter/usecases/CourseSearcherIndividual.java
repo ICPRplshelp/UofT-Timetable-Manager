@@ -1,7 +1,6 @@
 package org.example.coursegetter.usecases;
 
 import org.example.coursegetter.entities.Course;
-import org.example.coursegetter.entities.Session;
 import org.example.coursegetter.entities.SessionStorage;
 
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import java.util.Set;
  * This class may be used to:
  * - Return all searchable code
  * - Get information about one course
- *
+ * <p>
  * This class may not be used to query multiple courses.
  * That's too overwhelming to implement.
  */
@@ -28,17 +27,18 @@ public class CourseSearcherIndividual {
     /**
      * Given a course code, this method searches for all course
      * offerings by this course code.
+     *
      * @param crsCode the course code such as MAT135H1
      * @return a collection of courses such as MAT135H1-F, MAT135H1-S, MAT135H1-Y
      */
-    public Collection<Course> getCourseByCourseCode(String session, String crsCode){
+    public Collection<Course> getCourseByCourseCode(String session, String crsCode) {
         crsCode = courseInputValidator.courseToSearchableCourse(crsCode);
         ArrayList<Course> courseList = new ArrayList<>();
         String[] suffixes = {"-F", "-S", "-Y"};
-        for(String suffix : suffixes){
+        for (String suffix : suffixes) {
             String courseToSearch = crsCode + suffix;
             Course tempCourse = getCourseOfferingByCode(session, courseToSearch);
-            if(tempCourse != null)
+            if (tempCourse != null)
                 courseList.add(tempCourse);
         }
         return courseList;
@@ -52,7 +52,7 @@ public class CourseSearcherIndividual {
      */
     public Course getCourseOfferingByCode(String session, String crsCode) {
         String searchableCourse = courseInputValidator.courseOfferingToSearchableCourse(crsCode);
-        if(searchableCourse == null) return null;
+        if (searchableCourse == null) return null;
         return sessionStorage.getSession(session).getCourse(searchableCourse);
     }
 
@@ -63,7 +63,7 @@ public class CourseSearcherIndividual {
      *
      * @return a set of all courses that can be reached from the given course storage.
      */
-    public Set<String> getAllCoursesOfferingList(String session){
+    public Set<String> getAllCoursesOfferingList(String session) {
         return sessionStorage.getSession(session).getCourseOfferingListAsString();
     }
 
@@ -74,8 +74,6 @@ public class CourseSearcherIndividual {
      *
      * @return a set of all courses that can be reached from the given course storage.
      */
-    public Set<String> getAllCoursesList(String session){
-        return sessionStorage.getSession(session).getCourseListAsString();
-    }
+
 
 }

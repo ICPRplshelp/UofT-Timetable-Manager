@@ -5,7 +5,7 @@ import org.phase2.studentrelated.entities.Student2;
 
 import java.io.Serializable;
 
-public class Account implements Serializable{
+public class Account implements Serializable {
     // usernames must be unique.
     private final String username;
     private final BanStatus banStatus;
@@ -35,7 +35,6 @@ public class Account implements Serializable{
 //        this.permissionLevel = 0;  // the default permission level is 0
         studentOld = new Student();
     }
-
 
 
     public String getUsername() {

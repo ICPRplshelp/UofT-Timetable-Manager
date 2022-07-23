@@ -44,9 +44,9 @@ public class CourseConflictChecker {
 
     private CourseChoice CourseGetter(String courseCode) {
         List<CourseChoice> plannedCourses = new ArrayList<>(timetable.getPlannedCourses());
-        for (int i = 0; i < plannedCourses.size(); i++) {
-            if (plannedCourses.get(i).getCourse().getCode().equals(courseCode)) {
-                return plannedCourses.get(i);
+        for (CourseChoice plannedCourse : plannedCourses) {
+            if (plannedCourse.getCourse().getCode().equals(courseCode)) {
+                return plannedCourse;
             }
         }
         return null;
@@ -87,11 +87,12 @@ public class CourseConflictChecker {
         allList.add(conflictListPra);
         return allList;
     }
+
     private List<String> iteratorForIfConflictHelper(Iterator<ScheduleEntry> c1, CourseChoice crs2,
                                                      List<String> conflictList) {
         ScheduleEntry current;
 
-        while(c1.hasNext()) {
+        while (c1.hasNext()) {
             current = c1.next();
 
             Meeting lecMeet2 = crs2.getCourse().getMeetings().getLectures().get(crs2.getLectureSection());
@@ -112,11 +113,12 @@ public class CourseConflictChecker {
         }
         return conflictList;
     }
+
     private String iteratorForConflictHelperShorter(Iterator<ScheduleEntry> c2, ScheduleEntry current,
                                                     String type, CourseChoice crs2) {
         ScheduleEntry current2;
 
-        while(c2.hasNext()) {
+        while (c2.hasNext()) {
             current2 = c2.next();
             LocalTime a = current.getStartTime();
             LocalTime b = current2.getStartTime();
@@ -125,12 +127,14 @@ public class CourseConflictChecker {
 
             boolean timeConflict = chkIfTimeConflict(a, b, c, d);
 
-            if (current.getDay().equals(current2.getDay()) && timeConflict){
+            if (current.getDay().equals(current2.getDay()) && timeConflict) {
                 if (Objects.equals(type, "L")) {
                     return crs2.getLectureSection();
                 } else if (Objects.equals(type, "T")) {
                     return crs2.getTutSection();
-                } else {return crs2.getPraSection();}
+                } else {
+                    return crs2.getPraSection();
+                }
             }
         }
         return null;
@@ -152,6 +156,5 @@ public class CourseConflictChecker {
         } else return (start.compareTo(start2) > 0) && (end.compareTo(end2) < 0);
     }
 
-    public HashMap<String, List<List<String>>> getConflictMap() {return conflictMap;}
 
 }

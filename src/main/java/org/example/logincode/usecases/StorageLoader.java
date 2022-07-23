@@ -12,8 +12,8 @@ import java.util.logging.Logger;
  * Only if passwords were hashed...
  */
 public class StorageLoader {
-    private static final Logger LOGGER = Logger.getLogger( StorageLoader.class.getName() );
-    private final boolean disable = false;
+    private static final Logger LOGGER = Logger.getLogger(StorageLoader.class.getName());
+    private static final boolean disable = false;
     protected AccountStorage accountStorage;
 
     public StorageLoader(AccountStorage accountStorage) {
@@ -51,8 +51,7 @@ public class StorageLoader {
             out.writeObject(tempAccountStorage);
             out.close();
             fileOut.close();
-        }
-        catch (NotSerializableException nse) {
+        } catch (NotSerializableException nse) {
             LOGGER.log(Level.WARNING, "Couldn't save anything? [1]");
         } catch (IOException i) {
             i.printStackTrace();

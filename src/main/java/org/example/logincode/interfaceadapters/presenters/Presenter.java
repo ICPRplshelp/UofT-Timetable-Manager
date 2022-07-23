@@ -1,11 +1,8 @@
 package org.example.logincode.interfaceadapters.presenters;
 
 import org.example.PresenterPrinter;
-import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Scanner;
 
 public class Presenter {
     protected Scanner scanner = new Scanner(System.in);
@@ -14,9 +11,7 @@ public class Presenter {
     public void parseFailure() {
         prt.println("Failed to parse string to date");
     }
-    public void genericError() {
-        prt.println("An error has occurred.");
-    }
+
 
     public String[] enterCredentials() {
         // register and login both use this method since their procedures are identical

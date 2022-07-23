@@ -1,7 +1,10 @@
 package org.example.logincode.entities;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This class represents the permissions a user has.
@@ -40,25 +43,6 @@ public class Permissions implements ReprAble, Serializable {
         permissions.addAll(Arrays.asList(perms));
     }
 
-    /**
-     * Constructs this class, where the permissions are in an
-     * array of Strings.
-     *
-     * @param arrayOfPerms an array of permissions to add.
-     */
-    public Permissions(String[] arrayOfPerms) {
-        permissions = new HashSet<>(List.of(arrayOfPerms));
-    }
-
-    /**
-     * Constructs this class, where the permissions are in a
-     * collection of Strings.
-     *
-     * @param arrayOfPerms an array of permissions to add.
-     */
-    public Permissions(Collection<String> arrayOfPerms) {
-        permissions = new HashSet<>(arrayOfPerms);
-    }
 
     /**
      * Construct a Permission class with no permissions.
@@ -105,21 +89,6 @@ public class Permissions implements ReprAble, Serializable {
         return true;
     }
 
-    /**
-     * Checks if this account has ALL the permissions in perms.
-     *
-     * @param perms a collection of permission names to check.
-     * @return whether the account has all the permissions.
-     */
-    public boolean hasPerm(String[] perms) {
-        // I miss Python comprehensions
-        for (String perm : perms) {
-            if (!this.getPermissions().contains(perm)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * Attempt to add the permission.
@@ -128,26 +97,14 @@ public class Permissions implements ReprAble, Serializable {
      * @return whether adding the permission was successful.
      */
     public boolean addPerm(String perm) {
-        if (perm.matches("[A-Za-z0-9]+")) {
+        if (perm.matches("[A-Za-z\\d]+")) {
             this.permissions.add(perm);
             return true;
         } else return false;
     }
 
-    public void addPerm(Collection<String> perm) {
-        this.permissions.addAll(perm);
-    }
-
     public void removePerm(String perm) {
         this.permissions.remove(perm);
-    }
-
-    public void removePerm(Collection<String> perm) {
-        this.permissions.removeAll(perm);
-    }
-
-    public void clearPerms() {
-        this.permissions.clear();
     }
 
 }
