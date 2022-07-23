@@ -40,10 +40,6 @@ public class BanStatus implements ReprAble, Serializable {
         bannedUntil = null;
     }
 
-    public Date getBannedUntil() {
-        return bannedUntil;
-    }
-
     public boolean isBanned() {
         return this.bannedUntil != null && this.bannedUntil.after(getToday());
     }

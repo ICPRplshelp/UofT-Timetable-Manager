@@ -21,7 +21,7 @@ public class ControllerInputFactory {
 
     public ControllerInputFactory(AccountManager manager,
                                   StorageManager storageManager,
-                                  CourseSearcherGetter csg){
+                                  CourseSearcherGetter csg) {
         this.manager = manager;
         this.storageManager = storageManager;
         this.csg = csg;
@@ -33,11 +33,11 @@ public class ControllerInputFactory {
 
     /**
      * Obtain the controller input.
-     * @param typeOf the controller input to give me
      *
+     * @param typeOf the controller input to give me
      * @return the ControllerInput to return
      */
-    public ControllerInput getControllerInput(LoggedInState typeOf){
+    public ControllerInput getControllerInput(LoggedInState typeOf) {
         switch (typeOf) {
             case STANDARD -> {
                 return new ControllerInputStandard(manager, storageManager, standardPresenter);

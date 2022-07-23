@@ -17,7 +17,7 @@ public class TimetableCommunicatorIndividual {
     private final CourseChoice cc;
 
 
-    // umm actually please don't use singletons haha
+    // umm, actually please don't use singletons haha
 
 
     public TimetableCommunicatorIndividual(Timetable timetable, CourseChoice cc) {
@@ -41,26 +41,26 @@ public class TimetableCommunicatorIndividual {
 
     private Set<TimetableWarning> getAllWarnsFromCourseChoice() {
         CourseWarning courseWarning = timetable.getWarning(cc);
-        if(courseWarning == null) return new HashSet<>();
+        if (courseWarning == null) return new HashSet<>();
         return courseWarning.getAllWarnings();
     }
 
     public List<String> getSectionsFromCourse() {
         List<String> outputSoFar = new ArrayList<>();
-        if(Objects.isNull(cc.getLectureSection())){
-            if(!cc.checkLec()) outputSoFar.add("LEC????");
+        if (Objects.isNull(cc.getLectureSection())) {
+            if (!cc.checkLec()) outputSoFar.add("LEC????");
         } else {
             outputSoFar.add(cc.getLectureSection());
         }
 
-        if(Objects.isNull(cc.getTutSection())){
-            if(!cc.checkTut()) outputSoFar.add("TUT????");
+        if (Objects.isNull(cc.getTutSection())) {
+            if (!cc.checkTut()) outputSoFar.add("TUT????");
         } else {
             outputSoFar.add(cc.getTutSection());
         }
 
-        if(Objects.isNull(cc.getPraSection())){
-            if(!cc.checkPra()) outputSoFar.add("PRA????");
+        if (Objects.isNull(cc.getPraSection())) {
+            if (!cc.checkPra()) outputSoFar.add("PRA????");
         } else {
             outputSoFar.add(cc.getPraSection());
         }

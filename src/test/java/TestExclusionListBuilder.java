@@ -34,7 +34,6 @@ public class TestExclusionListBuilder {
 
     @Test(timeout = 10000)
     public void testEX() {
-        PrerequisiteListBuilder m = new PrerequisiteListBuilder();
         CourseSearcherGetter csgTemp = new CourseSearcherGetter();
         CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
         courseSearcherIndividual.getAllCoursesOfferingList("20229").forEach(crs -> {

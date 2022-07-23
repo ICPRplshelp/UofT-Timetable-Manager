@@ -11,8 +11,8 @@ public class RequisiteCheckerMemoized extends RequisiteChecker {
     Map<String, RequisiteList> memoizedPrqs = new HashMap<>();
     Map<String, RequisiteList> memoizedExcl = new HashMap<>();
 
-    public boolean check(Collection<String> courseAsString, String requisiteAsString){
-        if(memoizedPrqs.containsKey(requisiteAsString)){
+    public boolean check(Collection<String> courseAsString, String requisiteAsString) {
+        if (memoizedPrqs.containsKey(requisiteAsString)) {
             return memoizedPrqs.get(requisiteAsString).check(courseAsString);
         }
         RequisiteList temp = plb.buildRequisiteList(requisiteAsString);
@@ -22,8 +22,8 @@ public class RequisiteCheckerMemoized extends RequisiteChecker {
     }
 
     public boolean checkExclusions(Collection<String> courseAsString,
-                                   String exclusionsAsString){
-        if(memoizedExcl.containsKey(exclusionsAsString)){
+                                   String exclusionsAsString) {
+        if (memoizedExcl.containsKey(exclusionsAsString)) {
             return memoizedExcl.get(exclusionsAsString).check(courseAsString);
         }
         RequisiteList temp = elb.buildRequisiteList(exclusionsAsString);

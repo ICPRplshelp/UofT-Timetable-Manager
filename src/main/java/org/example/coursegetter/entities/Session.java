@@ -20,8 +20,9 @@ public class Session {
 
     /**
      * Create a course storage.
+     *
      * @param courseMap a map of courses.
-     * @param session the session of the courses.
+     * @param session   the session of the courses.
      */
     public Session(Map<String, Course> courseMap, String session) {
         this.courses = courseMap;
@@ -38,7 +39,7 @@ public class Session {
      * @param fullCourseCode the course code, in a format similar to CSC110Y1-F
      * @return the Course if one is found, or null otherwise.
      */
-    public Course getCourse(String fullCourseCode){
+    public Course getCourse(String fullCourseCode) {
         return courses.get(fullCourseCode);
     }
 
@@ -48,17 +49,8 @@ public class Session {
      *
      * @return a set of all the course codes.
      */
-    public Set<String> getCourseOfferingListAsString(){
+    public Set<String> getCourseOfferingListAsString() {
         return Collections.unmodifiableSet(courses.keySet());
     }
 
-    /**
-     * Gets a set of all the course codes.
-     * The set may not be modified.
-     *
-     * @return a set of all the course codes.
-     */
-    public Set<String> getCourseListAsString(){
-        return Collections.unmodifiableSet(courseList);
-    }
 }

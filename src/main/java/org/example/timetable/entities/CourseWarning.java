@@ -1,24 +1,25 @@
 package org.example.timetable.entities;
 
-import org.example.timetable.entities.warningtypes.ExclusionWarning;
 import org.example.timetable.entities.warningtypes.TimetableWarning;
+import org.example.timetable.entities.warningtypes.WarningType;
 
 import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class CourseWarning  implements Serializable {
+public class CourseWarning implements Serializable {
 
     private final Map<WarningLevel, Set<TimetableWarning>> warnings = new HashMap<>();
 
-    public CourseWarning(){
+    public CourseWarning() {
 
     }
 
     /**
      * Flatten all warnings into a single set.
      * The set is sorted based on the warning concerned.
+     *
      * @return all warnings.
      */
     public Set<TimetableWarning> getAllWarnings() {
@@ -28,9 +29,8 @@ public class CourseWarning  implements Serializable {
     }
 
 
-
-    public void addWarning(TimetableWarning timetableWarning){
-        if (!warnings.containsKey(timetableWarning.getWarningLevel())){
+    public void addWarning(TimetableWarning timetableWarning) {
+        if (!warnings.containsKey(timetableWarning.getWarningLevel())) {
             warnings.put(timetableWarning.getWarningLevel(), new HashSet<>());
         }
 
@@ -38,19 +38,23 @@ public class CourseWarning  implements Serializable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         ArrayList<String> result = new ArrayList<>();
-        for (WarningLevel warningLevel: WarningLevel.values()) {
+        for (WarningLevel warningLevel : WarningLevel.values()) {
             Set<String> warningStrings = new HashSet<>();
 
             if (!(warnings.get(warningLevel) == null)) {
                 List<TimetableWarning> aList = new ArrayList<>(warnings.get(warningLevel));
-                return aList.get(0).getWarningLevel() + " WARNING " + aList.get(0).getWarningType() + " ERROR";
+                List<WarningType> warnList = new ArrayList<>();
+
+                for (int i = 0; i < aList.size(); i++) {
+                    warnList.add(aList.get(i).getWarningType());
+                }
+                return warnList.toString();
             }
         }
         return "No warnings found";
     }
-
 
 
 }

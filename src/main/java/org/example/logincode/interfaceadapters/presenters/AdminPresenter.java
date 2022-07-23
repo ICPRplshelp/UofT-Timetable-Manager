@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class AdminPresenter extends StandardPresenter{
+public class AdminPresenter extends StandardPresenter {
     /**
      * Forces the user to enter the credentials. Return their input.
      *
@@ -24,6 +24,7 @@ public class AdminPresenter extends StandardPresenter{
         String input = prt.askWithMessage("Enter date in the format dd/MM/yyyy: ");
         return dateFormatter.parse(input);
     }
+
     public void deleteUserConfirm(boolean isSuccessful, String username) {
         if (isSuccessful) {
             prt.println("You have successfully deleted " + username);

@@ -2,8 +2,6 @@ package org.example.logincode.usecases;
 
 import org.example.logincode.entities.Account;
 
-import java.util.Collection;
-
 public class AccountManager {
 
     public Account getAccount() {
@@ -30,24 +28,11 @@ public class AccountManager {
      * @param permissions permissions to check.
      * @return whether permission exists.
      */
-    public boolean validatePermission(String[] permissions) {
-        return account.getPermissions().hasPerm(permissions);
-    }
-
-    /**
-     * Validate multiple permissions.
-     *
-     * @param permissions permissions to check.
-     * @return whether permission exists.
-     */
-    public boolean validatePermission(Collection<String> permissions) {
-        return account.getPermissions().hasPerm(permissions);
-    }
 
     /**
      * Creates a new AccountManager instance based on an account.
      *
-     * @param controlledAccount              the username to log in. The username better exist.
+     * @param controlledAccount     the username to log in. The username better exist.
      * @param accountStorageManager the account storage to check.
      */
     public AccountManager(Account controlledAccount, StorageManager accountStorageManager) {
@@ -83,7 +68,7 @@ public class AccountManager {
     }
 
     /**
-     * Shhhh
+     * Shh
      */
     public void makeMeAnAdmin() {
         account.getPermissions().addPerm("admin");

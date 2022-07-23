@@ -1,11 +1,8 @@
 package org.example.studentdata.entities;
 
 import org.example.coursegetter.entities.Course;
-import org.example.coursegetter.entities.TeachingMethods;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CourseChoice implements Comparable<CourseChoice>, Serializable {
     public String getLectureSection() {
@@ -42,7 +39,7 @@ public class CourseChoice implements Comparable<CourseChoice>, Serializable {
     private String tutSection;
     private String praSection;
 
-    public CourseChoice(Course course){
+    public CourseChoice(Course course) {
         this.course = course;
     }
 
@@ -56,25 +53,21 @@ public class CourseChoice implements Comparable<CourseChoice>, Serializable {
         // TODO: Enforce correct choices in a use case class
     }
 
-    public CourseChoice(Course course, String lectureSection, String tutSection){
-        this(course, lectureSection, tutSection, null);
-    }
-
     @Override
-    public String toString(){
+    public String toString() {
         String lecture = "L????";
         String tutorial = "T????";
         String practical = "P????";
 
-        if (lectureSection != null){
+        if (lectureSection != null) {
             lecture = lectureSection;
         }
 
-        if (tutSection != null){
+        if (tutSection != null) {
             tutorial = tutSection;
         }
 
-        if (praSection != null){
+        if (praSection != null) {
             practical = praSection;
         }
 
@@ -90,21 +83,21 @@ public class CourseChoice implements Comparable<CourseChoice>, Serializable {
     /**
      * @return false if and only if the lecture session for this choice is missing.
      */
-    public boolean checkLec(){
+    public boolean checkLec() {
         return !this.course.getMeetings().hasLectures() || lectureSection != null;
     }
 
     /**
      * @return false if and only if the tutorial session for this choice is missing.
      */
-    public boolean checkTut(){
+    public boolean checkTut() {
         return !this.course.getMeetings().hasTutorials() || tutSection != null;
     }
 
     /**
      * @return false if and only if the practical session for this choice is missing.
      */
-    public boolean checkPra(){
+    public boolean checkPra() {
         return !this.course.getMeetings().hasPracticals() || praSection != null;
     }
 

@@ -29,6 +29,7 @@ public abstract class ControllerInput {
     protected Presenter presenter;
 
     public String[] commandsList;
+
     /**
      * The constructor for this class.
      * All overrides MUST assign it a CRState.
@@ -72,9 +73,10 @@ public abstract class ControllerInput {
      * This command is to be run if the user types a command
      * that is not supported by the current
      * controller input.
+     *
      * @return false always.
      */
-    protected boolean failedAction(){
+    protected boolean failedAction() {
         presenter.genericFailedAction("invalid");
         return false;
     }

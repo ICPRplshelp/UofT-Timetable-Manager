@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BreadthRequirement  implements Serializable {
+public class BreadthRequirement implements Serializable {
 
     private final double courseWeight;
     private final List<Integer> brFilled;
