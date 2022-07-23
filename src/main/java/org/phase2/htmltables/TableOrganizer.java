@@ -29,6 +29,7 @@ public class TableOrganizer {
      * not both).
      * @param cells a collection os IScheduleEntry objects, which will all
      *              be placed in the timetable.
+     *              NO CLASS MAY CONFLICT OR START/END AT XX:30
      * @return the HTML string of the table, including the table tag.
      * Use this HTML string on one of Java Swing's labels to display the table.
      */
