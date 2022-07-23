@@ -4,10 +4,7 @@ package org.phase2.htmltables;
  * This is in the presenter layer as it decides what to place there.
  * This generates HTML code for HTML tables.
  */
-public class TableGenerator {
-
-
-
+class TableGenerator {
 
     /**
      * Generates the HTML inner table.

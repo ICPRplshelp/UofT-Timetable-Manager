@@ -1,7 +1,7 @@
 package org.phase2.htmltables;
 
 
-public interface HTMLTableCell {
+interface HTMLTableCell {
     /**
      * Note that TDs may be returned in this method, so any class
      * that uses an object of type HTMLTableCell should not

@@ -1,6 +1,6 @@
 package org.phase2.htmltables;
 
-public class FreeCell implements HTMLTableCell {
+class FreeCell implements HTMLTableCell {
 
 
     @Override

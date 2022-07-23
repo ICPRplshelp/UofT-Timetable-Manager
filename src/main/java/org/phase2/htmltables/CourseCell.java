@@ -5,7 +5,7 @@ import org.phase2.studentrelated.presenters.IScheduleEntry;
 
 import java.util.Objects;
 
-public class CourseCell implements HTMLTableCell {
+class CourseCell implements HTMLTableCell {
 
     private final String htmlText;
 
