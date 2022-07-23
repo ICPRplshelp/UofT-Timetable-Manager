@@ -27,7 +27,7 @@ public class WarningChecker2 {
      * @param passed  the courses the student has taken in the past
      * @return a map mapping each applicable warning type to the courses that it affects.
      */
-    public Map<WarningType, Set<String>> checkCourseWarnings(Set<String> planned, Set<String> passed) {
+    public Map<String, Set<WarningType>> checkCourseWarnings(Set<String> planned, Set<String> passed) {
 
 
         throw new RuntimeException();
@@ -41,7 +41,7 @@ public class WarningChecker2 {
      * @return a map mapping each warning type to each ScheduleEntry
      * that would fall victim to the warning.
      */
-    public Map<WarningType, Set<IScheduleEntry>> checkTimetableWarnings(Map<String, Set<String>> planned) {
+    public Map<IScheduleEntry, Set<WarningType>> checkTimetableWarnings(Map<String, Set<String>> planned) {
         Set<IScheduleEntry> allScheduleEntries = generateScheduleEntriesAll(planned);
         for (String crs : planned.keySet()) {
             Set<String> meetings = planned.get(crs);

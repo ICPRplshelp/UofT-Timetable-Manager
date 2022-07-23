@@ -1,5 +1,6 @@
 package org.phase2.studentrelated.entities;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
@@ -8,7 +9,7 @@ import java.util.TreeSet;
 /**
  * This class represents a student.
  */
-public class Student2 {
+public class Student2 implements Serializable {
 
     /**
      * Items are course codes.

@@ -29,21 +29,36 @@ public class StudentManager {
     }
 
     /**
-     * Returns a list of courses the student has planned.
+     * Adds crs to the passed courses if it exists.
+     * The same passed course cannot be stored twice regardless of its session,
+     * though you still need the session code.
      *
-     * @return a list of courses the student has planned.
+     * @param crs the course code
+     * @return whether adding the course was successful.
      */
     public boolean addToPassedCourses(String crs) {
         Course course = pastSearcher.getCourse(crs);
         if (course == null) {
             return false;
         }
+        Set<String> passedCrsesTemp = student.getPassedCourses();
+        // recreate the above set but remove the last two characters from each element
+        Set<String> passedCrses = new HashSet<>();
+        for (String crsStripped : passedCrsesTemp) {
+            passedCrses.add(crsStripped.substring(0, crsStripped.length() - 2));
+        }
+        if(passedCrses.contains(crs.substring(0, crs.length() - 2))){
+            return false;  // suffixes don't matter
+        }
+
         return student.addToPassedCourses(crs);
 
     }
 
     /**
-     * Adds crs to the planned courses if it exists; otherwise, cry about it.
+     * Adds crs to the planned courses if it exists.
+     * @param crs the course code
+     * @return whether adding the course was successful.
      */
     public boolean addToPlannedCourses(String crs) {
         Course course = plannedSearcher.getCourse(crs);
