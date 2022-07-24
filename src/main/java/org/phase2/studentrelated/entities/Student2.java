@@ -1,10 +1,7 @@
 package org.phase2.studentrelated.entities;
 
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * This class represents a student.
@@ -13,6 +10,8 @@ public class Student2 implements Serializable {
 
     /**
      * Items are course codes.
+     * Course codes do not have the -F/-Y/-S suffix.
+     *
      * passedCourses and plannedCourses.keySet() do not have to be
      * disjoint, although a warning should pop up
      * if that is the case.
@@ -44,11 +43,13 @@ public class Student2 implements Serializable {
 
     /**
      * Items are course codes.
+     * These courses do not have the section code -F/-Y/-S.
+     *
      * passedCourses and plannedCourses.keySet() do not have to be
      * disjoint, although a warning should pop up
      * if that is the case.
      */
-    private Set<String> passedCourses;
+    private final Set<String> passedCourses = new TreeSet<>();
 
     /**
      * Keys are course codes (CSC110Y1-F);
@@ -67,14 +68,14 @@ public class Student2 implements Serializable {
      * Example:
      * {"CSC110Y1-F": {"LEC0101", "TUT0101"}, "MAT137Y1-Y": {"LEC0101": "TUT0101"}}
      */
-    private Map<String, Set<String>> plannedCourses;
+    private final Map<String, Set<String>> plannedCourses = new TreeMap<>();
 
     public boolean addToPassedCourses(String crs) {
         return passedCourses.add(crs);
     }
 
     public boolean removeFromPassedCourses(String crs) {
-        return passedCourses.remove(crs);
+        return passedCourses.remove(crs.substring(0, Math.min(8, crs.length())));
     }
 
     public boolean addToPlannedCourses(String crs) {
@@ -100,7 +101,7 @@ public class Student2 implements Serializable {
      *                          code
      */
     public boolean addMeetingToPlannedCourse(String crs, String meeting) {
-        if (!(meeting.matches("") && meeting.length() == 7)) return false;
+        if (!(meeting.matches("(LEC|TUT|PRA)\\d{4}") && meeting.length() == 7)) return false;
         if (!plannedCourses.containsKey(crs)) return false;
         String firstThreeLetters = meeting.substring(0, 3);
         Set<String> meetings = plannedCourses.get(crs);

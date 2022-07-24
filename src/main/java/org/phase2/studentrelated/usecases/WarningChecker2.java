@@ -3,6 +3,7 @@ package org.phase2.studentrelated.usecases;
 import org.example.timetable.entities.warningtypes.WarningType;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -12,10 +13,10 @@ import java.util.Set;
  * that are causing such problems.
  */
 public class WarningChecker2 {
-    private final CrsSearcher plannedSearcher;
-    private final CrsSearcher pastSearcher;
+    private final CourseSearchAdapter plannedSearcher;
+    private final CourseSearchAdapterPrev pastSearcher;
 
-    public WarningChecker2(CrsSearcher plannedSearcher, CrsSearcher pastSearcher) {
+    public WarningChecker2(CourseSearchAdapter plannedSearcher, CourseSearchAdapterPrev pastSearcher) {
         this.plannedSearcher = plannedSearcher;
         this.pastSearcher = pastSearcher;
     }
@@ -29,8 +30,8 @@ public class WarningChecker2 {
      */
     public Map<String, Set<WarningType>> checkCourseWarnings(Set<String> planned, Set<String> passed) {
 
-
-        throw new RuntimeException();
+        return Collections.emptyMap();
+        // throw new RuntimeException();
     }
 
 
@@ -57,7 +58,7 @@ public class WarningChecker2 {
             }
         }
 
-        throw new RuntimeException();
+        return Collections.emptyMap();
     }
 
     /**

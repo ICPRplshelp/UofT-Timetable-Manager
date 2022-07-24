@@ -7,7 +7,7 @@ package org.phase2.htmltables;
 class OccupiedCell implements HTMLTableCell{
     @Override
     public String getHTMLText() {
-        return "";
+        return "<!-- Occupied -->";
     }
 
     @Override
