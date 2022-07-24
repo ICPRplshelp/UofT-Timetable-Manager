@@ -36,7 +36,7 @@ public class TableOrganizer {
     public String generateHTMLTable(Collection<IScheduleEntry> cells){
         HTMLTableCell[][] rawTableBody = transposeTable(genRawTableBody(cells));
         HTMLTableCell[] head = generateHead();
-        return "<table>" +
+        return "<table border=\"1\">" +
                 tableGenerator.generateInnerHTMLTable(head, rawTableBody)
                 + "</table>";
     }
@@ -116,8 +116,9 @@ public class TableOrganizer {
                 throw new ConflictException();
             }
             cellArray[startHour] = new CourseCell(ise, fallWinter);
-            for (int i = startHour + 1; i < endHour; i++) {
+            for (int i = ++startHour; i < endHour; i++) {
                 if (!cellArray[startHour].isEmpty()) {
+                    System.out.println(startHour);
                     throw new ConflictException();
                 }
                 cellArray[i] = new OccupiedCell();

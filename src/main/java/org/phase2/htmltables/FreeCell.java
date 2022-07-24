@@ -5,7 +5,7 @@ class FreeCell implements HTMLTableCell {
 
     @Override
     public String getHTMLText() {
-        return "<td></td>";
+        return "<td>  </td>";
     }
 
     @Override

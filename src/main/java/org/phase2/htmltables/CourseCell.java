@@ -12,7 +12,7 @@ class CourseCell implements HTMLTableCell {
 
     public CourseCell(IScheduleEntry se, char session){
         int stHr = se.getStartTime().getHour();
-        int enHr = se.getStartTime().getHour();
+        int enHr = se.getEndTime().getHour();
         if(se.getStartTime().getMinute() != 0 || se.getEndTime().getMinute() != 0){
             throw new RuntimeException("A class in your timetable started" +
                     " or ended on a time other than the hour");
@@ -27,7 +27,7 @@ class CourseCell implements HTMLTableCell {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("<td rowspan=\"%d\">", rowSpan));
         sb.append(se.getCourseCode()).append("<br>");
-        sb.append(se.getMeetingCode());
+        sb.append(se.getMeetingCode()).append("<br>");
         sb.append(se.getStartTime().toString());
         sb.append("-");
         sb.append(se.getEndTime().toString());
