@@ -1,27 +1,53 @@
 package org.example.coursegetter.entities;
 
+import org.jetbrains.annotations.NotNull;
+import org.phase2.studentrelated.presenters.IScheduleEntry;
+
 import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Map;
+import java.util.Objects;
 
-public class ScheduleEntry implements Comparable<ScheduleEntry>, Serializable {
+public class ScheduleEntry implements Comparable<ScheduleEntry>, Serializable, IScheduleEntry {
     private final String assignedRoom1;  // room in the fall.
 
-    public String getAssignedRoom1() {
-        return assignedRoom1;
+    @Override
+    public String getCourseCode() {
+        return courseCode;
     }
 
+    @Override
+    public String getMeetingCode() {
+        return meetingCode;
+    }
+
+    public String getAssignedRoom1() {
+        return Objects.requireNonNullElse(assignedRoom1, "");
+    }
+
+    public String getAssignedRoom2() {
+        return Objects.requireNonNullElse(assignedRoom2, "");
+    }
+
+    // always null if the course
+    // is an S course.
+    private final String courseCode;
+    private final String meetingCode;
+    private final String assignedRoom2;  // room in the winter.
     private final String meetingStartTime;
     private final String meetingDay;
     private final String meetingEndTime;
 
 
-    public ScheduleEntry(Map<String, Object> sInfo) {
+    public ScheduleEntry(Map<String, Object> sInfo, String crsCode, String meetingCode) {
         this.assignedRoom1 = (String) sInfo.get("assignedRoom1");
+        this.assignedRoom2 = (String) sInfo.get("assignedRoom2");
         this.meetingStartTime = (String) sInfo.get("meetingStartTime");
         this.meetingDay = (String) sInfo.get("meetingDay");
         this.meetingEndTime = (String) sInfo.get("meetingEndTime");
+        this.courseCode = crsCode;
+        this.meetingCode = meetingCode;
     }
 
     /**
@@ -88,7 +114,7 @@ public class ScheduleEntry implements Comparable<ScheduleEntry>, Serializable {
      * Async schedule entries are assumed to start earlier than monday 12AM.
      */
     @Override
-    public int compareTo(ScheduleEntry o) {
+    public int compareTo(@NotNull ScheduleEntry o) {
         int asyncCode = dealWithAsync(o);
         if (asyncCode != 0) return asyncCode == 2 ? 0 : asyncCode;
         // step 1: compare dates

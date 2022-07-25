@@ -14,7 +14,7 @@ public class TimetableCommunicatorBulkBuilder {
      * @return the associated TimetableCommuniatorBulk.
      */
     public TimetableCommunicatorBulk buildit(AccountManager accm) {
-        Student stud = accm.getAccount().getStudent();
+        Student stud = accm.getAccount().getStudentOld();
         Timetable timetable = stud.getTimetable();
 
         StudentInferrer st = new StudentInferrer(stud);

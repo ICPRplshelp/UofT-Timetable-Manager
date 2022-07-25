@@ -1,9 +1,12 @@
 package org.example.coursegetter.entities;
 
+import org.jetbrains.annotations.NotNull;
+import org.phase2.studentrelated.presenters.ICourse;
+
 import java.io.Serializable;
 import java.util.Map;
 
-public class Course implements Comparable<Course>, Serializable {
+public class Course implements Comparable<Course>, Serializable, ICourse {
     // public final int brq;
     public final BreadthRequirement brc;
     private final double creditValue;
@@ -32,7 +35,7 @@ public class Course implements Comparable<Course>, Serializable {
         this.deliveryInstructions = (String) cInfo.get("deliveryInstructions");
         this.courseTitle = (String) cInfo.get("courseTitle");
         this.corequisite = (String) cInfo.get("corequisite");
-        this.meetings = new Meetings((Map<String, Object>) cInfo.get("meetings"));
+        this.meetings = new Meetings((Map<String, Object>) cInfo.get("meetings"), getOfferingCode());
         this.creditValue = calculateCourseCreditValue();
         this.brc = new BreadthRequirement(this.breadthCategories, this.creditValue);
     }
@@ -118,7 +121,7 @@ public class Course implements Comparable<Course>, Serializable {
     }
 
     @Override
-    public int compareTo(Course o) {
+    public int compareTo(@NotNull Course o) {
         // Priority 1: level of the course - 1 < 2 < 3 < 4
         // Priority 2: The last two digits of the course code - CSC258H1 -> 58
         // Priority 3: campus - 1 < 0 < 5 < 3 < 9 < 2 < 4 < 6 < 7 < 8, left is higher

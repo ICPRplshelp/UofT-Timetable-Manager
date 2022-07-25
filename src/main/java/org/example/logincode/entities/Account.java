@@ -1,6 +1,7 @@
 package org.example.logincode.entities;
 
 import org.example.studentdata.entities.Student;
+import org.phase2.studentrelated.entities.Student2;
 
 import java.io.Serializable;
 
@@ -14,7 +15,8 @@ public class Account implements Serializable {
     private final DateEntries accountHistory;
 
     // I'm using student here because it seems like Student is storing all the data that a 'StudentData' entity should have.
-    private final Student student;
+    private final Student studentOld;
+    private final Student2 student = new Student2();
 
     /**
      * Constructs the account.
@@ -31,7 +33,7 @@ public class Account implements Serializable {
         this.accountHistory = new DateEntries();
         this.permissions = new Permissions();
 //        this.permissionLevel = 0;  // the default permission level is 0
-        student = new Student();
+        studentOld = new Student();
     }
 
 
@@ -77,8 +79,8 @@ public class Account implements Serializable {
         this.accountHistory.addDate(Today.getToday());
     }
 
-    public Student getStudent() {
-        return student;
+    public Student getStudentOld() {
+        return studentOld;
     }
 
 }

@@ -21,10 +21,10 @@ public class Meetings implements Serializable {
     private final Map<String, Meeting> tutorials = new TreeMap<>();
     private final Map<String, Meeting> practicals = new TreeMap<>();
 
-    public Meetings(Map<String, Object> mInfo1) {
+    public Meetings(Map<String, Object> mInfo1, String crsCode) {
         for (Object hmv : mInfo1.values()) {
             Map<String, Object> hmv2 = (Map<String, Object>) hmv;
-            Meeting tempMeeting = new Meeting(hmv2);
+            Meeting tempMeeting = new Meeting(hmv2, crsCode);
             switch (tempMeeting.getTeachingMethod()) {
                 case "LEC" -> lectures.put(tempMeeting.toString(), tempMeeting);
                 case "TUT" -> tutorials.put(tempMeeting.toString(), tempMeeting);
