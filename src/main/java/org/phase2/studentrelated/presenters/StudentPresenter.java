@@ -6,11 +6,11 @@ import org.phase2.studentrelated.usecases.WarningChecker2;
 
 import java.util.*;
 
-public class Presenter {
+public class StudentPresenter {
     private final WarningChecker2 warningChecker;
     private final StudentManager sm;
 
-    public Presenter(WarningChecker2 warningChecker, StudentManager sm) {
+    public StudentPresenter(WarningChecker2 warningChecker, StudentManager sm) {
         this.warningChecker = warningChecker;
         this.sm = sm;
     }
