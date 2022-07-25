@@ -26,7 +26,7 @@ public class WarningChecker2 {
      *
      * @param planned all planned courses and the only courses to check warnings for
      * @param passed  the courses the student has taken in the past
-     * @return a map mapping each applicable warning type to the courses that it affects.
+     * @return a map mapping each course to the warnings it has.
      */
     public Map<String, Set<WarningType>> checkCourseWarnings(Set<String> planned, Set<String> passed) {
 
@@ -39,8 +39,7 @@ public class WarningChecker2 {
      * Check timetable-related warnings for a set of planned courses.
      *
      * @param planned a student's planned courses with lecture section info.
-     * @return a map mapping each warning type to each ScheduleEntry
-     * that would fall victim to the warning.
+     * @return a map mapping each ScheduleEntry to the Warnings it may have.
      */
     public Map<IScheduleEntry, Set<WarningType>> checkTimetableWarnings(Map<String, Set<String>> planned) {
         Set<IScheduleEntry> allScheduleEntries = generateScheduleEntriesAll(planned);
