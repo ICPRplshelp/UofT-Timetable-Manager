@@ -1,4 +1,4 @@
-package org.phase2.htmltables;
+package org.example.htmltables;
 
 public class NotOnHourException extends RuntimeException {
 }

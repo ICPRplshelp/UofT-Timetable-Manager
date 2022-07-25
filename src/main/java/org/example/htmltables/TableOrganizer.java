@@ -1,4 +1,4 @@
-package org.phase2.htmltables;
+package org.example.htmltables;
 
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 
