@@ -22,5 +22,5 @@ Note that there are no distance checks.
 You'll have to add it yourself or scrap
 the idea.
 
-All classes here are in the **presenter**
+All classes here are in the **studentPresenter**
 layer.
