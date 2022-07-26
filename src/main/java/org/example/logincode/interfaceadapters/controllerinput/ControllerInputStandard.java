@@ -1,5 +1,7 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
+import org.example.logincode.interfaceadapters.controllers.ControllerBase;
+import org.example.logincode.interfaceadapters.controllers.ControllerStandard;
 import org.example.logincode.interfaceadapters.presenters.StandardPresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
@@ -8,22 +10,39 @@ public class ControllerInputStandard extends ControllerInput {
 
     protected final StandardPresenter presenter;
 
+    @Override
+    public ControllerStandard getController() {
+        return controller;
+    }
+
+    protected final ControllerStandard controller;
+
     public ControllerInputStandard(AccountManager manager, StorageManager accountStorageManager, StandardPresenter presenter) {
         super(manager, accountStorageManager, presenter);
         this.presenter = presenter;
         curState = LoggedInState.STANDARD;
+        controller = new ControllerStandard(manager, accountStorageManager, curState);
         commandsList = new String[]{"history", "adminview", "coursesearch", "ttview", "setpassword", "secretadmin"};
     }
 
     @Override
     public boolean inputParser(String input) {
         switch (input) {
-            case "history" -> printUserHistory();
-            case "adminview" -> switchToAdminView();
-            case "coursesearch" -> this.curState = LoggedInState.COURSE_SEARCHER;
-            case "ttview" -> this.curState = LoggedInState.TIMETABLE;
+            case "history" -> {
+                presenter.printHistory(controller.printUserHistory());
+            }
+            case "adminview" -> {
+                if (!controller.switchToAdminView())
+                    presenter.genericFailedAction("noPerms");
+            }
+            case "coursesearch" -> controller.switchToCourseSearchView();
+            case "ttview" -> controller.switchToTimetableView();
 
-            case "setpassword" -> changePassword();
+            case "setpassword" -> {
+                String[] newPasswords = presenter.passwordChangePrompt();
+                if (!controller.changePassword(newPasswords))
+                    presenter.genericFailedAction("invPassword");
+            }
             case "secretadmin" -> manager.makeMeAnAdmin();
             default -> {
                 return failedAction();
@@ -33,25 +52,5 @@ public class ControllerInputStandard extends ControllerInput {
         return true;
     }
 
-    private void changePassword() {
-        String[] newPasswords = presenter.passwordChangePrompt();
-        boolean passwordSuccess = manager.setPassword(newPasswords[0], newPasswords[1]);
-        if (!passwordSuccess) {
-            presenter.genericFailedAction("invPassword");
-        }
-    }
-
-    private void switchToAdminView() {
-        if (!manager.validatePermission("admin")) {
-            presenter.genericFailedAction("noPerms");
-        } else {
-            curState = LoggedInState.ADMIN;
-        }
-    }
-
-    private void printUserHistory() {
-        String ts = manager.getAccountHistoryAsString();
-        presenter.printHistory(ts);
-    }
 
 }

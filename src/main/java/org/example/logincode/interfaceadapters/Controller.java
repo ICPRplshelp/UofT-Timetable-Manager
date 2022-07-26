@@ -71,9 +71,9 @@ public class Controller {
         // run the input and have it then perform the operation with the input
         cInput.inputParser(input);
         // update the controller input
-        if (cInput.getCurState() != null) {
+        if (cInput.getController().getCurState() != null) {
             // update the current loginState.
-            loggedInState = cInput.getCurState();
+            loggedInState = cInput.getController().getCurState();
         }
         accountStorageManager.updateSave();
         // otherwise, do not update the current loginState

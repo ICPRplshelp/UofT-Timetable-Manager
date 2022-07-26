@@ -3,6 +3,7 @@ package org.example.coursegetter.usecases;
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.entities.SessionStorage;
 
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -44,4 +45,5 @@ public class CourseSearcherIndividual {
     public Set<String> getAllCoursesOfferingList(String session) {
         return sessionStorage.getSession(session).getCourseOfferingListAsString();
     }
+
 }

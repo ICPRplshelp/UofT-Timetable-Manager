@@ -5,6 +5,7 @@ import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -60,8 +61,9 @@ public class CourseSearchAdapterPrev {
 
     @Nullable
     private Course getCoursePlain(String code) {
+        Collection<Course> obtainedCourses = new ArrayList<>();
         for (String ses : sessions) {
-            Collection<Course> obtainedCourses = getCourseSearcher().getCourseByCourseCode(ses, code);
+            obtainedCourses.add(getCourseSearcher().getCourseOfferingByCode(ses, code)) ;
             if (obtainedCourses.size() != 0) {
                 for (Course obtainedCourse : obtainedCourses) {
                     return obtainedCourse;

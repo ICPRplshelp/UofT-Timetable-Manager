@@ -1,5 +1,7 @@
 package org.example.logincode.interfaceadapters.controllerinput;
 
+import org.example.logincode.interfaceadapters.controllers.ControllerAdmin;
+import org.example.logincode.interfaceadapters.controllers.ControllerBase;
 import org.example.logincode.interfaceadapters.presenters.AdminPresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.AdminAccountManager;
@@ -11,6 +13,11 @@ import java.util.Date;
 public class ControllerInputAdmin extends ControllerInput {
 
     protected final AdminPresenter presenter;
+    protected final ControllerAdmin controller;
+    @Override
+    public ControllerBase getController() {
+        return controller;
+    }
 
     /**
      * The constructor for this class.
@@ -22,22 +29,43 @@ public class ControllerInputAdmin extends ControllerInput {
     public ControllerInputAdmin(AccountManager manager, StorageManager accountStorageManager, AdminPresenter presenter) {
         super(manager, accountStorageManager, presenter);
         this.presenter = presenter;
+        this.controller = new ControllerAdmin(manager, accountStorageManager);
         this.curState = LoggedInState.ADMIN;
         commandsList = new String[]{"ban", "delete", "new", "promote", "back"};
     }
 
     public boolean inputParser(String input) {
-        // if the super call was not successful
-        AdminAccountManager adminAccountManager = new AdminAccountManager(manager, accountStorageManager);
+
         switch (input) {
-            case "ban" -> banUser(adminAccountManager);
+            case "ban" -> {
+                String userToBan = presenter.enterUsername();
+                // special case w/ the code block here; presenter.enterDate may throw an exception.
+                Date unbanDate = new Date();
+                try {
+                    unbanDate = presenter.enterDate();
+                } catch (ParseException e) {
+                    // Unsure if this is supposed to be printed to screen; put into presenter for now.
+                    presenter.parseFailure();
+                }
+                presenter.banUserConfirm(controller.banUser(userToBan, unbanDate), userToBan); }
 
-            case "delete" -> deleteUser(adminAccountManager);
+            case "delete" -> {
+                String userToDelete = presenter.enterUsername();
+                presenter.deleteUserConfirm(controller.deleteUser(userToDelete), userToDelete);
 
-            case "new" -> createNewAdminUser(adminAccountManager);
+            }
 
-            case "promote" -> promoteUserToAdmin(adminAccountManager);
-            case "back" -> curState = LoggedInState.STANDARD;
+            case "new" -> {
+                String[] inputs = presenter.enterCredentials();
+                presenter.createNewAdminConfirm(controller.createNewAdminUser(inputs), inputs[0]);
+            }
+
+            case "promote" -> {
+                String userToPromote = presenter.enterUsername();
+
+                presenter.promoteUserConfirm(controller.promoteUserToAdmin(userToPromote), userToPromote);
+            }
+            case "back" -> controller.returnToStandardView();
             default -> {
                 return this.failedAction();
             }
@@ -45,38 +73,5 @@ public class ControllerInputAdmin extends ControllerInput {
         return true;
     }
 
-    private void promoteUserToAdmin(AdminAccountManager adminAccountManager) {
-        String userToPromote = presenter.enterUsername();
-        presenter.promoteUserConfirm(adminAccountManager.addPermission(userToPromote, "admin"), userToPromote);
-        // promoteUserToAdmin(userToPromote);
-    }
 
-    private void createNewAdminUser(AdminAccountManager adminAccountManager) {
-        String[] inputs = presenter.enterCredentials();
-        boolean isCreated = adminAccountManager.createNewAdminUser(inputs[0], inputs[1]);
-        presenter.createNewAdminConfirm(isCreated, inputs[0]);
-    }
-
-    private void deleteUser(AdminAccountManager adminAccountManager) {
-        String userToDelete = presenter.enterUsername();
-        boolean delUserSuccess = adminAccountManager.deleteUser(userToDelete);
-        presenter.deleteUserConfirm(delUserSuccess, userToDelete);
-
-        // deleteUser(userToDelete);
-    }
-
-    private void banUser(AdminAccountManager adminAccountManager) {
-        String userToBan = presenter.enterUsername();
-        Date unbanDate = new Date();
-        try {
-            unbanDate = presenter.enterDate();
-        } catch (ParseException e) {
-            // Unsure if this is supposed to be printed to screen; put into presenter for now.
-            presenter.parseFailure();
-        }
-        boolean banCheck = adminAccountManager.banUser(userToBan, unbanDate);
-        presenter.banUserConfirm(banCheck, userToBan);
-
-        // banUser(userToBan, unbanDate);
-    }
 }
