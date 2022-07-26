@@ -1,12 +1,11 @@
 package org.phase2.studentrelated.usecases;
 
+import org.example.coursegetter.entities.Course;
+import org.example.requisitechecker.usecases.RequisiteChecker;
 import org.example.timetable.entities.warningtypes.WarningType;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * The warning checker does not need to pinpoint the courses
@@ -29,8 +28,31 @@ public class WarningChecker2 {
      * @return a map mapping each applicable warning type to the courses that it affects.
      */
     public Map<String, Set<WarningType>> checkCourseWarnings(Set<String> planned, Set<String> passed) {
+        List<String> plannedCourses = new ArrayList<>(planned);
+        List<String> plannedList = new ArrayList<>();
 
-        return Collections.emptyMap();
+        for (String string : plannedCourses) {
+            String substring = string.substring(0, string.length() - 2);
+            plannedList.add(substring);}
+
+        List<String> allList = new ArrayList<>();
+        allList.addAll(plannedList); allList.addAll(passed);
+
+        Map<String, Set<WarningType>> warnList = new HashMap<>();
+
+        for (String plannedCourse : plannedCourses) {
+            CheckRequisite checker = new CheckRequisite(plannedCourse);
+
+            String exclusion = plannedSearcher.getCourse(plannedCourse).getExclusion();
+            String coreq = plannedSearcher.getCourse(plannedCourse).getCorequisite();
+            String prereq = plannedSearcher.getCourse(plannedCourse).getPrerequisite();
+
+            checker.exclusionChecker(allList, exclusion, warnList);
+            checker.prereqChecker(allList, prereq, warnList);
+            checker.coreqChecker(plannedList, coreq, warnList);
+        }
+
+        return warnList;
         // throw new RuntimeException();
     }
 
@@ -80,5 +102,4 @@ public class WarningChecker2 {
         }
         return scheduleEntries;
     }
-
 }
