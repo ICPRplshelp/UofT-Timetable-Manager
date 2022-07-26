@@ -44,12 +44,12 @@ public class ControllerInputCourseSearch extends ControllerInput {
         switch (input) {
             case "search" -> {
                 String keyword = presenter.searchCoursesByKeyword();
-                ParseCourseListHelper(controller.searchCurrentCourses(keyword), keyword);
+                parseCourseListHelper(controller.searchCurrentCourses(keyword), keyword);
             }
             case "pastcourses" -> {
                 String keyword = presenter.searchCoursesByKeyword();
                 String session = presenter.enterSession();
-                ParseCourseListHelper(controller.searchPastCourses(keyword, session), keyword);
+                parseCourseListHelper(controller.searchPastCourses(keyword, session), keyword);
             }
             case "courseinfo" -> {
                 String searchedCourse = presenter.searchSingleCourse();
@@ -84,7 +84,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
         return true;
     }
 
-    public void ParseCourseListHelper(List<String> courseCodes, String keyword) {
+    public void parseCourseListHelper(List<String> courseCodes, String keyword) {
         if (courseCodes.size() == 0) {
             presenter.searchCoursesByKeywordError();
             presenter.printText("");    // spacer
