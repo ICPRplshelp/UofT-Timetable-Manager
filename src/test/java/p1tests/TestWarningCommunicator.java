@@ -1,3 +1,5 @@
+package p1tests;
+
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.studentdata.entities.CourseChoice;

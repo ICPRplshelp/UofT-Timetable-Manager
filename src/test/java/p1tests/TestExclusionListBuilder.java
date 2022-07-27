@@ -1,3 +1,5 @@
+package p1tests;
+
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.example.requisitechecker.entities.RequisiteList;
