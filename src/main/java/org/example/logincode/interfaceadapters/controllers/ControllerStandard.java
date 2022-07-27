@@ -1,12 +1,12 @@
 package org.example.logincode.interfaceadapters.controllers;
 
-import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;
+import org.example.logincode.uiinput.trash.LoggedInState;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 
 public class ControllerStandard extends ControllerBase {
 
-    public ControllerStandard(AccountManager manager, StorageManager accountStorageManager, LoggedInState curState) {
+    public ControllerStandard(AccountManager manager, StorageManager accountStorageManager) {
         super(manager, accountStorageManager);
         this.curState = LoggedInState.STANDARD;
     }

@@ -1,8 +1,8 @@
-package org.example.logincode.interfaceadapters.controllerinput;
+package org.example.logincode.uiinput.trash;
 
 import org.example.coursegetter.usecases.*;
 import org.example.logincode.interfaceadapters.controllers.ControllerBase;
-import org.example.logincode.interfaceadapters.controllers.ControllerCourseSearcher;
+import org.example.logincode.interfaceadapters.controllers.DONOTUSETHISCLASS;
 import org.example.logincode.interfaceadapters.presenters.CoursePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ControllerInputCourseSearch extends ControllerInput {
 
-    private final ControllerCourseSearcher controller;
+    private final DONOTUSETHISCLASS controller;
     @Override
     public ControllerBase getController() {
         return controller;
@@ -35,7 +35,7 @@ public class ControllerInputCourseSearch extends ControllerInput {
         super(manager, accountStorageManager, presenter);
         this.presenter = presenter;
         this.curState = LoggedInState.COURSE_SEARCHER;
-        this.controller = new ControllerCourseSearcher(manager, accountStorageManager, csg);
+        this.controller = new DONOTUSETHISCLASS(manager, accountStorageManager, csg);
         commandsList = new String[]{"search", "pastcourses", "courseinfo", "sections", "back"};
     }
 

@@ -1,4 +1,4 @@
-package org.example.logincode.interfaceadapters.controllerinput;
+package org.example.logincode.uiinput.trash;
 
 import org.example.logincode.interfaceadapters.controllers.ControllerBase;
 import org.example.logincode.interfaceadapters.presenters.Presenter;
@@ -47,6 +47,12 @@ public abstract class ControllerInput {
         this.presenter = presenter;
     }
 
+    public ControllerInput(){
+        this.manager = null;
+        this.accountStorageManager = null;
+        this.presenter = null;
+    }
+
 
 
     /**
@@ -78,8 +84,7 @@ public abstract class ControllerInput {
      * @return false always.
      */
     protected boolean failedAction() {
-        presenter.genericFailedAction("invalid");
-        return false;
+        throw new RuntimeException("STOP USING LEGACY CODE");
     }
 
     public ControllerBase getController() {

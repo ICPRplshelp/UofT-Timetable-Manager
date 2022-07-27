@@ -1,16 +1,10 @@
-package org.example.logincode.interfaceadapters.controllerinput;
+package org.example.logincode.uiinput.trash;
 
-import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.logincode.interfaceadapters.controllers.ControllerBase;
-import org.example.logincode.interfaceadapters.controllers.ControllerTimetable;
+import org.example.logincode.interfaceadapters.controllers.DONOTUSE2;
 import org.example.logincode.interfaceadapters.presenters.TimetablePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
-import org.example.studentdata.usecases.StudentManager;
-import org.example.studentdata.usecases.StudentManagerBuilder;
-import org.example.timetable.interfaceadapters.TimetableController;
-import org.example.timetable.usecases.TimetableCommunicatorBulk;
 import org.example.timetable.usecases.TimetableCommunicatorBulkBuilder;
 
 public class ControllerInputTimetable extends ControllerInput {
@@ -19,9 +13,9 @@ public class ControllerInputTimetable extends ControllerInput {
 
     private final TimetableCommunicatorBulkBuilder timetableCommunicatorBulkBuilder = new TimetableCommunicatorBulkBuilder();
 
-    private final ControllerTimetable controller;
+    private final DONOTUSE2 controller;
     @Override
-    public ControllerTimetable getController() {
+    public DONOTUSE2 getController() {
         return controller;
     }
 
@@ -40,7 +34,7 @@ public class ControllerInputTimetable extends ControllerInput {
                                     CourseSearcherGetter csg) {
         super(manager, accountStorageManager, presenter);
         this.presenter = presenter;
-        controller = new ControllerTimetable(manager, accountStorageManager, csg);
+        controller = new DONOTUSE2(manager, accountStorageManager, csg);
         this.curState = LoggedInState.TIMETABLE;
 
         commandsList = new String[]{

@@ -2,8 +2,7 @@ package org.example.logincode.interfaceadapters.controllers;
 
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;
-import org.example.logincode.interfaceadapters.presenters.TimetablePresenter;
+import org.example.logincode.uiinput.trash.LoggedInState;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 import org.example.studentdata.usecases.StudentManager;
@@ -12,7 +11,7 @@ import org.example.timetable.interfaceadapters.TimetableController;
 import org.example.timetable.usecases.TimetableCommunicatorBulk;
 import org.example.timetable.usecases.TimetableCommunicatorBulkBuilder;
 
-public class ControllerTimetable extends ControllerBase {
+public class DONOTUSE2 extends ControllerBase {
     private final CourseSearcherGetter csg;
     private final StudentManager sm;
 
@@ -23,8 +22,8 @@ public class ControllerTimetable extends ControllerBase {
     private final TimetableController ttc;
     private final TimetableCommunicatorBulkBuilder timetableCommunicatorBulkBuilder = new TimetableCommunicatorBulkBuilder();
 
-    public ControllerTimetable(AccountManager manager, StorageManager accountStorageManager,
-                               CourseSearcherGetter csg) {
+    public DONOTUSE2(AccountManager manager, StorageManager accountStorageManager,
+                     CourseSearcherGetter csg) {
         super(manager, accountStorageManager);
         ttc = new TimetableController(getTCB());
         StudentManagerBuilder smb = new StudentManagerBuilder();

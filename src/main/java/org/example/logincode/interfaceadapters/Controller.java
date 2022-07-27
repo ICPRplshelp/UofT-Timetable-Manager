@@ -1,9 +1,9 @@
 package org.example.logincode.interfaceadapters;
 
 import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.logincode.interfaceadapters.controllerinput.ControllerInput;
-import org.example.logincode.interfaceadapters.controllerinput.ControllerInputFactory;
-import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;
+import org.example.logincode.uiinput.trash.ControllerInput;
+import org.example.logincode.uiinput.trash.ControllerInputFactory;
+import org.example.logincode.uiinput.trash.LoggedInState;
 import org.example.logincode.interfaceadapters.presenters.LoginPresenter;
 import org.example.logincode.usecases.AccountCreator;
 import org.example.logincode.usecases.AccountLogin;
