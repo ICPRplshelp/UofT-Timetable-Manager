@@ -1,4 +1,4 @@
-package org.phase2.htmltables;
+package org.example.htmltables;
 
 /**
  * Used for cells that are occupied by a course before
