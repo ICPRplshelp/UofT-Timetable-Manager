@@ -11,8 +11,6 @@ import java.util.Objects;
 
 /**
  * Capable of searching courses from previous sections.
- * You still need the -F/-S/-Y code, though, to minimize
- * problems.
  * Terrible news for the user.
  * <p>
  * By the way, I'm not responsible for what is returned by
@@ -47,6 +45,14 @@ public class CourseSearchAdapterPrev {
         }
     }
 
+    /**
+     * Try its best to grab course info for a course code with
+     * the suffix -F/-S/-Y.
+     * @param code a course code with the suffix -F/-S/-Y
+     * @return the course, if possible.
+     * Please do not check its
+     * lecture sections - the metadata for it is enough.
+     */
     @Nullable
     private Course getCourseOffering(String code) {
         for (String ses : sessions) {
@@ -59,11 +65,18 @@ public class CourseSearchAdapterPrev {
         return null;
     }
 
+    /**
+     * Try its best to grab course info for a course code WITHOUT
+     * the suffix -F/-S/-Y.
+     * @param code a course code WITHOUT the suffix -F/-S/-Y
+     * @return the course, if possible.
+     * Please do not check its
+     * lecture sections - the metadata for it is enough.
+     */
     @Nullable
     private Course getCoursePlain(String code) {
-        Collection<Course> obtainedCourses = new ArrayList<>();
         for (String ses : sessions) {
-            obtainedCourses.add(getCourseSearcher().getCourseOfferingByCode(ses, code)) ;
+            Collection<Course> obtainedCourses = getCourseSearcher().getCourseByCourseCode(ses, code);
             if (obtainedCourses.size() != 0) {
                 for (Course obtainedCourse : obtainedCourses) {
                     return obtainedCourse;

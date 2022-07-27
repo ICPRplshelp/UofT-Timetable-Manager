@@ -3,7 +3,9 @@ package org.example.coursegetter.usecases;
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.entities.SessionStorage;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,6 +35,25 @@ public class CourseSearcherIndividual {
         String searchableCourse = courseInputValidator.courseOfferingToSearchableCourse(crsCode);
         if (searchableCourse == null) return null;
         return sessionStorage.getSession(session).getCourse(searchableCourse);
+    }
+
+    /**
+     * Given a course code, this method searches for all course
+     * offerings by this course code.
+     *
+     * @param crsCode the course code such as MAT135H1
+     * @return a collection of courses such as MAT135H1-F, MAT135H1-S, MAT135H1-Y
+     */
+    public Collection<Course> getCourseByCourseCode(String session, String crsCode) {
+        List<Course> courseList = new ArrayList<>();
+        String[] suffixes = {"-F", "-S", "-Y"};
+        for (String suffix : suffixes) {
+            String courseToSearch = crsCode + suffix;
+            Course tempCourse = getCourseOfferingByCode(session, courseToSearch);
+            if (tempCourse != null)
+                courseList.add(tempCourse);
+        }
+        return courseList;
     }
 
     /**
