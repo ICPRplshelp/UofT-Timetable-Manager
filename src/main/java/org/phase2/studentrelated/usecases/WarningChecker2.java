@@ -39,7 +39,7 @@ public class WarningChecker2 {
      * Check timetable-related warnings for a set of planned courses.
      *
      * @param planned a student's planned courses with lecture section info.
-     * @return a map mapping each schedule entry to the set of warnings it has.
+     * @return a map mapping each ScheduleEntry to the Warnings it may have.
      */
     public Map<IScheduleEntry, Set<WarningType>> checkTimetableWarnings(Map<String, Set<String>> planned) {
         Set<IScheduleEntry> allScheduleEntries = generateScheduleEntriesAll(planned);
