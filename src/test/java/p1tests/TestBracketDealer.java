@@ -1,3 +1,5 @@
+package p1tests;
+
 import org.example.requisitechecker.usecases.internal.BracketDealer;
 import org.junit.Assert;
 import org.junit.Test;
