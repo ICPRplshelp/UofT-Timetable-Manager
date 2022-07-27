@@ -1,4 +1,4 @@
-package org.example.htmltables;
+package org.phase2.htmltables;
 
 class HeaderCell implements HTMLTableCell {
 

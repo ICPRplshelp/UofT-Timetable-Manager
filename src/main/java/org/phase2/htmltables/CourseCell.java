@@ -1,4 +1,4 @@
-package org.example.htmltables;
+package org.phase2.htmltables;
 
 import org.jetbrains.annotations.NotNull;
 import org.phase2.studentrelated.presenters.IScheduleEntry;

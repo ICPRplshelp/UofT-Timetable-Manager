@@ -1,6 +1,6 @@
 package org.phase2.studentrelated;
 
-import org.example.htmltables.TableOrganizer;
+import org.phase2.htmltables.TableOrganizer;
 import org.phase2.studentrelated.controllers.StudentController;
 import org.phase2.studentrelated.entities.Student2;
 import org.phase2.studentrelated.presenters.IScheduleEntry;

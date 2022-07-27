@@ -1,4 +1,4 @@
-package org.example.htmltables;
+package org.phase2.htmltables;
 
 /**
  * This is in the presenter layer as it decides what to place there.
