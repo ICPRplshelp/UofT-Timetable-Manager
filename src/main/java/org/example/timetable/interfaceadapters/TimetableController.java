@@ -17,13 +17,18 @@ public class TimetableController {
         this.tcb = tcb;
     }
 
-
+    /**
+     * Presents the current student timetable to the user.
+     */
     public void presentTimeTable() {
         new WarningCommunicator(tcb.getTimetable());
         Collection<TimetableCommunicatorIndividual> indvC = tcb.getIndividualCommunicators();
         presenter.printTimetableInformation(indvC);
     }
 
+    /**
+     * Presents all previous courses taken to the user.
+     */
     public void presentPreviousCourses() {
         Collection<Course> previousCourses = tcb.getTimetable().getPreviousCourses();
         presenter.printPrevCourseInformation(previousCourses);

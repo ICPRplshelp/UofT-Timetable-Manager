@@ -46,7 +46,7 @@ class CourseStorageObtainer {
         // fo.readFile(pathToFile);
 
         Map<String, Course> courses = getCourses(crsJsonAsStr);
-        return new Session(courses, session);
+        return new Session(courses);
 
     }
 

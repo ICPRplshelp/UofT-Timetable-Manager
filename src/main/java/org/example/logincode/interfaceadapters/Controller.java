@@ -13,7 +13,7 @@ import org.example.logincode.usecases.StorageManager;
 public class Controller {
 
     private final StorageManager accountStorageManager = new StorageManager();
-    LoginPresenter loginPresenter = new LoginPresenter();
+    final LoginPresenter loginPresenter = new LoginPresenter();
     private AccountManager manager;
 
 
@@ -31,10 +31,6 @@ public class Controller {
 
     public LoginState getLoginState() {
         return loginState;
-    }
-
-    public LoggedInState getLoggedInState() {
-        return this.loggedInState;
     }
 
     /**
@@ -72,12 +68,12 @@ public class Controller {
             loginPresenter.genericFailedAction("invalid");
             return;  // oops, invalid
         }
-        // run the input and have it performs the operation with the input
+        // run the input and have it then perform the operation with the input
         cInput.inputParser(input);
         // update the controller input
-        if (cInput.getCurState() != null) {
+        if (cInput.getController().getCurState() != null) {
             // update the current loginState.
-            loggedInState = cInput.getCurState();
+            loggedInState = cInput.getController().getCurState();
         }
         accountStorageManager.updateSave();
         // otherwise, do not update the current loginState

@@ -5,8 +5,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class TestBreadthRequirements {
-    CourseSearcherGetter csgTemp = new CourseSearcherGetter();
-    CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
+    final CourseSearcherGetter csgTemp = new CourseSearcherGetter();
+    final CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
 
     @Test(timeout = 4500)
     public void testBrq() {

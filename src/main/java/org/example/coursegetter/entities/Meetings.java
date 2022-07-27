@@ -81,11 +81,4 @@ public class Meetings implements Serializable {
         return !practicals.isEmpty();
     }
 
-    public Collection<TeachingMethods> getTeachingMethods() {
-        ArrayList<TeachingMethods> teachingMethods = new ArrayList<>();
-        if (hasLectures()) teachingMethods.add(TeachingMethods.LEC);
-        if (hasTutorials()) teachingMethods.add(TeachingMethods.TUT);
-        if (hasPracticals()) teachingMethods.add(TeachingMethods.PRA);
-        return teachingMethods;
-    }
 }

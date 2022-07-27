@@ -47,22 +47,6 @@ public class AdminAccountManager extends AccountManager {
         }
     }
 
-    public boolean revokePermission(String username, String permission) {
-        if (account.getPermissions().hasPerm("admin")) {
-            if (!accountStorageManager.checkAccountExists(username)) {
-                return false; // this user does not exist!
-            }
-            Account targetAccount = accountStorageManager.getAccount(username);
-            Permissions tempPerm = targetAccount.getPermissions();
-            tempPerm.removePerm(permission); // permission input must be in camelCase
-            //accountStorageManager.loadedStorage.updateAccount(targetAccount);
-            return true;
-        } else {
-            return false; // tentative: you do not have the permissions to do this!
-            // (Figure out if you need two error messages??)
-        }
-    }
-
     public boolean banUser(String username, Date unbanDate) {
         if (account.getPermissions().hasPerm("canBanUser")) {
             if (!accountStorageManager.checkAccountExists(username)) {
@@ -75,20 +59,6 @@ public class AdminAccountManager extends AccountManager {
             banTarget.getBanStatus().ban(unbanDate);
             //accountStorageManager.loadedStorage.updateAccount(banTarget);
             return true; // this user has been banned until (date)
-        } else {
-            return false; // tentative: you do not have the permissions to do this!
-        }
-    }
-
-    public boolean unbanUser(String username) {
-        if (account.getPermissions().hasPerm("canBanUser")) {
-            if (!accountStorageManager.checkAccountExists(username)) {
-                return false; // this user does not exist!
-            }
-            Account banTarget = accountStorageManager.getAccount(username);
-            banTarget.getBanStatus().unban();
-            //accountStorageManager.loadedStorage.updateAccount(banTarget);
-            return true; // if this user has been banned, they are now unbanned.
         } else {
             return false; // tentative: you do not have the permissions to do this!
         }

@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 public class TestWarningCommunicator {
 
-    CourseSearcherGetter csg = new CourseSearcherGetter();
+    final CourseSearcherGetter csg = new CourseSearcherGetter();
 
 
     @Test(timeout = 5600)
