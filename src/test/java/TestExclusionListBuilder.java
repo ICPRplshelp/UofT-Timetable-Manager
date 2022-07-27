@@ -3,7 +3,6 @@ import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.example.requisitechecker.entities.RequisiteList;
 import org.example.requisitechecker.usecases.RequisiteChecker;
 import org.example.requisitechecker.usecases.internal.ExclusionListBuilder;
-import org.example.requisitechecker.usecases.internal.PrerequisiteListBuilder;
 import org.junit.Test;
 
 import java.util.ArrayList;

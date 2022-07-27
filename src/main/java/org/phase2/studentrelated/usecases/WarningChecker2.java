@@ -26,7 +26,7 @@ public class WarningChecker2 {
      *
      * @param planned all planned courses and the only courses to check warnings for
      * @param passed  the courses the student has taken in the past
-     * @return a map mapping each course to the warnings it has.
+     * @return a map mapping each applicable course (with the suffix) to the warnings it has.
      */
     public Map<String, Set<WarningType>> checkCourseWarnings(Set<String> planned, Set<String> passed) {
 

@@ -1,8 +1,6 @@
 package org.example.logincode.entities;
 
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,27 +18,10 @@ import java.util.Set;
 public class Permissions implements ReprAble, Serializable {
     // superclasses may access permissions - meaning only in this package.
 
-    public static final String adminStr = "admin";
     private final Set<String> permissions;  // = new HashSet<String>();
 
     public String toString() {
         return permissions.toString();
-    }
-
-    public String repr() {
-        StringBuilder sb = new StringBuilder();
-        this.permissions.forEach(indvPerm -> sb.append(indvPerm).append(":"));
-        if (!sb.isEmpty()) {
-            sb.deleteCharAt(sb.length() - 1);
-        }
-        return sb.toString();
-    }
-
-    public void setFromRepr(String reprString) {
-        permissions.clear();
-        String[] perms = reprString.split(":");
-
-        permissions.addAll(Arrays.asList(perms));
     }
 
 
@@ -69,26 +50,6 @@ public class Permissions implements ReprAble, Serializable {
 
     // [PERMCLASS].hasPerm("admin")
 
-    /**
-     * Checks if this account has ALL the permissions in perms.
-     *
-     * @param perms an array of permission names to check.
-     * @return whether the account has all the permissions.
-     */
-    public boolean hasPerm(Collection<String> perms) {
-        // I miss Python comprehensions
-
-        if (this.getPermissions().contains(adminStr)) {
-            return true;
-        }
-        for (String perm : perms) {
-            if (!this.getPermissions().contains(perm)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
 
     /**
      * Attempt to add the permission.
@@ -101,10 +62,6 @@ public class Permissions implements ReprAble, Serializable {
             this.permissions.add(perm);
             return true;
         } else return false;
-    }
-
-    public void removePerm(String perm) {
-        this.permissions.remove(perm);
     }
 
 }

@@ -2,6 +2,8 @@ package org.example.logincode.interfaceadapters.controllerinput;
 
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
+import org.example.logincode.interfaceadapters.controllers.ControllerBase;
+import org.example.logincode.interfaceadapters.controllers.ControllerTimetable;
 import org.example.logincode.interfaceadapters.presenters.TimetablePresenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
@@ -12,13 +14,19 @@ import org.example.timetable.usecases.TimetableCommunicatorBulk;
 import org.example.timetable.usecases.TimetableCommunicatorBulkBuilder;
 
 public class ControllerInputTimetable extends ControllerInput {
-    private final CourseSearcherGetter csg;
-    private final StudentManager sm;
 
-    protected TimetablePresenter presenter;
+    protected final TimetablePresenter presenter;
 
-    private final TimetableController ttc;
     private final TimetableCommunicatorBulkBuilder timetableCommunicatorBulkBuilder = new TimetableCommunicatorBulkBuilder();
+
+    private final ControllerTimetable controller;
+    @Override
+    public ControllerTimetable getController() {
+        return controller;
+    }
+
+
+
 
     /**
      * The constructor for this class.
@@ -32,11 +40,7 @@ public class ControllerInputTimetable extends ControllerInput {
                                     CourseSearcherGetter csg) {
         super(manager, accountStorageManager, presenter);
         this.presenter = presenter;
-        ttc = new TimetableController(getTCB());
-        StudentManagerBuilder smb = new StudentManagerBuilder();
-        sm = smb.buildStudentManager(manager);
-        this.csg = csg;
-
+        controller = new ControllerTimetable(manager, accountStorageManager, csg);
         this.curState = LoggedInState.TIMETABLE;
 
         commandsList = new String[]{
@@ -55,36 +59,67 @@ public class ControllerInputTimetable extends ControllerInput {
 
         switch (input) {
             case "view" -> {
-                ttc.presentTimeTable();
+                controller.getTTC().presentTimeTable();
                 return true;
             }
 
             case "viewprevcourses" -> {
-                ttc.presentPreviousCourses();
+                controller.getTTC().presentPreviousCourses();
                 return true;
             }
 
             case "addcourse" -> {
-                return addCourse();
+                String rqc = presenter.addCourse();
+                boolean success = controller.addCourse(rqc);
+                if (success) {
+                    presenter.addCourseConfirmation();
+                } else {
+                    presenter.addCourseError();
+                }
+                return success;
             }
 
             case "addmeetingtocourse" -> {
-                return addMeetingToCourse();
+                String courseCode = presenter.addMeetingToCourse();
+                String sectionCode = presenter.addSectionToCourse();
+                boolean success = controller.addMeetingToCourse(courseCode, sectionCode);
+                if (success) {
+                    presenter.addMeetingConfirmation();
+                } else presenter.addMeetingError();
+
+                return success;
             }
 
             case "addprevcourse" -> {
-                return addPrevCourse();
+                String courseCode = presenter.addPrevCourse();
+                String session = presenter.addPrevSessionCourse(); // instructions for year + 9 / 5 etc.?
+                boolean success = controller.addPrevCourse(session, courseCode);
+                if (success) {
+                    presenter.addPrevCourseConfirmation(session);
+                } else presenter.addPrevCourseError();
+                return success;
             }
 
             case "delcourse" -> {
-                return delCourse();
+                String courseCode = presenter.deleteCourse();
+                boolean success = controller.delCourse(courseCode);
+                if (success) {
+                    presenter.deleteCourseConfirmation();
+                } else presenter.deleteCourseError();
+                return success;
             }
 
             case "delprevcourse" -> {
-                return delPrevCourse();
+                String courseCode = presenter.deletePrevCourse();
+                boolean success = controller.delPrevCourse(courseCode);
+                if (success) {
+                    presenter.deletePrevCourseConfirmation();
+                } else presenter.deletePrevCourseError();
+                return success;
+
             }
 
-            case "back" -> curState = LoggedInState.STANDARD;
+            case "back" -> controller.returnToStandardView();
 
             case "donothing" -> {
                 return true;
@@ -95,65 +130,5 @@ public class ControllerInputTimetable extends ControllerInput {
         return false;
     }
 
-    public TimetableCommunicatorBulk getTCB() {
-        return timetableCommunicatorBulkBuilder.buildit(manager);
-    }
-
-    private boolean addCourse() {
-        String rqc = presenter.addCourse();
-        Course temp = csg.getCourseSearcher().getCourseOfferingByCode("20229", rqc);
-        boolean addedCourseState = sm.addBlankPlannedCourse(temp);
-        if (addedCourseState) {
-            presenter.addCourseConfirmation();
-        } else {
-            presenter.addCourseError();
-        }
-        return true;
-    }
-
-    private boolean addMeetingToCourse() {
-        String courseCode = presenter.addMeetingToCourse();
-        if (sm.getPlannedCourseByString(courseCode) != null) {
-            String sectionCode = presenter.addSectionToCourse();
-            boolean setCourseState = sm.setCourseChoice(sm.getPlannedCourseByString(courseCode), sectionCode);
-            if (setCourseState) {
-                presenter.addMeetingConfirmation();
-            } else presenter.addMeetingError();
-        }
-        return true;
-    }
-
-    private boolean addPrevCourse() {
-        String courseCode = presenter.addPrevCourse();
-        String session = presenter.addPrevSessionCourse(); // instructions for year + 9 / 5 etc.?
-        Course temp = csg.getCourseSearcher().getCourseOfferingByCode(session, courseCode);
-        boolean setCourseState = sm.addPreviousCourse(temp);
-        if (setCourseState) {
-            presenter.addPrevCourseConfirmation(session);
-        } else presenter.addPrevCourseError();
-
-        return setCourseState;
-    }
-
-    private boolean delCourse() {
-        String courseCode = presenter.deleteCourse();
-
-        boolean setCourseState = sm.removePlannedCourse(sm.getPlannedCourseByString(courseCode));
-        if (setCourseState) {
-            presenter.deleteCourseConfirmation();
-        } else presenter.deleteCourseError();
-
-        return setCourseState;
-    }
-
-    private boolean delPrevCourse() {
-        String courseCode = presenter.deletePrevCourse();
-        boolean setCourseState = sm.removePreviousCourse(sm.getPreviousCourseByString(courseCode));
-        if (setCourseState) {
-            presenter.deletePrevCourseConfirmation();
-        } else presenter.deletePrevCourseError();
-
-        return setCourseState;
-    }
 
 }

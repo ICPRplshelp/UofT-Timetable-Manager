@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Timetable implements Serializable {
 
@@ -73,5 +75,12 @@ public class Timetable implements Serializable {
     public void setPreviousCourses(Collection<Course> previousCourses) {
         this.previousCourses = previousCourses;
     }
+
+    public Collection<CourseChoice> getPlannedCourses(String section){
+        throw new RuntimeException("WHY ARE WE USING A BROKEN CLASS");
+        //Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals(section));
+        // return temp.collect(Collectors.toList());
+    }
 }
+
 

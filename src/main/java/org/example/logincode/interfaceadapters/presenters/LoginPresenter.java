@@ -1,40 +1,11 @@
 package org.example.logincode.interfaceadapters.presenters;
 
-import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;
-
 import java.util.*;
 
 public class LoginPresenter extends Presenter {
 
 
-    // Collection<String> loggedOutPrompt = List.of("PLEASE LOG IN");
-    // Will remove the following prompts after merge
-    Collection<String> loggedInStandardPrompt = List.of(new String[]{
-            "Enter 'history' to see your login history",
-            "Enter 'adminview' to enter the admin view if you are an admin",
-            "Enter 'setpassword' to change your password",
-            "Enter 'secretadmin' to make yourself an admin",
-            "Enter 'ttview' to enter the timetable view"
-    });
-    Collection<String> loggedInAdminOnlyPrompt = List.of(new String[]{
-            "Enter 'ban' to temporarily ban a user",
-            "Enter 'delete' to delete a user",
-            "Enter 'new' to create a new AdminUser",
-            "Enter 'promote' to promote an existing User to Admin",
-            "Enter 'back' to return to the standard user prompt"
-    });
-
-    Collection<String> timetablePrompt = List.of(new String[]{
-            "Enter 'view' to view the current timetable",
-            "Enter 'addcourse' to add a course",
-            "Enter 'addmeetingtocourse' to add a lecture time to a course",
-            "Enter 'addprevcourse' to add a previously taken course",
-            "Enter 'delcourse' to delete a current course",
-            "Enter 'delprevcourse' to delete a previously taken course",
-            "Enter 'back' to return to the standard user prompt"
-    });
-
-    Map<String, String> userPrompt = Map.ofEntries(
+    final Map<String, String> userPrompt = Map.ofEntries(
 
             // Standard user actions
             Map.entry("history", "see your login history"),
@@ -71,27 +42,16 @@ public class LoginPresenter extends Presenter {
     public LoginPresenter() {
     }
 
-    public String printAndAskPrompt(LoggedInState cState) {
-        switch (cState) {
-            case STANDARD -> {
-                return dashboardView(loggedInStandardPrompt);
-            }
-            case ADMIN -> {
-                return dashboardView(loggedInAdminOnlyPrompt);
-            }
-            case TIMETABLE -> {
-                return dashboardView(timetablePrompt);
-            }
-            default -> {
-                return dashboardView(List.of("I would like to list some commands but I cant"));
-            }
-        }
-    }
-
     public String printAndAskPrompt(String[] commandsList) {
         return dashboardView(inputPromptHelper(commandsList));
     }
 
+    /**
+     * Provides a list of prompts in the form of "Enter [command] to [action]" based on the map above.
+     *
+     * @param commandsList the list of commands available to the user
+     * @return the list of commands in prompt form.
+     */
     public Collection<String> inputPromptHelper(String[] commandsList) {
         if (Objects.isNull(commandsList)) return List.of("No command string?");
         try {
