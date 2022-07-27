@@ -31,6 +31,7 @@ public class MTesting {
         sc.addCourse("CHM151Y1-Y");
         sc.addHistoricalCourse("BIO120H1-F");
         sc.addHistoricalCourse("CHM135H1-S");
+
         String pcf = studentPresenter.getPlannedCourseInfo().toString();
         System.out.println(pcf);
         String pcf2 = studentPresenter.getPassedCourseInfo().toString();

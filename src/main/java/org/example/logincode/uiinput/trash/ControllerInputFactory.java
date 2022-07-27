@@ -1,4 +1,4 @@
-package org.example.logincode.interfaceadapters.controllerinput;
+package org.example.logincode.uiinput.trash;
 
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.logincode.interfaceadapters.presenters.AdminPresenter;

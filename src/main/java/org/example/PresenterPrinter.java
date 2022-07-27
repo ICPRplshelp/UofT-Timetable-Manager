@@ -1,5 +1,6 @@
 package org.example;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 /**
@@ -53,6 +54,26 @@ public class PresenterPrinter {
      */
     public void println(String message) {
         System.out.println(message);
+    }
+
+    /**
+     * Prints out an iterable to the screen split by newlines
+     * @param messages the iterable
+     */
+    public void printIterable(Iterable<String> messages) {
+        messages.forEach(System.out::println);
+    }
+
+    public void genericSuccessOrFail(boolean state){
+        if(state) System.out.println("Action successful.");
+        else System.out.println("Incorrect command syntax or action failed.");
+    }
+
+    /**
+     * Prints a generic failed message.
+     */
+    public void failInvalidCommand(){
+        System.out.println("Invalid command.");
     }
 
 }

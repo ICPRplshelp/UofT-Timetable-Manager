@@ -1,4 +1,4 @@
-package org.example.logincode.interfaceadapters.controllerinput;
+package org.example.logincode.uiinput.trash;
 
 /**
  * The page to be returned.

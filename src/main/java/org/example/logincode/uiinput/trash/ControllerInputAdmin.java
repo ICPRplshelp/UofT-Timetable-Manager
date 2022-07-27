@@ -1,10 +1,9 @@
-package org.example.logincode.interfaceadapters.controllerinput;
+package org.example.logincode.uiinput.trash;
 
 import org.example.logincode.interfaceadapters.controllers.ControllerAdmin;
 import org.example.logincode.interfaceadapters.controllers.ControllerBase;
 import org.example.logincode.interfaceadapters.presenters.AdminPresenter;
 import org.example.logincode.usecases.AccountManager;
-import org.example.logincode.usecases.AdminAccountManager;
 import org.example.logincode.usecases.StorageManager;
 
 import java.text.ParseException;

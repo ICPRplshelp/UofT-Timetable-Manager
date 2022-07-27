@@ -1,6 +1,6 @@
 package org.example.logincode.interfaceadapters.controllers;
 
-import org.example.logincode.interfaceadapters.controllerinput.LoggedInState;
+import org.example.logincode.uiinput.trash.LoggedInState;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.AdminAccountManager;
 import org.example.logincode.usecases.StorageManager;
