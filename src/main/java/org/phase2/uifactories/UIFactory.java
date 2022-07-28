@@ -1,16 +1,16 @@
-package org.phase2.uiinputfactories;
+package org.phase2.uifactories;
 
 import org.example.PresenterPrinter;
 import org.example.logincode.uiinput.*;
 import org.phase2.controllerfactories.ControllerFactory;
 
-public class UIStorage {
+public class UIFactory {
 
     private final String username;
     private final ControllerFactory cf;
     private final PresenterPrinter prt;
 
-    public UIStorage(String username) {
+    public UIFactory(String username) {
         this.username = username;
         this.cf = new ControllerFactory();
         this.prt = new PresenterPrinter();
