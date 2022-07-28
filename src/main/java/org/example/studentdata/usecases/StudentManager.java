@@ -1,6 +1,6 @@
 package org.example.studentdata.usecases;
 
-import org.example.coursegetter.entities.Course;
+import org.example.coursegetter.entities.baseclasses.Course;
 import org.example.studentdata.entities.CourseChoice;
 import org.example.studentdata.entities.Student;
 

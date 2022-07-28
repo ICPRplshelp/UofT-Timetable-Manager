@@ -1,5 +1,7 @@
 package org.example.coursegetter.entities;
 
+import org.example.coursegetter.entities.baseclasses.Course;
+
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;

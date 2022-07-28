@@ -1,6 +1,6 @@
 package org.example.timetable.entities;
 
-import org.example.coursegetter.entities.Course;
+import org.example.coursegetter.entities.baseclasses.Course;
 import org.example.studentdata.entities.CourseChoice;
 import org.example.timetable.entities.warningtypes.TimetableWarning;
 
@@ -8,8 +8,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Timetable implements Serializable {
 
