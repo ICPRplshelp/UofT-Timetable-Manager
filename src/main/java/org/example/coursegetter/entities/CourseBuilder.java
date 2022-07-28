@@ -1,5 +1,9 @@
 package org.example.coursegetter.entities;
 
+import org.example.coursegetter.entities.baseclasses.BreadthRequirement;
+import org.example.coursegetter.entities.baseclasses.Course;
+import org.example.coursegetter.entities.baseclasses.Meetings;
+
 public class CourseBuilder {
     private Course course;
 
