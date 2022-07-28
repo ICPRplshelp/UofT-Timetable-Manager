@@ -1,6 +1,5 @@
 package org.example.coursegetter.usecases;
 
-import org.example.coursegetter.entities.*;
 import org.example.coursegetter.entities.baseclasses.Course;
 import org.example.coursegetter.entities.Session;
 import org.example.coursegetter.entities.SessionStorage;

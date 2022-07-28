@@ -1,4 +1,4 @@
-package org.example.coursegetter.entities;
+package org.example.coursegetter.usecases;
 
 import org.example.coursegetter.entities.baseclasses.BreadthRequirement;
 import org.example.coursegetter.entities.baseclasses.Course;
