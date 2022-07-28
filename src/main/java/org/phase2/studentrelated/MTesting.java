@@ -23,6 +23,7 @@ public class MTesting {
         StudentController sc = new StudentController(sm);
         WarningChecker2 wc = new WarningChecker2(courseSearchAdapter, courseSearchAdapterPrev);
         StudentPresenter studentPresenter = new StudentPresenter(wc, sm);
+        sc.addCourse("MAT257Y1-Y");
         sc.addCourse("CSC110Y1-F");
         sc.addMeetingToPlannedCourse("CSC110Y1-F", "LEC0101");
         sc.addMeetingToPlannedCourse("CSC110Y1-F", "TUT0101");

@@ -32,6 +32,12 @@ public class WarningChecker2 {
         return warnList;
     }
 
+    /**
+     * Adds warnings to all courses - that is, requisite warnings.
+     * @param planned planned courses with suffix
+     * @param passed passed courses without suffix
+     * @param warnList warn list to add to
+     */
     private void addRequisiteWarnings(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList) {
         Set<String> plannedF = new HashSet<>();
         Set<String> plannedS = new HashSet<>();
@@ -45,18 +51,17 @@ public class WarningChecker2 {
                 case 'Y' -> plannedY.add(pCrsNoSuffix);
             }
         }
-
         Set<String> passedForS = new HashSet<>(passed);
         passedForS.addAll(plannedF);
-
         Set<String> concurrentF = new HashSet<>(passed);
-
         concurrentF.addAll(plannedF);
         concurrentF.addAll(plannedY);
         Set<String> concurrentSY = new HashSet<>(concurrentF);
         concurrentSY.addAll(plannedS);
+        checkRequisiteIssuesForALlCoursesGivenPlannedPassed(planned, passed, warnList, passedForS, concurrentF, concurrentSY);
+    }
 
-
+    private void checkRequisiteIssuesForALlCoursesGivenPlannedPassed(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList, Set<String> passedForS, Set<String> concurrentF, Set<String> concurrentSY) {
         for (String plannedCourse : planned) {
             CheckRequisite checker = new CheckRequisite(plannedCourse);
 
