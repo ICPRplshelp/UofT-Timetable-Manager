@@ -1,6 +1,6 @@
 package org.example.studentdata.entities;
 
-import org.example.coursegetter.entities.Course;
+import org.example.coursegetter.entities.baseclasses.Course;
 
 import java.io.Serializable;
 

@@ -1,5 +1,5 @@
 package org.example.coursecomparer.entities;
-import org.example.coursegetter.entities.ScheduleEntry;
+import org.example.coursegetter.entities.baseclasses.ScheduleEntry;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 

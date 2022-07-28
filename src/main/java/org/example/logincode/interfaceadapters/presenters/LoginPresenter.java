@@ -103,5 +103,4 @@ public class LoginPresenter extends Presenter {
         prt.println("You have exited the program.");
     }
 
-
 }

@@ -1,7 +1,7 @@
 package org.phase2.studentrelated.usecases;
 
-import org.example.coursegetter.entities.Course;
-import org.example.coursegetter.entities.Meetings;
+import org.example.coursegetter.entities.baseclasses.Course;
+import org.example.coursegetter.entities.baseclasses.Meetings;
 import org.example.coursegetter.entities.TeachingMethods;
 import org.phase2.studentrelated.entities.Student2;
 import org.phase2.studentrelated.presenters.IScheduleEntry;

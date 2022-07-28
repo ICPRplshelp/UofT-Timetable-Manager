@@ -1,9 +1,9 @@
 package org.example.coursecomparer.usecases;
 
-import org.example.coursegetter.entities.Meeting;
-import org.example.coursegetter.entities.Course;
-import org.example.coursegetter.entities.Meetings;
-import org.example.coursegetter.entities.ScheduleEntry;
+import org.example.coursegetter.entities.baseclasses.Meeting;
+import org.example.coursegetter.entities.baseclasses.Course;
+import org.example.coursegetter.entities.baseclasses.Meetings;
+import org.example.coursegetter.entities.baseclasses.ScheduleEntry;
 import org.example.studentdata.entities.CourseChoice;
 import org.example.timetable.entities.Timetable;
 import org.example.coursecomparer.entities.CourseTimeslots;

@@ -1,17 +1,16 @@
 package org.example.logincode.interfaceadapters.controllers;
 
-import org.example.logincode.uiinput.trash.LoggedInState;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.AdminAccountManager;
 import org.example.logincode.usecases.StorageManager;
 
 import java.util.Date;
 
-public class ControllerAdmin extends ControllerBase {
+public class ControllerAdmin {
 
-    AdminAccountManager adminAccountManager;
+    private final AdminAccountManager adminAccountManager;
     public ControllerAdmin(AccountManager manager, StorageManager accountStorageManager) {
-        super(manager, accountStorageManager, LoggedInState.ADMIN);
+        // super(manager, accountStorageManager, LoggedInState.ADMIN);
         adminAccountManager = new AdminAccountManager(manager, accountStorageManager);
     }
 

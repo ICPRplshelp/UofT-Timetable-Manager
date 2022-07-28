@@ -5,11 +5,26 @@ import org.example.logincode.entities.Permissions;
 
 import java.util.Date;
 
-public class AdminAccountManager extends AccountManager {
+public class AdminAccountManager {
+
+    private final Account account;
+    private final StorageManager storageManager;
+
+
+    /**
+     * Constructs this class.
+     * @param account the admin account
+     * @param storageManager the account storage which the admin may
+     *                do stuff to.
+     */
+    public AdminAccountManager(Account account, StorageManager storageManager){
+        this.account = account;
+        this.storageManager = storageManager;
+    }
 
     public AdminAccountManager(AccountManager controlledAccountManager, StorageManager accountStorageManager) {
-        super(controlledAccountManager.account, accountStorageManager);
-        // new HashSet<String>(List.of(new String[]{"TH", "IS"}));
+        this.account = controlledAccountManager.getAccount();
+        this.storageManager = accountStorageManager;
     }
 
     /**
@@ -17,7 +32,7 @@ public class AdminAccountManager extends AccountManager {
      */
     public boolean createNewAdminUser(String username, String password) {
         if (account.getPermissions().hasPerm("admin")) {
-            AccountCreator tempSystem = new AccountCreator(accountStorageManager);
+            AccountCreator tempSystem = new AccountCreator(storageManager);
             Account candidateAccount = tempSystem.createAccount(username, password);
             if (candidateAccount == null) {
                 return false;
@@ -33,10 +48,10 @@ public class AdminAccountManager extends AccountManager {
 
     public boolean addPermission(String username, String permission) {
         if (account.getPermissions().hasPerm("admin")) {
-            if (!accountStorageManager.checkAccountExists(username)) {
+            if (!storageManager.checkAccountExists(username)) {
                 return false; // this user does not exist!
             }
-            Account targetAccount = accountStorageManager.getAccount(username);
+            Account targetAccount = storageManager.getAccount(username);
             Permissions tempPerm = targetAccount.getPermissions();
             tempPerm.addPerm(permission); // permission input must be in camelCase
             //accountStorageManager.loadedStorage.updateAccount(targetAccount);
@@ -49,10 +64,10 @@ public class AdminAccountManager extends AccountManager {
 
     public boolean banUser(String username, Date unbanDate) {
         if (account.getPermissions().hasPerm("canBanUser")) {
-            if (!accountStorageManager.checkAccountExists(username)) {
+            if (!storageManager.checkAccountExists(username)) {
                 return false; // this user does not exist!
             }
-            Account banTarget = accountStorageManager.getAccount(username);
+            Account banTarget = storageManager.getAccount(username);
             if (banTarget.getPermissions().hasPerm("admin") || account == banTarget) {
                 return false; // you can't ban an admin or yourself!
             }
@@ -66,13 +81,13 @@ public class AdminAccountManager extends AccountManager {
 
     public boolean deleteUser(String username) {
         if (account.getPermissions().hasPerm("admin")) {
-            if (accountStorageManager.checkAccountExists(username)) {
-                Account deletionTarget = accountStorageManager.getAccount(username);
+            if (storageManager.checkAccountExists(username)) {
+                Account deletionTarget = storageManager.getAccount(username);
                 if ((deletionTarget.getPermissions().hasPerm("admin") || account == deletionTarget)) {
                     return false;  // you tried to ban yourself or another admin.
                 }
                 // if (account.permissionLevel() > banTarget.permissionLevel()) - tentative
-                return accountStorageManager.removeAccount(deletionTarget);
+                return storageManager.removeAccount(deletionTarget);
 
                 // return true; // this account has been deleted.
             } else {

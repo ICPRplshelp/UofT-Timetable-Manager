@@ -15,7 +15,7 @@ import java.util.Set;
  * <p>
  * Current Permissions: admin, canBanUser
  */
-public class Permissions implements ReprAble, Serializable {
+public class Permissions implements Serializable {
     // superclasses may access permissions - meaning only in this package.
 
     private final Set<String> permissions;  // = new HashSet<String>();

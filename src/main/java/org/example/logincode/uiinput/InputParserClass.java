@@ -5,6 +5,9 @@ public class InputParserClass {
     private final String[] args;
 
     public InputParserClass(String input) {
+        if (input.startsWith("/")) {
+            input = input.substring(1);
+        }
         this.args = input.split(" ");
     }
 

@@ -1,8 +1,8 @@
 package org.example.timetable.usecases;
 
-import org.example.coursegetter.entities.Course;
-import org.example.coursegetter.entities.Meeting;
-import org.example.coursegetter.entities.ScheduleEntry;
+import org.example.coursegetter.entities.baseclasses.Course;
+import org.example.coursegetter.entities.baseclasses.Meeting;
+import org.example.coursegetter.entities.baseclasses.ScheduleEntry;
 import org.example.requisitechecker.usecases.RequisiteChecker;
 import org.example.studentdata.entities.CourseChoice;
 import org.example.timetable.entities.Timetable;

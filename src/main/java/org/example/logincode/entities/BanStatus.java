@@ -5,7 +5,7 @@ import java.util.Date;
 
 import static org.example.logincode.entities.Today.getToday;
 
-public class BanStatus implements ReprAble, Serializable {
+public class BanStatus implements Serializable {
     private Date bannedUntil;
 
     public String toString() {
