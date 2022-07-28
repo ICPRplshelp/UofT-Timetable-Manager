@@ -4,22 +4,24 @@ import org.example.logincode.interfaceadapters.controllers.ControllerAdmin;
 import org.example.logincode.interfaceadapters.controllers.ControllerCourseSearcher2;
 import org.example.logincode.interfaceadapters.controllers.ControllerStandard;
 import org.phase2.studentrelated.controllers.StudentController;
+import org.phase2.studentrelated.usecases.StudentManager;
 
 public class ControllerFactory {
 
-    private final String username;  // todo: username is tentative
+    private StudentManager manager;
+
     private ControllerAdmin controllerAdmin;
     private ControllerStandard controllerStandard;
     private StudentController studentController;
     private ControllerCourseSearcher2 controllerCourseSearcher2;
 
 
-    public ControllerFactory(String username) {
-        this.username = username;
+    public ControllerFactory(StudentManager manager) {
+        this.manager = manager;
 
-        buildControllerAdmin();
-        buildControllerStandard();
-        buildStudentController();
+//        buildControllerAdmin();
+//        buildControllerStandard();
+//        buildStudentController();
     }
 
     public ControllerAdmin getControllerAdmin() {
@@ -43,19 +45,18 @@ public class ControllerFactory {
 
 
 
-    public void buildControllerAdmin() {
+    public void buildControllerAdmin(String username) {
         ControllerAdminBuilder adminBuilder = new ControllerAdminBuilder(username);
         this.controllerAdmin = adminBuilder.getController();
     }
 
-    public void buildControllerStandard() {
+    public void buildControllerStandard(String username) {
         ControllerStandardBuilder standardBuilder = new ControllerStandardBuilder(username);
         this.controllerStandard = standardBuilder.getController();
     }
 
     public void buildStudentController() {
-        StudentControllerBuilder scBuilder = new StudentControllerBuilder();
-        scBuilder.buildManager();
+        StudentControllerBuilder scBuilder = new StudentControllerBuilder(manager);
         this.studentController = scBuilder.getController();
     }
 
