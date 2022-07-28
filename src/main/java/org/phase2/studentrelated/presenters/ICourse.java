@@ -1,5 +1,7 @@
 package org.phase2.studentrelated.presenters;
 
+import org.example.coursegetter.entities.Meetings;
+
 /**
  * Assume these methods are null safe.
  * Anything implementing this may be used by a presenter
@@ -9,10 +11,16 @@ package org.phase2.studentrelated.presenters;
  * is permitted in a presenter.
  */
 public interface ICourse {
-    String getCourseTitle();
-    String getCourseDescription();
-    String getBreadthCategories();
+    double getCreditValue();
+    String getCode();
+    String getOfferingCode();
     String getPrerequisite();
     String getExclusion();
+    String getSection();
+    String getCourseDescription();
+    String getBreadthCategories();
+    String getDeliveryInstructions();
+    String getCourseTitle();
     String getCorequisite();
+    Meetings getMeetings();
 }

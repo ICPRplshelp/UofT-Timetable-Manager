@@ -1,8 +1,6 @@
 package org.example.coursegetter.usecases;
 
-import org.example.coursegetter.entities.Course;
-import org.example.coursegetter.entities.Session;
-import org.example.coursegetter.entities.SessionStorage;
+import org.example.coursegetter.entities.*;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -69,7 +67,9 @@ class CourseStorageObtainer {
         // https://stackoverflow.com/a/68996237
         for (String key : jsonObject.keySet()) {
             Object val = jsonObject.get(key);
-            Course crs = new Course(((JSONObject) val).toMap());
+            
+            CourseBuilderDirector cbd = new CourseBuilderDirector(new CourseBuilder());
+            Course crs = cbd.construct(((JSONObject) val).toMap());
             mapToExport.put(key.substring(0, 10), crs);
         }
         return mapToExport;
