@@ -3,7 +3,6 @@ package org.phase2.studentrelated.usecases;
 import org.example.timetable.entities.warningtypes.WarningType;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 
-import java.time.LocalTime;
 import java.util.*;
 
 /**
@@ -24,12 +23,64 @@ public class WarningChecker2 {
      *
      * @param planned all planned courses and the only courses to check warnings for
      * @param passed  the courses the student has taken in the past
-     * @return a map mapping each applicable course (with the suffix) to the warnings it has.
+     * @return a map mapping each applicable course (with the -F/-Y/-S) to the set of warnings that may affect it.
      */
     public Map<String, Set<WarningType>> checkCourseWarnings(Set<String> planned, Set<String> passed) {
+        Map<String, Set<WarningType>> warnList = new HashMap<>();
+        addRequisiteWarnings(planned, passed, warnList);
 
-        return Collections.emptyMap();
-        // throw new RuntimeException();
+        return warnList;
+    }
+
+    private void addRequisiteWarnings(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList) {
+        Set<String> plannedF = new HashSet<>();
+        Set<String> plannedS = new HashSet<>();
+        Set<String> plannedY = new HashSet<>();
+        for (String pCrs : planned) {
+            String pCrsNoSuffix = pCrs.substring(0, pCrs.length() - 2);
+            char section = pCrs.charAt(pCrs.length() - 1);
+            switch (section) {
+                case 'F' -> plannedF.add(pCrsNoSuffix);
+                case 'S' -> plannedS.add(pCrsNoSuffix);
+                case 'Y' -> plannedY.add(pCrsNoSuffix);
+            }
+        }
+
+        Set<String> passedForS = new HashSet<>(passed);
+        passedForS.addAll(plannedF);
+
+        Set<String> concurrentF = new HashSet<>(passed);
+
+        concurrentF.addAll(plannedF);
+        concurrentF.addAll(plannedY);
+        Set<String> concurrentSY = new HashSet<>(concurrentF);
+        concurrentSY.addAll(plannedS);
+
+
+        for (String plannedCourse : planned) {
+            CheckRequisite checker = new CheckRequisite(plannedCourse);
+
+            String exclusion = plannedSearcher.getCourse(plannedCourse).getExclusion();
+            String coreq = plannedSearcher.getCourse(plannedCourse).getCorequisite();
+            String prereq = plannedSearcher.getCourse(plannedCourse).getPrerequisite();
+
+            char sectionOfCourse = plannedCourse.charAt(plannedCourse.length() - 1);
+            // these sets may not have the suffix, -F/-Y/-S
+            Set<String> concurrentOrPassedCourses;
+            if (sectionOfCourse == 'F') {
+                concurrentOrPassedCourses = concurrentF;
+            } else {
+                concurrentOrPassedCourses = concurrentSY;
+            }
+            Set<String> passedCoursesOnly;
+            if (sectionOfCourse == 'S') {
+                passedCoursesOnly = passedForS;
+            } else passedCoursesOnly = passed;
+
+            checker.exclusionChecker(concurrentOrPassedCourses, exclusion, warnList);
+            checker.prereqChecker(passedCoursesOnly, prereq, warnList);
+            checker.coreqChecker(concurrentOrPassedCourses, coreq, warnList);
+        }
     }
 
 
@@ -42,7 +93,6 @@ public class WarningChecker2 {
     public Map<IScheduleEntry, Set<WarningType>> checkTimetableWarnings(Map<String, Set<String>> planned) {
         Map<IScheduleEntry, Set<WarningType>> warningMap = new HashMap<>();
         Set<IScheduleEntry> allScheduleEntries = generateScheduleEntriesAll(planned);
-
         for(IScheduleEntry se : allScheduleEntries){
             if (checkConflict(se, allScheduleEntries)){
                 if (!warningMap.containsKey(se)){
@@ -79,7 +129,7 @@ public class WarningChecker2 {
     /**
      * Generates all schedule entries of the planned courses and its lecture sections
      * passed in.
-     *
+     * <p>
      * Do not modify this method.
      *
      * @param planned same format in the Student class - planned courses
@@ -95,5 +145,4 @@ public class WarningChecker2 {
         }
         return scheduleEntries;
     }
-
 }
