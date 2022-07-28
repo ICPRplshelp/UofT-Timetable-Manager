@@ -66,7 +66,7 @@ public class PresenterPrinter {
 
     public void genericSuccessOrFail(boolean state){
         if(state) System.out.println("Action successful.");
-        else System.out.println("Incorrect command syntax or action failed.");
+        else System.out.println("Incorrect command syntax or action failed. Check the command description for cause of failure.");
     }
 
     /**
