@@ -1,7 +1,7 @@
-package org.example.courselocationtracker.usecases;
+package org.example.requisitechecker.courselocationtracker.usecases;
 
-import org.example.courselocationtracker.entities.Building;
-import org.example.courselocationtracker.entities.BuildingStorage;
+import org.example.requisitechecker.courselocationtracker.entities.Building;
+import org.example.requisitechecker.courselocationtracker.entities.BuildingStorage;
 
 /**
  * Compare the distance of two buildings between each other.
