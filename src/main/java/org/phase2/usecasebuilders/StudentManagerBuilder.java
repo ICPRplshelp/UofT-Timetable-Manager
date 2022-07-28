@@ -1,5 +1,7 @@
 package org.phase2.usecasebuilders;
 
+import org.example.logincode.entities.Account;
+import org.example.logincode.entities.AccountStorage;
 import org.phase2.studentrelated.entities.Student2;
 import org.phase2.studentrelated.usecases.CourseSearchAdapter;
 import org.phase2.studentrelated.usecases.CourseSearchAdapterPrev;
@@ -13,6 +15,12 @@ public class StudentManagerBuilder {
 
 
     public StudentManagerBuilder() { }
+
+    public StudentManagerBuilder(String username) {
+        AccountStorage a = new AccountStorage();
+        Account temp = a.getAccount(username);
+        this.student = temp.getStudent();
+    }
 
     public StudentManager getStudentManager() {
         return new StudentManager(this.student, this.plannedSearcher, this.pastSearcher);

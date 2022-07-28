@@ -8,6 +8,7 @@ import org.phase2.studentrelated.usecases.StudentManager;
 
 public class ControllerFactory {
 
+//    private String username;
     private StudentManager manager;
 
     private ControllerAdmin controllerAdmin;
@@ -18,10 +19,9 @@ public class ControllerFactory {
 
     public ControllerFactory(StudentManager manager) {
         this.manager = manager;
+    }
 
-//        buildControllerAdmin();
-//        buildControllerStandard();
-//        buildStudentController();
+    public ControllerFactory() {
     }
 
     public ControllerAdmin getControllerAdmin() {
@@ -57,6 +57,11 @@ public class ControllerFactory {
 
     public void buildStudentController() {
         StudentControllerBuilder scBuilder = new StudentControllerBuilder(manager);
+        this.studentController = scBuilder.getController();
+    }
+
+    public void buildStudentController(String username) {
+        StudentControllerBuilder scBuilder = new StudentControllerBuilder(username);
         this.studentController = scBuilder.getController();
     }
 
