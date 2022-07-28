@@ -1,4 +1,4 @@
-package org.phase2.controllerfactories;
+package org.phase2.objectcreators.controllerfactories;
 
 import org.example.logincode.interfaceadapters.controllers.ControllerCourseSearcher2;
 import org.phase2.studentrelated.usecases.CourseSearchAdapter;

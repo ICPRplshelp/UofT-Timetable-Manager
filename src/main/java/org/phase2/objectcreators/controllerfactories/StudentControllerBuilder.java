@@ -1,8 +1,8 @@
-package org.phase2.controllerfactories;
+package org.phase2.objectcreators.controllerfactories;
 
+import org.phase2.objectcreators.usecasebuilders.StudentManagerBuilder;
 import org.phase2.studentrelated.controllers.StudentController;
 import org.phase2.studentrelated.usecases.StudentManager;
-import org.phase2.usecasebuilders.StudentManagerBuilder;
 
 public class StudentControllerBuilder implements ControllerBuilder{
 

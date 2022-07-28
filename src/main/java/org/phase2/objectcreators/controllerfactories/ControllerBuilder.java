@@ -1,4 +1,4 @@
-package org.phase2.controllerfactories;
+package org.phase2.objectcreators.controllerfactories;
 
 public interface ControllerBuilder<T> {
 
