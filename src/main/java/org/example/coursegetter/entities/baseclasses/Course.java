@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 import org.phase2.studentrelated.presenters.ICourse;
 
 import java.io.Serializable;
-import java.util.Map;
 
 public class Course implements Comparable<Course>, Serializable, ICourse {
     // public final int brq;

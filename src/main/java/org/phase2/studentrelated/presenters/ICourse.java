@@ -1,6 +1,7 @@
 package org.phase2.studentrelated.presenters;
 
-import org.example.coursegetter.entities.Meetings;
+
+import org.example.coursegetter.entities.baseclasses.Meetings;
 
 /**
  * Assume these methods are null safe.
