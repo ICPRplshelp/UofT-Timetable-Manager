@@ -9,6 +9,9 @@ import java.util.*;
 public class StudentPresenter {
     private final WarningChecker2 warningChecker;
     private final StudentManager sm;
+    private final WarningPresenter wp = new WarningPresenter();
+
+
 
     public StudentPresenter(WarningChecker2 warningChecker, StudentManager sm) {
         this.warningChecker = warningChecker;
@@ -38,13 +41,12 @@ public class StudentPresenter {
             if(cw.containsKey(pCrs)){
                 Set<WarningType> courseWarningSet = cw.get(pCrs);
                 // join the above set into a string seperated by spaces using the .toString() method
-                warnStr = String.join(" ", courseWarningSet.toString());
+                warnStr = wp.getWarningsAsString(courseWarningSet);
             }
             soFar.add(String.join(" ", List.of(pCrs, lecsStr, warnStr)).trim());
         }
         return soFar;
     }
-
     /**
      * Generates information for courses a student has passed,
      * trimming the -F/-Y/-S suffix from the courses if they

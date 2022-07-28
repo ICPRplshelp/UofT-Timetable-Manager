@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class DateEntries implements ReprAble, Serializable {
+public class DateEntries implements Serializable {
     private final List<Date> dates;
 
     /**

@@ -1,6 +1,6 @@
 package org.phase2.studentrelated.usecases;
 
-import org.example.coursegetter.entities.Course;
+import org.example.coursegetter.entities.baseclasses.Course;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 
 import java.util.Set;

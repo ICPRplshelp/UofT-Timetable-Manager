@@ -1,4 +1,4 @@
-package org.example.coursegetter.entities;
+package org.example.coursegetter.entities.baseclasses;
 
 import org.jetbrains.annotations.NotNull;
 import org.phase2.studentrelated.presenters.IScheduleEntry;

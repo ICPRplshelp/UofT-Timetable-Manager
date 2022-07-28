@@ -1,6 +1,6 @@
 package org.example.coursegetter.usecases;
 
-import org.example.coursegetter.entities.Course;
+import org.example.coursegetter.entities.baseclasses.Course;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -83,4 +83,6 @@ public class Account implements Serializable {
         return studentOld;
     }
 
+    public Student2 getStudent() { return student; }
+
 }

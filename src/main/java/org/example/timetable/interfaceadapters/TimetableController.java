@@ -1,6 +1,6 @@
 package org.example.timetable.interfaceadapters;
 
-import org.example.coursegetter.entities.Course;
+import org.example.coursegetter.entities.baseclasses.Course;
 import org.example.timetable.usecases.TimetableCommunicatorBulk;
 import org.example.timetable.usecases.TimetableCommunicatorIndividual;
 import org.example.timetable.usecases.WarningCommunicator;

@@ -1,8 +1,8 @@
 package org.phase2.studentrelated.usecases;
 
-import org.example.coursegetter.entities.Course;
-import org.example.coursegetter.entities.Meetings;
-import org.example.coursegetter.entities.ScheduleEntry;
+import org.example.coursegetter.entities.baseclasses.Course;
+import org.example.coursegetter.entities.baseclasses.Meetings;
+import org.example.coursegetter.entities.baseclasses.ScheduleEntry;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.phase2.studentrelated.presenters.IScheduleEntry;

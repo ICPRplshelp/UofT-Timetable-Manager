@@ -1,4 +1,4 @@
-package org.example.coursegetter.entities;
+package org.example.coursegetter.entities.baseclasses;
 
 import java.io.Serializable;
 import java.util.ArrayList;
