@@ -1,9 +1,9 @@
-package org.example.courselocationtracker;
+package org.example.requisitechecker.courselocationtracker;
 
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.CourseSearcherIndividual;
-import org.example.courselocationtracker.usecases.BuildingComparator;
-import org.example.courselocationtracker.usecases.BuildingStorageConstructor;
+import org.example.requisitechecker.courselocationtracker.usecases.BuildingComparator;
+import org.example.requisitechecker.courselocationtracker.usecases.BuildingStorageConstructor;
 
 public class MainLocTest {
     public static void main(String[] args) {

@@ -1,6 +1,7 @@
-package org.example.logincode.usecases;
+package org.example.logincode.interfaceadapters.gateways;
 
 import org.example.logincode.entities.AccountStorage;
+import org.example.logincode.usecases.Gateway;
 
 import java.io.*;
 import java.util.logging.Level;
@@ -11,7 +12,7 @@ import java.util.logging.Logger;
  * and also lets you export account data to a CSV.
  * Only if passwords were hashed...
  */
-public class StorageLoader {
+public class StorageLoader implements Gateway {
     private static final Logger LOGGER = Logger.getLogger(StorageLoader.class.getName());
     private static final boolean disable = false;
     protected AccountStorage accountStorage;
@@ -39,6 +40,18 @@ public class StorageLoader {
      * Empty constructor for when there's no file.
      */
     public StorageLoader() {
+    }
+
+    public AccountStorage attemptLoad(String filepath) throws IOException, ClassNotFoundException {
+        FileInputStream fileIn = new FileInputStream(filepath);
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+
+        accountStorage = (AccountStorage) in.readObject();
+
+        in.close();
+        fileIn.close();
+
+        return accountStorage;
     }
 
 

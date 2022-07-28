@@ -1,4 +1,4 @@
-package org.example.courselocationtracker.entities;
+package org.example.requisitechecker.courselocationtracker.entities;
 
 import java.awt.*;
 

@@ -1,6 +1,7 @@
 package org.phase2.objectcreators.controllerfactories;
 
 import org.example.logincode.interfaceadapters.controllers.ControllerAdmin;
+import org.example.logincode.interfaceadapters.gateways.StorageLoader;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 
@@ -28,6 +29,6 @@ public class ControllerAdminBuilder implements ControllerBuilder{
     }
 
     private void buildAccountStorageManager() {
-        this.storageManager = new StorageManager();
+        this.storageManager = new StorageManager(new StorageLoader());
     }
 }
