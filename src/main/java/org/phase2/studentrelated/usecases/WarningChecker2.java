@@ -26,7 +26,13 @@ public class WarningChecker2 {
      * @return a map mapping each applicable course (with the -F/-Y/-S) to the set of warnings that may affect it.
      */
     public Map<String, Set<WarningType>> checkCourseWarnings(Set<String> planned, Set<String> passed) {
+        Map<String, Set<WarningType>> warnList = new HashMap<>();
+        addRequisiteWarnings(planned, passed, warnList);
 
+        return warnList;
+    }
+
+    private void addRequisiteWarnings(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList) {
         Set<String> plannedF = new HashSet<>();
         Set<String> plannedS = new HashSet<>();
         Set<String> plannedY = new HashSet<>();
@@ -50,7 +56,6 @@ public class WarningChecker2 {
         Set<String> concurrentSY = new HashSet<>(concurrentF);
         concurrentSY.addAll(plannedS);
 
-        Map<String, Set<WarningType>> warnList = new HashMap<>();
 
         for (String plannedCourse : planned) {
             CheckRequisite checker = new CheckRequisite(plannedCourse);
@@ -76,8 +81,6 @@ public class WarningChecker2 {
             checker.prereqChecker(passedCoursesOnly, prereq, warnList);
             checker.coreqChecker(concurrentOrPassedCourses, coreq, warnList);
         }
-
-        return warnList;
     }
 
 
