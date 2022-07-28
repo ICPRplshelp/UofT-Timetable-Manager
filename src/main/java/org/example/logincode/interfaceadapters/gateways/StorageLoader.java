@@ -1,7 +1,7 @@
 package org.example.logincode.interfaceadapters.gateways;
 
 import org.example.logincode.entities.AccountStorage;
-import org.example.logincode.usecases.Gateway;
+import org.example.logincode.usecases.IGateway;
 
 import java.io.*;
 import java.util.logging.Level;
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * and also lets you export account data to a CSV.
  * Only if passwords were hashed...
  */
-public class StorageLoader implements Gateway {
+public class StorageLoader implements IGateway {
     private static final Logger LOGGER = Logger.getLogger(StorageLoader.class.getName());
     private static final boolean disable = false;
     protected AccountStorage accountStorage;

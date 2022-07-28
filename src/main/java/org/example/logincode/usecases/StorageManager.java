@@ -11,7 +11,7 @@ public class StorageManager {
     private static final Logger LOGGER = Logger.getLogger(StorageManager.class.getName());
 
     public AccountStorage accountStorage;
-    Gateway loadedStorage;
+    IGateway loadedStorage;
 
     /**
      * Construct an AccountStorage with existing accounts.
@@ -30,7 +30,7 @@ public class StorageManager {
     /**
      * Attempt to initialize this class with StorageLoader.
      */
-    public StorageManager(Gateway loadedStorage) {
+    public StorageManager(IGateway loadedStorage) {
         this.loadedStorage = loadedStorage;
         try {
             this.accountStorage = this.loadedStorage.attemptLoad("accountInformation.ser");
