@@ -3,13 +3,12 @@ package org.example.logincode.usecases;
 import org.example.logincode.entities.Account;
 import org.example.logincode.entities.AccountStorage;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StorageManager {
-    private static final Logger LOGGER = Logger.getLogger( StorageManager.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger(StorageManager.class.getName());
 
     public AccountStorage accountStorage;
     StorageLoader loadedStorage;
@@ -36,7 +35,10 @@ public class StorageManager {
         try {
             this.loadedStorage = new StorageLoader("accountInformation.ser");
         } catch (Exception e) {
-            LOGGER.log(Level.WARNING, "Couldn't load anything?");
+            LOGGER.log(Level.WARNING, "Couldn't load anything. Perhaps the program was run for the first time, " +
+                    "or a change was made to the structure of the account " +
+                    "storage? Anyways, we're resetting all user storage " +
+                    "so we're starting blank.");
             this.loadedStorage = new StorageLoader();
         }
         this.accountStorage = loadedStorage.accountStorage;
@@ -100,26 +102,6 @@ public class StorageManager {
             success = accountStorage.addAccount(account);
         }
         return success;
-    }
-
-    /**
-     * Tries to add multiple accounts to the storage.
-     * If, in the process this method is run, an account
-     * already exists, then do not add the account.
-     *
-     * @param accountList a collection of accounts to add.
-     * @return a list of all accounts that were NOT added.
-     */
-    public Collection<Account> addAccounts(Collection<Account> accountList) {
-        Collection<Account> accountsNotAdded = new ArrayList<>(accountList.size());
-        for (Account acc : accountList) {
-            boolean addStatus = addAccount(acc);
-            if (!addStatus) {
-                accountsNotAdded.add(acc);
-            }
-
-        }
-        return accountsNotAdded;
     }
 
 

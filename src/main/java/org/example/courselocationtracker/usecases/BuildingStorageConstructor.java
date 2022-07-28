@@ -15,9 +15,10 @@ public class BuildingStorageConstructor {
      * Construct the building storage. Note that the
      * file path is hardcoded, so please do not rename the
      * CSV file.
+     *
      * @return a BuildingStorage, which stores all buildings.
      */
-    public BuildingStorage makeAllBuildings(){
+    public BuildingStorage makeAllBuildings() {
         String pathToFile = "src/UofTBuildingLocations.csv";
         String buildingCSV;
         buildingCSV = getBuildingCSV(pathToFile);
@@ -39,8 +40,8 @@ public class BuildingStorageConstructor {
         Map<String, Building> buildingsSoFar = new HashMap<>();
         var splitString = buildingCSV.split("\n");
         boolean firstIter = false;
-        for(var s : splitString){
-            if(!firstIter) {
+        for (var s : splitString) {
+            if (!firstIter) {
                 firstIter = true;
                 continue;
             }
@@ -52,8 +53,16 @@ public class BuildingStorageConstructor {
         return buildingsSoFar;
     }
 
-    public String removeSuffix(String text, String suffix){
-        if(text.endsWith(suffix)){
+    /**
+     * Given a string and a suffix to remove, removes the suffix from the string.
+     *
+     * @param text the original text.
+     * @param suffix the suffix to remove.
+     * @return the original text if the suffix is not found at the end; otherwise return
+     * the text with the suffix removed.
+     */
+    public String removeSuffix(String text, String suffix) {
+        if (text.endsWith(suffix)) {
             return text.substring(0, text.length() - suffix.length());
         } else return text;
     }

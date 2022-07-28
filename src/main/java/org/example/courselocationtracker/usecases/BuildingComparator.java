@@ -7,17 +7,12 @@ import org.example.courselocationtracker.entities.BuildingStorage;
  * Compare the distance of two buildings between each other.
  */
 public class BuildingComparator {
-    BuildingStorage bs;
+    final BuildingStorage bs;
 
     public BuildingComparator(BuildingStorage bs) {
         this.bs = bs;
     }
 
-    public BuildingComparator() {
-        BuildingStorageConstructor tempBuildingStorageConstructor
-                = new BuildingStorageConstructor();
-        this.bs = tempBuildingStorageConstructor.makeAllBuildings();
-    }
 
     /**
      * Return the distance between the two potential building
@@ -31,7 +26,6 @@ public class BuildingComparator {
      * two buildings, in meters.
      * If either building does not exist, can't be found,
      * or is marked as TBA, return 0.
-     *
      */
     public double getDistance(String b1Str, String b2Str) {
         if (b1Str == null || b2Str == null) return 0;

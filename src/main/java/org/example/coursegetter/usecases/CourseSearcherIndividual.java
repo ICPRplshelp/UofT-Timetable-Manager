@@ -1,18 +1,18 @@
 package org.example.coursegetter.usecases;
 
-import org.example.coursegetter.entities.Course;
-import org.example.coursegetter.entities.Session;
+import org.example.coursegetter.entities.baseclasses.Course;
 import org.example.coursegetter.entities.SessionStorage;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 /**
  * This class may be used to:
  * - Return all searchable code
  * - Get information about one course
- *
+ * <p>
  * This class may not be used to query multiple courses.
  * That's too overwhelming to implement.
  */
@@ -26,25 +26,6 @@ public class CourseSearcherIndividual {
     }
 
     /**
-     * Given a course code, this method searches for all course
-     * offerings by this course code.
-     * @param crsCode the course code such as MAT135H1
-     * @return a collection of courses such as MAT135H1-F, MAT135H1-S, MAT135H1-Y
-     */
-    public Collection<Course> getCourseByCourseCode(String session, String crsCode){
-        crsCode = courseInputValidator.courseToSearchableCourse(crsCode);
-        ArrayList<Course> courseList = new ArrayList<>();
-        String[] suffixes = {"-F", "-S", "-Y"};
-        for(String suffix : suffixes){
-            String courseToSearch = crsCode + suffix;
-            Course tempCourse = getCourseOfferingByCode(session, courseToSearch);
-            if(tempCourse != null)
-                courseList.add(tempCourse);
-        }
-        return courseList;
-    }
-
-    /**
      * Gets a course.
      *
      * @param crsCode the course code, in a format similar to CSC110Y1-F
@@ -52,19 +33,27 @@ public class CourseSearcherIndividual {
      */
     public Course getCourseOfferingByCode(String session, String crsCode) {
         String searchableCourse = courseInputValidator.courseOfferingToSearchableCourse(crsCode);
-        if(searchableCourse == null) return null;
+        if (searchableCourse == null) return null;
         return sessionStorage.getSession(session).getCourse(searchableCourse);
     }
 
     /**
-     * Returns a set of all courses that can be reached from the given course
-     * storage.
-     * The set may not be modified.
+     * Given a course code, this method searches for all course
+     * offerings by this course code.
      *
-     * @return a set of all courses that can be reached from the given course storage.
+     * @param crsCode the course code such as MAT135H1
+     * @return a collection of courses such as MAT135H1-F, MAT135H1-S, MAT135H1-Y
      */
-    public Set<String> getAllCoursesOfferingList(String session){
-        return sessionStorage.getSession(session).getCourseOfferingListAsString();
+    public Collection<Course> getCourseByCourseCode(String session, String crsCode) {
+        List<Course> courseList = new ArrayList<>();
+        String[] suffixes = {"-F", "-S", "-Y"};
+        for (String suffix : suffixes) {
+            String courseToSearch = crsCode + suffix;
+            Course tempCourse = getCourseOfferingByCode(session, courseToSearch);
+            if (tempCourse != null)
+                courseList.add(tempCourse);
+        }
+        return courseList;
     }
 
     /**
@@ -74,8 +63,8 @@ public class CourseSearcherIndividual {
      *
      * @return a set of all courses that can be reached from the given course storage.
      */
-    public Set<String> getAllCoursesList(String session){
-        return sessionStorage.getSession(session).getCourseListAsString();
+    public Set<String> getAllCoursesOfferingList(String session) {
+        return sessionStorage.getSession(session).getCourseOfferingListAsString();
     }
 
 }

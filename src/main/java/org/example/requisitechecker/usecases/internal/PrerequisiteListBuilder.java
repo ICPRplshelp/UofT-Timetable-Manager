@@ -19,7 +19,7 @@ public class PrerequisiteListBuilder extends RequisiteListBuilder {
      * Build a requisite list.
      * This may be used alike for prerequisites,
      * corequisites, and recommended preparation.
-     *
+     * <p>
      * Grade minimums and custom descriptions are not checked.
      *
      * @param reqStr a course string like "(MAT135H1, MAT136H1), MAT137Y1, MAT157Y1"
@@ -33,6 +33,7 @@ public class PrerequisiteListBuilder extends RequisiteListBuilder {
 
     /**
      * Helper to build a requisite list.
+     *
      * @param courseStr a course string like "(MAT135H1, MAT136H1), MAT137Y1, MAT157Y1"
      * @return the RequisiteList associated with the course string.
      */
@@ -53,7 +54,8 @@ public class PrerequisiteListBuilder extends RequisiteListBuilder {
     /**
      * Given an existing processed course string and template list,
      * append it to the template list if crs is a valid course string.
-     * @param crs the course string
+     *
+     * @param crs             the course string
      * @param coursesSetSoFar the template list to add on
      */
     private void createAndAddTemplateList(String crs, Set<RequisiteList> coursesSetSoFar) {
@@ -64,6 +66,7 @@ public class PrerequisiteListBuilder extends RequisiteListBuilder {
     /**
      * Only accepting inputs where courseList is size 1 or below,
      * read the course it may contain.
+     *
      * @param courseList the courseList to read.
      * @return a SingleCourse if courseList has a course, or FreePass
      * otherwise.

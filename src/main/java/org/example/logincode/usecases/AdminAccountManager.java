@@ -5,17 +5,26 @@ import org.example.logincode.entities.Permissions;
 
 import java.util.Date;
 
-public class AdminAccountManager extends AccountManager {
+public class AdminAccountManager {
 
-    // private final Set<String> commandList; // = new HashSet<String>(List.of(new String[]{"TH", "IS"}));
-    public AdminAccountManager(Account controlledAccount, StorageManager accountStorageManager) {
-        super(controlledAccount, accountStorageManager);
-        // new HashSet<String>(List.of(new String[]{"TH", "IS"}));
+    private final Account account;
+    private final StorageManager storageManager;
+
+
+    /**
+     * Constructs this class.
+     * @param account the admin account
+     * @param storageManager the account storage which the admin may
+     *                do stuff to.
+     */
+    public AdminAccountManager(Account account, StorageManager storageManager){
+        this.account = account;
+        this.storageManager = storageManager;
     }
 
     public AdminAccountManager(AccountManager controlledAccountManager, StorageManager accountStorageManager) {
-        super(controlledAccountManager.account, accountStorageManager);
-        // new HashSet<String>(List.of(new String[]{"TH", "IS"}));
+        this.account = controlledAccountManager.getAccount();
+        this.storageManager = accountStorageManager;
     }
 
     /**
@@ -23,7 +32,7 @@ public class AdminAccountManager extends AccountManager {
      */
     public boolean createNewAdminUser(String username, String password) {
         if (account.getPermissions().hasPerm("admin")) {
-            AccountCreator tempSystem = new AccountCreator(accountStorageManager);
+            AccountCreator tempSystem = new AccountCreator(storageManager);
             Account candidateAccount = tempSystem.createAccount(username, password);
             if (candidateAccount == null) {
                 return false;
@@ -39,10 +48,10 @@ public class AdminAccountManager extends AccountManager {
 
     public boolean addPermission(String username, String permission) {
         if (account.getPermissions().hasPerm("admin")) {
-            if (!accountStorageManager.checkAccountExists(username)) {
+            if (!storageManager.checkAccountExists(username)) {
                 return false; // this user does not exist!
             }
-            Account targetAccount = accountStorageManager.getAccount(username);
+            Account targetAccount = storageManager.getAccount(username);
             Permissions tempPerm = targetAccount.getPermissions();
             tempPerm.addPerm(permission); // permission input must be in camelCase
             //accountStorageManager.loadedStorage.updateAccount(targetAccount);
@@ -53,28 +62,12 @@ public class AdminAccountManager extends AccountManager {
         }
     }
 
-    public boolean revokePermission(String username, String permission) {
-        if (account.getPermissions().hasPerm("admin")) {
-            if (!accountStorageManager.checkAccountExists(username)) {
-                return false; // this user does not exist!
-            }
-            Account targetAccount = accountStorageManager.getAccount(username);
-            Permissions tempPerm = targetAccount.getPermissions();
-            tempPerm.removePerm(permission); // permission input must be in camelCase
-            //accountStorageManager.loadedStorage.updateAccount(targetAccount);
-            return true;
-        } else {
-            return false; // tentative: you do not have the permissions to do this!
-            // (Figure out if you need two error messages??)
-        }
-    }
-
     public boolean banUser(String username, Date unbanDate) {
         if (account.getPermissions().hasPerm("canBanUser")) {
-            if (!accountStorageManager.checkAccountExists(username)) {
+            if (!storageManager.checkAccountExists(username)) {
                 return false; // this user does not exist!
             }
-            Account banTarget = accountStorageManager.getAccount(username);
+            Account banTarget = storageManager.getAccount(username);
             if (banTarget.getPermissions().hasPerm("admin") || account == banTarget) {
                 return false; // you can't ban an admin or yourself!
             }
@@ -86,29 +79,15 @@ public class AdminAccountManager extends AccountManager {
         }
     }
 
-    public boolean unbanUser(String username) {
-        if (account.getPermissions().hasPerm("canBanUser")) {
-            if (!accountStorageManager.checkAccountExists(username)) {
-                return false; // this user does not exist!
-            }
-            Account banTarget = accountStorageManager.getAccount(username);
-            banTarget.getBanStatus().unban();
-            //accountStorageManager.loadedStorage.updateAccount(banTarget);
-            return true; // if this user has been banned, they are now unbanned.
-        } else {
-            return false; // tentative: you do not have the permissions to do this!
-        }
-    }
-
     public boolean deleteUser(String username) {
         if (account.getPermissions().hasPerm("admin")) {
-            if (accountStorageManager.checkAccountExists(username)) {
-                Account deletionTarget = accountStorageManager.getAccount(username);
+            if (storageManager.checkAccountExists(username)) {
+                Account deletionTarget = storageManager.getAccount(username);
                 if ((deletionTarget.getPermissions().hasPerm("admin") || account == deletionTarget)) {
                     return false;  // you tried to ban yourself or another admin.
                 }
                 // if (account.permissionLevel() > banTarget.permissionLevel()) - tentative
-                return accountStorageManager.removeAccount(deletionTarget);
+                return storageManager.removeAccount(deletionTarget);
 
                 // return true; // this account has been deleted.
             } else {

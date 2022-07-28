@@ -1,31 +1,39 @@
 package org.example.timetable.interfaceadapters;
 
+import org.example.coursegetter.entities.baseclasses.Course;
 import org.example.timetable.usecases.TimetableCommunicatorBulk;
 import org.example.timetable.usecases.TimetableCommunicatorIndividual;
-import org.example.timetable.usecases.TimetableManager;
+import org.example.timetable.usecases.WarningCommunicator;
 
 import java.util.Collection;
 
 public class TimetableController {
 
 
-
     private final Presenter presenter = new Presenter();
     private final TimetableCommunicatorBulk tcb;
-
-    private TimetableManager timetableManager;
 
     public TimetableController(TimetableCommunicatorBulk tcb) {
         this.tcb = tcb;
     }
 
-
-    public void presentTimeTable(){
+    /**
+     * Presents the current student timetable to the user.
+     */
+    public void presentTimeTable() {
+        new WarningCommunicator(tcb.getTimetable());
         Collection<TimetableCommunicatorIndividual> indvC = tcb.getIndividualCommunicators();
         presenter.printTimetableInformation(indvC);
-        //  presenter.printAllTimetableInformation(timetableManager.getTimetable());
     }
 
+    /**
+     * Presents all previous courses taken to the user.
+     */
+    public void presentPreviousCourses() {
+        Collection<Course> previousCourses = tcb.getTimetable().getPreviousCourses();
+        presenter.printPrevCourseInformation(previousCourses);
+
+    }
 
 
 }

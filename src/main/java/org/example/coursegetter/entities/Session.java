@@ -1,35 +1,25 @@
 package org.example.coursegetter.entities;
 
+import org.example.coursegetter.entities.baseclasses.Course;
+
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 public class Session {
     private final Map<String, Course> courses;
-    private final Set<String> courseList;
 
 
-    public String getSession() {
-        return session;
-    }
-
-    private final String session;
     // only UTSG courses are supported
 
 
     /**
      * Create a course storage.
+     *
      * @param courseMap a map of courses.
-     * @param session the session of the courses.
      */
-    public Session(Map<String, Course> courseMap, String session) {
+    public Session(Map<String, Course> courseMap) {
         this.courses = courseMap;
-        this.session = session;
-        Set<String> tempKeySet = courses.keySet();
-        courseList = new HashSet<>();
-
-        tempKeySet.forEach(key -> courseList.add(key.substring(0, 8)));
     }
 
     /**
@@ -38,7 +28,7 @@ public class Session {
      * @param fullCourseCode the course code, in a format similar to CSC110Y1-F
      * @return the Course if one is found, or null otherwise.
      */
-    public Course getCourse(String fullCourseCode){
+    public Course getCourse(String fullCourseCode) {
         return courses.get(fullCourseCode);
     }
 
@@ -48,17 +38,8 @@ public class Session {
      *
      * @return a set of all the course codes.
      */
-    public Set<String> getCourseOfferingListAsString(){
+    public Set<String> getCourseOfferingListAsString() {
         return Collections.unmodifiableSet(courses.keySet());
     }
 
-    /**
-     * Gets a set of all the course codes.
-     * The set may not be modified.
-     *
-     * @return a set of all the course codes.
-     */
-    public Set<String> getCourseListAsString(){
-        return Collections.unmodifiableSet(courseList);
-    }
 }

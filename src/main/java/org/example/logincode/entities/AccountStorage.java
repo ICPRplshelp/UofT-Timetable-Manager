@@ -76,7 +76,4 @@ public class AccountStorage implements Serializable {
         return accounts.get(username);
     }
 
-    public Map<String, Account> getAccounts() {
-        return accounts;
-    }
 }

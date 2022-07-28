@@ -4,7 +4,7 @@ import org.example.logincode.entities.Account;
 
 public class AccountLogin {
 
-    StorageManager accountStorageManager;
+    final StorageManager accountStorageManager;
 
     /**
      * Construct this class.

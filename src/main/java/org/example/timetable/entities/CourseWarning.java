@@ -1,23 +1,25 @@
 package org.example.timetable.entities;
 
 import org.example.timetable.entities.warningtypes.TimetableWarning;
+import org.example.timetable.entities.warningtypes.WarningType;
 
 import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class CourseWarning  implements Serializable {
+public class CourseWarning implements Serializable {
 
     private final Map<WarningLevel, Set<TimetableWarning>> warnings = new HashMap<>();
 
-    public CourseWarning(){
+    public CourseWarning() {
 
     }
 
     /**
      * Flatten all warnings into a single set.
      * The set is sorted based on the warning concerned.
+     *
      * @return all warnings.
      */
     public Set<TimetableWarning> getAllWarnings() {
@@ -27,9 +29,8 @@ public class CourseWarning  implements Serializable {
     }
 
 
-
-    public void addWarning(TimetableWarning timetableWarning){
-        if (!warnings.containsKey(timetableWarning.getWarningLevel())){
+    public void addWarning(TimetableWarning timetableWarning) {
+        if (!warnings.containsKey(timetableWarning.getWarningLevel())) {
             warnings.put(timetableWarning.getWarningLevel(), new HashSet<>());
         }
 
@@ -37,18 +38,20 @@ public class CourseWarning  implements Serializable {
     }
 
     @Override
-    public String toString(){
-        ArrayList<String> result = new ArrayList<>();
+    public String toString() {
+        for (WarningLevel warningLevel : WarningLevel.values()) {
 
-        for (WarningLevel warningLevel: WarningLevel.values()) {
-            Set<String> warningStrings = new HashSet<>();
-            for (TimetableWarning timetableWarning: warnings.get(warningLevel)) {
-                warningStrings.add(timetableWarning.toString());
+            if (!(warnings.get(warningLevel) == null)) {
+                List<TimetableWarning> aList = new ArrayList<>(warnings.get(warningLevel));
+                List<WarningType> warnList = new ArrayList<>();
+
+                for (TimetableWarning timetableWarning : aList) {
+                    warnList.add(timetableWarning.getWarningType());
+                }
+                return warnList.toString();
             }
-
-            result.add("[" + warningLevel.toString() + ": " + String.join(", ", warningStrings) + "]");
         }
-        return String.join(", ", result);
+        return "No warnings found";
     }
 
 
