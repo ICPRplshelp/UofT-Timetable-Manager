@@ -11,7 +11,7 @@ public class StorageManager {
     private static final Logger LOGGER = Logger.getLogger(StorageManager.class.getName());
 
     public AccountStorage accountStorage;
-    StorageLoader loadedStorage;
+    Gateway loadedStorage;
 
     /**
      * Construct an AccountStorage with existing accounts.
@@ -30,18 +30,17 @@ public class StorageManager {
     /**
      * Attempt to initialize this class with StorageLoader.
      */
-    public StorageManager() {
-
+    public StorageManager(Gateway loadedStorage) {
+        this.loadedStorage = loadedStorage;
         try {
-            this.loadedStorage = new StorageLoader("accountInformation.ser");
+            this.accountStorage = this.loadedStorage.attemptLoad("accountInformation.ser");
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, "Couldn't load anything. Perhaps the program was run for the first time, " +
                     "or a change was made to the structure of the account " +
                     "storage? Anyways, we're resetting all user storage " +
                     "so we're starting blank.");
-            this.loadedStorage = new StorageLoader();
+            //this.loadedStorage = new StorageLoader();
         }
-        this.accountStorage = loadedStorage.accountStorage;
 
         if (this.accountStorage == null) {
             this.accountStorage = new AccountStorage();
