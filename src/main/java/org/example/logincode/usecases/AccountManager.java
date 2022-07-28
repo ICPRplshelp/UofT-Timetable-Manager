@@ -8,7 +8,7 @@ public class AccountManager {
         return account;
     }
 
-    protected final Account account;
+    private final Account account;
     // protected Set<String> commandList;
     final StorageManager accountStorageManager;
 
