@@ -9,16 +9,16 @@ public class ControllerStandardBuilder implements ControllerBuilder{
 
     private final String username;
     private AccountManager manager;
-    private StorageManager storageManager;
+    private final StorageManager storageManager;
 
 
-    public ControllerStandardBuilder(String username) {
+    public ControllerStandardBuilder(String username, StorageManager sm) {
         this.username = username;
+        this.storageManager = sm;
     }
 
     @Override
     public ControllerStandard getController() {
-        buildAccountStorageManager();
         buildManager(username);
 
         return new ControllerStandard(this.manager, this.storageManager);
@@ -28,7 +28,4 @@ public class ControllerStandardBuilder implements ControllerBuilder{
         this.manager = new AccountManager(username, storageManager);
     }
 
-    private void buildAccountStorageManager() {
-        this.storageManager = new StorageManager(new StorageLoader());
-    }
 }

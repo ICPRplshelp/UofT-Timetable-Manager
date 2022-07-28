@@ -17,7 +17,7 @@ public class ControllerStandard {
         return manager.setPassword(newPasswords[0], newPasswords[1]);
     }
 
-    public String printUserHistory() {
+    public String getUserHistoryAsString() {
         return manager.getAccountHistoryAsString();
     }
 

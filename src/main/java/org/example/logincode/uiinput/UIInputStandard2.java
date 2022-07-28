@@ -19,7 +19,7 @@ public class UIInputStandard2 extends UIInput2 {
         boolean ss = false;
         switch (ipc.getKeyword()) {
             case "history" -> {
-                cs.printUserHistory();
+                prt.println(cs.getUserHistoryAsString());
                 ss = true;
             }
             case "setpassword" -> ss = cs.changePassword(new String[]{ipc.getArg(1), ipc.getArg(2)});

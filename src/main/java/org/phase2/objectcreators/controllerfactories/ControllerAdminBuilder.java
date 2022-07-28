@@ -9,26 +9,21 @@ public class ControllerAdminBuilder implements ControllerBuilder{
 
     private final String username;
     private AccountManager manager;
-    private StorageManager storageManager;
+    private final StorageManager storageManager;
 
 
-    public ControllerAdminBuilder(String username) {
+    public ControllerAdminBuilder(String username, StorageManager sm) {
         this.username = username;
+        this.storageManager = sm;
     }
 
     @Override
     public ControllerAdmin getController() {
-        buildAccountStorageManager();
         buildManager(username);
-
         return new ControllerAdmin(this.manager, this.storageManager);
     }
 
     private void buildManager(String username) {
         this.manager = new AccountManager(username, storageManager);
-    }
-
-    private void buildAccountStorageManager() {
-        this.storageManager = new StorageManager(new StorageLoader());
     }
 }

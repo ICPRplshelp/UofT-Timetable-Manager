@@ -65,10 +65,10 @@ public class StorageLoader implements IGateway {
             out.close();
             fileOut.close();
         } catch (NotSerializableException nse) {
-            LOGGER.log(Level.WARNING, "Couldn't save anything? [1]");
+            LOGGER.log(Level.WARNING, "Couldn't save anything? Did you change the serialization format?");
         } catch (IOException i) {
             i.printStackTrace();
-            LOGGER.log(Level.WARNING, "Couldn't save anything?");
+            LOGGER.log(Level.WARNING, "Couldn't save anything? Blame your computer.");
 
         }
     }

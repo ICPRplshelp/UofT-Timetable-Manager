@@ -3,6 +3,7 @@ package org.example.logincode.usecases;
 import org.example.logincode.entities.Account;
 import org.example.logincode.entities.AccountStorage;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,8 +11,8 @@ import java.util.logging.Logger;
 public class StorageManager {
     private static final Logger LOGGER = Logger.getLogger(StorageManager.class.getName());
 
-    public AccountStorage accountStorage;
-    IGateway loadedStorage;
+    private AccountStorage accountStorage;
+    private IGateway loadedStorage;
 
     /**
      * Construct an AccountStorage with existing accounts.
@@ -21,7 +22,7 @@ public class StorageManager {
     public StorageManager(Collection<Account> accounts) {
         this.accountStorage = new AccountStorage();
         for (Account acc : accounts) {
-            this.accountStorage.addAccount(acc);
+            this.getAccountStorage().addAccount(acc);
         }
 
 
@@ -32,17 +33,20 @@ public class StorageManager {
      */
     public StorageManager(IGateway loadedStorage) {
         this.loadedStorage = loadedStorage;
+
         try {
             this.accountStorage = this.loadedStorage.attemptLoad("accountInformation.ser");
-        } catch (Exception e) {
+        } catch (IOException e) {
+            LOGGER.log(Level.WARNING, "Couldn't load anything. Blame your computer.");;
+        } catch (ClassNotFoundException e) {
             LOGGER.log(Level.WARNING, "Couldn't load anything. Perhaps the program was run for the first time, " +
                     "or a change was made to the structure of the account " +
                     "storage? Anyways, we're resetting all user storage " +
-                    "so we're starting blank.");
-            //this.loadedStorage = new StorageLoader();
+                    "so we're starting blank.");;
         }
 
-        if (this.accountStorage == null) {
+
+        if (this.getAccountStorage() == null) {
             this.accountStorage = new AccountStorage();
         }
     }
@@ -54,7 +58,7 @@ public class StorageManager {
      * @return Whether that username exists in the account system.
      */
     public boolean checkAccountExists(String username) {
-        return accountStorage.checkAccountExists(username);
+        return getAccountStorage().checkAccountExists(username);
     }
 
     /**
@@ -66,7 +70,7 @@ public class StorageManager {
      * @return whether the account removal was successful
      */
     public boolean removeAccount(String username) {
-        return accountStorage.removeAccount(username);
+        return getAccountStorage().removeAccount(username);
     }
 
     /**
@@ -92,13 +96,13 @@ public class StorageManager {
      * another account with the same username already exists.
      */
     public boolean addAccount(Account account) {
-        return accountStorage.addAccount(account);
+        return getAccountStorage().addAccount(account);
     }
 
     public boolean updateAccount(Account account) {
-        boolean success = accountStorage.removeAccount(account.getUsername());
+        boolean success = getAccountStorage().removeAccount(account.getUsername());
         if (success) {
-            success = accountStorage.addAccount(account);
+            success = getAccountStorage().addAccount(account);
         }
         return success;
     }
@@ -111,11 +115,14 @@ public class StorageManager {
      * @return the Account information, or null if the account does not exist.
      */
     public Account getAccount(String username) {
-        return accountStorage.getAccount(username);
+        return getAccountStorage().getAccount(username);
     }
 
     public void updateSave() {
-        loadedStorage.updateAccounts(accountStorage);
+        loadedStorage.updateAccounts(getAccountStorage());
     }
 
+    public AccountStorage getAccountStorage() {
+        return accountStorage;
+    }
 }

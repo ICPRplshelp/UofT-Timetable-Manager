@@ -2,6 +2,7 @@ package org.phase2.objectcreators.uifactories;
 
 import org.example.PresenterPrinter;
 import org.example.logincode.uiinput.*;
+import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
 import org.phase2.objectcreators.controllerfactories.ControllerFactory;
 
 public class UIFactory {
@@ -10,9 +11,9 @@ public class UIFactory {
     private final ControllerFactory cf;
     private final PresenterPrinter prt;
 
-    public UIFactory(String username) {
+    public UIFactory(String username, MAccountLoginValidator malv) {
         this.username = username;
-        this.cf = new ControllerFactory();
+        this.cf = new ControllerFactory(username, malv);
         this.prt = new PresenterPrinter();
     }
 

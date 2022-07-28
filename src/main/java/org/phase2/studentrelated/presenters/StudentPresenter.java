@@ -4,6 +4,7 @@ import org.example.timetable.entities.warningtypes.WarningType;
 import org.phase2.studentrelated.usecases.StudentManager;
 import org.phase2.studentrelated.usecases.WarningChecker2;
 
+import java.sql.SQLOutput;
 import java.util.*;
 
 public class StudentPresenter {
@@ -16,6 +17,20 @@ public class StudentPresenter {
     public StudentPresenter(WarningChecker2 warningChecker, StudentManager sm) {
         this.warningChecker = warningChecker;
         this.sm = sm;
+    }
+
+    /**
+     * Tell me, what are the planned courses?
+     */
+    public void plannedStr(){
+        System.out.println("PLANNED COURSES:");
+    }
+
+    /**
+     * Print to the screen, passed courses (literally)
+     */
+    public void passedStr(){
+        System.out.println("PASSED COURSES:");
     }
 
     /**

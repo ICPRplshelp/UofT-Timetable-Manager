@@ -39,13 +39,15 @@ public class StudentManager {
      * @return whether adding the course was successful (was never offered before 20199 will cause it to fail).
      */
     public boolean addToPassedCourses(String crs) {
-        Course course = pastSearcher.getCourse(crs);
-        if (course == null) {
-            return false;
-        }
+
         // if the length of crs is over 8 characters long, reduce it to 8 characters
         if (crs.length() > 8) {
             crs = crs.substring(0, 8);
+        }
+        System.out.println(crs);
+        Course course = pastSearcher.getCourse(crs);
+        if (course == null) {
+            return false;
         }
         return student.addToPassedCourses(crs);
 
@@ -99,6 +101,7 @@ public class StudentManager {
      */
     public boolean addMeetingToPlannedCourse(String course, String meetingCode) {
         Course crs = plannedSearcher.getCourse(course);
+        if(crs == null) return false;
         Meetings meetings = crs.getMeetings();
         Set<String> allMeetings = new TreeSet<>();
         for (Set<String> strings : Arrays.asList(meetings.getLectures().keySet(),
@@ -212,4 +215,10 @@ public class StudentManager {
         }
     }
 
+    public CourseSearchAdapter getCSA() {
+        return this.plannedSearcher;
+    }
+    public CourseSearchAdapterPrev getCSAP(){
+        return this.pastSearcher;
+    }
 }

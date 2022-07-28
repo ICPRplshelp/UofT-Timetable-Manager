@@ -38,7 +38,7 @@ public class CourseSearchAdapterPrev {
      * taken in the past.
      */
     public Course getCourse(String code) {
-        if (code.length() > 7) return getCourseOffering(code);
+        if (code.length() > 8) return getCourseOffering(code);
         else {
             return getCoursePlain(code);
         }

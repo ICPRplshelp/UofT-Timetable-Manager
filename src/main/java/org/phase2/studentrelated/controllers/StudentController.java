@@ -1,6 +1,14 @@
 package org.phase2.studentrelated.controllers;
 
+import org.phase2.studentrelated.presenters.IScheduleEntry;
+import org.phase2.studentrelated.presenters.StudentPresenter;
+import org.phase2.studentrelated.usecases.CourseSearchAdapter;
 import org.phase2.studentrelated.usecases.StudentManager;
+import org.phase2.studentrelated.usecases.WarningChecker2;
+
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 public class StudentController {
 
@@ -27,6 +35,7 @@ public class StudentController {
      * @return whether addition was successful or not
      */
     public boolean addHistoricalCourse(String crsCode) {
+
         return sm.addToPassedCourses(crsCode);
     }
 
@@ -68,5 +77,17 @@ public class StudentController {
      */
     public boolean removeHistoricalCourse(String crsCode) {
         return sm.removeFromPassedCourses(crsCode);
+    }
+
+    /**
+     * Obtains the presenter.
+     */
+    public StudentPresenter getPresenter(){
+        WarningChecker2 wc2 = new WarningChecker2(sm.getCSA(), sm.getCSAP());
+        return new StudentPresenter(wc2, sm);
+    }
+
+    public Map<Character, Set<IScheduleEntry>> getPlannedCoursesSE() {
+        return sm.getPlannedCourseSE();
     }
 }

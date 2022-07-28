@@ -3,6 +3,8 @@ package org.phase2.objectcreators.controllerfactories;
 import org.example.logincode.interfaceadapters.controllers.ControllerAdmin;
 import org.example.logincode.interfaceadapters.controllers.ControllerCourseSearcher2;
 import org.example.logincode.interfaceadapters.controllers.ControllerStandard;
+import org.example.logincode.usecases.StorageManager;
+import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
 import org.phase2.studentrelated.controllers.StudentController;
 import org.phase2.studentrelated.usecases.StudentManager;
 
@@ -16,12 +18,13 @@ public class ControllerFactory {
     private StudentController studentController;
     private ControllerCourseSearcher2 controllerCourseSearcher2;
 
+    private final StorageManager sm;
+    private final String username;
 
-    public ControllerFactory(StudentManager manager) {
-        this.manager = manager;
-    }
 
-    public ControllerFactory() {
+    public ControllerFactory(String username, MAccountLoginValidator malv){
+        this.sm = malv.getStorageManager();
+        this.username = username;
     }
 
     public ControllerAdmin getControllerAdmin() {
@@ -46,22 +49,17 @@ public class ControllerFactory {
 
 
     public void buildControllerAdmin(String username) {
-        ControllerAdminBuilder adminBuilder = new ControllerAdminBuilder(username);
+        ControllerAdminBuilder adminBuilder = new ControllerAdminBuilder(username, sm);
         this.controllerAdmin = adminBuilder.getController();
     }
 
     public void buildControllerStandard(String username) {
-        ControllerStandardBuilder standardBuilder = new ControllerStandardBuilder(username);
+        ControllerStandardBuilder standardBuilder = new ControllerStandardBuilder(username, sm);
         this.controllerStandard = standardBuilder.getController();
     }
 
-    public void buildStudentController() {
-        StudentControllerBuilder scBuilder = new StudentControllerBuilder(manager);
-        this.studentController = scBuilder.getController();
-    }
-
     public void buildStudentController(String username) {
-        StudentControllerBuilder scBuilder = new StudentControllerBuilder(username);
+        StudentControllerBuilder scBuilder = new StudentControllerBuilder(username, sm);
         this.studentController = scBuilder.getController();
     }
 
@@ -69,5 +67,4 @@ public class ControllerFactory {
         ControllerCourseSearcher2Builder searcher2builder = new ControllerCourseSearcher2Builder();
         this.controllerCourseSearcher2 = searcher2builder.getController();
     }
-
 }
