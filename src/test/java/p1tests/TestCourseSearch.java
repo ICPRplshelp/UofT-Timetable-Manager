@@ -1,3 +1,5 @@
+package p1tests;
+
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.example.coursegetter.usecases.CourseSearcherByKeyword;
@@ -9,9 +11,9 @@ import java.util.List;
 
 public class TestCourseSearch {
 
-    CourseSearcherGetter csgTemp = new CourseSearcherGetter();
-    CourseSearcherIndividual csi = csgTemp.getCourseSearcher();
-    CourseSearcherByKeyword csk = new CourseSearcherByKeyword(csi);
+    final CourseSearcherGetter csgTemp = new CourseSearcherGetter();
+    final CourseSearcherIndividual csi = csgTemp.getCourseSearcher();
+    final CourseSearcherByKeyword csk = new CourseSearcherByKeyword(csi);
 
 
     @Test(timeout = 50)

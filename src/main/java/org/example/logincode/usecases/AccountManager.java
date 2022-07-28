@@ -10,7 +10,7 @@ public class AccountManager {
 
     protected final Account account;
     // protected Set<String> commandList;
-    StorageManager accountStorageManager;
+    final StorageManager accountStorageManager;
 
     /**
      * Validate one permission.
@@ -21,13 +21,6 @@ public class AccountManager {
     public boolean validatePermission(String permission) {
         return account.getPermissions().hasPerm(permission);
     }
-
-    /**
-     * Validate multiple permissions.
-     *
-     * @param permissions permissions to check.
-     * @return whether permission exists.
-     */
 
     /**
      * Creates a new AccountManager instance based on an account.

@@ -1,3 +1,5 @@
+package p1tests;
+
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.example.requisitechecker.entities.RequisiteList;
@@ -16,7 +18,7 @@ public class TestPrerequisiteListBuilder {
 
 
     /**
-     * The first three tests ehnsures the program does not
+     * The first three tests ensures the program does not
      * break whilst constructing requisite lists
      * of all courses.
      */

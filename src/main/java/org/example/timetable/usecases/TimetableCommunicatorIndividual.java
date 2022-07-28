@@ -16,20 +16,31 @@ public class TimetableCommunicatorIndividual {
     private final Timetable timetable;
     private final CourseChoice cc;
 
-
-    // umm, actually please don't use singletons haha
-
-
+    /**
+     * Constructs TimetableCommunicatorIndividual.
+     *
+     * @param timetable the timetable of the associated student.
+     * @param cc a courseChoice within the timetable.
+     */
     public TimetableCommunicatorIndividual(Timetable timetable, CourseChoice cc) {
         this.timetable = timetable;
         this.cc = cc;
     }
 
+    /**
+     * Returns the course code of the courseChoice.
+     *
+     * @return ^
+     */
     public String getCourseCode() {
         return cc.getCourse().getOfferingCode();
     }
 
-
+    /**
+     * Returns the warning types associated with the courseChoice.
+     *
+     * @return ^
+     */
     public List<WarningType> getWarningTypesList() {
         List<WarningType> soFar = new ArrayList<>();
         Set<TimetableWarning> allWarns = getAllWarnsFromCourseChoice();
@@ -39,12 +50,21 @@ public class TimetableCommunicatorIndividual {
         return soFar;
     }
 
+    /**
+     * Returns the warnings associated with the courseChoice.
+     *
+     * @return ^
+     */
     private Set<TimetableWarning> getAllWarnsFromCourseChoice() {
         CourseWarning courseWarning = timetable.getWarning(cc);
         if (courseWarning == null) return new HashSet<>();
         return courseWarning.getAllWarnings();
     }
 
+    /** Returns the sections of the courseChoice.
+     *
+     * @return ^
+     */
     public List<String> getSectionsFromCourse() {
         List<String> outputSoFar = new ArrayList<>();
         if (Objects.isNull(cc.getLectureSection())) {

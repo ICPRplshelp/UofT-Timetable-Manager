@@ -11,8 +11,8 @@ import java.util.Collection;
  */
 public class RequisiteChecker {
     // private final RequisiteList requisiteList;
-    PrerequisiteListBuilder plb = new PrerequisiteListBuilder();
-    ExclusionListBuilder elb = new ExclusionListBuilder();
+    final PrerequisiteListBuilder plb = new PrerequisiteListBuilder();
+    final ExclusionListBuilder elb = new ExclusionListBuilder();
 
 
     /**

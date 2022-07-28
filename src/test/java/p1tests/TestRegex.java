@@ -1,3 +1,5 @@
+package p1tests;
+
 import org.example.requisitechecker.usecases.internal.CourseRegexSearcher;
 import org.junit.Test;
 

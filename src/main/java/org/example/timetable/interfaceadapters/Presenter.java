@@ -9,8 +9,8 @@ import java.util.*;
 
 public class Presenter {
 
-    PresenterPrinter prt = new PresenterPrinter();
-    Map<WarningType, String> warningsMap;
+    final PresenterPrinter prt = new PresenterPrinter();
+    final Map<WarningType, String> warningsMap;
 
     public Presenter() {
         EnumMap<WarningType, String> warningsMap = new EnumMap<>(WarningType.class);
@@ -22,15 +22,6 @@ public class Presenter {
         warningsMap.put(WarningType.FYF, "This course is Year 1 only");
         warningsMap.put(WarningType.UNKNOWN, "Unknown warning");
         this.warningsMap = warningsMap;
-    }
-
-    private String sectionFullName(String section) {
-        return switch (section) {
-            case "F" -> "Fall";
-            case "S" -> "Winter";
-            case "Y" -> "Year";
-            default -> "idk";
-        };
     }
 
     public void printTimetableInformation(Collection<TimetableCommunicatorIndividual> tcis) {

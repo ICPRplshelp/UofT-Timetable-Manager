@@ -22,7 +22,7 @@ public class CourseSearchAdapter {
         return courseSearcher;
     }
 
-    private CourseSearcherIndividual courseSearcher;
+    private final CourseSearcherIndividual courseSearcher;
 
     public CourseSearchAdapter() {
         CourseSearcherGetter csg = new CourseSearcherGetter();
@@ -81,5 +81,13 @@ public class CourseSearchAdapter {
             }
         }
         return new HashSet<>();
+    }
+
+    /**
+     * Returns a set of all courses that can be reached from the given course storage. The set may not be modified.
+     * @return check desc
+     */
+    public Set<String> getAllCourses(){
+        return getCourseSearcher().getAllCoursesOfferingList("20229");
     }
 }

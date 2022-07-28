@@ -1,5 +1,6 @@
-package org.example.logincode.interfaceadapters.controllerinput;
+package org.example.logincode.uiinput.trash;
 
+import org.example.logincode.interfaceadapters.controllers.ControllerBase;
 import org.example.logincode.interfaceadapters.presenters.Presenter;
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
@@ -24,10 +25,9 @@ public abstract class ControllerInput {
 
     // which window should it be next?
     protected LoggedInState curState;
-    protected AccountManager manager;
-    protected StorageManager accountStorageManager;
-    protected Presenter presenter;
-
+    protected final AccountManager manager;
+    protected final StorageManager accountStorageManager;
+    protected final Presenter presenter;
     public String[] commandsList;
 
     /**
@@ -46,6 +46,13 @@ public abstract class ControllerInput {
         this.accountStorageManager = accountStorageManager;
         this.presenter = presenter;
     }
+
+    public ControllerInput(){
+        this.manager = null;
+        this.accountStorageManager = null;
+        this.presenter = null;
+    }
+
 
 
     /**
@@ -77,7 +84,10 @@ public abstract class ControllerInput {
      * @return false always.
      */
     protected boolean failedAction() {
-        presenter.genericFailedAction("invalid");
-        return false;
+        throw new RuntimeException("STOP USING LEGACY CODE");
+    }
+
+    public ControllerBase getController() {
+        return null;
     }
 }

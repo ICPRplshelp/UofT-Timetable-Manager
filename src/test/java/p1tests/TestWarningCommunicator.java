@@ -1,3 +1,5 @@
+package p1tests;
+
 import org.example.coursegetter.entities.Course;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.studentdata.entities.CourseChoice;
@@ -14,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 
 public class TestWarningCommunicator {
 
-    CourseSearcherGetter csg = new CourseSearcherGetter();
+    final CourseSearcherGetter csg = new CourseSearcherGetter();
 
 
     @Test(timeout = 5600)

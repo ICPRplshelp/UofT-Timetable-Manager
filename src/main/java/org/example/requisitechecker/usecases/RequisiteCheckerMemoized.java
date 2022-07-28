@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class RequisiteCheckerMemoized extends RequisiteChecker {
 
-    Map<String, RequisiteList> memoizedPrqs = new HashMap<>();
-    Map<String, RequisiteList> memoizedExcl = new HashMap<>();
+    final Map<String, RequisiteList> memoizedPrqs = new HashMap<>();
+    final Map<String, RequisiteList> memoizedExcl = new HashMap<>();
 
     public boolean check(Collection<String> courseAsString, String requisiteAsString) {
         if (memoizedPrqs.containsKey(requisiteAsString)) {

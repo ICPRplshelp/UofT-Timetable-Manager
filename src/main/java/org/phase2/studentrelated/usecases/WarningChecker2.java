@@ -88,26 +88,42 @@ public class WarningChecker2 {
      * Check timetable-related warnings for a set of planned courses.
      *
      * @param planned a student's planned courses with lecture section info.
-     * @return a map mapping each warning type to each ScheduleEntry
-     * that would fall victim to the warning.
+     * @return a map mapping each ScheduleEntry to the Warnings it may have.
      */
     public Map<IScheduleEntry, Set<WarningType>> checkTimetableWarnings(Map<String, Set<String>> planned) {
+        Map<IScheduleEntry, Set<WarningType>> warningMap = new HashMap<>();
         Set<IScheduleEntry> allScheduleEntries = generateScheduleEntriesAll(planned);
-        for (String crs : planned.keySet()) {
-            Set<String> meetings = planned.get(crs);
-            for (String meeting : meetings) {
-                Set<IScheduleEntry> scheduleEntrySet = this.plannedSearcher.getScheduleEntries(crs, meeting);
-                for (IScheduleEntry se : scheduleEntrySet) {
-                    // do something. for example, when checking conflicts,
-                    // do checkConflict(se, allScheduleEntries)
-                    // and if it does conflict, let us know.
-
-                    // the same applies to distance checks.
+        for(IScheduleEntry se : allScheduleEntries){
+            if (checkConflict(se, allScheduleEntries)){
+                if (!warningMap.containsKey(se)){
+                    warningMap.put(se, new HashSet<>());
                 }
+                warningMap.get(se).add(WarningType.CONFLICT);
             }
+            // add distance checks here
         }
 
-        return Collections.emptyMap();
+        return warningMap;
+    }
+
+    private boolean checkConflict(IScheduleEntry se, Set<IScheduleEntry> allScheduleEntries){
+        for (IScheduleEntry se2: allScheduleEntries){
+            if (se == se2 || !se.getDay().equals(se2.getDay())){
+                continue;
+            }
+
+            // case 1: se startTime <= se2 startTime < se endTime
+            if (se.getStartTime().compareTo(se2.getStartTime()) <= 0 && se2.getStartTime().isBefore(se.getEndTime())){
+                return true;
+            }
+
+            // case 2: se startTime < se2 endTime <= se endTime
+            if (se.getStartTime().isBefore(se2.getStartTime()) && se2.getStartTime().compareTo(se.getEndTime()) <= 0){
+                return true;
+            }
+
+        }
+        return false;
     }
 
     /**
