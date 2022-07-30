@@ -16,7 +16,7 @@ public class UIObjectPool {
      * Guaranteed to not be null (I hope?)
      */
     public UIInput2 getAdmin() {
-        if(admin == null) admin = uif.getInputAdmin();
+        if (admin == null) admin = uif.getInputAdmin();
         return admin;
     }
 
@@ -25,7 +25,7 @@ public class UIObjectPool {
      * Guaranteed to not be null (I hope?)
      */
     public UIInput2 getStandard() {
-        if(standard == null) standard = uif.getInputStandard();
+        if (standard == null) standard = uif.getInputStandard();
         return standard;
     }
 
@@ -34,7 +34,7 @@ public class UIObjectPool {
      * Guaranteed to not be null (I hope?)
      */
     public UIInput2 getSearch() {
-        if(search == null) search = uif.getInputCourseSearch();
+        if (search == null) search = uif.getInputCourseSearch();
         return search;
     }
 
@@ -43,7 +43,7 @@ public class UIObjectPool {
      * Guaranteed to not be null (I hope?)
      */
     public UIInput2 getStudent() {
-        if(student == null) student = uif.getInputStudent();
+        if (student == null) student = uif.getInputStudent();
         return student;
     }
 

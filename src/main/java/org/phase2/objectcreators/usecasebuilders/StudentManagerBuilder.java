@@ -24,7 +24,8 @@ public class StudentManagerBuilder {
     private CourseSearchAdapterPrev pastSearcher;
 
 
-    public StudentManagerBuilder() { }
+    public StudentManagerBuilder() {
+    }
 
     public StudentManagerBuilder(String username, StorageManager sm) {
         AccountStorage a = sm.getAccountStorage();

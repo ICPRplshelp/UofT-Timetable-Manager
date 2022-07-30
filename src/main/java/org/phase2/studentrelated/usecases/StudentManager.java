@@ -1,8 +1,8 @@
 package org.phase2.studentrelated.usecases;
 
+import org.example.coursegetter.entities.TeachingMethods;
 import org.example.coursegetter.entities.baseclasses.Course;
 import org.example.coursegetter.entities.baseclasses.Meetings;
-import org.example.coursegetter.entities.TeachingMethods;
 import org.phase2.studentrelated.entities.Student2;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 
@@ -101,7 +101,7 @@ public class StudentManager {
      */
     public boolean addMeetingToPlannedCourse(String course, String meetingCode) {
         Course crs = plannedSearcher.getCourse(course);
-        if(crs == null) return false;
+        if (crs == null) return false;
         Meetings meetings = crs.getMeetings();
         Set<String> allMeetings = new TreeSet<>();
         for (Set<String> strings : Arrays.asList(meetings.getLectures().keySet(),
@@ -205,7 +205,7 @@ public class StudentManager {
             Set<String> lecs = plannedCourses.get(pc);
             for (String lec : lecs) {
                 Set<IScheduleEntry> seTemp = plannedSearcher.getScheduleEntries(pc, lec);
-                switch(pc.charAt(pc.length() - 1)){
+                switch (pc.charAt(pc.length() - 1)) {
                     case 'F' -> fse.addAll(seTemp);
                     case 'S' -> sse.addAll(seTemp);
                     case 'Y' -> yse.addAll(seTemp);
@@ -218,7 +218,8 @@ public class StudentManager {
     public CourseSearchAdapter getCSA() {
         return this.plannedSearcher;
     }
-    public CourseSearchAdapterPrev getCSAP(){
+
+    public CourseSearchAdapterPrev getCSAP() {
         return this.pastSearcher;
     }
 }

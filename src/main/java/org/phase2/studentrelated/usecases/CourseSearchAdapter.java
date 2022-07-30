@@ -31,6 +31,7 @@ public class CourseSearchAdapter {
 
     /**
      * Gets the Course object from code.
+     *
      * @param code e.g. CSC110Y1-F (must include -F/-S/-Y suffix)
      * @return the course if it exists, or null otherwise.
      */
@@ -40,6 +41,7 @@ public class CourseSearchAdapter {
 
     /**
      * Get the course meetings from the code.
+     *
      * @param code e.g. CSC110Y1-F (must include -F/-S/-Y suffix)
      * @return the set of meetings if it exists, or null otherwise.
      */
@@ -64,7 +66,7 @@ public class CourseSearchAdapter {
      * Returns all schedule entries from the course.
      * Do NOT include async sections.
      *
-     * @param code the course code
+     * @param code    the course code
      * @param meeting the meeting
      * @return the schedule entries, if applicable
      */
@@ -85,9 +87,10 @@ public class CourseSearchAdapter {
 
     /**
      * Returns a set of all courses that can be reached from the given course storage. The set may not be modified.
+     *
      * @return check desc
      */
-    public Set<String> getAllCourses(){
+    public Set<String> getAllCourses() {
         return getCourseSearcher().getAllCoursesOfferingList("20229");
     }
 }

@@ -11,13 +11,10 @@ public class MAccountObjectPool {
     private final StorageManager sm;
     private final String username;
 
-    public MAccountObjectPool(String username, MAccountLoginValidator malv){
+    public MAccountObjectPool(String username, MAccountLoginValidator malv) {
         this.sm = malv.getStorageManager();
         this.username = username;
     }
-
-
-
 
 
 }

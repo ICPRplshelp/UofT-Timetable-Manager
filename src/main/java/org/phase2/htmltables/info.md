@@ -14,9 +14,10 @@ to use it.
 
 As a warning, an exception is
 thrown if:
+
 - There's a conflict
 - Any class that starts or ends
-on an XX:30 is present
+  on an XX:30 is present
 
 Note that there are no distance checks.
 You'll have to add it yourself or scrap

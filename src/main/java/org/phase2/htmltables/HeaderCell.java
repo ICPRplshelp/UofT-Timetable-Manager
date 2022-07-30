@@ -4,8 +4,8 @@ class HeaderCell implements HTMLTableCell {
 
     private final String headText;
 
-    public HeaderCell(int id){
-        headText = switch(id){
+    public HeaderCell(int id) {
+        headText = switch (id) {
             case 0 -> "";
             case 1 -> "Monday";
             case 2 -> "Tuesday";
@@ -15,6 +15,7 @@ class HeaderCell implements HTMLTableCell {
             default -> throw new IllegalStateException("Unexpected value: " + id);
         };
     }
+
     @Override
     public String getHTMLText() {
         return "<td>" + headText + "</td>";

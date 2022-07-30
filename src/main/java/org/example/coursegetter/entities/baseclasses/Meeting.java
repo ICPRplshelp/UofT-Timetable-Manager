@@ -47,6 +47,7 @@ public class Meeting implements Serializable {
     public List<EnrollmentControl> getEnrollmentControls() {
         return enrollmentControls;
     }
+
     private final String crsCode;
     private final String cancel;
     private final String sectionNumber;

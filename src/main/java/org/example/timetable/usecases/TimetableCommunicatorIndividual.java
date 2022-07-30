@@ -20,7 +20,7 @@ public class TimetableCommunicatorIndividual {
      * Constructs TimetableCommunicatorIndividual.
      *
      * @param timetable the timetable of the associated student.
-     * @param cc a courseChoice within the timetable.
+     * @param cc        a courseChoice within the timetable.
      */
     public TimetableCommunicatorIndividual(Timetable timetable, CourseChoice cc) {
         this.timetable = timetable;
@@ -61,7 +61,8 @@ public class TimetableCommunicatorIndividual {
         return courseWarning.getAllWarnings();
     }
 
-    /** Returns the sections of the courseChoice.
+    /**
+     * Returns the sections of the courseChoice.
      *
      * @return ^
      */

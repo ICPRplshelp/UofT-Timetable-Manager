@@ -10,9 +10,14 @@ package org.phase2.studentrelated.presenters;
  */
 public interface ICourse {
     String getCourseTitle();
+
     String getCourseDescription();
+
     String getBreadthCategories();
+
     String getPrerequisite();
+
     String getExclusion();
+
     String getCorequisite();
 }

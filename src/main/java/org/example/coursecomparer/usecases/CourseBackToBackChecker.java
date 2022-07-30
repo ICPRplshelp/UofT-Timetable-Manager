@@ -1,53 +1,55 @@
 package org.example.coursecomparer.usecases;
 
-import org.example.coursegetter.entities.baseclasses.Meeting;
+import org.example.coursecomparer.entities.CourseTimeslots;
 import org.example.coursegetter.entities.baseclasses.Course;
+import org.example.coursegetter.entities.baseclasses.Meeting;
 import org.example.coursegetter.entities.baseclasses.Meetings;
 import org.example.coursegetter.entities.baseclasses.ScheduleEntry;
 import org.example.studentdata.entities.CourseChoice;
 import org.example.timetable.entities.Timetable;
-import org.example.coursecomparer.entities.CourseTimeslots;
-import java.util.*;
+
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 
 public class CourseBackToBackChecker {
 
-    public CourseTimeslots addSemesterToTimetable (Collection<CourseChoice> semesterOfCourses, CourseTimeslots semesterTimetable){
-        for (CourseChoice course: semesterOfCourses){
+    public CourseTimeslots addSemesterToTimetable(Collection<CourseChoice> semesterOfCourses, CourseTimeslots semesterTimetable) {
+        for (CourseChoice course : semesterOfCourses) {
             addCoursesToTimeslot(course, semesterTimetable);
         }
         return semesterTimetable;
 
     }
 
-    public boolean checkTimetableCourseBackToBack(Timetable studentTimetable){
+    public boolean checkTimetableCourseBackToBack(Timetable studentTimetable) {
         Collection<CourseChoice> fallCourses = studentTimetable.getPlannedCourses("F");
         Collection<CourseChoice> winterCourses = studentTimetable.getPlannedCourses("S");
         Collection<CourseChoice> yearCourses = studentTimetable.getPlannedCourses("Y");
         Collection<CourseChoice> fallAndYearCourses = combineCourses(yearCourses, fallCourses);
         Collection<CourseChoice> winterAndYearCourses = combineCourses(yearCourses, winterCourses);
-        if (checkSemesterBackToBack(fallAndYearCourses)){
+        if (checkSemesterBackToBack(fallAndYearCourses)) {
             return true;
-        }else{
+        } else {
             return checkSemesterBackToBack(winterAndYearCourses);
         }
     }
 
-    public Collection<CourseChoice> combineCourses(Collection<CourseChoice> yearCourses, Collection<CourseChoice> regularCourses){
+    public Collection<CourseChoice> combineCourses(Collection<CourseChoice> yearCourses, Collection<CourseChoice> regularCourses) {
         regularCourses.addAll(yearCourses);
         return regularCourses;
     }
 
 
-
-    public Boolean checkSemesterBackToBack (Collection<CourseChoice> semesterOfCourses){
+    public Boolean checkSemesterBackToBack(Collection<CourseChoice> semesterOfCourses) {
         CourseTimeslots semesterArray = new CourseTimeslots();
         semesterArray = addSemesterToTimetable(semesterOfCourses, semesterArray);
         for (int row = 0; row < semesterArray.getLength(); row++) {
             ScheduleEntry[] dayTimetable = semesterArray.getDay(row);
-            for (int col = 0; col < dayTimetable.length; col++ ) {
-                if (dayTimetable[col] != null && col+1 < dayTimetable.length){
-                    if (dayTimetable[col+1] != null){
+            for (int col = 0; col < dayTimetable.length; col++) {
+                if (dayTimetable[col] != null && col + 1 < dayTimetable.length) {
+                    if (dayTimetable[col + 1] != null) {
                         return true;
                     }
                 }
@@ -58,7 +60,7 @@ public class CourseBackToBackChecker {
 
     }
 
-    public void addCoursesToTimeslot (CourseChoice Course1, CourseTimeslots semesterTimetable){
+    public void addCoursesToTimeslot(CourseChoice Course1, CourseTimeslots semesterTimetable) {
         String lectureCode = Course1.getLectureSection();
         String tutorialCode = Course1.getTutSection();
         String practicalCode = Course1.getPraSection();
@@ -74,13 +76,13 @@ public class CourseBackToBackChecker {
         Set<ScheduleEntry> c1TutorialSchedule = c1Tutorial.getScheduleEntries();
         Set<ScheduleEntry> c1PracticalSchedule = c1Practical.getScheduleEntries();
 
-        for (ScheduleEntry timeslot: c1LectureSchedule){
+        for (ScheduleEntry timeslot : c1LectureSchedule) {
             semesterTimetable.addCourseTimeslots(timeslot);
         }
-        for (ScheduleEntry timeslot: c1TutorialSchedule){
+        for (ScheduleEntry timeslot : c1TutorialSchedule) {
             semesterTimetable.addCourseTimeslots(timeslot);
         }
-        for (ScheduleEntry timeslot: c1PracticalSchedule){
+        for (ScheduleEntry timeslot : c1PracticalSchedule) {
             semesterTimetable.addCourseTimeslots(timeslot);
         }
 

@@ -3,7 +3,10 @@ package org.phase2.studentrelated.usecases;
 import org.example.timetable.entities.warningtypes.WarningType;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The warning checker does not need to pinpoint the courses
@@ -34,8 +37,9 @@ public class WarningChecker2 {
 
     /**
      * Adds warnings to all courses - that is, requisite warnings.
-     * @param planned planned courses with suffix
-     * @param passed passed courses without suffix
+     *
+     * @param planned  planned courses with suffix
+     * @param passed   passed courses without suffix
      * @param warnList warn list to add to
      */
     private void addRequisiteWarnings(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList) {
@@ -98,9 +102,9 @@ public class WarningChecker2 {
     public Map<IScheduleEntry, Set<WarningType>> checkTimetableWarnings(Map<String, Set<String>> planned) {
         Map<IScheduleEntry, Set<WarningType>> warningMap = new HashMap<>();
         Set<IScheduleEntry> allScheduleEntries = generateScheduleEntriesAll(planned);
-        for(IScheduleEntry se : allScheduleEntries){
-            if (checkConflict(se, allScheduleEntries)){
-                if (!warningMap.containsKey(se)){
+        for (IScheduleEntry se : allScheduleEntries) {
+            if (checkConflict(se, allScheduleEntries)) {
+                if (!warningMap.containsKey(se)) {
                     warningMap.put(se, new HashSet<>());
                 }
                 warningMap.get(se).add(WarningType.CONFLICT);
@@ -111,19 +115,19 @@ public class WarningChecker2 {
         return warningMap;
     }
 
-    private boolean checkConflict(IScheduleEntry se, Set<IScheduleEntry> allScheduleEntries){
-        for (IScheduleEntry se2: allScheduleEntries){
-            if (se == se2 || !se.getDay().equals(se2.getDay())){
+    private boolean checkConflict(IScheduleEntry se, Set<IScheduleEntry> allScheduleEntries) {
+        for (IScheduleEntry se2 : allScheduleEntries) {
+            if (se == se2 || !se.getDay().equals(se2.getDay())) {
                 continue;
             }
 
             // case 1: se startTime <= se2 startTime < se endTime
-            if (se.getStartTime().compareTo(se2.getStartTime()) <= 0 && se2.getStartTime().isBefore(se.getEndTime())){
+            if (se.getStartTime().compareTo(se2.getStartTime()) <= 0 && se2.getStartTime().isBefore(se.getEndTime())) {
                 return true;
             }
 
             // case 2: se startTime < se2 endTime <= se endTime
-            if (se.getStartTime().isBefore(se2.getStartTime()) && se2.getStartTime().compareTo(se.getEndTime()) <= 0){
+            if (se.getStartTime().isBefore(se2.getStartTime()) && se2.getStartTime().compareTo(se.getEndTime()) <= 0) {
                 return true;
             }
 

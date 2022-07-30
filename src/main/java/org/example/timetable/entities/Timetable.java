@@ -74,7 +74,7 @@ public class Timetable implements Serializable {
         this.previousCourses = previousCourses;
     }
 
-    public Collection<CourseChoice> getPlannedCourses(String section){
+    public Collection<CourseChoice> getPlannedCourses(String section) {
         throw new RuntimeException("WHY ARE WE USING A BROKEN CLASS");
         //Stream<CourseChoice> temp = plannedCourses.stream().filter(crs -> crs.getCourse().getSession().equals(section));
         // return temp.collect(Collectors.toList());

@@ -26,6 +26,7 @@ public class WarningPresenter {
     /**
      * Given a collection of warnings, this method generates a human-
      * readable string that explains the warnings in more detail.
+     *
      * @param warnings a collection of warnings.
      * @return check description.
      */

@@ -1,5 +1,7 @@
 package org.example.coursecomparer.entities;
+
 import org.example.coursegetter.entities.baseclasses.ScheduleEntry;
+
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
@@ -10,7 +12,7 @@ public class CourseTimeslots {
 
     private final ScheduleEntry[][] courseTimeslots;
 
-    public CourseTimeslots(){
+    public CourseTimeslots() {
         this.courseTimeslots = new ScheduleEntry[hours][days];
     }
 
@@ -31,11 +33,11 @@ public class CourseTimeslots {
         }
     }
 
-    public int getLength(){
+    public int getLength() {
         return courseTimeslots.length;
     }
 
-    public ScheduleEntry[] getDay(int day){
+    public ScheduleEntry[] getDay(int day) {
         return courseTimeslots[day];
     }
 

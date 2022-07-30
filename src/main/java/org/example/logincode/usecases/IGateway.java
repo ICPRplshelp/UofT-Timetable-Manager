@@ -6,5 +6,6 @@ import java.io.IOException;
 
 public interface IGateway {
     void updateAccounts(AccountStorage tempAccountStorage);
+
     AccountStorage attemptLoad(String filepath) throws IOException, ClassNotFoundException;
 }

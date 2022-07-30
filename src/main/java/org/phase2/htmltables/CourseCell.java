@@ -10,10 +10,10 @@ class CourseCell implements HTMLTableCell {
     private final String htmlText;
 
 
-    public CourseCell(IScheduleEntry se, char session){
+    public CourseCell(IScheduleEntry se, char session) {
         int stHr = se.getStartTime().getHour();
         int enHr = se.getEndTime().getHour();
-        if(se.getStartTime().getMinute() != 0 || se.getEndTime().getMinute() != 0){
+        if (se.getStartTime().getMinute() != 0 || se.getEndTime().getMinute() != 0) {
             throw new RuntimeException("A class in your timetable started" +
                     " or ended on a time other than the hour");
         }
