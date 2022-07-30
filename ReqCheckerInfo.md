@@ -21,7 +21,7 @@ exclusions are read by taking everything that looks like a course
 ## The flaws of the prerequisite checker
 
 People aren't consistent in typing them, and this program can't always process them naturally,
-because tere are no actual guidelines on how prerequisites should be written. Here are some
+because there are no actual guidelines on how prerequisites should be written. Here are some
 examples:
 
 ```
