@@ -1,7 +1,7 @@
 package org.example.logincode.uiinput;
 
 import org.example.PresenterPrinter;
-import org.phase2.htmltables.TableOrganizer;
+import org.phase2.mainloophelpers.controllerspresenters.UICommandList;
 import org.phase2.studentrelated.controllers.StudentController;
 
 import java.util.Collection;
@@ -9,12 +9,11 @@ import java.util.Collection;
 public class UIInputStudent2 extends UIInput2 {
 
     private final StudentController stc;
-    private final TableOrganizer fTable = new TableOrganizer('F');
-    private final TableOrganizer sTable = new TableOrganizer('S');
 
-    public UIInputStudent2(PresenterPrinter prt, StudentController stc) {
 
-        super(prt);
+    public UIInputStudent2(PresenterPrinter prt, StudentController stc, UICommandList cmdl) {
+
+        super(prt, cmdl);
         this.stc = stc;
     }
 
@@ -44,14 +43,18 @@ public class UIInputStudent2 extends UIInput2 {
             case "tt", "html", "gethtmltt" -> {
                 String term = ipc.getArg(1);
                 // get char at index 0 of term to determine which table to use
-                TableOrganizer to = term.toUpperCase().startsWith("F") ? fTable : sTable;
-                char fs = term.startsWith("F") ? 'F' : 'S';
-                String genTable = to.generateHTMLTable(stc.getPlannedCoursesSE().get(fs));
-                getPrt().println(genTable);
+                getPrt().println(stc.getTable(term));
                 return;
+
             }
             default -> getPrt().failInvalidCommand();
         }
         getPrt().genericSuccessOrFail(successState);
+    }
+
+
+    @Override
+    public void printCommandList() {
+        this.cmdList.printStudent();
     }
 }

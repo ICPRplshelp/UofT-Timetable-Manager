@@ -1,8 +1,8 @@
 package org.phase2.objectcreators.controllerfactories;
 
-import org.example.logincode.interfaceadapters.controllers.ControllerAdmin;
-import org.example.logincode.interfaceadapters.controllers.ControllerCourseSearcher2;
-import org.example.logincode.interfaceadapters.controllers.ControllerStandard;
+import org.example.logincode.controllerspresentersgateways.controllers.ControllerAdmin;
+import org.example.logincode.controllerspresentersgateways.controllers.ControllerCourseSearcher2;
+import org.example.logincode.controllerspresentersgateways.controllers.ControllerStandard;
 import org.example.logincode.usecases.StorageManager;
 import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
 import org.phase2.studentrelated.controllers.StudentController;
@@ -10,7 +10,7 @@ import org.phase2.studentrelated.usecases.StudentManager;
 
 public class ControllerFactory {
 
-//    private String username;
+    //    private String username;
     private StudentManager manager;
 
     private ControllerAdmin controllerAdmin;
@@ -22,7 +22,7 @@ public class ControllerFactory {
     private final String username;
 
 
-    public ControllerFactory(String username, MAccountLoginValidator malv){
+    public ControllerFactory(String username, MAccountLoginValidator malv) {
         this.sm = malv.getStorageManager();
         this.username = username;
     }
@@ -47,7 +47,6 @@ public class ControllerFactory {
     }
 
 
-
     public void buildControllerAdmin(String username) {
         ControllerAdminBuilder adminBuilder = new ControllerAdminBuilder(username, sm);
         this.controllerAdmin = adminBuilder.getController();
@@ -60,6 +59,7 @@ public class ControllerFactory {
 
     public void buildStudentController(String username) {
         StudentControllerBuilder scBuilder = new StudentControllerBuilder(username, sm);
+
         this.studentController = scBuilder.getController();
     }
 

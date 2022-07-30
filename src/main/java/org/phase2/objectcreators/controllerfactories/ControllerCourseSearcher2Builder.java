@@ -1,10 +1,10 @@
 package org.phase2.objectcreators.controllerfactories;
 
-import org.example.logincode.interfaceadapters.controllers.ControllerCourseSearcher2;
+import org.example.logincode.controllerspresentersgateways.controllers.ControllerCourseSearcher2;
 import org.phase2.studentrelated.usecases.CourseSearchAdapter;
 import org.phase2.studentrelated.usecases.CourseSearchAdapterPrev;
 
-public class ControllerCourseSearcher2Builder implements ControllerBuilder{
+public class ControllerCourseSearcher2Builder implements ControllerBuilder {
 
     private CourseSearchAdapter csa;
 

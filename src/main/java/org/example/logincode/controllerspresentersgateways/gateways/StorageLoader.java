@@ -1,4 +1,4 @@
-package org.example.logincode.interfaceadapters.gateways;
+package org.example.logincode.controllerspresentersgateways.gateways;
 
 import org.example.logincode.entities.AccountStorage;
 import org.example.logincode.usecases.IGateway;

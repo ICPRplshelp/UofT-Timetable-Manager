@@ -1,21 +1,26 @@
 package org.phase2.studentrelated.controllers;
 
+import org.phase2.htmltables.TableOrganizer;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 import org.phase2.studentrelated.presenters.StudentPresenter;
-import org.phase2.studentrelated.usecases.CourseSearchAdapter;
 import org.phase2.studentrelated.usecases.StudentManager;
 import org.phase2.studentrelated.usecases.WarningChecker2;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
 public class StudentController {
 
     private final StudentManager sm;
+    private final TableOrganizer fTable;
+    private final TableOrganizer sTable;
 
-    public StudentController(StudentManager sm) {
+    public StudentController(StudentManager sm,
+                             TableOrganizer fTable,
+                             TableOrganizer sTable) {
         this.sm = sm;
+        this.fTable = fTable;
+        this.sTable = sTable;
     }
 
     /**
@@ -82,12 +87,26 @@ public class StudentController {
     /**
      * Obtains the presenter.
      */
-    public StudentPresenter getPresenter(){
+    public StudentPresenter getPresenter() {
         WarningChecker2 wc2 = new WarningChecker2(sm.getCSA(), sm.getCSAP());
         return new StudentPresenter(wc2, sm);
     }
 
     public Map<Character, Set<IScheduleEntry>> getPlannedCoursesSE() {
         return sm.getPlannedCourseSE();
+    }
+
+    /**
+     * Gets the HTML table.
+     *
+     * @param term f or s not case-sensitive
+     * @return the table as an HTML string
+     */
+    public String getTable(String term) {
+        term = term.toUpperCase();
+        if (fTable == null || sTable == null) return "";
+        TableOrganizer to = term.toUpperCase().startsWith("F") ? fTable : sTable;
+        char fs = term.startsWith("F") ? 'F' : 'S';
+        return to.generateHTMLTable(getPlannedCoursesSE().get(fs));
     }
 }

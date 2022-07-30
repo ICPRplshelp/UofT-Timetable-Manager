@@ -37,12 +37,11 @@ public class StorageManager {
         try {
             this.accountStorage = this.loadedStorage.attemptLoad("accountInformation.ser");
         } catch (IOException e) {
-            LOGGER.log(Level.WARNING, "Couldn't load anything. Blame your computer.");;
+            LOGGER.log(Level.WARNING, "Couldn't load anything. Double check, in your run configurations, that the current working directory is $MODULE_WORKING_DIR$ and not anything else.");
+
         } catch (ClassNotFoundException e) {
-            LOGGER.log(Level.WARNING, "Couldn't load anything. Perhaps the program was run for the first time, " +
-                    "or a change was made to the structure of the account " +
-                    "storage? Anyways, we're resetting all user storage " +
-                    "so we're starting blank.");;
+            LOGGER.log(Level.WARNING, "Couldn't load anything. A class that was serializable may have changed.");
+
         }
 
 

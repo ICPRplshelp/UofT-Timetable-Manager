@@ -1,7 +1,8 @@
 package org.example.logincode.uiinput;
 
 import org.example.PresenterPrinter;
-import org.example.logincode.interfaceadapters.controllers.ControllerAdmin;
+import org.example.logincode.controllerspresentersgateways.controllers.ControllerAdmin;
+import org.phase2.mainloophelpers.controllerspresenters.UICommandList;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,8 +13,9 @@ public class UIInputAdmin2 extends UIInput2 {
 
     private final ControllerAdmin controller;
 
-    public UIInputAdmin2(PresenterPrinter prt, ControllerAdmin controller) {
-        super(prt);
+    public UIInputAdmin2(PresenterPrinter prt, ControllerAdmin controller,
+                         UICommandList cmdl) {
+        super(prt, cmdl);
         this.controller = controller;
     }
 
@@ -42,5 +44,10 @@ public class UIInputAdmin2 extends UIInput2 {
             default -> getPrt().failInvalidCommand();
         }
         getPrt().genericSuccessOrFail(ss);
+    }
+
+    @Override
+    public void printCommandList() {
+        this.cmdList.printAdmin();
     }
 }

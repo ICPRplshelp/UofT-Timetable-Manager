@@ -1,4 +1,4 @@
-package org.example.logincode.interfaceadapters.controllers;
+package org.example.logincode.controllerspresentersgateways.controllers;
 
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.AdminAccountManager;
@@ -9,6 +9,7 @@ import java.util.Date;
 public class ControllerAdmin {
 
     private final AdminAccountManager adminAccountManager;
+
     public ControllerAdmin(AccountManager manager, StorageManager accountStorageManager) {
         // super(manager, accountStorageManager, LoggedInState.ADMIN);
         adminAccountManager = new AdminAccountManager(manager, accountStorageManager);

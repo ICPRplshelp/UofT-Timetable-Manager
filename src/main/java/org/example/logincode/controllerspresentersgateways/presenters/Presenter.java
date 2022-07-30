@@ -1,4 +1,4 @@
-package org.example.logincode.interfaceadapters.presenters;
+package org.example.logincode.controllerspresentersgateways.presenters;
 
 import org.example.PresenterPrinter;
 
@@ -26,7 +26,8 @@ public class Presenter {
         return inputs;
     }
 
-    /** Presents a message regarding a failed action.
+    /**
+     * Presents a message regarding a failed action.
      *
      * @param reason the reason an action failed.
      */

@@ -2,7 +2,7 @@ package org;
 
 import org.example.PresenterPrinter;
 import org.example.logincode.uiinput.InputParserClass;
-import org.example.logincode.uiinput.UIInput2;
+import org.jetbrains.annotations.NotNull;
 import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginPresenter;
 import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
 import org.phase2.mainloophelpers.controllerspresenters.UICommandList;
@@ -25,67 +25,57 @@ public class MainLoop {
 
     public static void main(String[] args) {
         MainLoop ml = new MainLoop();
-        ml.runThis();
+        ExitState prevExitState = ExitState.JUST_STARTED;
+        while (prevExitState != ExitState.EXIT) {
+            prevExitState = ml.runThis();
+        }
     }
 
-    public void runThis() {
+    public ExitState runThis() {
         String username = attemptToLogin();
         this.mAccountLoginValidator.updateSave();
         UIFactory uiFactory = new UIFactory(username, mAccountLoginValidator);
         UIObjectPool uiObjectPool = new UIObjectPool(uiFactory);
-        // MUIModes mode = MUIModes.STANDARD;
-        UIInput2 curUIInput = uiFactory.getInputStandard();
         UICommandList uiCommandList = new UICommandList();
-        uiCommandList.printGlobal();
-        uiCommandList.printStandard();
-        while (true) {
-            String cmd = prt.ask();
-            if (cmd.startsWith("switch") || cmd.startsWith("/switch")) {
-                UIInput2 temp = swapUIInput(cmd, uiObjectPool, uiCommandList);
-                if (temp != null) {
-                    curUIInput = temp;
-                }
-                continue;
-            }
-            if (cmd.startsWith("exit")) {
-                break;
-            }
-            this.mAccountLoginValidator.updateSave();
-            curUIInput.inputParser(cmd);
-        }
+        MContext context = new MContext(uiFactory, uiObjectPool, uiCommandList, "standard");
+        String latestCommand;
+        context.printGlobalCommands();
+        latestCommand = beginLoop(context, uiCommandList);
+        this.mAccountLoginValidator.updateSave();
+        if (latestCommand.equals("logout")) {
+            return ExitState.LOGOUT;
+        } else return ExitState.EXIT;
 
     }
 
     /**
-     * Attempts to swap the UI Input.
+     * Starts the input loop.
      *
-     * @param uiMode the mode to swap to
-     * @param op     the UI object pool.
-     * @return the UIInput if a swap was successful, null otherwise.
+     * @param context the context to pass in.
+     * @return what the user requested when exiting.
      */
-    public UIInput2 swapUIInput(String uiMode, UIObjectPool op, UICommandList cmdList) {
-        switch (new InputParserClass(uiMode).getArg(1)) {
-            case "standard" -> {
-                cmdList.printStandard();
-                return op.getStandard();
+    @NotNull
+    private String beginLoop(MContext context, UICommandList uiCommandList) {
+        String latestCommand;
+        while (true) {
+
+            context.printCommandList();
+            latestCommand = removeFirstSlash(prt.ask());
+            if (latestCommand.startsWith("switch") || latestCommand.startsWith("switchto") ||
+                    latestCommand.startsWith("sw")) {
+                boolean successState = context.setState(latestCommand.substring(Math.max(latestCommand.indexOf(" "), 0)));
+                if (!successState)
+                    uiCommandList.printSwitchFailure();
+                continue;
             }
-            case "admin", "adminview" -> {
-                cmdList.printAdmin();
-                return op.getAdmin();
+
+            if (latestCommand.equals("exit") || latestCommand.equals("logout")) {
+                break;
             }
-            case "student", "timetable" -> {
-                cmdList.printStudent();
-                return op.getStudent();
-            }
-            case "search", "coursesearch" -> {
-                cmdList.printSearch();
-                return op.getSearch();
-            }
-            default -> {
-                cmdList.printFailure();
-                return null;
-            }
+            context.input(latestCommand);
+            this.mAccountLoginValidator.updateSave();
         }
+        return latestCommand;
     }
 
     /**
@@ -134,6 +124,19 @@ public class MainLoop {
 
     public boolean validateAccountSignIn(String username, String password) {
         return mAccountLoginValidator.validateLogin(username, password);
+    }
+
+    /**
+     * Removes the first slash from the string
+     *
+     * @param toCheck the string in question
+     * @return check description
+     */
+    public String removeFirstSlash(String toCheck) {
+        if (toCheck.startsWith("/")) {
+            return toCheck.substring(1);
+        }
+        return toCheck;
     }
 
 

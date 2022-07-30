@@ -1,4 +1,4 @@
-package org.example.logincode.interfaceadapters.controllers;
+package org.example.logincode.controllerspresentersgateways.controllers;
 
 import org.example.logincode.usecases.AdminAccountManager;
 
@@ -11,19 +11,19 @@ public class AdminController {
         this.adminAccountManager = adminAccountManager;
     }
 
-    public boolean banUser(String userToBan, Date unbanDate){
+    public boolean banUser(String userToBan, Date unbanDate) {
         return adminAccountManager.banUser(userToBan, unbanDate);
     }
 
-    public boolean deleteUser(String userToDelete){
+    public boolean deleteUser(String userToDelete) {
         return adminAccountManager.deleteUser(userToDelete);
     }
 
-    public boolean createNewAdminUser(String username, String password){
+    public boolean createNewAdminUser(String username, String password) {
         return adminAccountManager.createNewAdminUser(username, password);
     }
 
-    public boolean promoteUserToAdmin(String username){
+    public boolean promoteUserToAdmin(String username) {
         return adminAccountManager.addPermission(username, "admin");
     }
 

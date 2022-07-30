@@ -20,13 +20,17 @@ public class AccountCreator {
 
     /**
      * Creates an account and adds it to the account storage.
-     * @param username username
-     * @param password password
+     *
+     * @param username username. may not be blank.
+     * @param password password. may not be blank.
      * @return whether the account creation was successful.
      */
-    public boolean createAccountAndAddToStorage(String username, String password){
+    public boolean createAccountAndAddToStorage(String username, String password) {
+        if (username.trim().equals("") || password.trim().equals("")) {
+            return false;
+        }
         Account acc = this.createAccount(username, password);
-        if(acc == null) return false;
+        if (acc == null) return false;
         this.accountStorageManager.addAccount(acc);
         return true;
     }
