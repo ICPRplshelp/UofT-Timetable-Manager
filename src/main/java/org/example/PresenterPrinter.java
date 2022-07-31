@@ -74,7 +74,7 @@ public class PresenterPrinter {
      * Prints a generic failed message.
      */
     public void failInvalidCommand() {
-        System.out.println("Invalid command.");
+        System.out.println("This isn't a command in the current view mode.");
     }
 
 }

@@ -1,6 +1,6 @@
 package org.phase2.studentrelated.presenters;
 
-import org.example.timetable.entities.warningtypes.WarningType;
+import org.example.timetable.entities.WarningType;
 
 import java.util.ArrayList;
 import java.util.Collection;

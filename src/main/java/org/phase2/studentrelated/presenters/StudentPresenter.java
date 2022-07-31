@@ -1,6 +1,6 @@
 package org.phase2.studentrelated.presenters;
 
-import org.example.timetable.entities.warningtypes.WarningType;
+import org.example.timetable.entities.WarningType;
 import org.phase2.studentrelated.usecases.StudentManager;
 import org.phase2.studentrelated.usecases.WarningChecker2;
 

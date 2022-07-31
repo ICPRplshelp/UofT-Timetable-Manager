@@ -89,6 +89,7 @@ public class MainLoop {
         while (result == null) {
             String cmd = prt.ask();
             result = loginCommand(cmd);
+            prt.genericSuccessOrFail(result != null);
         }
         return result;
     }

@@ -1,4 +1,4 @@
-package org.example.timetable.entities.warningtypes;
+package org.example.timetable.entities;
 
 public enum WarningType {
     CONFLICT,  // DO NOT RENAME ANY OF THESE VARIABLES
