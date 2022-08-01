@@ -21,7 +21,7 @@ public class TestPrerequisites2 {
     WarningChecker2 wc = new WarningChecker2(courseSearchAdapter, courseSearchAdapterPrev);
 
     // it is permissible to call methods here
-    StudentController sc = new StudentController(sm);
+    StudentController sc = new StudentController(sm, null, null);
     StudentPresenter studentPresenter = new StudentPresenter(wc, sm);
 
     @Test

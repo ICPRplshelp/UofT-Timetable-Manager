@@ -11,7 +11,7 @@ public class Student2 implements Serializable {
     /**
      * Items are course codes.
      * Course codes do not have the -F/-Y/-S suffix.
-     *
+     * <p>
      * passedCourses and plannedCourses.keySet() do not have to be
      * disjoint, although a warning should pop up
      * if that is the case.
@@ -33,7 +33,7 @@ public class Student2 implements Serializable {
      * have LEC/TUT/PRAs that are not in the course.
      * If that is the case, it should be treated by the program
      * as that specific meeting never existed.
-     *
+     * <p>
      * Example:
      * {"CSC110Y1-F": {"LEC0101", "TUT0101"}, "MAT137Y1-Y": {"LEC0101": "TUT0101"}}
      */
@@ -44,7 +44,7 @@ public class Student2 implements Serializable {
     /**
      * Items are course codes.
      * These courses do not have the section code -F/-Y/-S.
-     *
+     * <p>
      * passedCourses and plannedCourses.keySet() do not have to be
      * disjoint, although a warning should pop up
      * if that is the case.
@@ -64,7 +64,7 @@ public class Student2 implements Serializable {
      * have LEC/TUT/PRAs that are not in the course.
      * If that is the case, it should be treated by the program
      * as that specific meeting never existed.
-     *
+     * <p>
      * Example:
      * {"CSC110Y1-F": {"LEC0101", "TUT0101"}, "MAT137Y1-Y": {"LEC0101": "TUT0101"}}
      */
@@ -90,7 +90,7 @@ public class Student2 implements Serializable {
      * Adds a meeting to a planned course if it exists.
      * A planned course cannot have two lectures, so if there
      * are over two of them, the previous one will be removed.
-     *
+     * <p>
      * Once a meeting has been added, it cannot be removed, unless
      * you remove the course.
      *

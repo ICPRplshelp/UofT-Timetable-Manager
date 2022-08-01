@@ -1,7 +1,9 @@
 package org.example.coursegetter.entities.baseclasses;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * This class lists the lectures, tutorials, and practicals for a single

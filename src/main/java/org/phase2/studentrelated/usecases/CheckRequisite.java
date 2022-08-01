@@ -1,7 +1,7 @@
 package org.phase2.studentrelated.usecases;
 
 import org.example.requisitechecker.usecases.RequisiteChecker;
-import org.example.timetable.entities.warningtypes.WarningType;
+import org.example.timetable.entities.WarningType;
 
 import java.util.HashSet;
 import java.util.Map;

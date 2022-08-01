@@ -1,6 +1,7 @@
 package p2tests;
 
 import org.junit.Test;
+import org.phase2.htmltables.TableOrganizer;
 import org.phase2.studentrelated.controllers.StudentController;
 import org.phase2.studentrelated.entities.Student2;
 import org.phase2.studentrelated.presenters.StudentPresenter;
@@ -22,7 +23,7 @@ public class TestConflictChecker {
     WarningChecker2 wc = new WarningChecker2(courseSearchAdapter, courseSearchAdapterPrev);
 
     // it is permissible to call methods here
-    StudentController sc = new StudentController(sm);
+    StudentController sc = new StudentController(sm, new TableOrganizer('f'), new TableOrganizer('s'));
     StudentPresenter studentPresenter = new StudentPresenter(wc, sm);
 
     /**

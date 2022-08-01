@@ -6,10 +6,11 @@ public class HTMLListGen {
 
     /**
      * Generates an ordered HTML list out of items.
+     *
      * @param items the items to pass in.
      * @return the HTML list.
      */
-    public String generateHTMLList(Collection<String> items){
+    public String generateHTMLList(Collection<String> items) {
         // create an HTML list out of items
         StringBuilder sb = new StringBuilder();
         sb.append("<ol>");

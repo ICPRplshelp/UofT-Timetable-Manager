@@ -17,8 +17,8 @@ public class TableOrganizer {
      * create the HTML output of a student's timetable.
      *
      * @param fallWinter whether a fall timetable or a winter timetable
-     *                    is being generated ("F"/"S" term).
-     *                    Default "S"
+     *                   is being generated ("F"/"S" term).
+     *                   Default "S"
      */
     public TableOrganizer(char fallWinter) {
         this.fallWinter = fallWinter;
@@ -27,13 +27,14 @@ public class TableOrganizer {
     /**
      * Generates an HTML string of a student's timetable (F/S term, but
      * not both).
+     *
      * @param cells a collection os IScheduleEntry objects, which will all
      *              be placed in the timetable.
      *              NO CLASS MAY CONFLICT OR START/END AT XX:30
      * @return the HTML string of the table, including the table tag.
      * Use this HTML string on one of Java Swing's labels to display the table.
      */
-    public String generateHTMLTable(Collection<IScheduleEntry> cells){
+    public String generateHTMLTable(Collection<IScheduleEntry> cells) {
         HTMLTableCell[][] rawTableBody = transposeTable(genRawTableBody(cells));
         HTMLTableCell[] head = generateHead();
         return "<table border=\"1\">" +
@@ -44,13 +45,14 @@ public class TableOrganizer {
     /**
      * Transposes the table
      * code based on <a href="https://stackoverflow.com/a/26199060">...</a>
+     *
      * @param table the 2d array
      * @return the transposed table
      */
-    private HTMLTableCell[][] transposeTable(HTMLTableCell[][] table){
+    private HTMLTableCell[][] transposeTable(HTMLTableCell[][] table) {
         HTMLTableCell[][] transposedTable = new HTMLTableCell[table[0].length][table.length];
-        for(int i = 0; i < table.length; i++){
-            for(int j = 0; j < table[0].length; j++){
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table[0].length; j++) {
                 transposedTable[j][i] = table[i][j];
             }
         }
@@ -97,7 +99,7 @@ public class TableOrganizer {
      * Generate timetable cells for a single day.
      * Each index of what is returned represents the hour at
      * a 24-hour clock.
-     *
+     * <p>
      * No cell may conflict or start on an XX:30.
      *
      * @param ises a collection of IScheduleEntries
@@ -109,7 +111,7 @@ public class TableOrganizer {
         for (IScheduleEntry ise : ises) {
             int startHour = ise.getStartTime().getHour();
             int endHour = ise.getEndTime().getHour();
-            if(ise.getStartTime().getMinute() != 0 || ise.getEndTime().getMinute() != 0){
+            if (ise.getStartTime().getMinute() != 0 || ise.getEndTime().getMinute() != 0) {
                 throw new NotOnHourException();
             }
             if (!cellArray[startHour].isEmpty()) {
@@ -129,11 +131,12 @@ public class TableOrganizer {
 
     /**
      * Generates an array of 24 ClockCells, each representing an hour.
+     *
      * @return check the description above
      */
-    private HTMLTableCell[] generate24HrClockStrip(){
+    private HTMLTableCell[] generate24HrClockStrip() {
         HTMLTableCell[] toReturn = new HTMLTableCell[24];
-        for(int i = 0; i < 24; i++){
+        for (int i = 0; i < 24; i++) {
             toReturn[i] = new ClockCell(i);
         }
         return toReturn;
@@ -141,11 +144,12 @@ public class TableOrganizer {
 
     /**
      * Generates the head of the timetable thing.
+     *
      * @return The head.
      */
-    private HTMLTableCell[] generateHead(){
+    private HTMLTableCell[] generateHead() {
         HTMLTableCell[] toReturn = new HTMLTableCell[6];
-        for(int i = 0; i < 6; i++){
+        for (int i = 0; i < 6; i++) {
             toReturn[i] = new HeaderCell(i);
         }
         return toReturn;

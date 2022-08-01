@@ -1,7 +1,8 @@
 package org.example.logincode.uiinput;
 
 import org.example.PresenterPrinter;
-import org.example.logincode.interfaceadapters.controllers.ControllerCourseSearcher2;
+import org.example.logincode.controllerspresentersgateways.controllers.ControllerCourseSearcher2;
+import org.phase2.mainloophelpers.controllerspresenters.UICommandList;
 
 import java.util.Set;
 
@@ -9,8 +10,9 @@ public class UIInputCourseSearch2 extends UIInput2 {
 
     private final ControllerCourseSearcher2 ccs2;
 
-    public UIInputCourseSearch2(PresenterPrinter prt, ControllerCourseSearcher2 ccs2) {
-        super(prt);
+    public UIInputCourseSearch2(PresenterPrinter prt, ControllerCourseSearcher2 ccs2,
+                                UICommandList cmdl) {
+        super(prt, cmdl);
         this.ccs2 = ccs2;
     }
 
@@ -30,5 +32,10 @@ public class UIInputCourseSearch2 extends UIInput2 {
             }
             default -> getPrt().failInvalidCommand();
         }
+    }
+
+    @Override
+    public void printCommandList() {
+        this.cmdList.printSearch();
     }
 }

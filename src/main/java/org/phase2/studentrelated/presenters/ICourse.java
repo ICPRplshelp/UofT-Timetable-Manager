@@ -21,7 +21,7 @@ public interface ICourse {
     String getCourseDescription();
     String getBreadthCategories();
     String getDeliveryInstructions();
-    String getCourseTitle();
+    String getCourseTitle(); 
     String getCorequisite();
     Meetings getMeetings();
 }

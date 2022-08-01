@@ -13,6 +13,7 @@ public class InputParserClass {
 
     /**
      * Gets the keyword.
+     *
      * @return above.
      */
     public String getKeyword() {
@@ -21,6 +22,7 @@ public class InputParserClass {
 
     /**
      * Gets the nth argument
+     *
      * @param index the index of the arg counting from 1, not 0 (0 is kw)
      * @return above.
      */

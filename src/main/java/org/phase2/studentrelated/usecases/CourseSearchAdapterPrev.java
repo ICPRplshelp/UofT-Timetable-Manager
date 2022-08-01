@@ -32,13 +32,14 @@ public class CourseSearchAdapterPrev {
 
     /**
      * Obtain course information from course code.
+     *
      * @param code the course code, with or without the suffix (don't use the suffix for best results)
      * @return the course information, although all we really need to
      * do with this is to verify that this was a course that was
      * taken in the past.
      */
     public Course getCourse(String code) {
-        if (code.length() > 7) return getCourseOffering(code);
+        if (code.length() > 8) return getCourseOffering(code);
         else {
             return getCoursePlain(code);
         }
@@ -47,6 +48,7 @@ public class CourseSearchAdapterPrev {
     /**
      * Try its best to grab course info for a course code with
      * the suffix -F/-S/-Y.
+     *
      * @param code a course code with the suffix -F/-S/-Y
      * @return the course, if possible.
      * Please do not check its
@@ -67,6 +69,7 @@ public class CourseSearchAdapterPrev {
     /**
      * Try its best to grab course info for a course code WITHOUT
      * the suffix -F/-S/-Y.
+     *
      * @param code a course code WITHOUT the suffix -F/-S/-Y
      * @return the course, if possible.
      * Please do not check its

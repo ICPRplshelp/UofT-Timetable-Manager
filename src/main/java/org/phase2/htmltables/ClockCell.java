@@ -4,7 +4,7 @@ class ClockCell implements HTMLTableCell {
 
     private final int theHour;
 
-    public ClockCell(int hourOfDay){
+    public ClockCell(int hourOfDay) {
         this.theHour = hourOfDay;
     }
 

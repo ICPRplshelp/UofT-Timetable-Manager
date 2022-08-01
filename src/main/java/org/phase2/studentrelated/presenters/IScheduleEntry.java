@@ -6,12 +6,13 @@ import java.time.LocalTime;
 /**
  * This class contains enough data for a single timetable
  * cell to display.
- *
  */
 public interface IScheduleEntry {
 
     String getCourseCode();
+
     String getMeetingCode();
+
     /**
      * Returns the F term meeting room.
      */

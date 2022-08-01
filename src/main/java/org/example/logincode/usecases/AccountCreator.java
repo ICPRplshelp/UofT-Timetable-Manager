@@ -7,7 +7,7 @@ import org.example.logincode.entities.Account;
  */
 public class AccountCreator {
 
-    final StorageManager accountStorageManager;
+    private final StorageManager accountStorageManager;
 
     /**
      * Construct this class with an existing storage manager.
@@ -16,6 +16,23 @@ public class AccountCreator {
      */
     public AccountCreator(StorageManager accountStorageManager) {
         this.accountStorageManager = accountStorageManager;
+    }
+
+    /**
+     * Creates an account and adds it to the account storage.
+     *
+     * @param username username. may not be blank.
+     * @param password password. may not be blank.
+     * @return whether the account creation was successful.
+     */
+    public boolean createAccountAndAddToStorage(String username, String password) {
+        if (username.trim().equals("") || password.trim().equals("")) {
+            return false;
+        }
+        Account acc = this.createAccount(username, password);
+        if (acc == null) return false;
+        this.accountStorageManager.addAccount(acc);
+        return true;
     }
 
     /**

@@ -16,7 +16,12 @@ public class DateEntries implements Serializable {
     }
 
     public String toString() {
-        return dates.toString();
+
+        StringBuilder sb = new StringBuilder();
+        dates.forEach(d ->
+                sb.append("    ").append(d.toString()).append("\n"));
+
+        return sb.toString();
     }
 
 
