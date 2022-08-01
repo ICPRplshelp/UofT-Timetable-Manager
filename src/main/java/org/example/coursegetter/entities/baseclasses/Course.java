@@ -4,40 +4,64 @@ import org.jetbrains.annotations.NotNull;
 import org.phase2.studentrelated.presenters.ICourse;
 
 import java.io.Serializable;
-import java.util.Map;
 
 public class Course implements Comparable<Course>, Serializable, ICourse {
     // public final int brq;
-    public final BreadthRequirement brc;
-    private final double creditValue;
-    private final String code;
-    private final String org;
-    private final String prerequisite;
-    private final String exclusion;
-    private final String section;
-    private final String courseDescription;
-    private final String breadthCategories;
-    private final String deliveryInstructions;
-    private final String courseTitle;
-    private final String corequisite;
-    private final Meetings meetings;
+    public BreadthRequirement brc;
+    private double creditValue;
+    private String code;
+    private String org;
+    private String prerequisite;
+    private String exclusion;
+    private String section;
+    private String courseDescription;
+    private String breadthCategories;
+    private String deliveryInstructions;
+    private String courseTitle;
+    private String corequisite;
+    private Meetings meetings;
 
-    public Course(Map<String, Object> cInfo) {
+    public Course() {
+    }
 
-        this.code = (String) cInfo.get("code");
-
-        this.org = (String) cInfo.get("org");
-        this.prerequisite = (String) cInfo.get("prerequisite");
-        this.exclusion = (String) cInfo.get("exclusion");
-        this.section = (String) cInfo.get("section");
-        this.courseDescription = (String) cInfo.get("courseDescription");
-        this.breadthCategories = (String) cInfo.get("breadthCategories");
-        this.deliveryInstructions = (String) cInfo.get("deliveryInstructions");
-        this.courseTitle = (String) cInfo.get("courseTitle");
-        this.corequisite = (String) cInfo.get("corequisite");
-        this.meetings = new Meetings((Map<String, Object>) cInfo.get("meetings"), getOfferingCode());
-        this.creditValue = calculateCourseCreditValue();
-        this.brc = new BreadthRequirement(this.breadthCategories, this.creditValue);
+    public void setCode(String code){
+        this.code = code;
+    }
+    public void setOrg(String org){
+        this.org = org;
+    }
+    public void setPrerequisite(String prerequisite){
+        this.prerequisite = prerequisite;
+    }
+    public void setExclusion(String exclusion){
+        this.exclusion = exclusion;
+    }
+    public void setSection(String section){
+        this.section = section;
+    }
+    public void setCourseDescription(String courseDescription){
+        this.courseDescription = courseDescription;
+    }
+    public void setBreadthCategories(String breadthCategories){
+        this.breadthCategories = breadthCategories;
+    }
+    public void setDeliveryInstructions(String deliveryInstructions){
+        this.deliveryInstructions = deliveryInstructions;
+    }
+    public void setCourseTitle(String courseTitle){
+        this.courseTitle = courseTitle;
+    }
+    public void setCorequisite(String corequisite){
+        this.corequisite = corequisite;
+    }
+    public void setMeetings(Meetings meetings){
+        this.meetings = meetings;
+    }
+    public void setCreditValue(double creditValue){
+        this.creditValue = creditValue;
+    }
+    public void setBrc(BreadthRequirement brc){
+        this.brc = brc;
     }
 
     // Course offering Regex: [A-Z]{3}[0-4]\d{2}[H|Y][0159]-[FSY]
@@ -109,12 +133,6 @@ public class Course implements Comparable<Course>, Serializable, ICourse {
         }
         return true;
     }
-
-    private double calculateCourseCreditValue() {
-        if (org.equals("PDC")) return 0.0;
-        else return this.code.charAt(6) == 'Y' ? 1 : 0.5;
-    }
-
     @Override
     public String toString() {
         return this.code + "-" + this.section;
