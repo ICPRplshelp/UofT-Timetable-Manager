@@ -37,10 +37,10 @@ public class StorageManager {
         try {
             this.accountStorage = this.loadedStorage.attemptLoad("accountInformation.ser");
         } catch (IOException e) {
-            LOGGER.log(Level.WARNING, "Couldn't load anything. Double check, in your run configurations, that the current working directory is $MODULE_WORKING_DIR$ and not anything else.");
+            LOGGER.log(Level.WARNING, "Couldn't load anything, perhaps the program was run for the first time? Double check, in your run configurations, that the current working directory is $MODULE_WORKING_DIR$ and not anything else.");
 
         } catch (ClassNotFoundException e) {
-            LOGGER.log(Level.WARNING, "Couldn't load anything. A class that was serializable may have changed.");
+            LOGGER.log(Level.WARNING, "Couldn't load anything, perhaps the program was run for the first time? A class that was serializable may have changed.");
 
         }
 
