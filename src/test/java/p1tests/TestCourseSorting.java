@@ -1,6 +1,9 @@
 package p1tests;
 
 import org.example.coursegetter.entities.baseclasses.Course;
+import org.example.coursegetter.usecases.CourseBuilder;
+import org.example.coursegetter.usecases.CourseBuilderDirector;
+import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,7 +29,9 @@ public class TestCourseSorting {
                 entry("corequisite", "corequisite"),
                 entry("meetings", new HashMap<String, Object>())
         );
-        return new Course(courseInfo);
+        CourseBuilderDirector cbd = new CourseBuilderDirector(new CourseBuilder());
+
+        return cbd.construct(courseInfo);
     }
 
     @Test(timeout = 50)
