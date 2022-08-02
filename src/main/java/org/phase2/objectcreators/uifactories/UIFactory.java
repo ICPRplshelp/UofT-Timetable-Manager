@@ -21,7 +21,7 @@ public class UIFactory {
     }
 
     public UIInput2 getInputAdmin() {
-        cf.buildControllerAdmin(username);
+        cf.buildControllerAdmin();
         return new UIInputAdmin2(prt, cf.getControllerAdmin(), cmdl);
     }
 
@@ -31,12 +31,12 @@ public class UIFactory {
     }
 
     public UIInput2 getInputStandard() {
-        cf.buildControllerStandard(username);
+        cf.buildControllerStandard();
         return new UIInputStandard2(prt, cf.getControllerStandard(), cmdl);
     }
 
     public UIInput2 getInputStudent() {
-        cf.buildStudentController(username);
+        cf.buildStudentController();
         return new UIInputStudent2(prt, cf.getStudentController(), cmdl);
     }
 

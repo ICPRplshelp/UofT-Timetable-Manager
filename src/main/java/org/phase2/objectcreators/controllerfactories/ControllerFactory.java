@@ -6,7 +6,9 @@ import org.example.logincode.controllerspresentersgateways.controllers.Controlle
 import org.example.logincode.usecases.StorageManager;
 import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
 import org.phase2.studentrelated.controllers.StudentController;
+import org.phase2.studentrelated.usecases.CourseSearchAdapter;
 import org.phase2.studentrelated.usecases.StudentManager;
+import org.phase2.studentrelated.usecases.WarningChecker2;
 
 public class ControllerFactory {
 
@@ -47,24 +49,30 @@ public class ControllerFactory {
     }
 
 
-    public void buildControllerAdmin(String username) {
+    public void buildControllerAdmin() {
         ControllerAdminBuilder adminBuilder = new ControllerAdminBuilder(username, sm);
         this.controllerAdmin = adminBuilder.getController();
     }
 
-    public void buildControllerStandard(String username) {
+    public void buildControllerStandard() {
         ControllerStandardBuilder standardBuilder = new ControllerStandardBuilder(username, sm);
         this.controllerStandard = standardBuilder.getController();
     }
 
-    public void buildStudentController(String username) {
+    public void buildStudentController() {
         StudentControllerBuilder scBuilder = new StudentControllerBuilder(username, sm);
 
         this.studentController = scBuilder.getController();
     }
 
     public void buildSearchController() {
-        ControllerCourseSearcher2Builder searcher2builder = new ControllerCourseSearcher2Builder();
+        StudentController stc = getStudentController();
+        if(stc == null) {
+            buildStudentController();
+            stc = getStudentController();
+        }
+        WarningChecker2 temp = stc.getWc();
+        ControllerCourseSearcher2Builder searcher2builder = new ControllerCourseSearcher2Builder(temp);
         this.controllerCourseSearcher2 = searcher2builder.getController();
     }
 }

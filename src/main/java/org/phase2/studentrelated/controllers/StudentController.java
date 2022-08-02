@@ -18,6 +18,10 @@ public class StudentController {
     private final TableOrganizer sTable;
     private final WarningChecker2 wc;
 
+    public WarningChecker2 getWc(){
+        return this.wc;
+    }
+
     public StudentController(StudentManager sm,
                              TableOrganizer fTable,
                              TableOrganizer sTable,
@@ -92,9 +96,8 @@ public class StudentController {
     /**
      * Obtains the presenter.
      */
-    public StudentPresenter getPresenter() {
-        WarningChecker2 wc2 = new WarningChecker2(sm.getCSA(), sm.getCSAP());
-        return new StudentPresenter(wc2, sm);
+    public StudentPresenter getPresenter() {;
+        return new StudentPresenter(wc, sm);
     }
 
     public Map<Character, Set<IScheduleEntry>> getPlannedCoursesSE() {
@@ -114,7 +117,7 @@ public class StudentController {
         TableOrganizer to = term.toUpperCase().startsWith("F") ? fTable : sTable;
         char fs = term.startsWith("F") ? 'F' : 'S';
         // recheck timetable warnings - this runs only when needed
-        wc.checkTimetableWarnings(sm.getPlannedCourses());
+        wc.checkTimetableWarnings();
         String temp;
         try {
             temp = to.generateHTMLTable(getPlannedCoursesSE().get(fs));

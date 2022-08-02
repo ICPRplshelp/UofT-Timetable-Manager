@@ -15,24 +15,50 @@ import java.util.Set;
 public class WarningChecker2 {
     private final CourseSearchAdapter plannedSearcher;
     private final CourseSearchAdapterPrev pastSearcher;
+    private final Map<String, Set<String>> planned;
+    private final Set<String> passed;
 
-    public WarningChecker2(CourseSearchAdapter plannedSearcher, CourseSearchAdapterPrev pastSearcher) {
+
+
+    public WarningChecker2(CourseSearchAdapter plannedSearcher, CourseSearchAdapterPrev pastSearcher,
+                           Map<String, Set<String>> planned,
+                           Set<String> passed) {
         this.plannedSearcher = plannedSearcher;
         this.pastSearcher = pastSearcher;
+        this.planned = planned;
+        this.passed = passed;
     }
 
     /**
      * Checks course-related warnings for a set of planned and past courses.
      *
-     * @param planned all planned courses and the only courses to check warnings for
-     * @param passed  the courses the student has taken in the past
      * @return a map mapping each applicable course (with the -F/-Y/-S) to the set of warnings that may affect it.
      */
-    public Map<String, Set<WarningType>> checkCourseWarnings(Set<String> planned, Set<String> passed) {
+    public Map<String, Set<WarningType>> checkCourseWarnings() {
         Map<String, Set<WarningType>> warnList = new HashMap<>();
-        addRequisiteWarnings(planned, passed, warnList);
+        Set<String> planned1 = planned.keySet();
+        addCourseWarningsHelper(warnList, planned1);
 
         return warnList;
+    }
+
+    private void addCourseWarningsHelper(Map<String, Set<WarningType>> warnList, Set<String> planned1) {
+        addRequisiteWarnings(planned1, passed, warnList);
+    }
+
+    /**
+     * This overload adds otherCourse to your course warnings.
+     *
+     * @param otherCourse the other course to add
+     * @return any issues
+     */
+    public Map<String, Set<WarningType>> checkCourseWarnings(String otherCourse){
+        Map<String, Set<WarningType>> warnList = new HashMap<>();
+        Set<String> planned0102 = new HashSet<>(planned.keySet());
+        planned0102.add(otherCourse);
+        addCourseWarningsHelper(warnList, planned0102);
+        return warnList;
+
     }
 
 
@@ -106,10 +132,9 @@ public class WarningChecker2 {
     /**
      * Check timetable-related warnings for a set of planned courses.
      *
-     * @param planned a student's planned courses with lecture section info.
      * @return a map mapping each ScheduleEntry to the Warnings it may have.
      */
-    public Map<IScheduleEntry, Set<WarningType>> checkTimetableWarnings(Map<String, Set<String>> planned) {
+    public Map<IScheduleEntry, Set<WarningType>> checkTimetableWarnings() {
         Map<IScheduleEntry, Set<WarningType>> warningMap = new HashMap<>();
         Set<IScheduleEntry> allScheduleEntries = generateScheduleEntriesAll(planned);
         for (IScheduleEntry se : allScheduleEntries) {

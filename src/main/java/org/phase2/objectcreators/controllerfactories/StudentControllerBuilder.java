@@ -20,7 +20,8 @@ public class StudentControllerBuilder implements ControllerBuilder {
         builder.buildSearcher();
         builder.buildPastSearcher();
         this.manager = builder.getStudentManager();
-        this.wc = new WarningChecker2(manager.getCSA(), manager.getCSAP());
+        this.wc = new WarningChecker2(manager.getCSA(), manager.getCSAP(),
+                 this.manager.getPlannedCourses(), this.manager.getPassedCourses());
         fTable = new TableOrganizer('F', wc);
         sTable = new TableOrganizer('S', wc);
     }
