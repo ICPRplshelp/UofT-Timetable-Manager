@@ -20,7 +20,7 @@ public class MTesting {
         CourseSearchAdapterPrev courseSearchAdapterPrev = new CourseSearchAdapterPrev();
         CourseSearchAdapter courseSearchAdapter = new CourseSearchAdapter();
         StudentManager sm = new StudentManager(stud, courseSearchAdapter, courseSearchAdapterPrev);
-        StudentController sc = new StudentController(sm, null, null);
+        StudentController sc = new StudentController(sm, null, null, null);
         WarningChecker2 wc = new WarningChecker2(courseSearchAdapter, courseSearchAdapterPrev);
         StudentPresenter studentPresenter = new StudentPresenter(wc, sm);
         sc.addCourse("MAT257Y1-Y");
@@ -37,7 +37,7 @@ public class MTesting {
         System.out.println(pcf);
         String pcf2 = studentPresenter.getPassedCourseInfo().toString();
         System.out.println(pcf2);
-        TableOrganizer tableOrganizer = new TableOrganizer('F');
+        TableOrganizer tableOrganizer = new TableOrganizer('F', wc);
         Map<Character, Set<IScheduleEntry>> pse = sm.getPlannedCourseSE();
         Set<IScheduleEntry> fTimetable = new HashSet<>();
         fTimetable.addAll(pse.get('F'));

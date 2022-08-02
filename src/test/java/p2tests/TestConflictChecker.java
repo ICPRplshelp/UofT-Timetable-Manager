@@ -23,7 +23,8 @@ public class TestConflictChecker {
     WarningChecker2 wc = new WarningChecker2(courseSearchAdapter, courseSearchAdapterPrev);
 
     // it is permissible to call methods here
-    StudentController sc = new StudentController(sm, new TableOrganizer('f'), new TableOrganizer('s'));
+    StudentController sc = new StudentController(sm, new TableOrganizer('f', wc), new TableOrganizer('s', wc),
+            new WarningChecker2(courseSearchAdapter, courseSearchAdapterPrev));
     StudentPresenter studentPresenter = new StudentPresenter(wc, sm);
 
     /**

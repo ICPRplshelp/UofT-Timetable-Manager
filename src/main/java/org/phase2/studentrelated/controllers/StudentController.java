@@ -1,5 +1,7 @@
 package org.phase2.studentrelated.controllers;
 
+import org.phase2.htmltables.ConflictException;
+import org.phase2.htmltables.NotOnHourException;
 import org.phase2.htmltables.TableOrganizer;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 import org.phase2.studentrelated.presenters.StudentPresenter;
@@ -14,13 +16,16 @@ public class StudentController {
     private final StudentManager sm;
     private final TableOrganizer fTable;
     private final TableOrganizer sTable;
+    private final WarningChecker2 wc;
 
     public StudentController(StudentManager sm,
                              TableOrganizer fTable,
-                             TableOrganizer sTable) {
+                             TableOrganizer sTable,
+                             WarningChecker2 wc) {
         this.sm = sm;
         this.fTable = fTable;
         this.sTable = sTable;
+        this.wc = wc;
     }
 
     /**
@@ -103,10 +108,19 @@ public class StudentController {
      * @return the table as an HTML string
      */
     public String getTable(String term) {
+
         term = term.toUpperCase();
         if (fTable == null || sTable == null) return "";
         TableOrganizer to = term.toUpperCase().startsWith("F") ? fTable : sTable;
         char fs = term.startsWith("F") ? 'F' : 'S';
-        return to.generateHTMLTable(getPlannedCoursesSE().get(fs));
+        // recheck timetable warnings - this runs only when needed
+        wc.checkTimetableWarnings(sm.getPlannedCourses());
+        String temp;
+        try {
+            temp = to.generateHTMLTable(getPlannedCoursesSE().get(fs));
+        } catch (NotOnHourException | ConflictException e) {
+            return "";
+        }
+        return temp;
     }
 }

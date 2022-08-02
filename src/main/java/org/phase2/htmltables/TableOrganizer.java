@@ -1,17 +1,16 @@
 package org.phase2.htmltables;
 
+import org.example.timetable.entities.WarningType;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
+import org.phase2.studentrelated.usecases.WarningChecker2;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class TableOrganizer {
 
     private final char fallWinter;
     private final TableGenerator tableGenerator = new TableGenerator();
-
+    private final WarningChecker2 wc;
     /**
      * Initiates this class, which is used to organize and
      * create the HTML output of a student's timetable.
@@ -20,8 +19,10 @@ public class TableOrganizer {
      *                   is being generated ("F"/"S" term).
      *                   Default "S"
      */
-    public TableOrganizer(char fallWinter) {
+    public TableOrganizer(char fallWinter,
+                          WarningChecker2 wc) {
         this.fallWinter = fallWinter;
+        this.wc = wc;
     }
 
     /**
@@ -117,10 +118,11 @@ public class TableOrganizer {
             if (!cellArray[startHour].isEmpty()) {
                 throw new ConflictException();
             }
-            cellArray[startHour] = new CourseCell(ise, fallWinter);
+            Set<WarningType> crWarnings = wc.getLastMap().get(ise);
+            cellArray[startHour] = new CourseCell(ise, fallWinter, crWarnings);
             for (int i = ++startHour; i < endHour; i++) {
                 if (!cellArray[startHour].isEmpty()) {
-                    System.out.println(startHour);
+                    // System.out.println(startHour);
                     throw new ConflictException();
                 }
                 cellArray[i] = new OccupiedCell();
