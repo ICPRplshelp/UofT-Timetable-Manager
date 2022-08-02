@@ -15,8 +15,7 @@ public class UICommandList {
             /addmeeting <course code with -F/-S/-Y suffix> <meeting (LEC0101)>
             Adds a meeting to an existing course. Fails if meeting or course DNE.
             Aliases: /am
-                        
-             
+
             /addh <course code without -F/-S/-Y suffix>
             Adds a course to your passed course list. Used to determine prerequisites, corequisites, and exclusions. Fails if course DNE or was not offered after F/W 2019-2020.
             Aliases: /ah

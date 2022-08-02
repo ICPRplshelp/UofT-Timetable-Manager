@@ -9,8 +9,18 @@ import java.time.LocalTime;
  */
 public interface IScheduleEntry {
 
+    /**
+     * This includes the -F/-S/-Y suffix.
+     *
+     * @return Returns the course associated with this
+     *         IScheduleEntry instance.
+     */
     String getCourseCode();
 
+    /**
+     *
+     * @return Something that looks like LEC0101.
+     */
     String getMeetingCode();
 
     /**
