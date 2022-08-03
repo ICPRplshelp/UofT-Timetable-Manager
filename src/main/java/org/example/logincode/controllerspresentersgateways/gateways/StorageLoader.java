@@ -55,6 +55,10 @@ public class StorageLoader implements IGateway {
     }
 
 
+    /**
+     * Attempts to update the ser storage.
+     * @param tempAccountStorage the temporary account storage
+     */
     public void updateAccounts(AccountStorage tempAccountStorage) {
 
         if (disable) return;
