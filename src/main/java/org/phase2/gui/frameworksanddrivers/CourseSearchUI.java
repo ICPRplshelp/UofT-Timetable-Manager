@@ -1,5 +1,7 @@
 package org.phase2.gui.frameworksanddrivers;
 
+import org.example.logincode.controllerspresentersgateways.controllers.ControllerCourseSearcher2;
+
 import javax.swing.*;
 
 public class CourseSearchUI extends JPanel {
@@ -16,7 +18,10 @@ public class CourseSearchUI extends JPanel {
     private JButton courseButton;
 
     private JButton meetingButton;
-    public CourseSearchUI() {
+
+    private final ControllerCourseSearcher2 ccs2;
+    public CourseSearchUI(ControllerCourseSearcher2 ccs2) {
+        this.ccs2 = ccs2;
 
         mainPanel.setVisible(true);
     }
