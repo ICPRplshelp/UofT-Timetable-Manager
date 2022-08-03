@@ -1,6 +1,10 @@
 package org.phase2.gui.frameworksanddrivers;
 
+import org.example.logincode.controllerspresentersgateways.controllers.ControllerAdmin;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AdminUI {
     private JPanel mainPanel;
@@ -17,11 +21,39 @@ public class AdminUI {
     private JButton promoteAdminButton;
     private JTextPane promoteUserTextPane1;
 
+    private final ControllerAdmin controller;
+
     public JPanel getMainPanel() {
         return mainPanel;
     }
 
-    public AdminUI() {
+    public AdminUI(ControllerAdmin controller) {
+        this.controller = controller;
+
         mainPanel.setVisible(true);
+        banUserButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        deleteUserButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        createAdminButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        promoteAdminButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 }

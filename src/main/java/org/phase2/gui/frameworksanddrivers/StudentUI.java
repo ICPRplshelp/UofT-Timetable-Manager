@@ -1,5 +1,7 @@
 package org.phase2.gui.frameworksanddrivers;
 
+import org.phase2.studentrelated.controllers.StudentController;
+
 import javax.swing.*;
 
 public class StudentUI {
@@ -13,11 +15,14 @@ public class StudentUI {
     private JTextField addMeetingField;
     private JTextField addPastField;
 
+    private final StudentController stc;
+
     public JPanel getMainPanel() {
         return mainPanel;
     }
 
-    public StudentUI() {
+    public StudentUI(StudentController stc) {
+        this.stc = stc;
         mainPanel.setVisible(true);
     }
 }
