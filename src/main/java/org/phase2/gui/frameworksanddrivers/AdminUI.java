@@ -31,29 +31,17 @@ public class AdminUI {
         this.controller = controller;
 
         mainPanel.setVisible(true);
-        banUserButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        banUserButton.addActionListener(e -> {
 
-            }
         });
-        deleteUserButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        deleteUserButton.addActionListener(e -> {
 
-            }
         });
-        createAdminButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        createAdminButton.addActionListener(e -> {
 
-            }
         });
-        promoteAdminButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        promoteAdminButton.addActionListener(e -> {
 
-            }
         });
     }
 }

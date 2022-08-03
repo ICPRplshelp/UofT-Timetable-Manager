@@ -33,37 +33,31 @@ public class LoginUI {
         this.mAccountLoginPresenter = new GUIMAccountLoginPresenter(error);
 
 
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = loginCommand("login");
-                if (username == null){
-                    mAccountLoginPresenter.loginState(false);
-                    return;
-                }
-
-                mAccountLoginValidator.updateSave();
-                guiDisplay.login(username, mAccountLoginValidator);
-                guiDisplay.switchLoginView("login");
-                guiDisplay.switchViews("standard");
-
-                mAccountLoginPresenter.loginState(true);
-
+        loginButton.addActionListener(e -> {
+            String username = loginCommand("login");
+            if (username == null){
+                mAccountLoginPresenter.loginState(false);
+                return;
             }
+
+            mAccountLoginValidator.updateSave();
+            guiDisplay.login(username, mAccountLoginValidator);
+            guiDisplay.switchLoginView("login");
+            guiDisplay.switchViews("standard");
+
+            mAccountLoginPresenter.loginState(true);
+
         });
-        registerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = loginCommand("register");
-                if (username == null){
-                    mAccountLoginPresenter.registerState(false);
-                    return;
-                }
-                mAccountLoginPresenter.registerState(true);
-
-                mAccountLoginValidator.updateSave();
-                guiDisplay.switchLoginView("register");
+        registerButton.addActionListener(e -> {
+            String username = loginCommand("register");
+            if (username == null){
+                mAccountLoginPresenter.registerState(false);
+                return;
             }
+            mAccountLoginPresenter.registerState(true);
+
+            mAccountLoginValidator.updateSave();
+            guiDisplay.switchLoginView("register");
         });
     }
 
