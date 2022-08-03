@@ -55,6 +55,9 @@ public class GUIDisplay {
                 switchViews("admin");
             }
         });
+        search = new CourseSearchUI().getMainPanel();
+        student = new StudentUI().getMainPanel();
+        admin = new AdminUI().getMainPanel();
     }
 
     // there are the methods that will be kept
@@ -63,7 +66,11 @@ public class GUIDisplay {
         bodyPanel.removeAll();
         switch (view) {
             case "admin" -> bodyPanel.add(admin);
-            case "search" -> bodyPanel.add(search);
+            case "search" -> {
+                bodyPanel.add(search);
+                search.validate();
+                search.setVisible(true);
+            }
             case "standard" -> bodyPanel.add(standard);
             case "student" -> bodyPanel.add(student);
         }
