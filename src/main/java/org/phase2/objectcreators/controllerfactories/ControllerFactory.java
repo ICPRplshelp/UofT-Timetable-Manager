@@ -30,14 +30,17 @@ public class ControllerFactory {
     }
 
     public ControllerAdmin getControllerAdmin() {
+        if(this.controllerAdmin == null) buildControllerAdmin();
         return this.controllerAdmin;
     }
 
     public ControllerStandard getControllerStandard() {
+        if(this.controllerStandard == null) buildControllerStandard();
         return this.controllerStandard;
     }
 
     public StudentController getStudentController() {
+        if(this.studentController == null) buildStudentController();
         return this.studentController;
     }
 

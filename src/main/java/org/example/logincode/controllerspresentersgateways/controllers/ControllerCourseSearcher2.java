@@ -1,10 +1,12 @@
 package org.example.logincode.controllerspresentersgateways.controllers;
 
+import org.example.timetable.entities.WarningType;
 import org.phase2.studentrelated.usecases.CourseSearchAdapter;
 import org.phase2.studentrelated.usecases.CourseSearchAdapterPrev;
 import org.phase2.studentrelated.usecases.WarningChecker2;
 
 import java.util.Collections;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -49,8 +51,6 @@ public class ControllerCourseSearcher2 {
         return searched.stream().filter(crs -> !wc.checkCourseWarnings(crs).containsKey(crs))
                 .collect(Collectors.toCollection(TreeSet::new));
     }
-
-
 
 
     public Set<String> searchMeetings(String crs) {
