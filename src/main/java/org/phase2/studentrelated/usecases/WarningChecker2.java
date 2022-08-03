@@ -13,8 +13,16 @@ import java.util.Set;
  * that are causing such problems.
  */
 public class WarningChecker2 {
+
+    private final RequisiteWarningAdder requisiteWarningAdder = new RequisiteWarningAdder(this);
+    
+    public CourseSearcher getPlannedSearcher() {
+        return plannedSearcher;
+    }
+    
     private final CourseSearcher plannedSearcher;
     private final CourseSearcherPrev pastSearcher;
+
     private final Map<String, Set<String>> planned;
     private final Set<String> passed;
 
@@ -31,6 +39,12 @@ public class WarningChecker2 {
 
     /**
      * Checks course-related warnings for a set of planned and past courses.
+     * Generally, course-related warnings should not know when
+     * lectures are timed.
+     * Meaning whatever is returned, no conflict warnings should be
+     * put here.
+     * Conflict warnings should be reserved for schedule-related warnings,
+     * which can be found in a more below method.
      *
      * @return a map mapping each applicable course (with the -F/-Y/-S) to the set of warnings that may affect it.
      */
@@ -38,16 +52,22 @@ public class WarningChecker2 {
         Map<String, Set<WarningType>> warnList = new HashMap<>();
         Set<String> planned1 = planned.keySet();
         addCourseWarningsHelper(warnList, planned1);
-
         return warnList;
     }
 
+    /**
+     * Helper method for course-related warnings.
+     * These warnings are based on the set of planned-passed courses.
+     *
+     * @param warnList the warnings list to be passed in
+     * @param planned1 modified planned course list
+     */
     private void addCourseWarningsHelper(Map<String, Set<WarningType>> warnList, Set<String> planned1) {
-        addRequisiteWarnings(planned1, passed, warnList);
+        requisiteWarningAdder.addRequisiteWarnings(planned1, passed, warnList);
     }
 
     /**
-     * This overload adds otherCourse to your course warnings.
+     * This overload adds otherCourse to the courses that you are planning to take.
      *
      * @param otherCourse the other course to add
      * @return any issues
@@ -59,64 +79,6 @@ public class WarningChecker2 {
         addCourseWarningsHelper(warnList, planned0102);
         return warnList;
 
-    }
-
-
-    /**
-     * Adds warnings to all courses - that is, requisite warnings.
-     *
-     * @param planned  planned courses with suffix
-     * @param passed   passed courses without suffix
-     * @param warnList warn list to add to
-     */
-    private void addRequisiteWarnings(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList) {
-        Set<String> plannedF = new HashSet<>();
-        Set<String> plannedS = new HashSet<>();
-        Set<String> plannedY = new HashSet<>();
-        for (String pCrs : planned) {
-            String pCrsNoSuffix = pCrs.substring(0, pCrs.length() - 2);
-            char section = pCrs.charAt(pCrs.length() - 1);
-            switch (section) {
-                case 'F' -> plannedF.add(pCrsNoSuffix);
-                case 'S' -> plannedS.add(pCrsNoSuffix);
-                case 'Y' -> plannedY.add(pCrsNoSuffix);
-            }
-        }
-        Set<String> passedForS = new HashSet<>(passed);
-        passedForS.addAll(plannedF);
-        Set<String> concurrentF = new HashSet<>(passed);
-        concurrentF.addAll(plannedF);
-        concurrentF.addAll(plannedY);
-        Set<String> concurrentSY = new HashSet<>(concurrentF);
-        concurrentSY.addAll(plannedS);
-        checkRequisiteIssuesForALlCoursesGivenPlannedPassed(planned, passed, warnList, passedForS, concurrentF, concurrentSY);
-    }
-
-    private void checkRequisiteIssuesForALlCoursesGivenPlannedPassed(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList, Set<String> passedForS, Set<String> concurrentF, Set<String> concurrentSY) {
-        for (String plannedCourse : planned) {
-            CheckRequisite checker = new CheckRequisite(plannedCourse);
-
-            String exclusion = plannedSearcher.getCourse(plannedCourse).getExclusion();
-            String coreq = plannedSearcher.getCourse(plannedCourse).getCorequisite();
-            String prereq = plannedSearcher.getCourse(plannedCourse).getPrerequisite();
-
-            char sectionOfCourse = plannedCourse.charAt(plannedCourse.length() - 1);
-            // these sets may not have the suffix, -F/-Y/-S
-            Set<String> concurrentOrPassedCourses;
-            if (sectionOfCourse == 'F') {
-                concurrentOrPassedCourses = concurrentF;
-            } else {
-                concurrentOrPassedCourses = concurrentSY;
-            }
-            Set<String> passedCoursesOnly;
-            if (sectionOfCourse == 'S') {
-                passedCoursesOnly = passedForS;
-            } else passedCoursesOnly = passed;
-
-            checker.exclusionChecker(concurrentOrPassedCourses, exclusion, warnList);
-            checker.prereqChecker(passedCoursesOnly, prereq, warnList);
-            checker.coreqChecker(concurrentOrPassedCourses, coreq, warnList);
-        }
     }
 
     private Map<IScheduleEntry, Set<WarningType>> lastMap = new HashMap<>();
