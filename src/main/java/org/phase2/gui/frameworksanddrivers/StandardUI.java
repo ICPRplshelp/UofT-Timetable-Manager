@@ -20,11 +20,6 @@ public class StandardUI {
     public StandardUI(ControllerStandard cs) {
         this.cs = cs;
         mainPanel.setVisible(true);
-        getLoginHistoryButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                courseHistoryText.setText(cs.getUserHistoryAsString());
-            }
-        });
+        getLoginHistoryButton.addActionListener(e -> courseHistoryText.setText(cs.getUserHistoryAsString()));
     }
 }
