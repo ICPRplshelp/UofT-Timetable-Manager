@@ -14,6 +14,8 @@ public class StudentUI {
     private JTextField addCourseField;
     private JTextField addMeetingField;
     private JTextField addPastField;
+    private JButton getHTMLButton;
+    private JButton viewTimetableButton;
 
     private final StudentController stc;
 
