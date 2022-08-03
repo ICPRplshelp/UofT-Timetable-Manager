@@ -1,6 +1,7 @@
 package org.phase2.gui.frameworksanddrivers;
 
 import org.example.PresenterPrinter;
+import org.phase2.mainloophelpers.controllerspresenters.GUIMAccountLoginPresenter;
 import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginPresenter;
 import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
 import org.phase2.objectcreators.uifactories.UIFactory;
@@ -33,14 +34,18 @@ public class GUIDisplay {
     private JButton logoutButton;
     private JButton registerButton;
     private JButton loginButton;
+    private JLabel error;
 
     private final MAccountLoginValidator mAccountLoginValidator;
+    private final GUIMAccountLoginPresenter mAccountLoginPresenter;
 
     private final PresenterPrinter prt = new PresenterPrinter();
 
     public GUIDisplay() {
 
         this.mAccountLoginValidator = new MAccountLoginValidator();
+        this.mAccountLoginPresenter = new GUIMAccountLoginPresenter(error);
+
         search = new CourseSearchUI().getMainPanel();
         student = new StudentUI().getMainPanel();
         admin = new AdminUI().getMainPanel();
@@ -75,14 +80,15 @@ public class GUIDisplay {
             public void actionPerformed(ActionEvent e) {
                 String username = loginCommand("login");
                 if (username == null){
-                    prt.println("Login failed");
+                    mAccountLoginPresenter.loginState(false);
                     return;
                 }
 
                 mAccountLoginValidator.updateSave();
                 switchLoginView("login");
+                switchViews("standard");
 
-                prt.println("Logged in user " + username);
+                mAccountLoginPresenter.loginState(true);
             }
         });
         logoutButton.addActionListener(new ActionListener() {
@@ -94,7 +100,16 @@ public class GUIDisplay {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loginCommand("register");
+                String username = loginCommand("register");
+                if (username == null){
+                    mAccountLoginPresenter.registerState(false);
+                    return;
+                }
+                mAccountLoginPresenter.registerState(true);
+
+                mAccountLoginValidator.updateSave();
+                switchLoginView("register");
+
             }
         });
     }
