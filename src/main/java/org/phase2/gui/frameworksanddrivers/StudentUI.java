@@ -24,6 +24,8 @@ public class StudentUI {
 
     private final StudentController stc;
 
+    private final StudentController stc;
+
     public JPanel getMainPanel() {
         return mainPanel;
     }
