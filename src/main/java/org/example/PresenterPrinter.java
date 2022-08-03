@@ -18,11 +18,6 @@ public class PresenterPrinter {
 
     final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        var pr = new PresenterPrinter();
-        var st = pr.askWithMessage("TYPE SOMETHING");
-        pr.println(st);
-    }
 
     /**
      * Prints the message and runs ask().
