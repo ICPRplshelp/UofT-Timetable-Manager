@@ -6,7 +6,6 @@ import org.example.logincode.controllerspresentersgateways.controllers.Controlle
 import org.example.logincode.usecases.StorageManager;
 import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
 import org.phase2.studentrelated.controllers.StudentController;
-import org.phase2.studentrelated.usecases.CourseSearchAdapter;
 import org.phase2.studentrelated.usecases.StudentManager;
 import org.phase2.studentrelated.usecases.WarningChecker2;
 

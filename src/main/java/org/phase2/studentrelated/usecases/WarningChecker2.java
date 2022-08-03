@@ -13,14 +13,14 @@ import java.util.Set;
  * that are causing such problems.
  */
 public class WarningChecker2 {
-    private final CourseSearchAdapter plannedSearcher;
-    private final CourseSearchAdapterPrev pastSearcher;
+    private final CourseSearcher plannedSearcher;
+    private final CourseSearcherPrev pastSearcher;
     private final Map<String, Set<String>> planned;
     private final Set<String> passed;
 
 
 
-    public WarningChecker2(CourseSearchAdapter plannedSearcher, CourseSearchAdapterPrev pastSearcher,
+    public WarningChecker2(CourseSearcher plannedSearcher, CourseSearcherPrev pastSearcher,
                            Map<String, Set<String>> planned,
                            Set<String> passed) {
         this.plannedSearcher = plannedSearcher;

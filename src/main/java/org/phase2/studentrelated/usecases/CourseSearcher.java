@@ -1,32 +1,35 @@
 package org.phase2.studentrelated.usecases;
 
+import org.example.coursegetter.entities.SessionStorage;
 import org.example.coursegetter.entities.baseclasses.Course;
 import org.example.coursegetter.entities.baseclasses.Meetings;
 import org.example.coursegetter.entities.baseclasses.ScheduleEntry;
-import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.coursegetter.usecases.CourseSearcherIndividual;
+import org.example.coursegetter.usecases.CourseInputValidator;
+import org.example.coursegetter.usecases.CourseStorageObtainer;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 
 import java.util.*;
 
 /**
- * I didn't want to rewrite the entire course
- * searching thing, so I've created this to get around it
+ * This class may be used to:
+ * - Return all searchable code
+ * - Get information about one course
  * <p>
  * This is the one that only tries to look for 20229 courses
  */
-public class CourseSearchAdapter {
+public class CourseSearcher {
     private final String curSession = "20229";
+    private final SessionStorage sessionStorage;
+    private final CourseInputValidator courseInputValidator = new CourseInputValidator();
 
-    public CourseSearcherIndividual getCourseSearcher() {
-        return courseSearcher;
+
+    public CourseSearcher() {
+        CourseStorageObtainer clt = new CourseStorageObtainer();
+        sessionStorage = clt.obtainAllCourses();
     }
 
-    private final CourseSearcherIndividual courseSearcher;
-
-    public CourseSearchAdapter() {
-        CourseSearcherGetter csg = new CourseSearcherGetter();
-        this.courseSearcher = csg.getCourseSearcher();
+    public CourseSearcher(SessionStorage ss) {
+        sessionStorage = ss;
     }
 
     /**
@@ -36,7 +39,7 @@ public class CourseSearchAdapter {
      * @return the course if it exists, or null otherwise.
      */
     public Course getCourse(String code) {
-        return getCourseSearcher().getCourseOfferingByCode(curSession, code);
+        return getCourseOfferingByCode(curSession, code);
     }
 
     /**
@@ -91,6 +94,49 @@ public class CourseSearchAdapter {
      * @return check desc
      */
     public Set<String> getAllCourses() {
-        return getCourseSearcher().getAllCoursesOfferingList("20229");
+        return getAllCoursesOfferingList(curSession);
+    }
+
+
+    /**
+     * Gets a course.
+     *
+     * @param crsCode the course code, in a format similar to CSC110Y1-F
+     * @return the Course if one is found, or null otherwise.
+     */
+    public Course getCourseOfferingByCode(String session, String crsCode) {
+        String searchableCourse = courseInputValidator.courseOfferingToSearchableCourse(crsCode);
+        if (searchableCourse == null) return null;
+        return sessionStorage.getSession(session).getCourse(searchableCourse);
+    }
+
+    /**
+     * Given a course code, this method searches for all course
+     * offerings by this course code.
+     *
+     * @param crsCode the course code such as MAT135H1
+     * @return a collection of courses such as MAT135H1-F, MAT135H1-S, MAT135H1-Y
+     */
+    public Collection<Course> getCourseByCourseCode(String session, String crsCode) {
+        List<Course> courseList = new ArrayList<>();
+        String[] suffixes = {"-F", "-S", "-Y"};
+        for (String suffix : suffixes) {
+            String courseToSearch = crsCode + suffix;
+            Course tempCourse = getCourseOfferingByCode(session, courseToSearch);
+            if (tempCourse != null)
+                courseList.add(tempCourse);
+        }
+        return courseList;
+    }
+
+    /**
+     * Returns a set of all courses that can be reached from the given course
+     * storage.
+     * The set may not be modified.
+     *
+     * @return a set of all courses that can be reached from the given course storage.
+     */
+    public Set<String> getAllCoursesOfferingList(String session) {
+        return sessionStorage.getSession(session).getCourseOfferingListAsString();
     }
 }

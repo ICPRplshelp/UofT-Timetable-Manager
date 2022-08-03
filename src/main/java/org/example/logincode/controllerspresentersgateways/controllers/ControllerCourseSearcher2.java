@@ -1,21 +1,20 @@
 package org.example.logincode.controllerspresentersgateways.controllers;
 
-import org.phase2.studentrelated.usecases.CourseSearchAdapter;
-import org.phase2.studentrelated.usecases.CourseSearchAdapterPrev;
+import org.phase2.studentrelated.usecases.CourseSearcher;
+import org.phase2.studentrelated.usecases.CourseSearcherPrev;
 import org.phase2.studentrelated.usecases.WarningChecker2;
 
-import java.util.Collections;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class ControllerCourseSearcher2 {
 
-    private final CourseSearchAdapter csa;
-    private final CourseSearchAdapterPrev pcsa;
+    private final CourseSearcher csa;
+    private final CourseSearcherPrev pcsa;
     private final WarningChecker2 wc;
-    public ControllerCourseSearcher2(CourseSearchAdapter csa,
-                                     CourseSearchAdapterPrev pcsa,
+    public ControllerCourseSearcher2(CourseSearcher csa,
+                                     CourseSearcherPrev pcsa,
                                      WarningChecker2 wc) {
         this.wc = wc;
         this.csa = csa;

@@ -1,16 +1,15 @@
 package org.phase2.objectcreators.controllerfactories;
 
 import org.example.logincode.controllerspresentersgateways.controllers.ControllerCourseSearcher2;
-import org.phase2.studentrelated.usecases.CourseSearchAdapter;
-import org.phase2.studentrelated.usecases.CourseSearchAdapterPrev;
-import org.phase2.studentrelated.usecases.StudentManager;
+import org.phase2.studentrelated.usecases.CourseSearcher;
+import org.phase2.studentrelated.usecases.CourseSearcherPrev;
 import org.phase2.studentrelated.usecases.WarningChecker2;
 
 public class ControllerCourseSearcher2Builder implements ControllerBuilder {
 
-    private CourseSearchAdapter csa;
+    private CourseSearcher csa;
 
-    private CourseSearchAdapterPrev pcsa;
+    private CourseSearcherPrev pcsa;
     private final WarningChecker2 wc;
 
     public ControllerCourseSearcher2Builder(WarningChecker2 wc) {
@@ -26,10 +25,10 @@ public class ControllerCourseSearcher2Builder implements ControllerBuilder {
     }
 
     private void buildCourseSearchAdapter() {
-        this.csa = new CourseSearchAdapter();
+        this.csa = new CourseSearcher();
     }
 
     private void buildCourseSearchAdapterPrev() {
-        this.pcsa = new CourseSearchAdapterPrev();
+        this.pcsa = new CourseSearcherPrev();
     }
 }

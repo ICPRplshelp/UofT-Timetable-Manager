@@ -1,17 +1,17 @@
 package org.example.requisitechecker.courselocationtracker;
 
 import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.example.requisitechecker.courselocationtracker.usecases.BuildingComparator;
 import org.example.requisitechecker.courselocationtracker.usecases.BuildingStorageConstructor;
+import org.phase2.studentrelated.usecases.CourseSearcher;
 
 public class MainLocTest {
     public static void main(String[] args) {
         System.out.println("STARTING");
         CourseSearcherGetter csgTemp = new CourseSearcherGetter();
-        CourseSearcherIndividual courseSearcherIndividual = csgTemp.getCourseSearcher();
-        var course = courseSearcherIndividual.getCourseOfferingByCode("20229", "CSC110Y1-F");
-        var course2 = courseSearcherIndividual.getCourseOfferingByCode("20229", "CSC236H1-F");
+        CourseSearcher csa = csgTemp.getCourseSearcher();
+        var course = csa.getCourseOfferingByCode("20229", "CSC110Y1-F");
+        var course2 = csa.getCourseOfferingByCode("20229", "CSC236H1-F");
         var sc1 = course.getMeetings().getLectures().get("LEC0101")
                 .getScheduleEntries();
         var sc2 = course2.getMeetings().getLectures().get("LEC0201")

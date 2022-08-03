@@ -1,6 +1,7 @@
 package org.example.coursegetter.usecases;
 
 import org.example.coursegetter.entities.baseclasses.Course;
+import org.phase2.studentrelated.usecases.CourseSearcher;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,10 +10,10 @@ import java.util.Set;
 
 public class CourseSearcherByKeyword {
 
-    private final CourseSearcherIndividual csi;
+    private final CourseSearcher csa;
 
-    public CourseSearcherByKeyword(CourseSearcherIndividual csi) {
-        this.csi = csi;
+    public CourseSearcherByKeyword(CourseSearcher csa) {
+        this.csa = csa;
     }
 
     /**
@@ -38,11 +39,11 @@ public class CourseSearcherByKeyword {
     private List<Course> filterCourseNames(String keyword, String session) {
         List<Course> coursesSoFar = new ArrayList<>();
 
-        Set<String> allCourseOfferings = csi.getAllCoursesOfferingList(session);
+        Set<String> allCourseOfferings = csa.getAllCoursesOfferingList(session);
 
         for (String code : allCourseOfferings) {
             if (code.startsWith(keyword)) {
-                coursesSoFar.add(csi.getCourseOfferingByCode(session, code));
+                coursesSoFar.add(csa.getCourseOfferingByCode(session, code));
             }
         }
         return coursesSoFar;

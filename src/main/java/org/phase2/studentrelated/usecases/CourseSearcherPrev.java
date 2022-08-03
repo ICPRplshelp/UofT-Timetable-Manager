@@ -2,7 +2,6 @@ package org.phase2.studentrelated.usecases;
 
 import org.example.coursegetter.entities.baseclasses.Course;
 import org.example.coursegetter.usecases.CourseSearcherGetter;
-import org.example.coursegetter.usecases.CourseSearcherIndividual;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
@@ -16,17 +15,17 @@ import java.util.Objects;
  * getScheduleEntries or getMeetings.
  * This may be a refused bequest, or it might not be one.
  */
-public class CourseSearchAdapterPrev {
+public class CourseSearcherPrev {
 
     private final String[] sessions = {"20229", "20225", "20219", "20215", "20209", "20205", "20199"};
-    private final CourseSearcherIndividual courseSearcher;
+    private final CourseSearcher courseSearcher;
 
-    public CourseSearchAdapterPrev() {
+    public CourseSearcherPrev() {
         CourseSearcherGetter csg = new CourseSearcherGetter();
         this.courseSearcher = csg.getCourseSearcher();
     }
 
-    private CourseSearcherIndividual getCourseSearcher() {
+    private CourseSearcher getCourseSearcher() {
         return courseSearcher;
     }
 

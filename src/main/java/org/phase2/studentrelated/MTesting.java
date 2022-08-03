@@ -5,8 +5,8 @@ import org.phase2.studentrelated.controllers.StudentController;
 import org.phase2.studentrelated.entities.Student2;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 import org.phase2.studentrelated.presenters.StudentPresenter;
-import org.phase2.studentrelated.usecases.CourseSearchAdapter;
-import org.phase2.studentrelated.usecases.CourseSearchAdapterPrev;
+import org.phase2.studentrelated.usecases.CourseSearcher;
+import org.phase2.studentrelated.usecases.CourseSearcherPrev;
 import org.phase2.studentrelated.usecases.StudentManager;
 import org.phase2.studentrelated.usecases.WarningChecker2;
 
@@ -17,11 +17,11 @@ import java.util.Set;
 public class MTesting {
     public static void main(String[] args) {
         Student2 stud = new Student2();
-        CourseSearchAdapterPrev courseSearchAdapterPrev = new CourseSearchAdapterPrev();
-        CourseSearchAdapter courseSearchAdapter = new CourseSearchAdapter();
-        StudentManager sm = new StudentManager(stud, courseSearchAdapter, courseSearchAdapterPrev);
+        CourseSearcherPrev courseSearcherPrev = new CourseSearcherPrev();
+        CourseSearcher courseSearcher = new CourseSearcher();
+        StudentManager sm = new StudentManager(stud, courseSearcher, courseSearcherPrev);
         StudentController sc = new StudentController(sm, null, null, null);
-        WarningChecker2 wc = new WarningChecker2(courseSearchAdapter, courseSearchAdapterPrev,
+        WarningChecker2 wc = new WarningChecker2(courseSearcher, courseSearcherPrev,
                 sm.getPlannedCourses(), sm.getPassedCourses());
         StudentPresenter studentPresenter = new StudentPresenter(wc, sm);
         sc.addCourse("MAT257Y1-Y");

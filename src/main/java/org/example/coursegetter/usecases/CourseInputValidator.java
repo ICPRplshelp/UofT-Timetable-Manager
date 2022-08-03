@@ -3,7 +3,7 @@ package org.example.coursegetter.usecases;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class CourseInputValidator {
+public class CourseInputValidator {
 
     private final Pattern[] coursePatterns = {Pattern.compile("[A-Z]{3}[0-4]\\d{2}[HY][01]-[FSY]"),
             Pattern.compile("[A-Z]{3}[0-4]\\d{2}[HY][01][FSY]"),
@@ -19,7 +19,7 @@ class CourseInputValidator {
      * session number)
      * Null if the course is in an invalid format.
      */
-    String courseOfferingToSearchableCourse(String input) {
+    public String courseOfferingToSearchableCourse(String input) {
         for (int i = 0; i < this.coursePatterns.length; i++) {
             Matcher matcher = coursePatterns[i].matcher(input);
             if (!matcher.find()) {

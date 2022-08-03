@@ -12,8 +12,8 @@ import java.util.*;
  * I swear this isn't a singleton
  */
 public class StudentManager {
-    private final CourseSearchAdapter plannedSearcher;
-    private final CourseSearchAdapterPrev pastSearcher;
+    private final CourseSearcher plannedSearcher;
+    private final CourseSearcherPrev pastSearcher;
     private final Student2 student;
 
     /**
@@ -24,7 +24,7 @@ public class StudentManager {
      * @param pastSearcher    a course searcher than can obtain courses for the sessions 20199 - 20229, going for the
      *                        latest session possible
      */
-    public StudentManager(Student2 student, CourseSearchAdapter plannedSearcher, CourseSearchAdapterPrev pastSearcher) {
+    public StudentManager(Student2 student, CourseSearcher plannedSearcher, CourseSearcherPrev pastSearcher) {
         this.student = student;
         this.plannedSearcher = plannedSearcher;
         this.pastSearcher = pastSearcher;
@@ -215,11 +215,11 @@ public class StudentManager {
         }
     }
 
-    public CourseSearchAdapter getCSA() {
+    public CourseSearcher getCSA() {
         return this.plannedSearcher;
     }
 
-    public CourseSearchAdapterPrev getCSAP() {
+    public CourseSearcherPrev getCSAP() {
         return this.pastSearcher;
     }
 }

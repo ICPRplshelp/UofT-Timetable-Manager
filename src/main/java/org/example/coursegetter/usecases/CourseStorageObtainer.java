@@ -16,7 +16,7 @@ import java.util.*;
  * It would be much better if we obtained this from the UofT API,
  * but no, I'm not doing it.
  */
-class CourseStorageObtainer {
+public class CourseStorageObtainer {
 
     /**
      * Locally extracts every course, which is saved in this repository.
