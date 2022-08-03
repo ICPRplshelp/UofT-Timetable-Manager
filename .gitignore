@@ -6,3 +6,4 @@ pythonfilesDONOTMARK/outputInstructors.json
 pythonfilesDONOTMARK/whoTaughtTheCourse.py
 *.ser
 unshared/
+src/main/java/org/example/requisitechecker/RQCheckPlayground.java
