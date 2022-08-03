@@ -13,93 +13,88 @@ import java.util.Set;
  * that are causing such problems.
  */
 public class WarningChecker2 {
+    private final RequisiteWarningAdder requisiteWarningAdder = new RequisiteWarningAdder(this);
+
+    public CourseSearchAdapter getPlannedSearcher() {
+        return plannedSearcher;
+    }
+
     private final CourseSearchAdapter plannedSearcher;
     private final CourseSearchAdapterPrev pastSearcher;
+    private final Map<String, Set<String>> planned;
+    private final Set<String> passed;
 
-    public WarningChecker2(CourseSearchAdapter plannedSearcher, CourseSearchAdapterPrev pastSearcher) {
+
+
+    public WarningChecker2(CourseSearchAdapter plannedSearcher, CourseSearchAdapterPrev pastSearcher,
+                           Map<String, Set<String>> planned,
+                           Set<String> passed) {
         this.plannedSearcher = plannedSearcher;
         this.pastSearcher = pastSearcher;
+        this.planned = planned;
+        this.passed = passed;
     }
 
     /**
      * Checks course-related warnings for a set of planned and past courses.
+     * Generally, course-related warnings should not know when
+     * lectures are timed.
+     * Meaning whatever is returned, no conflict warnings should be
+     * put here.
+     * Conflict warnings should be reserved for schedule-related warnings,
+     * which can be found in a more below method.
      *
-     * @param planned all planned courses and the only courses to check warnings for
-     * @param passed  the courses the student has taken in the past
      * @return a map mapping each applicable course (with the -F/-Y/-S) to the set of warnings that may affect it.
      */
-    public Map<String, Set<WarningType>> checkCourseWarnings(Set<String> planned, Set<String> passed) {
+    public Map<String, Set<WarningType>> checkCourseWarnings() {
         Map<String, Set<WarningType>> warnList = new HashMap<>();
-        addRequisiteWarnings(planned, passed, warnList);
-
+        Set<String> planned1 = planned.keySet();
+        addCourseWarningsHelper(warnList, planned1);
         return warnList;
     }
 
     /**
-     * Adds warnings to all courses - that is, requisite warnings.
+     * Helper method for course-related warnings.
+     * These warnings are based on the set of planned-passed courses.
      *
-     * @param planned  planned courses with suffix
-     * @param passed   passed courses without suffix
-     * @param warnList warn list to add to
+     * @param warnList the warnings list to be passed in
+     * @param planned1 modified planned course list
      */
-    private void addRequisiteWarnings(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList) {
-        Set<String> plannedF = new HashSet<>();
-        Set<String> plannedS = new HashSet<>();
-        Set<String> plannedY = new HashSet<>();
-        for (String pCrs : planned) {
-            String pCrsNoSuffix = pCrs.substring(0, pCrs.length() - 2);
-            char section = pCrs.charAt(pCrs.length() - 1);
-            switch (section) {
-                case 'F' -> plannedF.add(pCrsNoSuffix);
-                case 'S' -> plannedS.add(pCrsNoSuffix);
-                case 'Y' -> plannedY.add(pCrsNoSuffix);
-            }
-        }
-        Set<String> passedForS = new HashSet<>(passed);
-        passedForS.addAll(plannedF);
-        Set<String> concurrentF = new HashSet<>(passed);
-        concurrentF.addAll(plannedF);
-        concurrentF.addAll(plannedY);
-        Set<String> concurrentSY = new HashSet<>(concurrentF);
-        concurrentSY.addAll(plannedS);
-        checkRequisiteIssuesForALlCoursesGivenPlannedPassed(planned, passed, warnList, passedForS, concurrentF, concurrentSY);
+    private void addCourseWarningsHelper(Map<String, Set<WarningType>> warnList, Set<String> planned1) {
+        requisiteWarningAdder.addRequisiteWarnings(planned1, passed, warnList);
     }
 
-    private void checkRequisiteIssuesForALlCoursesGivenPlannedPassed(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList, Set<String> passedForS, Set<String> concurrentF, Set<String> concurrentSY) {
-        for (String plannedCourse : planned) {
-            CheckRequisite checker = new CheckRequisite(plannedCourse);
+    /**
+     * This overload adds otherCourse to the courses that you are planning to take.
+     *
+     * @param otherCourse the other course to add
+     * @return any issues
+     */
+    public Map<String, Set<WarningType>> checkCourseWarnings(String otherCourse){
+        Map<String, Set<WarningType>> warnList = new HashMap<>();
+        Set<String> planned0102 = new HashSet<>(planned.keySet());
+        planned0102.add(otherCourse);
+        addCourseWarningsHelper(warnList, planned0102);
+        return warnList;
 
-            String exclusion = plannedSearcher.getCourse(plannedCourse).getExclusion();
-            String coreq = plannedSearcher.getCourse(plannedCourse).getCorequisite();
-            String prereq = plannedSearcher.getCourse(plannedCourse).getPrerequisite();
-
-            char sectionOfCourse = plannedCourse.charAt(plannedCourse.length() - 1);
-            // these sets may not have the suffix, -F/-Y/-S
-            Set<String> concurrentOrPassedCourses;
-            if (sectionOfCourse == 'F') {
-                concurrentOrPassedCourses = concurrentF;
-            } else {
-                concurrentOrPassedCourses = concurrentSY;
-            }
-            Set<String> passedCoursesOnly;
-            if (sectionOfCourse == 'S') {
-                passedCoursesOnly = passedForS;
-            } else passedCoursesOnly = passed;
-
-            checker.exclusionChecker(concurrentOrPassedCourses, exclusion, warnList);
-            checker.prereqChecker(passedCoursesOnly, prereq, warnList);
-            checker.coreqChecker(concurrentOrPassedCourses, coreq, warnList);
-        }
     }
 
+    private Map<IScheduleEntry, Set<WarningType>> lastMap = new HashMap<>();
+
+    /**
+     * Returns the latest map generated by this.checkTimetableWarnings().
+     * @return ^
+     */
+    public Map<IScheduleEntry, Set<WarningType>> getLastMap() {
+        return lastMap;
+    }
 
     /**
      * Check timetable-related warnings for a set of planned courses.
      *
-     * @param planned a student's planned courses with lecture section info.
      * @return a map mapping each ScheduleEntry to the Warnings it may have.
      */
-    public Map<IScheduleEntry, Set<WarningType>> checkTimetableWarnings(Map<String, Set<String>> planned) {
+    public Map<IScheduleEntry, Set<WarningType>> checkTimetableWarnings() {
         Map<IScheduleEntry, Set<WarningType>> warningMap = new HashMap<>();
         Set<IScheduleEntry> allScheduleEntries = generateScheduleEntriesAll(planned);
         for (IScheduleEntry se : allScheduleEntries) {
@@ -111,7 +106,7 @@ public class WarningChecker2 {
             }
             // add distance checks here
         }
-
+        this.lastMap = warningMap;
         return warningMap;
     }
 

@@ -63,6 +63,10 @@ public class UICommandList {
                         
             /searchmeetings <course code with -F/-S/-Y suffix>
             Prints out all meetings (LEC, TUT, PRAs) of the course code. Fails if the course DNE or is not specific enough.
+            
+            /ss <keyword>
+            Prints out all courses offered in F/W 2022-2023 that will not result in issues in taking
+            them (follows prerequisites, corequisites, exclusions, and so on)
             """;
 
     private final String standardCommands = """

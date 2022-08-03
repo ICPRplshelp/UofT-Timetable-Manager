@@ -21,14 +21,18 @@ public class UIInputCourseSearch2 extends UIInput2 {
         // Unfortunately, no DI.
         InputParserClass ipc = new InputParserClass(input);
         switch (ipc.getKeyword()) {
-            case "search" -> {
+            case "search", "s" -> {
                 Set<String> cc = ccs2.searchCurrentCourses(ipc.getArg(1));
                 getPrt().printIterable(cc);
             }
-            case "searchmeetings" -> {
+            case "searchmeetings", "sm" -> {
                 String arg1 = ipc.getArg(1);
                 Set<String> toPrint = ccs2.searchMeetings(arg1);
                 getPrt().printIterable(toPrint);
+            }
+            case "ssearch", "ss", "searchfilterissue" -> {
+                Set<String> cc = ccs2.searchCoursesICanTake(ipc.getArg(1));
+                getPrt().printIterable(cc);
             }
             default -> getPrt().failInvalidCommand();
         }

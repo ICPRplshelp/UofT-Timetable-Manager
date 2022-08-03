@@ -43,8 +43,8 @@ public class StudentPresenter {
     public Collection<String> getPlannedCourseInfo() {
 
         Map<String, Set<String>> planned = sm.getPlannedCourses();
-        Set<String> passed = sm.getPassedCourses();
-        Map<String, Set<WarningType>> cw = warningChecker.checkCourseWarnings(planned.keySet(), passed);
+        // Set<String> passed = sm.getPassedCourses();
+        Map<String, Set<WarningType>> cw = warningChecker.checkCourseWarnings();
         List<String> soFar = new ArrayList<>();
         for (String pCrs : planned.keySet()) {
             Set<String> lecs = planned.get(pCrs);
