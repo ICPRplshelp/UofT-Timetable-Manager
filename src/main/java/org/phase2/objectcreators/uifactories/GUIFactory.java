@@ -23,22 +23,18 @@ public class GUIFactory {
     }
 
     public JPanel getInputAdmin() {
-        cf.buildControllerAdmin(username);
         return new AdminUI(cf.getControllerAdmin()).getMainPanel();
     }
 
     public JPanel getInputCourseSearch() {
-        cf.buildSearchController();
         return new CourseSearchUI(cf.getSearchController()).getMainPanel();
     }
 
     public JPanel getInputStandard() {
-        cf.buildControllerStandard(username);
         return new StandardUI(cf.getControllerStandard()).getMainPanel();
     }
 
     public JPanel getInputStudent() {
-        cf.buildStudentController(username);
         return new StudentUI(cf.getStudentController()).getMainPanel();
     }
 
