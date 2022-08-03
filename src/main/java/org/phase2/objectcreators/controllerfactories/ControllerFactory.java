@@ -14,7 +14,6 @@ public class ControllerFactory {
 
     private final StorageManager sm;
     private final String username;
-    //    private String username;
     private StudentManager manager;
     private ControllerAdmin controllerAdmin;
     private ControllerStandard controllerStandard;
@@ -71,9 +70,8 @@ public class ControllerFactory {
      * @return the respective controller. It is never null.
      */
     public ControllerCourseSearcher2 getSearchController() {
-        if (this.controllerCourseSearcher2 == null) {
+        if (this.controllerCourseSearcher2 == null)
             buildSearchController();
-        }
         return this.controllerCourseSearcher2;
     }
 
