@@ -41,6 +41,9 @@ public class GUIDisplay {
     public GUIDisplay() {
 
         this.mAccountLoginValidator = new MAccountLoginValidator();
+        search = new CourseSearchUI().getMainPanel();
+        student = new StudentUI().getMainPanel();
+        admin = new AdminUI().getMainPanel();
 
         // these are temporary buttons to test the GUI, they will be removed later
         studentButton.addActionListener(new ActionListener() {
