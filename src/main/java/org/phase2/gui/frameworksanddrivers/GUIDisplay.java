@@ -49,7 +49,7 @@ public class GUIDisplay {
         search = new CourseSearchUI().getMainPanel();
         student = new StudentUI().getMainPanel();
         admin = new AdminUI().getMainPanel();
-
+        standard = new StandardUI().getMainPanel();
         // these are temporary buttons to test the GUI, they will be removed later
         studentButton.addActionListener(new ActionListener() {
             @Override
