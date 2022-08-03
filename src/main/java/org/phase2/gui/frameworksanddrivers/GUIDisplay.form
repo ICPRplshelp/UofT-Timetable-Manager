@@ -220,20 +220,20 @@
                   <text value="password"/>
                 </properties>
               </component>
-              <component id="d2374" class="javax.swing.JButton" binding="button1" default-binding="true">
+              <component id="d2374" class="javax.swing.JButton" binding="registerButton">
                 <constraints>
                   <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Button"/>
+                  <text value="register"/>
                 </properties>
               </component>
-              <component id="c1ec1" class="javax.swing.JButton" binding="button2" default-binding="true">
+              <component id="c1ec1" class="javax.swing.JButton" binding="loginButton" default-binding="true">
                 <constraints>
                   <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Button"/>
+                  <text value="login"/>
                 </properties>
               </component>
             </children>

@@ -1,8 +1,14 @@
 package org.phase2.gui.frameworksanddrivers;
 
+import org.example.PresenterPrinter;
+import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginPresenter;
+import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
+import org.phase2.objectcreators.uifactories.UIFactory;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.ConsoleHandler;
 
 public class GUIDisplay {
     private JPanel mainPanel;
@@ -25,10 +31,16 @@ public class GUIDisplay {
     private JPanel footerPanel;
     private JButton exitButton;
     private JButton logoutButton;
-    private JButton button1;
-    private JButton button2;
+    private JButton registerButton;
+    private JButton loginButton;
+
+    private final MAccountLoginValidator mAccountLoginValidator;
+
+    private final PresenterPrinter prt = new PresenterPrinter();
 
     public GUIDisplay() {
+
+        this.mAccountLoginValidator = new MAccountLoginValidator();
 
         // these are temporary buttons to test the GUI, they will be removed later
         studentButton.addActionListener(new ActionListener() {
@@ -55,6 +67,33 @@ public class GUIDisplay {
                 switchViews("admin");
             }
         });
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = loginCommand("login");
+                if (username == null){
+                    prt.println("Login failed");
+                    return;
+                }
+
+                mAccountLoginValidator.updateSave();
+                switchLoginView("login");
+
+                prt.println("Logged in user " + username);
+            }
+        });
+        logoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switchLoginView("logout");
+            }
+        });
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginCommand("register");
+            }
+        });
     }
 
     // there are the methods that will be kept
@@ -71,21 +110,15 @@ public class GUIDisplay {
         bodyPanel.revalidate();
     }
 
-    public void logout(){
+    public void switchLoginView(String view){
         switchPanel.removeAll();
-        switchPanel.add(loggedOutPanel);
+        switch (view) {
+            case "login" -> switchPanel.add(loggedInPanel);
+            case "logout" -> switchPanel.add(loggedOutPanel);
+        }
         switchPanel.repaint();
         switchPanel.revalidate();
     }
-
-    public void login(){
-        switchPanel.removeAll();
-        switchPanel.add(loggedInPanel);
-        switchPanel.repaint();
-        switchPanel.revalidate();
-    }
-
-
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("GUI Display");
@@ -94,5 +127,25 @@ public class GUIDisplay {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
+
+
+    }
+    public String loginCommand(String cmd){
+        switch (cmd){
+            case "login" -> {
+                if(validateAccountSignIn(usernameTextField.getText(), passwordPasswordField.getText())){
+                    return usernameTextField.getText();
+                }else{
+                    return null;
+                }
+            }
+            case "register" -> mAccountLoginValidator.registerUser(usernameTextField.getText(), passwordPasswordField.getText());
+        }
+        return null;
+    }
+
+    public boolean validateAccountSignIn(String username, String password) {
+        return mAccountLoginValidator.validateLogin(username, password);
     }
 }
