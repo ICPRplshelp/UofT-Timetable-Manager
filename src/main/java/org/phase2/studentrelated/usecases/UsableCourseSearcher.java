@@ -15,19 +15,19 @@ import java.util.*;
  * <p>
  * This is the one that only tries to look for 20229 courses
  */
-public class CourseSearchAdapter {
+public class UsableCourseSearcher {
     private final String curSession = "20229";
 
-    private static CourseSearchAdapter csa;
+    private static UsableCourseSearcher csa;
 
-    private CourseSearchAdapter() {
+    private UsableCourseSearcher() {
         CourseSearcherGetter csg = new CourseSearcherGetter();
         this.courseSearcher = csg.getCourseSearcher();
     }
 
-    public static CourseSearchAdapter getInstance() {
+    public static UsableCourseSearcher getInstance() {
         if (csa == null) {
-            csa = new CourseSearchAdapter();
+            csa = new UsableCourseSearcher();
         }
         return csa;
     }
