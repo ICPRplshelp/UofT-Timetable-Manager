@@ -16,14 +16,23 @@ import java.util.Objects;
  * getScheduleEntries or getMeetings.
  * This may be a refused bequest, or it might not be one.
  */
-public class CourseSearchAdapterPrev {
+public class UsableCourseSearcherPrev {
 
     private final String[] sessions = {"20229", "20225", "20219", "20215", "20209", "20205", "20199"};
     private final CourseSearcherIndividual courseSearcher;
 
-    public CourseSearchAdapterPrev() {
+    private static UsableCourseSearcherPrev csap;
+
+    private UsableCourseSearcherPrev() {
         CourseSearcherGetter csg = new CourseSearcherGetter();
         this.courseSearcher = csg.getCourseSearcher();
+    }
+
+    public static UsableCourseSearcherPrev getInstance() {
+        if (csap == null) {
+            csap = new UsableCourseSearcherPrev();
+        }
+        return csap;
     }
 
     private CourseSearcherIndividual getCourseSearcher() {
