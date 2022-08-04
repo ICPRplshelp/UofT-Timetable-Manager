@@ -4,24 +4,24 @@ import org.example.logincode.entities.Account;
 import org.example.logincode.entities.AccountStorage;
 import org.example.logincode.usecases.StorageManager;
 import org.phase2.studentrelated.entities.Student2;
-import org.phase2.studentrelated.usecases.CourseSearchAdapter;
-import org.phase2.studentrelated.usecases.CourseSearchAdapterPrev;
+import org.phase2.studentrelated.usecases.UsableCourseSearcher;
+import org.phase2.studentrelated.usecases.UsableCourseSearcherPrev;
 import org.phase2.studentrelated.usecases.StudentManager;
 
 public class StudentManagerBuilder {
 
     private Student2 student;
 
-    public CourseSearchAdapter getPlannedSearcher() {
+    public UsableCourseSearcher getPlannedSearcher() {
         return plannedSearcher;
     }
 
-    public CourseSearchAdapterPrev getPastSearcher() {
+    public UsableCourseSearcherPrev getPastSearcher() {
         return pastSearcher;
     }
 
-    private CourseSearchAdapter plannedSearcher;
-    private CourseSearchAdapterPrev pastSearcher;
+    private UsableCourseSearcher plannedSearcher;
+    private UsableCourseSearcherPrev pastSearcher;
 
 
     public StudentManagerBuilder() {
@@ -38,10 +38,10 @@ public class StudentManagerBuilder {
     }
 
     public void buildSearcher() {
-        this.plannedSearcher = CourseSearchAdapter.getInstance();
+        this.plannedSearcher = UsableCourseSearcher.getInstance();
     }
 
     public void buildPastSearcher() {
-        this.pastSearcher = CourseSearchAdapterPrev.getInstance();
+        this.pastSearcher = UsableCourseSearcherPrev.getInstance();
     }
 }
