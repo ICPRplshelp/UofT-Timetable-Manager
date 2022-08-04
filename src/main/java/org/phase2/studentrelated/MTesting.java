@@ -17,8 +17,8 @@ import java.util.Set;
 public class MTesting {
     public static void main(String[] args) {
         Student2 stud = new Student2();
-        CourseSearchAdapterPrev courseSearchAdapterPrev = new CourseSearchAdapterPrev();
-        CourseSearchAdapter courseSearchAdapter = new CourseSearchAdapter();
+        CourseSearchAdapterPrev courseSearchAdapterPrev = CourseSearchAdapterPrev.getInstance();
+        CourseSearchAdapter courseSearchAdapter = CourseSearchAdapter.getInstance();
         StudentManager sm = new StudentManager(stud, courseSearchAdapter, courseSearchAdapterPrev);
         StudentController sc = new StudentController(sm, null, null, null);
         WarningChecker2 wc = new WarningChecker2(courseSearchAdapter, courseSearchAdapterPrev,

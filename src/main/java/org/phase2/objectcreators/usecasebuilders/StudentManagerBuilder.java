@@ -38,10 +38,10 @@ public class StudentManagerBuilder {
     }
 
     public void buildSearcher() {
-        this.plannedSearcher = new CourseSearchAdapter();
+        this.plannedSearcher = CourseSearchAdapter.getInstance();
     }
 
     public void buildPastSearcher() {
-        this.pastSearcher = new CourseSearchAdapterPrev();
+        this.pastSearcher = CourseSearchAdapterPrev.getInstance();
     }
 }

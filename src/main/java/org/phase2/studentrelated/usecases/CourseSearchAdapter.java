@@ -18,16 +18,25 @@ import java.util.*;
 public class CourseSearchAdapter {
     private final String curSession = "20229";
 
+    private static CourseSearchAdapter csa;
+
+    private CourseSearchAdapter() {
+        CourseSearcherGetter csg = new CourseSearcherGetter();
+        this.courseSearcher = csg.getCourseSearcher();
+    }
+
+    public static CourseSearchAdapter getInstance() {
+        if (csa == null) {
+            csa = new CourseSearchAdapter();
+        }
+        return csa;
+    }
+
     public CourseSearcherIndividual getCourseSearcher() {
         return courseSearcher;
     }
 
     private final CourseSearcherIndividual courseSearcher;
-
-    public CourseSearchAdapter() {
-        CourseSearcherGetter csg = new CourseSearcherGetter();
-        this.courseSearcher = csg.getCourseSearcher();
-    }
 
     /**
      * Gets the Course object from code.
