@@ -21,9 +21,18 @@ public class CourseSearchAdapterPrev {
     private final String[] sessions = {"20229", "20225", "20219", "20215", "20209", "20205", "20199"};
     private final CourseSearcherIndividual courseSearcher;
 
-    public CourseSearchAdapterPrev() {
+    private static CourseSearchAdapterPrev csap;
+
+    private CourseSearchAdapterPrev() {
         CourseSearcherGetter csg = new CourseSearcherGetter();
         this.courseSearcher = csg.getCourseSearcher();
+    }
+
+    public static CourseSearchAdapterPrev getInstance() {
+        if (csap == null) {
+            csap = new CourseSearchAdapterPrev();
+        }
+        return csap;
     }
 
     private CourseSearcherIndividual getCourseSearcher() {

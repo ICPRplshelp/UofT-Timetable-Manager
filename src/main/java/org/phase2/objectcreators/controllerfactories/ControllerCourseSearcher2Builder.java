@@ -26,10 +26,10 @@ public class ControllerCourseSearcher2Builder implements ControllerBuilder {
     }
 
     private void buildCourseSearchAdapter() {
-        this.csa = new CourseSearchAdapter();
+        this.csa = CourseSearchAdapter.getInstance();
     }
 
     private void buildCourseSearchAdapterPrev() {
-        this.pcsa = new CourseSearchAdapterPrev();
+        this.pcsa = CourseSearchAdapterPrev.getInstance();
     }
 }
