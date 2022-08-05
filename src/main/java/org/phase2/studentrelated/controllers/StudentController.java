@@ -96,8 +96,12 @@ public class StudentController {
     /**
      * Obtains the presenter.
      */
-    public StudentPresenter getPresenter() {;
+    public StudentPresenter getPresenter() {
         return new StudentPresenter(wc, sm);
+    }
+
+    public Map<String, Set<String>> getPlannedCourses() {
+        return sm.getPlannedCourses();
     }
 
     public Map<Character, Set<IScheduleEntry>> getPlannedCoursesSE() {
