@@ -36,6 +36,7 @@ public class GUIDisplay {
         searchButton.addActionListener(e -> switchViews("search"));
         adminButton.addActionListener(e -> switchViews("admin"));
         logoutButton.addActionListener(e -> switchLoginView("logout"));
+        exitButton.addActionListener(e -> System.exit(0));
     }
 
     public void switchViews(String view){
