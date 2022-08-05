@@ -60,7 +60,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value="CSC110Y1-F"/>
+        </properties>
       </component>
       <component id="bd979" class="javax.swing.JTextField" binding="courseSearchField">
         <constraints>
@@ -68,7 +70,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value="CSC2"/>
+        </properties>
       </component>
       <component id="6e814" class="javax.swing.JButton" binding="searchCoursesButton" default-binding="true">
         <constraints>
