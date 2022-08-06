@@ -1,5 +1,6 @@
 package org.example.logincode.usecases;
 
+import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.logincode.entities.Account;
 
 public class AccountManager {
@@ -11,6 +12,7 @@ public class AccountManager {
     private final Account account;
     // protected Set<String> commandList;
     final StorageManager accountStorageManager;
+    private static AccountManager am;
 
     /**
      * Validate one permission.
@@ -36,6 +38,12 @@ public class AccountManager {
     }
 
 
+    private static AccountManager getInstance(String name, StorageManager storageManager ) {
+        if (am == null) {
+            am = new AccountManager(name, storageManager);
+        }
+        return am;
+    }
     /**
      * Creates a new AccountManager instance based on the username.
      *
