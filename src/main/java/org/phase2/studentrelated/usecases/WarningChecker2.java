@@ -1,5 +1,7 @@
 package org.phase2.studentrelated.usecases;
 
+import org.example.requisitechecker.courselocationtracker.usecases.BuildingComparator;
+import org.example.requisitechecker.courselocationtracker.usecases.BuildingStorageConstructor;
 import org.example.timetable.entities.WarningType;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 
@@ -24,7 +26,8 @@ public class WarningChecker2 {
     private final Map<String, Set<String>> planned;
     private final Set<String> passed;
 
-
+    private final BuildingStorageConstructor buildingStorageConstructor = new BuildingStorageConstructor();
+    private final BuildingComparator buildingComparator = new BuildingComparator(buildingStorageConstructor.makeAllBuildings());
 
     public WarningChecker2(UsableCourseSearcher plannedSearcher, UsableCourseSearcherPrev pastSearcher,
                            Map<String, Set<String>> planned,
@@ -104,7 +107,12 @@ public class WarningChecker2 {
                 }
                 warningMap.get(se).add(WarningType.CONFLICT);
             }
-            // add distance checks here
+            if (checkBackToBack(se, allScheduleEntries)) {
+                if (!warningMap.containsKey(se)) {
+                    warningMap.put(se, new HashSet<>());
+                }
+                warningMap.get(se).add(WarningType.DIST);
+            }
         }
         this.lastMap = warningMap;
         return warningMap;
@@ -130,6 +138,40 @@ public class WarningChecker2 {
         return false;
     }
 
+    private boolean checkBackToBack(IScheduleEntry se, Set<IScheduleEntry> allScheduleEntries) {
+        for (IScheduleEntry se2 : allScheduleEntries) {
+            if (se == se2 || !se.getDay().equals(se2.getDay())) {
+                continue;
+            }
+
+            // case 1: se startTime <= se2 startTime < se endTime
+            if (se.getStartTime().compareTo(se2.getEndTime()) == 0) {
+                return checkDistance(se, se2);
+            }
+
+            // case 2: se startTime < se2 endTime <= se endTime
+            if (se2.getStartTime().compareTo(se.getEndTime()) == 0) {
+                return checkDistance(se, se2);
+            }
+
+        }
+        return false;
+    }
+
+    private boolean checkDistance(IScheduleEntry se, IScheduleEntry se2) {
+        if (!se.getAssignedRoom1().equals("") && !se2.getAssignedRoom1().equals("")) {
+            return distanceJudgeHelper(buildingComparator.getDistance(se.getAssignedRoom1(), se2.getAssignedRoom1()));
+        } else if (!se.getAssignedRoom2().equals("") && !se2.getAssignedRoom2().equals("")) {
+            return distanceJudgeHelper(buildingComparator.getDistance(se.getAssignedRoom2(), se2.getAssignedRoom2()));
+        }
+        return false;
+    }
+
+    private boolean distanceJudgeHelper(double distance) {
+        double timeNeeded = (distance/2.0) * 60.0;
+        System.out.println("OOOH");
+        return timeNeeded > 11.0;
+    }
     /**
      * Generates all schedule entries of the planned courses and its lecture sections
      * passed in.
