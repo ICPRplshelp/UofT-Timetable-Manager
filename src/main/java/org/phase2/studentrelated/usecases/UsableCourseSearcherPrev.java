@@ -28,7 +28,7 @@ public class UsableCourseSearcherPrev {
         this.courseSearcher = csg.getCourseSearcher();
     }
 
-    private static UsableCourseSearcherPrev getInstance() {
+    public static UsableCourseSearcherPrev getInstance() {
         if (csap == null) {
             csap = new UsableCourseSearcherPrev();
         }

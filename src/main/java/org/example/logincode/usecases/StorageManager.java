@@ -32,7 +32,7 @@ public class StorageManager {
     }
 
 
-    private static StorageManager getInstance() {
+    public static StorageManager getInstance() {
         if (accountStorage == null) {
             sm = new StorageManager(loadedStorage);
         }

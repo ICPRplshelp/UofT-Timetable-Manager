@@ -24,8 +24,7 @@ public class MAccountLoginValidator {
     // constructs this class. I need this.
 
     public MAccountLoginValidator() {
-        IGateway loadedStorage = new StorageLoader();
-        storageManager = new StorageManager(loadedStorage);
+        storageManager = StorageManager.getInstance();
         accountLogin = new AccountLogin(storageManager);
         accountCreator = new AccountCreator(storageManager);
     }

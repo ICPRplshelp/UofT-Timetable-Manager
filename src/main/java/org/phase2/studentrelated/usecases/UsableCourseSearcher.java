@@ -25,7 +25,7 @@ public class UsableCourseSearcher {
         this.courseSearcher = csg.getCourseSearcher();
     }
 
-    private static UsableCourseSearcher getInstance() {
+    public static UsableCourseSearcher getInstance() {
         if (csa == null) {
             csa = new UsableCourseSearcher();
         }
