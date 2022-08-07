@@ -1,7 +1,9 @@
 package org.example.logincode.usecases;
 
+import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.logincode.entities.Account;
 import org.example.logincode.entities.AccountStorage;
+
 
 import java.io.IOException;
 import java.util.Collection;
@@ -11,27 +13,35 @@ import java.util.logging.Logger;
 public class StorageManager {
     private static final Logger LOGGER = Logger.getLogger(StorageManager.class.getName());
 
-    private AccountStorage accountStorage;
-    private IGateway loadedStorage;
+    private static AccountStorage accountStorage;
+    public static IGateway loadedStorage;
+    private static StorageManager sm;
 
     /**
      * Construct an AccountStorage with existing accounts.
      *
      * @param accounts K/V pairs of usernames mapped to existing account information.
      */
-    public StorageManager(Collection<Account> accounts) {
+
+    private StorageManager(Collection<Account> accounts) {
         this.accountStorage = new AccountStorage();
         for (Account acc : accounts) {
             this.getAccountStorage().addAccount(acc);
         }
 
-
     }
 
+
+    public static StorageManager getInstance() {
+        if (accountStorage == null) {
+            sm = new StorageManager(loadedStorage);
+        }
+        return sm;
+    }
     /**
      * Attempt to initialize this class with StorageLoader.
      */
-    public StorageManager(IGateway loadedStorage) {
+    private StorageManager(IGateway loadedStorage) {
         this.loadedStorage = loadedStorage;
 
         try {
