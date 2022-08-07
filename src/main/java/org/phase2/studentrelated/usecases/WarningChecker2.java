@@ -169,7 +169,6 @@ public class WarningChecker2 {
 
     private boolean distanceJudgeHelper(double distance) {
         double timeNeeded = (distance/2.0) * 60.0;
-        System.out.println("OOOH");
         return timeNeeded > 11.0;
     }
     /**
