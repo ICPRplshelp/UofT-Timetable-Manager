@@ -10,7 +10,7 @@ import org.phase2.studentrelated.usecases.StudentManager;
 
 public class StudentManagerBuilder {
 
-    private Student2 student;
+    private final Student2 student;
 
     private UsableCourseSearcher plannedSearcher;
     private UsableCourseSearcherPrev pastSearcher;
