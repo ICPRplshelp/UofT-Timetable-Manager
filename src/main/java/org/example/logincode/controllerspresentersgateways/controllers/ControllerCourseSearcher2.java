@@ -1,7 +1,7 @@
 package org.example.logincode.controllerspresentersgateways.controllers;
 
-import org.phase2.studentrelated.usecases.UsableCourseSearcher;
-import org.phase2.studentrelated.usecases.UsableCourseSearcherPrev;
+import org.phase2.studentrelated.searchersusecases.UsableCourseSearcher;
+import org.phase2.studentrelated.searchersusecases.UsableCourseSearcherPrev;
 import org.phase2.studentrelated.usecases.WarningChecker2;
 
 import java.util.Set;

@@ -13,13 +13,17 @@ public class WarningPresenter {
 
     {
         warnToStr = new EnumMap<>(WarningType.class);
-        warnToStr.put(WarningType.CONFLICT, "your course has a conflict");
-        warnToStr.put(WarningType.PRQ, "your course is missing prerequisites");
-        warnToStr.put(WarningType.CRQ, "your course is missing corequisites");
-        warnToStr.put(WarningType.EXC, "you passed or will be concurrently taking an exclusion to this course");
-        warnToStr.put(WarningType.FYF, "your course is for first-year students only and you aren't one");
-        warnToStr.put(WarningType.DIST, "you'll collapse running to a lecture/tutorial/practical in this course");
+        warnToStr.put(WarningType.CONFLICT, "conflict");
+        warnToStr.put(WarningType.PRQ, "missing prerequisites");
+        warnToStr.put(WarningType.CRQ, "missing corequisites");
+        warnToStr.put(WarningType.EXC, "you have exclusions");
+        warnToStr.put(WarningType.FYF, "first year only");
+        warnToStr.put(WarningType.DIST, "prev. course too far");
         warnToStr.put(WarningType.UNKNOWN, "there is some other unknown issue");
+        warnToStr.put(WarningType.TAKEN, "you have/will have taken this course");
+        warnToStr.put(WarningType.MISSING_LEC, "missing lecture");
+        warnToStr.put(WarningType.MISSING_TUT, "missing tutorial");
+        warnToStr.put(WarningType.MISSING_PRA, "missing practical");
     }
 
     /**

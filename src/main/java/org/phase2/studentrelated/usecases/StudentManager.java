@@ -5,6 +5,8 @@ import org.example.coursegetter.entities.baseclasses.Course;
 import org.example.coursegetter.entities.baseclasses.Meetings;
 import org.phase2.studentrelated.entities.Student2;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
+import org.phase2.studentrelated.searchersusecases.UsableCourseSearcher;
+import org.phase2.studentrelated.searchersusecases.UsableCourseSearcherPrev;
 
 import java.util.*;
 
@@ -114,38 +116,6 @@ public class StudentManager {
         } else return false;
     }
 
-    /**
-     * Checks if the planned course: course is missing lec/tut/PRAs.
-     *
-     * @param course the course in question, which must be a planned course.
-     * @return a set of teaching methods that were not added to the course.
-     * null if there's a problem doing so (course DNE).
-     */
-    public Set<TeachingMethods> checkMissingMeetings(String course) {
-        Course crs = plannedSearcher.getCourse(course);
-        if (crs == null) return null;
-        Meetings met = crs.getMeetings();
-        Set<String> meetingSet = student.getPlannedCourses().get(course);
-        Set<TeachingMethods> existingMethods = buildExistingTeachingMethods(meetingSet);
-        Set<TeachingMethods> requiredTMs = new HashSet<>();
-        if (met.hasLectures() && !existingMethods.contains(TeachingMethods.LEC)) requiredTMs.add(TeachingMethods.LEC);
-        if (met.hasTutorials() && !existingMethods.contains(TeachingMethods.TUT)) requiredTMs.add(TeachingMethods.TUT);
-        if (met.hasPracticals() && !existingMethods.contains(TeachingMethods.PRA)) requiredTMs.add(TeachingMethods.PRA);
-        return requiredTMs;
-    }
-
-    private Set<TeachingMethods> buildExistingTeachingMethods(Set<String> meetingSet) {
-        Set<TeachingMethods> existingMethods = new HashSet<>();
-        for (String meeting : meetingSet) {
-            String firstThree = meeting.substring(0, Math.min(3, meeting.length()));
-            switch (firstThree) {
-                case "LEC" -> existingMethods.add(TeachingMethods.LEC);
-                case "TUT" -> existingMethods.add(TeachingMethods.TUT);
-                case "PRA" -> existingMethods.add(TeachingMethods.PRA);
-            }
-        }
-        return existingMethods;
-    }
 
     /**
      * Items are course codes.
@@ -194,9 +164,16 @@ public class StudentManager {
         Map<Character, Set<IScheduleEntry>> toReturn = new HashMap<>();
         Map<String, Set<String>> plannedCourses = getPlannedCourses();
         constructPlannedCoursesSE(fse, sse, yse, plannedCourses);
-        toReturn.put('F', Collections.unmodifiableSet(fse));
-        toReturn.put('Y', Collections.unmodifiableSet(yse));
-        toReturn.put('S', Collections.unmodifiableSet(sse));
+        toReturn.put('F', setUnion(fse, yse));
+        // toReturn.put('Y', Collections.unmodifiableSet(yse));
+        toReturn.put('S', setUnion(sse, yse));
+        return toReturn;
+    }
+
+    private Set<IScheduleEntry> setUnion(Set<IScheduleEntry> set1, Set<IScheduleEntry> set2){
+        Set<IScheduleEntry> toReturn = new HashSet<>();
+        toReturn.addAll(set1);
+        toReturn.addAll(set2);
         return toReturn;
     }
 

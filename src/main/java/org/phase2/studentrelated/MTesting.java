@@ -5,8 +5,8 @@ import org.phase2.studentrelated.controllers.StudentController;
 import org.phase2.studentrelated.entities.Student2;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 import org.phase2.studentrelated.presenters.StudentPresenter;
-import org.phase2.studentrelated.usecases.UsableCourseSearcher;
-import org.phase2.studentrelated.usecases.UsableCourseSearcherPrev;
+import org.phase2.studentrelated.searchersusecases.UsableCourseSearcher;
+import org.phase2.studentrelated.searchersusecases.UsableCourseSearcherPrev;
 import org.phase2.studentrelated.usecases.StudentManager;
 import org.phase2.studentrelated.usecases.WarningChecker2;
 

@@ -1,6 +1,7 @@
 package org.phase2.studentrelated.usecases;
 
 import org.example.timetable.entities.WarningType;
+import org.phase2.studentrelated.searchersusecases.UsableCourseSearcher;
 
 import java.util.HashSet;
 import java.util.Map;

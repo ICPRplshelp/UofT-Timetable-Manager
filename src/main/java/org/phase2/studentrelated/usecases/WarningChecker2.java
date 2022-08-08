@@ -1,11 +1,9 @@
 package org.phase2.studentrelated.usecases;
 
-import org.example.requisitechecker.courselocationtracker.usecases.BuildingComparator;
-import org.example.requisitechecker.courselocationtracker.usecases.BuildingStorageConstructor;
 import org.example.timetable.entities.WarningType;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
+import org.phase2.studentrelated.searchersusecases.UsableCourseSearcher;
 
-import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,22 +15,23 @@ import java.util.Set;
  */
 public class WarningChecker2 {
     private final WarningAdder requisiteWarningAdder = new RequisiteWarningAdder();
-
-
-    private final UsableCourseSearcher plannedSearcher;
+    private final WarningAdder checkTaken = new TakenWarningAdder();
     private final Map<String, Set<String>> planned;
     private final Set<String> passed;
     private final WarningAdder fyfWarningAdder = new FYFWarningAdder();
-    private final BuildingStorageConstructor buildingStorageConstructor = new BuildingStorageConstructor();
-    private final BuildingComparator buildingComparator = new BuildingComparator(buildingStorageConstructor.makeAllBuildings());
+    private final ConflictChecker conflictChecker = new ConflictChecker();
+    private final DistanceChecker distanceChecker = new DistanceChecker();
+    private final MissingLecAdder missingLecAdder;
+    private final UsableCourseSearcher plannedSearcher;
     private Map<IScheduleEntry, Set<WarningType>> lastMap = new HashMap<>();
 
     public WarningChecker2(UsableCourseSearcher plannedSearcher,
                            Map<String, Set<String>> planned,
                            Set<String> passed) {
+        this.missingLecAdder = new MissingLecAdder(plannedSearcher, planned);
+        this.passed = passed;
         this.plannedSearcher = plannedSearcher;
         this.planned = planned;
-        this.passed = passed;
     }
 
     /**
@@ -53,6 +52,7 @@ public class WarningChecker2 {
         return warnList;
     }
 
+
     /**
      * Helper method for course-related warnings.
      * These warnings are based on the set of planned-passed courses.
@@ -63,6 +63,8 @@ public class WarningChecker2 {
     private void addCourseWarningsHelper(Map<String, Set<WarningType>> warnList, Set<String> planned1) {
         requisiteWarningAdder.addWarnings(planned1, passed, warnList);
         fyfWarningAdder.addWarnings(planned1, passed, warnList);
+        missingLecAdder.addWarnings(planned1, passed, warnList);
+        checkTaken.addWarnings(planned1, passed, warnList);
     }
 
     /**
@@ -98,13 +100,13 @@ public class WarningChecker2 {
         Map<IScheduleEntry, Set<WarningType>> warningMap = new HashMap<>();
         Set<IScheduleEntry> allScheduleEntries = generateScheduleEntriesAll(planned);
         for (IScheduleEntry se : allScheduleEntries) {
-            if (checkConflict(se, allScheduleEntries)) {
+            if (conflictChecker.checkConflict(se, allScheduleEntries)) {
                 if (!warningMap.containsKey(se)) {
                     warningMap.put(se, new HashSet<>());
                 }
                 warningMap.get(se).add(WarningType.CONFLICT);
             }
-            if (checkBackToBack(se, allScheduleEntries)) {
+            if (distanceChecker.checkBackToBack(se, allScheduleEntries)) {
                 if (!warningMap.containsKey(se)) {
                     warningMap.put(se, new HashSet<>());
                 }
@@ -114,85 +116,7 @@ public class WarningChecker2 {
         this.lastMap = warningMap;
     }
 
-    /**
-     * Local time to minutes after 12AM on that day
-     * @param lt local time
-     * @return ^
-     */
-    private int ltp(LocalTime lt){
-        return lt.getHour() * 60 + lt.getMinute();
-    }
 
-    /**
-     * Returns true if se conflicts with something else.
-     * @param se the se to test.
-     * @param allScheduleEntries all else.
-     * @return whether se conflicts.
-     */
-    private boolean checkConflict(IScheduleEntry se, Set<IScheduleEntry> allScheduleEntries) {
-        char sesCode = se.getCourseCode().charAt(se.getCourseCode().length() - 1);
-
-        for (IScheduleEntry se2 : allScheduleEntries) {
-            char sesCode2 = se2.getCourseCode().charAt(se2.getCourseCode().length() - 1);
-            if (se == se2 || !se.getDay().equals(se2.getDay())) {
-                continue;
-            }
-            if ((sesCode != 'Y' && sesCode2 != 'Y') && sesCode != sesCode2) {
-                continue;
-            }
-            int s1s = ltp(se.getStartTime());
-            int s1e = ltp(se.getEndTime());
-            int s2s = ltp(se2.getStartTime());
-            int s2e = ltp(se2.getEndTime());
-            // predicate by me
-            boolean p1 = s2s < s1e && s1s <= s2s;
-            boolean p2 = s1s < s2e && s2s <= s1s;
-
-            if(p1 || p2){
-                return true;
-            }
-
-        }
-        return false;
-    }
-
-    private boolean checkBackToBack(IScheduleEntry se, Set<IScheduleEntry> allScheduleEntries) {
-        char sesCode = se.getCourseCode().charAt(se.getCourseCode().length() - 1);
-        for (IScheduleEntry se2 : allScheduleEntries) {
-            char sesCode2 = se2.getCourseCode().charAt(se2.getCourseCode().length() - 1);
-            if ((sesCode != 'Y' && sesCode2 != 'Y') && sesCode != sesCode2) {
-                continue;
-            }
-            if (!se.getStartTime().equals(se2.getEndTime())) {
-                continue;
-            }
-            boolean distanceState = checkDistance(se, se2);
-            if (distanceState) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Are they too far?
-     * @param se first one
-     * @param se2 the second one (order does not matter)
-     * @return true if they're over 650m apart.
-     */
-    private boolean checkDistance(IScheduleEntry se, IScheduleEntry se2) {
-        String fall1 = se.getAssignedRoom1();
-        String winter1 = se.getAssignedRoom2();
-        String fall2 = se2.getAssignedRoom1();
-        String winter2 = se2.getAssignedRoom2();
-
-        double distFall = buildingComparator.getDistance(fall1, fall2);
-        double distWinter = buildingComparator.getDistance(winter1, winter2);
-
-        double higherDist = Math.max(distFall, distWinter);
-        // System.out.println(higherDist);
-        return higherDist > 650;
-    }
 
     /**
      * Generates all schedule entries of the planned courses and its lecture sections
@@ -208,7 +132,7 @@ public class WarningChecker2 {
         for (String crs : planned.keySet()) {
             Set<String> meetings = planned.get(crs);
             for (String meeting : meetings) {
-                scheduleEntries.addAll(this.plannedSearcher.getScheduleEntries(crs, meeting));
+                scheduleEntries.addAll(plannedSearcher.getScheduleEntries(crs, meeting));
             }
         }
         return scheduleEntries;

@@ -4,8 +4,8 @@ import org.example.logincode.entities.Account;
 import org.example.logincode.entities.AccountStorage;
 import org.example.logincode.usecases.StorageManager;
 import org.phase2.studentrelated.entities.Student2;
-import org.phase2.studentrelated.usecases.UsableCourseSearcher;
-import org.phase2.studentrelated.usecases.UsableCourseSearcherPrev;
+import org.phase2.studentrelated.searchersusecases.UsableCourseSearcher;
+import org.phase2.studentrelated.searchersusecases.UsableCourseSearcherPrev;
 import org.phase2.studentrelated.usecases.StudentManager;
 
 public class StudentManagerBuilder {

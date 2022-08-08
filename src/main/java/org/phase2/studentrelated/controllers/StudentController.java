@@ -123,7 +123,7 @@ public class StudentController {
         try {
             temp = to.generateHTMLTable(getPlannedCoursesSE().get(fs));
         } catch (NotOnHourException | ConflictException e) {
-            return "";
+            return to.getHTMLFailure();
         }
         return temp;
     }

@@ -1,4 +1,4 @@
-package org.phase2.studentrelated.usecases;
+package org.phase2.studentrelated.searchersusecases;
 
 import org.example.coursegetter.entities.baseclasses.Course;
 import org.example.coursegetter.usecases.CourseSearcherGetter;

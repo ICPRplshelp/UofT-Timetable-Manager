@@ -78,7 +78,7 @@ public class StudentUI {
             if (stc.addMeetingToPlannedCourse(addCourseField.getText(), addMeetingField.getText())){
                 error.setText("Meeting added successfully");
             } else {
-                error.setText("Meeting doesn't exist, it's already added, or the course you are trying to add the meeting to doesn't exist");
+                error.setText("Meeting doesn't exist, it's already added, or the course you are trying to add the meeting to wasn't planned");
             }
             displayCourseList();
         });
