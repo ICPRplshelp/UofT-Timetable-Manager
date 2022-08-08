@@ -8,8 +8,7 @@ import java.util.Map;
  * Stores all accounts.
  */
 public class AccountStorage implements Serializable {
-    // username: account
-    private final Map<String, Account> accounts;  // = new HashMap<String, Account>();
+    private final Map<String, Account> accounts;
     private static AccountStorage as;
 
 
