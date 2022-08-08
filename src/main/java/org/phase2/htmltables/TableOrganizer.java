@@ -25,15 +25,13 @@ public class TableOrganizer {
         this.wc = wc;
     }
 
-    private String failedMessage = "You tried to generate a table with a course conflict" +
-            "\nor a course that had a meeting that didn't start or end right on the hour";
-
     /**
      * It could never make a table after all.
      * @return the failure message
      */
     public String getHTMLFailure() {
-        return failedMessage;
+        return "You tried to generate a table with a course conflict" +
+                    "\nor a course that had a meeting that didn't start or end right on the hour";
 
     }
 
