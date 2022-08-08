@@ -29,8 +29,8 @@ public class BuildingComparator {
      */
     public double getDistance(String b1Str, String b2Str) {
         if (b1Str == null || b2Str == null) return 0;
-        b1Str = b1Str.substring(0, 2).toLowerCase();
-        b2Str = b2Str.substring(0, 2).toLowerCase();
+        b1Str = b1Str.length() >= 2 ? b1Str.substring(0, 2).toLowerCase() : b1Str;
+        b2Str = b2Str.length() >= 2 ? b2Str.substring(0, 2).toLowerCase() : b2Str;
         Building b1 = this.bs.getBuilding(b1Str);
         Building b2 = this.bs.getBuilding(b2Str);
         return getDistanceBuilding(b1, b2);
