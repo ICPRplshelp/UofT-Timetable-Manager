@@ -21,7 +21,7 @@ public class StorageManager {
      */
 
     private StorageManager(Collection<Account> accounts) {
-        accountStorage = new AccountStorage();
+        accountStorage = AccountStorage.getInstance();
         for (Account acc : accounts) {
             this.getAccountStorage().addAccount(acc);
         }
@@ -58,7 +58,7 @@ public class StorageManager {
 
 
         if (this.getAccountStorage() == null) {
-            accountStorage = new AccountStorage();
+            accountStorage = AccountStorage.getInstance();
         }
     }
 
