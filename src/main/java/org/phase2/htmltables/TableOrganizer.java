@@ -120,8 +120,9 @@ public class TableOrganizer {
             }
             Set<WarningType> crWarnings = wc.getLastMap().get(ise);
             cellArray[startHour] = new CourseCell(ise, fallWinter, crWarnings);
-            for (int i = ++startHour; i < endHour; i++) {
-                if (!cellArray[startHour].isEmpty()) {
+            startHour += 1;
+            for (int i = startHour; i < endHour; i++) {
+                if (!cellArray[i].isEmpty()) {
                     // System.out.println(startHour);
                     throw new ConflictException();
                 }
