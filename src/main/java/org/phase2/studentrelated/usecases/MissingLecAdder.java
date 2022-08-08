@@ -72,7 +72,7 @@ class MissingLecAdder implements WarningAdder {
         Meetings met = crs.getMeetings();
         Set<String> meetingSet = planned.get(course);
         Set<TeachingMethods> existingMethods = buildExistingTeachingMethods(meetingSet);
-        Set<TeachingMethods> requiredTMs = new HashSet<TeachingMethods>();
+        Set<TeachingMethods> requiredTMs = new HashSet<>();
         if (met.hasLectures() && !existingMethods.contains(TeachingMethods.LEC)) requiredTMs.add(TeachingMethods.LEC);
         if (met.hasTutorials() && !existingMethods.contains(TeachingMethods.TUT)) requiredTMs.add(TeachingMethods.TUT);
         if (met.hasPracticals() && !existingMethods.contains(TeachingMethods.PRA)) requiredTMs.add(TeachingMethods.PRA);
