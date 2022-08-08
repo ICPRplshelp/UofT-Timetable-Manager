@@ -1,10 +1,7 @@
 package org.example.logincode.usecases;
 
-
 import org.example.logincode.entities.Account;
 import org.example.logincode.entities.AccountStorage;
-
-
 import java.io.IOException;
 import java.util.Collection;
 import java.util.logging.Level;

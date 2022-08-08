@@ -4,8 +4,7 @@ import org.phase2.mainloophelpers.controllerspresenters.GUIMAccountLoginPresente
 import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class LoginUI {
     private JPanel mainPanel;

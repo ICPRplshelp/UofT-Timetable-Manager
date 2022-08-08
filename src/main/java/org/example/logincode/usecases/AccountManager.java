@@ -1,6 +1,5 @@
 package org.example.logincode.usecases;
 
-import org.example.coursegetter.usecases.CourseSearcherGetter;
 import org.example.logincode.entities.Account;
 
 public class AccountManager {
@@ -14,15 +13,6 @@ public class AccountManager {
     final StorageManager accountStorageManager;
     private static AccountManager am;
 
-    /**
-     * Validate one permission.
-     *
-     * @param permission permission to check.
-     * @return whether permission exists.
-     */
-    public boolean validatePermission(String permission) {
-        return account.getPermissions().hasPerm(permission);
-    }
 
     /**
      * Creates a new AccountManager instance based on an account.

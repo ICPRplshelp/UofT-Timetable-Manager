@@ -18,9 +18,6 @@ public class StudentController {
     private final TableOrganizer sTable;
     private final WarningChecker2 wc;
 
-    public WarningChecker2 getWc(){
-        return this.wc;
-    }
 
     public StudentController(StudentManager sm,
                              TableOrganizer fTable,
