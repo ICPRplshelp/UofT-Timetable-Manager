@@ -27,14 +27,11 @@ public class AdminUI {
     private JTextField banTimeField;
     private JLabel error;
 
-    private final ControllerAdmin controller;
-
     public JPanel getMainPanel() {
         return mainPanel;
     }
 
     public AdminUI(ControllerAdmin controller) {
-        this.controller = controller;
 
         mainPanel.setVisible(true);
         banUserButton.addActionListener(e -> {
@@ -47,7 +44,7 @@ public class AdminUI {
                 if (controller.banUser(userToBan, date)){
                     error.setText("User banned");
                 } else {
-                    error.setText("User not found");
+                    error.setText("User not found, or you do not have permission for this action.");
                 }
             } catch (ParseException ignored) {
                 error.setText("Invalid date format");
@@ -57,7 +54,7 @@ public class AdminUI {
             if (controller.deleteUser(deleteField.getText())){
                 error.setText("User deleted");
             } else {
-                error.setText("User not found");
+                error.setText("User not found, or you do not have permission for this action.");
             }
         });
         createAdminButton.addActionListener(e -> {
@@ -66,14 +63,14 @@ public class AdminUI {
                     Arrays.toString(createAdminPasswordField.getPassword())})){
                 error.setText("User created");
             }else{
-                error.setText("User already exists");
+                error.setText("User already exists, or you do not have permission for this action.");
             }
         });
         promoteAdminButton.addActionListener(e -> {
             if (controller.promoteUserToAdmin(promoteAdminField.getText())){
                 error.setText("User promoted");
             } else {
-                error.setText("User not found");
+                error.setText("User not found, or you do not have permission for this action.");
             }
         });
     }

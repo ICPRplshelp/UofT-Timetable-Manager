@@ -33,6 +33,10 @@ public class StorageManager {
 
 
     public static StorageManager getInstance() {
+        return sm;
+    }
+
+    public static StorageManager getInstance(IGateway loadedStorage) {
         if (accountStorage == null) {
             sm = new StorageManager(loadedStorage);
         }

@@ -1,5 +1,10 @@
 package org.phase2.gui.frameworksanddrivers;
 
+import org.example.PresenterPrinter;
+import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
+import org.phase2.mainloophelpers.ui.GUIObjectPool;
+import org.phase2.objectcreators.uifactories.GUIFactory;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,98 +13,68 @@ public class GUIDisplay {
     private JPanel mainPanel;
     private JPanel headerPanel;
     private JPanel bodyPanel;
+    private JPanel footerPanel;
     private JButton adminButton;
     private JButton searchButton;
     private JButton standardButton;
     private JButton studentButton;
-    private JPanel admin;
-    private JPanel search;
-    private JPanel standard;
-    private JPanel student;
     private JPanel loggedInPanel;
-    private JPanel switchPanel;
-    private JPanel loggedOutPanel;
-    private JLabel welcomeMessage;
-    private JTextField usernameTextField;
-    private JPasswordField passwordPasswordField;
-    private JPanel footerPanel;
-    private JButton exitButton;
     private JButton logoutButton;
-    private JButton button1;
-    private JButton button2;
+    private JPanel switchPanel;
+    private JButton exitButton;
+
+    private GUIObjectPool guiObjectPool;
+
+    private final LoginUI loginUI;
 
     public GUIDisplay() {
+        loginUI = new LoginUI(this);
+        switchLoginView("logout");
 
-        // these are temporary buttons to test the GUI, they will be removed later
-        studentButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchViews("student");
-            }
-        });
-        standardButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchViews("standard");
-            }
-        });
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchViews("search");
-            }
-        });
-        adminButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchViews("admin");
-            }
-        });
-        search = new CourseSearchUI().getMainPanel();
-        student = new StudentUI().getMainPanel();
-        admin = new AdminUI().getMainPanel();
+        studentButton.addActionListener(e -> switchViews("student"));
+        standardButton.addActionListener(e -> switchViews("standard"));
+        searchButton.addActionListener(e -> switchViews("search"));
+        adminButton.addActionListener(e -> switchViews("admin"));
+        logoutButton.addActionListener(e -> switchLoginView("logout"));
+        exitButton.addActionListener(e -> System.exit(0));
     }
-
-    // there are the methods that will be kept
 
     public void switchViews(String view){
         bodyPanel.removeAll();
         switch (view) {
-            case "admin" -> bodyPanel.add(admin);
-            case "search" -> {
-                bodyPanel.add(search);
-                search.validate();
-                search.setVisible(true);
-            }
-            case "standard" -> bodyPanel.add(standard);
-            case "student" -> bodyPanel.add(student);
+            case "admin" -> bodyPanel.add(guiObjectPool.getAdmin());
+            case "search" -> bodyPanel.add(guiObjectPool.getSearch());
+            case "standard" -> bodyPanel.add(guiObjectPool.getStandard());
+            case "student" -> bodyPanel.add(guiObjectPool.getStudent());
         }
         bodyPanel.repaint();
         bodyPanel.revalidate();
     }
 
-    public void logout(){
+    public void switchLoginView(String view){
         switchPanel.removeAll();
-        switchPanel.add(loggedOutPanel);
+        switch (view) {
+            case "login" -> switchPanel.add(loggedInPanel);
+            case "logout" -> switchPanel.add(loginUI.getMainPanel());
+        }
         switchPanel.repaint();
         switchPanel.revalidate();
     }
-
-    public void login(){
-        switchPanel.removeAll();
-        switchPanel.add(loggedInPanel);
-        switchPanel.repaint();
-        switchPanel.revalidate();
-    }
-
-
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("GUI Display");
-        frame.setContentPane(new GUIDisplay().mainPanel);
+        GUIDisplay guiDisplay = new GUIDisplay();
+        frame.setContentPane(guiDisplay.mainPanel);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+//        frame.pack();
+        frame.setSize(800,600);
         frame.setVisible(true);
+    }
+
+
+    public void login(String username, MAccountLoginValidator mAccountLoginValidator){
+        GUIFactory guiFactory = new GUIFactory(username, mAccountLoginValidator);
+        guiObjectPool = new GUIObjectPool(guiFactory);
     }
 }
