@@ -32,7 +32,7 @@ class CourseCell implements HTMLTableCell {
         for(WarningType wts : warningTypeSet){
             switch(wts){
                 case CONFLICT -> sf.add("CONFLICT");
-                case DIST -> sf.add("DIST");
+                case DIST -> sf.add("^ Too far");
                 default -> sf.add("?? ISSUE");
             }
         }
