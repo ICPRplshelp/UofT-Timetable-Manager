@@ -22,9 +22,7 @@ public class CourseSearchUI extends JPanel {
 
     private JButton meetingButton;
 
-    private final ControllerCourseSearcher2 ccs2;
     public CourseSearchUI(ControllerCourseSearcher2 ccs2) {
-        this.ccs2 = ccs2;
 
         mainPanel.setVisible(true);
         searchCoursesButton.addActionListener(e -> {
