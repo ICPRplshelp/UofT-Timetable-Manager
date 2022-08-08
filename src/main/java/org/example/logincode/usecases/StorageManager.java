@@ -3,7 +3,6 @@ package org.example.logincode.usecases;
 import org.example.logincode.entities.Account;
 import org.example.logincode.entities.AccountStorage;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,10 +12,6 @@ public class StorageManager {
     private static AccountStorage accountStorage;
     public static IGateway loadedStorage;
     private static StorageManager sm;
-
-    public static StorageManager getInstance() {
-        return sm;
-    }
 
     public static StorageManager getInstance(IGateway loadedStorage) {
         if (accountStorage == null) {
@@ -89,8 +84,8 @@ public class StorageManager {
      *
      * @param account the information about the account
      */
-    public boolean addAccount(Account account) {
-        return getAccountStorage().addAccount(account);
+    public void addAccount(Account account) {
+        getAccountStorage().addAccount(account);
     }
 
     public void updateAccount(Account account) {
