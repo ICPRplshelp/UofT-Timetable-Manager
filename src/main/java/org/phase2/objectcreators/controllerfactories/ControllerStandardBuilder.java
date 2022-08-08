@@ -19,7 +19,7 @@ public class ControllerStandardBuilder {
     public ControllerStandard getController() {
         buildManager(username);
 
-        return new ControllerStandard(this.manager, this.storageManager);
+        return new ControllerStandard(this.manager);
     }
 
     private void buildManager(String username) {

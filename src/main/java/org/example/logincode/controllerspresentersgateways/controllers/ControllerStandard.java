@@ -14,7 +14,7 @@ public class ControllerStandard {
         manager.makeMeAnAdmin();
     }
 
-    public ControllerStandard(AccountManager manager, StorageManager accountStorageManager) {
+    public ControllerStandard(AccountManager manager) {
         this.manager = manager;
     }
 
