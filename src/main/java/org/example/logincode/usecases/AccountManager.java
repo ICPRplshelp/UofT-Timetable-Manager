@@ -9,9 +9,7 @@ public class AccountManager {
     }
 
     private final Account account;
-    // protected Set<String> commandList;
     final StorageManager accountStorageManager;
-    private static AccountManager am;
 
 
     /**
@@ -25,24 +23,6 @@ public class AccountManager {
         this.accountStorageManager = accountStorageManager;
 
         // add to account history already in AccountLogin / AccountCreator
-    }
-
-
-    private static AccountManager getInstance(String name, StorageManager storageManager ) {
-        if (am == null) {
-            am = new AccountManager(name, storageManager);
-        }
-        return am;
-    }
-    /**
-     * Creates a new AccountManager instance based on the username.
-     *
-     * @param username              the username to log in. The username better exist.
-     * @param accountStorageManager the account storage to check.
-     */
-    public AccountManager(String username, StorageManager accountStorageManager) {
-        this.accountStorageManager = accountStorageManager;
-        account = accountStorageManager.getAccount(username);
     }
 
     public boolean setPassword(String oldPassword, String newPassword) {
