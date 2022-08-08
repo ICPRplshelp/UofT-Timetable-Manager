@@ -14,7 +14,7 @@ public class AccountManager {
     /**
      * Creates a new AccountManager instance based on an account.
      *
-     * @param controlledAccount     the username to log in. The username better exist.
+     * @param controlledAccount     the Account this instance of AccountManager is managing.
      */
     public AccountManager(Account controlledAccount) {
         account = controlledAccount;
