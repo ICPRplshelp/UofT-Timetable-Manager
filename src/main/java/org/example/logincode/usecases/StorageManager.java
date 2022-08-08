@@ -21,11 +21,10 @@ public class StorageManager {
      */
 
     private StorageManager(Collection<Account> accounts) {
-        this.accountStorage = new AccountStorage();
+        accountStorage = new AccountStorage();
         for (Account acc : accounts) {
             this.getAccountStorage().addAccount(acc);
         }
-
     }
 
 
@@ -45,10 +44,10 @@ public class StorageManager {
 
 
     private StorageManager(IGateway loadedStorage) {
-        this.loadedStorage = loadedStorage;
+        StorageManager.loadedStorage = loadedStorage;
 
         try {
-            this.accountStorage = this.loadedStorage.attemptLoad("accountInformation.ser");
+            accountStorage = StorageManager.loadedStorage.attemptLoad("accountInformation.ser");
         } catch (IOException e) {
             LOGGER.log(Level.WARNING, "Couldn't load anything, perhaps the program was run for the first time? Double check, in your run configurations, that the current working directory is $MODULE_WORKING_DIR$ and not anything else.");
 
@@ -59,7 +58,7 @@ public class StorageManager {
 
 
         if (this.getAccountStorage() == null) {
-            this.accountStorage = new AccountStorage();
+            accountStorage = new AccountStorage();
         }
     }
 
