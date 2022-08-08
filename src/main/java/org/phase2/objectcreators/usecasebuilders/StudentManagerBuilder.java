@@ -12,20 +12,9 @@ public class StudentManagerBuilder {
 
     private Student2 student;
 
-    public UsableCourseSearcher getPlannedSearcher() {
-        return plannedSearcher;
-    }
-
-    public UsableCourseSearcherPrev getPastSearcher() {
-        return pastSearcher;
-    }
-
     private UsableCourseSearcher plannedSearcher;
     private UsableCourseSearcherPrev pastSearcher;
 
-
-    public StudentManagerBuilder() {
-    }
 
     public StudentManagerBuilder(String username, StorageManager sm) {
         AccountStorage a = sm.getAccountStorage();
