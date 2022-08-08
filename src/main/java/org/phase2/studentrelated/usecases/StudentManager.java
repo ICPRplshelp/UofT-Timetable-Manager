@@ -195,7 +195,4 @@ public class StudentManager {
         return this.plannedSearcher;
     }
 
-    public UsableCourseSearcherPrev getCSAP() {
-        return this.pastSearcher;
-    }
 }
