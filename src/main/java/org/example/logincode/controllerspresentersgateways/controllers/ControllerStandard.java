@@ -16,8 +16,6 @@ public class ControllerStandard {
 
     public ControllerStandard(AccountManager manager, StorageManager accountStorageManager) {
         this.manager = manager;
-        // super(manager, accountStorageManager);
-        // this.curState = LoggedInState.STANDARD;
     }
 
     public boolean changePassword(String[] newPasswords) {
