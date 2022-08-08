@@ -3,7 +3,6 @@ package p1tests;
 import org.example.coursegetter.entities.baseclasses.Course;
 import org.example.coursegetter.usecases.CourseBuilder;
 import org.example.coursegetter.usecases.CourseBuilderDirector;
-import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 

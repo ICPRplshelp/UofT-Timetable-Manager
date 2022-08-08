@@ -13,23 +13,7 @@ import java.util.Set;
 class MissingLecAdder implements WarningAdder {
     UsableCourseSearcher plannedSearcher;
 
-    public UsableCourseSearcher getPlannedSearcher() {
-        return plannedSearcher;
-    }
-
-    public void setPlannedSearcher(UsableCourseSearcher plannedSearcher) {
-        this.plannedSearcher = plannedSearcher;
-    }
-
     Map<String, Set<String>> planned;
-
-    public Map<String, Set<String>> getPlanned() {
-        return planned;
-    }
-
-    public void setPlanned(Map<String, Set<String>> planned) {
-        this.planned = planned;
-    }
 
     public MissingLecAdder(UsableCourseSearcher ucs,
                            Map<String, Set<String>> planned) {
@@ -72,7 +56,7 @@ class MissingLecAdder implements WarningAdder {
         Meetings met = crs.getMeetings();
         Set<String> meetingSet = planned.get(course);
         Set<TeachingMethods> existingMethods = buildExistingTeachingMethods(meetingSet);
-        Set<TeachingMethods> requiredTMs = new HashSet<TeachingMethods>();
+        Set<TeachingMethods> requiredTMs = new HashSet<>();
         if (met.hasLectures() && !existingMethods.contains(TeachingMethods.LEC)) requiredTMs.add(TeachingMethods.LEC);
         if (met.hasTutorials() && !existingMethods.contains(TeachingMethods.TUT)) requiredTMs.add(TeachingMethods.TUT);
         if (met.hasPracticals() && !existingMethods.contains(TeachingMethods.PRA)) requiredTMs.add(TeachingMethods.PRA);

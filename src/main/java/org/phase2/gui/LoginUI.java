@@ -4,6 +4,7 @@ import org.phase2.mainloophelpers.controllerspresenters.GUIMAccountLoginPresente
 import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
 
 import javax.swing.*;
+import java.util.Arrays;
 
 
 public class LoginUI {
@@ -56,20 +57,25 @@ public class LoginUI {
             mAccountLoginPresenter.registerState(true);
 
             mAccountLoginValidator.updateSave();
-            guiDisplay.switchLoginView("register");
         });
     }
 
     public String loginCommand(String cmd){
         switch (cmd){
             case "login" -> {
-                if(validateAccountSignIn(usernameTextField.getText(), passwordPasswordField.getText())){
+                if(validateAccountSignIn(usernameTextField.getText(), Arrays.toString(passwordPasswordField.getPassword()))){
                     return usernameTextField.getText();
                 }else{
                     return null;
                 }
             }
-            case "register" -> mAccountLoginValidator.registerUser(usernameTextField.getText(), passwordPasswordField.getText());
+            case "register" -> {
+                if(mAccountLoginValidator.registerUser(usernameTextField.getText(), Arrays.toString(passwordPasswordField.getPassword()))){
+                    return usernameTextField.getText();
+                }else {
+                    return null;
+                }
+            }
         }
         return null;
     }

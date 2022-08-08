@@ -4,7 +4,7 @@ import org.example.logincode.controllerspresentersgateways.controllers.Controlle
 import org.example.logincode.usecases.AccountManager;
 import org.example.logincode.usecases.StorageManager;
 
-public class ControllerStandardBuilder implements ControllerBuilder {
+public class ControllerStandardBuilder {
 
     private final String username;
     private AccountManager manager;
@@ -16,15 +16,14 @@ public class ControllerStandardBuilder implements ControllerBuilder {
         this.storageManager = sm;
     }
 
-    @Override
     public ControllerStandard getController() {
         buildManager(username);
 
-        return new ControllerStandard(this.manager, this.storageManager);
+        return new ControllerStandard(this.manager);
     }
 
     private void buildManager(String username) {
-        this.manager = new AccountManager(username, storageManager);
+        this.manager = new AccountManager(storageManager.getAccount(username));
     }
 
 }

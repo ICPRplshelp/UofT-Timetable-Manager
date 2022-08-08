@@ -25,15 +25,13 @@ public class TableOrganizer {
         this.wc = wc;
     }
 
-    private String failedMessage = "You tried to generate a table with a course conflict" +
-            "\nor a course that had a meeting that didn't start or end right on the hour";
-
     /**
      * It could never make a table after all.
      * @return the failure message
      */
     public String getHTMLFailure() {
-        return failedMessage;
+        return "You tried to generate a table with a course conflict" +
+                    "\nor a course that had a meeting that didn't start or end right on the hour";
 
     }
 
@@ -127,14 +125,14 @@ public class TableOrganizer {
             if (ise.getStartTime().getMinute() != 0 || ise.getEndTime().getMinute() != 0) {
                 throw new NotOnHourException();
             }
-            if (!cellArray[startHour].isEmpty()) {
+            if (cellArray[startHour].isOccupied()) {
                 throw new ConflictException();
             }
             Set<WarningType> crWarnings = wc.getLastMap().get(ise);
             cellArray[startHour] = new CourseCell(ise, fallWinter, crWarnings);
             startHour += 1;
             for (int i = startHour; i < endHour; i++) {
-                if (!cellArray[i].isEmpty()) {
+                if (cellArray[i].isOccupied()) {
                     // System.out.println(startHour);
                     throw new ConflictException();
                 }

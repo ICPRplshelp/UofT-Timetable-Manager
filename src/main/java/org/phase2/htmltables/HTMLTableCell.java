@@ -16,5 +16,5 @@ interface HTMLTableCell {
      *
      * @return check the predicate above.
      */
-    boolean isEmpty();
+    boolean isOccupied();
 }

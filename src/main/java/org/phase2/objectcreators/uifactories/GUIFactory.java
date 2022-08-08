@@ -12,11 +12,9 @@ import javax.swing.*;
 
 public class GUIFactory {
 
-    private final String username;
     private final ControllerFactory cf;
 
     public GUIFactory(String username, MAccountLoginValidator malv) {
-        this.username = username;
         this.cf = new ControllerFactory(username, malv);
     }
 

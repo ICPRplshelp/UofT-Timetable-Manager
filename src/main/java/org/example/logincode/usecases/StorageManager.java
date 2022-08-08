@@ -3,7 +3,6 @@ package org.example.logincode.usecases;
 import org.example.logincode.entities.Account;
 import org.example.logincode.entities.AccountStorage;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,25 +12,6 @@ public class StorageManager {
     private static AccountStorage accountStorage;
     public static IGateway loadedStorage;
     private static StorageManager sm;
-
-    /**
-     * Construct an AccountStorage with existing accounts.
-     *
-     * @param accounts K/V pairs of usernames mapped to existing account information.
-     */
-
-    private StorageManager(Collection<Account> accounts) {
-        this.accountStorage = new AccountStorage();
-        for (Account acc : accounts) {
-            this.getAccountStorage().addAccount(acc);
-        }
-
-    }
-
-
-    public static StorageManager getInstance() {
-        return sm;
-    }
 
     public static StorageManager getInstance(IGateway loadedStorage) {
         if (accountStorage == null) {
@@ -45,10 +25,10 @@ public class StorageManager {
 
 
     private StorageManager(IGateway loadedStorage) {
-        this.loadedStorage = loadedStorage;
+        StorageManager.loadedStorage = loadedStorage;
 
         try {
-            this.accountStorage = this.loadedStorage.attemptLoad("accountInformation.ser");
+            accountStorage = StorageManager.loadedStorage.attemptLoad("accountInformation.ser");
         } catch (IOException e) {
             LOGGER.log(Level.WARNING, "Couldn't load anything, perhaps the program was run for the first time? Double check, in your run configurations, that the current working directory is $MODULE_WORKING_DIR$ and not anything else.");
 
@@ -59,7 +39,7 @@ public class StorageManager {
 
 
         if (this.getAccountStorage() == null) {
-            this.accountStorage = new AccountStorage();
+            accountStorage = AccountStorage.getInstance();
         }
     }
 
@@ -103,20 +83,15 @@ public class StorageManager {
      * will not be added.
      *
      * @param account the information about the account
-     * @return whether the account addition was successful.
-     * The only reason why account addition may fail is that
-     * another account with the same username already exists.
      */
-    public boolean addAccount(Account account) {
-        return getAccountStorage().addAccount(account);
+    public void addAccount(Account account) {
+        getAccountStorage().addAccount(account);
     }
 
-    public boolean updateAccount(Account account) {
-        boolean success = getAccountStorage().removeAccount(account.getUsername());
-        if (success) {
-            success = getAccountStorage().addAccount(account);
+    public void updateAccount(Account account) {
+        if (getAccountStorage().removeAccount(account.getUsername())) {
+            getAccountStorage().addAccount(account);
         }
-        return success;
     }
 
 

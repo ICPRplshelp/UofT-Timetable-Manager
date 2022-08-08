@@ -8,15 +8,22 @@ import java.util.Map;
  * Stores all accounts.
  */
 public class AccountStorage implements Serializable {
-    // username: account
-    private final Map<String, Account> accounts;  // = new HashMap<String, Account>();
+    private final Map<String, Account> accounts;
+    private static AccountStorage as;
 
 
     /**
      * Construct a new AccountStorage with no accounts.
      */
-    public AccountStorage() {
+    private AccountStorage() {
         this.accounts = new HashMap<>();
+    }
+
+    public static AccountStorage getInstance() {
+        if (as == null){
+            as = new AccountStorage();
+        }
+        return as;
     }
 
 

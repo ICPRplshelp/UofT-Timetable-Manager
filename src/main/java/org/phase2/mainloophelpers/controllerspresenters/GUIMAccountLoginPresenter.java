@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class GUIMAccountLoginPresenter {
 
-    JLabel error;
+    final JLabel error;
 
     public GUIMAccountLoginPresenter(JLabel error) {
         this.error = error;
@@ -13,8 +13,8 @@ public class GUIMAccountLoginPresenter {
 
     public void registerState(boolean success) {
         if (success) {
-            System.out.println("Register successful.");
-            error.setText("");
+            System.out.println("Registration Successful");
+            error.setText("Registration Successful");
         }
         else error.setText("Username already exists, or username/password was blank");
     }

@@ -11,8 +11,7 @@ public class ControllerAdmin {
     private final AdminAccountManager adminAccountManager;
 
     public ControllerAdmin(AccountManager manager, StorageManager accountStorageManager) {
-        // super(manager, accountStorageManager, LoggedInState.ADMIN);
-        adminAccountManager = new AdminAccountManager(manager, accountStorageManager);
+        adminAccountManager = new AdminAccountManager(manager.getAccount(), accountStorageManager);
     }
 
     public boolean promoteUserToAdmin(String userToPromote) {

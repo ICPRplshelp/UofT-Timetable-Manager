@@ -4,78 +4,30 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Meeting implements Serializable {
-    public String getCancel() {
-        return cancel;
-    }
-
-    public String getSectionNumber() {
-        return sectionNumber;
-    }
-
-    public String getEnrollmentCapacity() {
-        return enrollmentCapacity;
-    }
 
     public String getTeachingMethod() {
         return teachingMethod;
-    }
-
-    public String getActualWaitlist() {
-        return actualWaitlist;
     }
 
     public String getEnrollmentIndicator() {
         return enrollmentIndicator;
     }
 
-    public String getActualEnrolment() {
-        return actualEnrolment;
-    }
-
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public String getWaitlist() {
-        return waitlist;
-    }
-
-    public String getOnline() {
-        return online;
-    }
-
     public List<EnrollmentControl> getEnrollmentControls() {
         return enrollmentControls;
     }
 
-    private final String crsCode;
-    private final String cancel;
     private final String sectionNumber;
-    private final String enrollmentCapacity;
     private final String teachingMethod;
-    private final String actualWaitlist;
     private final String enrollmentIndicator;
-    private final String actualEnrolment;
-    private final String subtitle;
-    private final String waitlist;
-    private final String online;
     private final Set<ScheduleEntry> scheduleEntryList = new TreeSet<>();
     private final List<EnrollmentControl> enrollmentControls;
 
     public Meeting(Map<String, Object> mInfo, String crsCode) {
-        this.crsCode = crsCode;
-        this.cancel = (String) mInfo.get("cancel");
         this.sectionNumber = (String) mInfo.get("sectionNumber");
-        this.enrollmentCapacity = (String) mInfo.get("enrollmentCapacity");
         this.teachingMethod = (String) mInfo.get("teachingMethod");
-        this.actualWaitlist = (String) mInfo.get("actualWaitlist");
         this.enrollmentIndicator = (String) mInfo.get("enrollmentIndicator");
-        this.actualEnrolment = (String) mInfo.get("actualEnrolment");
-        this.subtitle = (String) mInfo.get("subtitle");
-        this.waitlist = (String) mInfo.get("waitlist");
-        this.online = (String) mInfo.get("online");
 
-        // System.out.println(mInfo.get("schedule"));
         Object tempSchedule = mInfo.get("schedule");
         Map<String, Object> tempScheduleMap;
         if (tempSchedule instanceof Map) {
@@ -83,7 +35,7 @@ public class Meeting implements Serializable {
             for (var tse : tempScheduleMap.values()) {
                 ScheduleEntry se;
                 if (tse instanceof Map) {
-                    se = new ScheduleEntry((Map<String, Object>) tse, this.crsCode, this.teachingMethod + this.sectionNumber);
+                    se = new ScheduleEntry((Map<String, Object>) tse, crsCode, this.teachingMethod + this.sectionNumber);
                     scheduleEntryList.add(se);
                 }
             }

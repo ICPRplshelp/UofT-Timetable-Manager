@@ -6,7 +6,6 @@ import javax.swing.*;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import java.util.Collection;
-import java.util.Set;
 
 public class StudentUI {
     private JPanel mainPanel;
@@ -16,10 +15,7 @@ public class StudentUI {
     private JButton addMeetingButton;
     private JButton removeCourseButton;
     private JTextField addCourseField;
-//    private JButton viewTimetableButton;
     private JTextField addMeetingField;
-//    private JTextArea timetableTextArea;
-//    private JTextField sessionTextField;
     private JButton fallSessionButton;
     private JButton winterSessionButton;
 
@@ -99,16 +95,6 @@ public class StudentUI {
             htmlEditorPane.setDocument(doc);
             htmlEditorPane.setText(stc.getTable("S"));
         });
-
-//        viewTimetableButton.addActionListener(e -> {
-//            // https://alvinalexander.com/blog/post/jfc-swing/how-create-simple-swing-html-viewer-browser-java/
-//            HTMLEditorKit kit = new HTMLEditorKit();
-//            htmlEditorPane.setEditorKit(kit);
-//
-//            Document doc = kit.createDefaultDocument();
-//            htmlEditorPane.setDocument(doc);
-////            htmlEditorPane.setText(stc.getTable(sessionTextField.getText()));
-//        });
     }
 
     private void displayCourseList() {

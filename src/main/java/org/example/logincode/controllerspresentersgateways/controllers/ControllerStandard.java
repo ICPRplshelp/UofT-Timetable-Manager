@@ -1,7 +1,6 @@
 package org.example.logincode.controllerspresentersgateways.controllers;
 
 import org.example.logincode.usecases.AccountManager;
-import org.example.logincode.usecases.StorageManager;
 
 public class ControllerStandard {
 
@@ -14,10 +13,8 @@ public class ControllerStandard {
         manager.makeMeAnAdmin();
     }
 
-    public ControllerStandard(AccountManager manager, StorageManager accountStorageManager) {
+    public ControllerStandard(AccountManager manager) {
         this.manager = manager;
-        // super(manager, accountStorageManager);
-        // this.curState = LoggedInState.STANDARD;
     }
 
     public boolean changePassword(String[] newPasswords) {

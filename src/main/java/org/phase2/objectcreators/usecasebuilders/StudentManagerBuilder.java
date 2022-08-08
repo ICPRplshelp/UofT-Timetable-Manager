@@ -10,22 +10,11 @@ import org.phase2.studentrelated.usecases.StudentManager;
 
 public class StudentManagerBuilder {
 
-    private Student2 student;
-
-    public UsableCourseSearcher getPlannedSearcher() {
-        return plannedSearcher;
-    }
-
-    public UsableCourseSearcherPrev getPastSearcher() {
-        return pastSearcher;
-    }
+    private final Student2 student;
 
     private UsableCourseSearcher plannedSearcher;
     private UsableCourseSearcherPrev pastSearcher;
 
-
-    public StudentManagerBuilder() {
-    }
 
     public StudentManagerBuilder(String username, StorageManager sm) {
         AccountStorage a = sm.getAccountStorage();
