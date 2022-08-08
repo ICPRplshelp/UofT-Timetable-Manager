@@ -48,20 +48,15 @@ public class Permissions implements Serializable {
                 this.getPermissions().contains(perm);
     }
 
-    // [PERMCLASS].hasPerm("admin")
-
-
     /**
      * Attempt to add the permission.
      *
      * @param perm the permission to add. The permission should be camelCase.
-     * @return whether adding the permission was successful.
      */
-    public boolean addPerm(String perm) {
+    public void addPerm(String perm) {
         if (perm.matches("[A-Za-z\\d]+")) {
             this.permissions.add(perm);
-            return true;
-        } else return false;
+        }
     }
 
 }
