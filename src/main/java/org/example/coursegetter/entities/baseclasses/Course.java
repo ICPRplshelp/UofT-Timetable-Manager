@@ -6,11 +6,9 @@ import org.phase2.studentrelated.presenters.ICourse;
 import java.io.Serializable;
 
 public class Course implements Comparable<Course>, Serializable, ICourse {
-    // public final int brq;
     public BreadthRequirement brc;
     private double creditValue;
     private String code;
-    private String org;
     private String prerequisite;
     private String exclusion;
     private String section;
@@ -26,9 +24,6 @@ public class Course implements Comparable<Course>, Serializable, ICourse {
 
     public void setCode(String code){
         this.code = code;
-    }
-    public void setOrg(String org){
-        this.org = org;
     }
     public void setPrerequisite(String prerequisite){
         this.prerequisite = prerequisite;
