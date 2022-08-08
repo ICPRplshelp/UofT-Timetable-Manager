@@ -1,6 +1,6 @@
 package org.example.logincode.usecases;
 
-import org.example.coursegetter.usecases.CourseSearcherGetter;
+
 import org.example.logincode.entities.Account;
 import org.example.logincode.entities.AccountStorage;
 
@@ -41,6 +41,8 @@ public class StorageManager {
     /**
      * Attempt to initialize this class with StorageLoader.
      */
+
+
     private StorageManager(IGateway loadedStorage) {
         this.loadedStorage = loadedStorage;
 
