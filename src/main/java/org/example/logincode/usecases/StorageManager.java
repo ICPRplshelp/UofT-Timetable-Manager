@@ -14,20 +14,6 @@ public class StorageManager {
     public static IGateway loadedStorage;
     private static StorageManager sm;
 
-    /**
-     * Construct an AccountStorage with existing accounts.
-     *
-     * @param accounts K/V pairs of usernames mapped to existing account information.
-     */
-
-    private StorageManager(Collection<Account> accounts) {
-        accountStorage = AccountStorage.getInstance();
-        for (Account acc : accounts) {
-            this.getAccountStorage().addAccount(acc);
-        }
-    }
-
-
     public static StorageManager getInstance() {
         return sm;
     }
