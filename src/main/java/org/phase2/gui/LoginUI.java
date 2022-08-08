@@ -4,6 +4,7 @@ import org.phase2.mainloophelpers.controllerspresenters.GUIMAccountLoginPresente
 import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
 
 import javax.swing.*;
+import java.util.Arrays;
 
 
 public class LoginUI {
@@ -63,13 +64,13 @@ public class LoginUI {
     public String loginCommand(String cmd){
         switch (cmd){
             case "login" -> {
-                if(validateAccountSignIn(usernameTextField.getText(), passwordPasswordField.toString())){
+                if(validateAccountSignIn(usernameTextField.getText(), Arrays.toString(passwordPasswordField.getPassword()))){
                     return usernameTextField.getText();
                 }else{
                     return null;
                 }
             }
-            case "register" -> mAccountLoginValidator.registerUser(usernameTextField.getText(), passwordPasswordField.toString());
+            case "register" -> mAccountLoginValidator.registerUser(usernameTextField.getText(), Arrays.toString(passwordPasswordField.getPassword()));
         }
         return null;
     }
