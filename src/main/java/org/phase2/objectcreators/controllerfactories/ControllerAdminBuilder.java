@@ -22,6 +22,6 @@ public class ControllerAdminBuilder {
     }
 
     private void buildManager(String username) {
-        this.manager = AccountManager.getInstance(username, storageManager);
+        this.manager = new AccountManager(username, storageManager);
     }
 }
