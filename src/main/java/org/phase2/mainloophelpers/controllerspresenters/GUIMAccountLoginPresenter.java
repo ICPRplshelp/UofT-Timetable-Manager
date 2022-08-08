@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class GUIMAccountLoginPresenter {
 
-    JLabel error;
+    final JLabel error;
 
     public GUIMAccountLoginPresenter(JLabel error) {
         this.error = error;
