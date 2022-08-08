@@ -20,20 +20,6 @@ public class PresenterPrinter {
 
 
     /**
-     * Prints the message and runs ask().
-     * <p>
-     * ask() will return the next line the user types.
-     * When this method is run, program execution stops.
-     *
-     * @param message the message to print.
-     * @return what the user typed.
-     */
-    public String askWithMessage(String message) {
-        System.out.println(message);
-        return ask();
-    }
-
-    /**
      * This method will return the next line the user types.
      * When this method is run, program execution stops.
      */

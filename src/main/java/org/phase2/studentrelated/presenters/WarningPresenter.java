@@ -10,7 +10,6 @@ import java.util.List;
 public class WarningPresenter {
 
     private final EnumMap<WarningType, String> warnToStr;
-    private final String wStr = "Warning: ";
 
     {
         warnToStr = new EnumMap<>(WarningType.class);
