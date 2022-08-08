@@ -57,7 +57,6 @@ public class LoginUI {
             mAccountLoginPresenter.registerState(true);
 
             mAccountLoginValidator.updateSave();
-            guiDisplay.switchLoginView("register");
         });
     }
 
@@ -70,7 +69,13 @@ public class LoginUI {
                     return null;
                 }
             }
-            case "register" -> mAccountLoginValidator.registerUser(usernameTextField.getText(), Arrays.toString(passwordPasswordField.getPassword()));
+            case "register" -> {
+                if(mAccountLoginValidator.registerUser(usernameTextField.getText(), Arrays.toString(passwordPasswordField.getPassword()))){
+                    return usernameTextField.getText();
+                }else {
+                    return null;
+                }
+            }
         }
         return null;
     }
