@@ -17,24 +17,7 @@ public class StorageLoader implements IGateway {
     private static final boolean disable = false;
     protected AccountStorage accountStorage;
 
-    public StorageLoader(AccountStorage accountStorage) {
-        this.accountStorage = accountStorage;
-    }
 
-    /**
-     * Constructs this class
-     * Loads information from ser file
-     */
-
-    public StorageLoader(String filepath) throws IOException, ClassNotFoundException {
-        FileInputStream fileIn = new FileInputStream(filepath);
-        ObjectInputStream in = new ObjectInputStream(fileIn);
-
-        accountStorage = (AccountStorage) in.readObject();
-
-        in.close();
-        fileIn.close();
-    }
 
     /**
      * Empty constructor for when there's no file.
