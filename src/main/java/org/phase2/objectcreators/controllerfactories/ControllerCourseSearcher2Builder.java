@@ -5,7 +5,7 @@ import org.phase2.studentrelated.searchersusecases.UsableCourseSearcher;
 import org.phase2.studentrelated.searchersusecases.UsableCourseSearcherPrev;
 import org.phase2.studentrelated.usecases.WarningChecker2;
 
-public class ControllerCourseSearcher2Builder implements ControllerBuilder {
+public class ControllerCourseSearcher2Builder {
 
     private UsableCourseSearcher csa;
 
@@ -16,7 +16,6 @@ public class ControllerCourseSearcher2Builder implements ControllerBuilder {
         this.wc = wc;
     }
 
-    @Override
     public ControllerCourseSearcher2 getController() {
         buildCourseSearchAdapter();
         buildCourseSearchAdapterPrev();

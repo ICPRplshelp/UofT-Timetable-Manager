@@ -5,7 +5,7 @@ import org.phase2.studentrelated.controllers.StudentController;
 import org.phase2.studentrelated.usecases.StudentManager;
 import org.phase2.studentrelated.usecases.WarningChecker2;
 
-public class StudentControllerBuilder implements ControllerBuilder {
+public class StudentControllerBuilder {
 
     private final StudentManager manager;
     private final TableOrganizer fTable;
@@ -19,10 +19,8 @@ public class StudentControllerBuilder implements ControllerBuilder {
         sTable = new TableOrganizer('S', wc);
     }
 
-    @Override
     public StudentController getController() {
-        return new StudentController(this.manager, fTable, sTable, wc
-                );
+        return new StudentController(this.manager, fTable, sTable, wc);
     }
 
 }
