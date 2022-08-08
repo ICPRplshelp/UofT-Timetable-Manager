@@ -130,8 +130,14 @@ public class WarningChecker2 {
      * @return whether se conflicts.
      */
     private boolean checkConflict(IScheduleEntry se, Set<IScheduleEntry> allScheduleEntries) {
+        char sesCode = se.getCourseCode().charAt(se.getCourseCode().length() - 1);
+
         for (IScheduleEntry se2 : allScheduleEntries) {
+            char sesCode2 = se2.getCourseCode().charAt(se2.getCourseCode().length() - 1);
             if (se == se2 || !se.getDay().equals(se2.getDay())) {
+                continue;
+            }
+            if ((sesCode != 'Y' && sesCode2 != 'Y') && sesCode != sesCode2) {
                 continue;
             }
             int s1s = ltp(se.getStartTime());
@@ -184,7 +190,7 @@ public class WarningChecker2 {
         double distWinter = buildingComparator.getDistance(winter1, winter2);
 
         double higherDist = Math.max(distFall, distWinter);
-        System.out.println(higherDist);
+        // System.out.println(higherDist);
         return higherDist > 650;
     }
 
