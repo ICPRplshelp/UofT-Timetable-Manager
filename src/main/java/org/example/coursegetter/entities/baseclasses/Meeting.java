@@ -48,7 +48,6 @@ public class Meeting implements Serializable {
         return enrollmentControls;
     }
 
-    private final String crsCode;
     private final String cancel;
     private final String sectionNumber;
     private final String enrollmentCapacity;
@@ -63,7 +62,6 @@ public class Meeting implements Serializable {
     private final List<EnrollmentControl> enrollmentControls;
 
     public Meeting(Map<String, Object> mInfo, String crsCode) {
-        this.crsCode = crsCode;
         this.cancel = (String) mInfo.get("cancel");
         this.sectionNumber = (String) mInfo.get("sectionNumber");
         this.enrollmentCapacity = (String) mInfo.get("enrollmentCapacity");
@@ -83,7 +81,7 @@ public class Meeting implements Serializable {
             for (var tse : tempScheduleMap.values()) {
                 ScheduleEntry se;
                 if (tse instanceof Map) {
-                    se = new ScheduleEntry((Map<String, Object>) tse, this.crsCode, this.teachingMethod + this.sectionNumber);
+                    se = new ScheduleEntry((Map<String, Object>) tse, crsCode, this.teachingMethod + this.sectionNumber);
                     scheduleEntryList.add(se);
                 }
             }
