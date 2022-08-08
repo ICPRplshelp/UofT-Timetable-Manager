@@ -49,7 +49,21 @@ public class WarningChecker2 {
         Map<String, Set<WarningType>> warnList = new HashMap<>();
         Set<String> planned1 = planned.keySet();
         addCourseWarningsHelper(warnList, planned1);
+        this.checkTimetableWarnings();
+        Map<String, Set<WarningType>> warnList2 = condenseScheduleWarnings();
+        combineBothWarnLists(warnList, warnList2);
+
         return warnList;
+    }
+
+    private void combineBothWarnLists(Map<String, Set<WarningType>> warnList, Map<String, Set<WarningType>> warnList2) {
+        for(Map.Entry<String, Set<WarningType>> entry : warnList2.entrySet()){
+            if(warnList.containsKey(entry.getKey())){
+                warnList.get(entry.getKey()).addAll(entry.getValue());
+            }else{
+                warnList.put(entry.getKey(), entry.getValue());
+            }
+        }
     }
 
 
@@ -80,6 +94,31 @@ public class WarningChecker2 {
         addCourseWarningsHelper(warnList, planned0102);
         return warnList;
 
+    }
+
+    /**
+     * Once SE-related checks are done, condense this into course
+     * If one SE has the warning then the entire course has the warning
+     * related warnings format
+     * @return check the description
+     */
+    private Map<String, Set<WarningType>> condenseScheduleWarnings(){
+
+        Map<String, Set<WarningType>> soFar = new HashMap<>();
+        for(IScheduleEntry ise : getLastMap().keySet()){
+            Set<WarningType> swt = getLastMap().get(ise);
+            String cc = ise.getCourseCode();
+            if(!soFar.containsKey(cc)){
+                soFar.put(cc, swt);
+            }
+            else {
+                Set<WarningType> curWarns = soFar.get(cc);
+                Set<WarningType> newWarns = new HashSet<>(curWarns);
+                newWarns.addAll(swt);
+                soFar.put(cc, newWarns);
+            }
+        }
+        return soFar;
     }
 
     /**

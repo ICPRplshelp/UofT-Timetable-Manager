@@ -50,7 +50,7 @@ class MissingLecAdder implements WarningAdder {
             Set<TeachingMethods> state = checkMissingMeetings(pc);
             if (!state.isEmpty()) {
                 if (!warnList.containsKey(pc)) {
-                    warnList.put(pc, new HashSet<WarningType>());
+                    warnList.put(pc, new HashSet<>());
                 }
                 Set<WarningType> pcWset = warnList.get(pc);
                 if (state.contains(TeachingMethods.LEC)) {
