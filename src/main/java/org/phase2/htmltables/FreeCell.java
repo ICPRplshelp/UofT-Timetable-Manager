@@ -9,7 +9,7 @@ class FreeCell implements HTMLTableCell {
     }
 
     @Override
-    public boolean isEmpty() {
-        return true;
+    public boolean isOccupied() {
+        return false;
     }
 }
