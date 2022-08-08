@@ -1,10 +1,10 @@
 package org.phase2.objectcreators.uifactories;
 
 
-import org.phase2.gui.frameworksanddrivers.AdminUI;
-import org.phase2.gui.frameworksanddrivers.CourseSearchUI;
-import org.phase2.gui.frameworksanddrivers.StandardUI;
-import org.phase2.gui.frameworksanddrivers.StudentUI;
+import org.phase2.gui.AdminUI;
+import org.phase2.gui.CourseSearchUI;
+import org.phase2.gui.StandardUI;
+import org.phase2.gui.StudentUI;
 import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
 import org.phase2.objectcreators.controllerfactories.ControllerFactory;
 
