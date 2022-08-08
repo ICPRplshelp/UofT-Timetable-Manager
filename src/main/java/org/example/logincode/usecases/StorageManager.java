@@ -102,20 +102,15 @@ public class StorageManager {
      * will not be added.
      *
      * @param account the information about the account
-     * @return whether the account addition was successful.
-     * The only reason why account addition may fail is that
-     * another account with the same username already exists.
      */
     public boolean addAccount(Account account) {
         return getAccountStorage().addAccount(account);
     }
 
-    public boolean updateAccount(Account account) {
-        boolean success = getAccountStorage().removeAccount(account.getUsername());
-        if (success) {
-            success = getAccountStorage().addAccount(account);
+    public void updateAccount(Account account) {
+        if (getAccountStorage().removeAccount(account.getUsername())) {
+            getAccountStorage().addAccount(account);
         }
-        return success;
     }
 
 
