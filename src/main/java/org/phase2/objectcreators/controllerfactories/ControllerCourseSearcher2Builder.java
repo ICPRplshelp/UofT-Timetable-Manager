@@ -20,7 +20,7 @@ public class ControllerCourseSearcher2Builder {
         buildCourseSearchAdapter();
         buildCourseSearchAdapterPrev();
 
-        return new ControllerCourseSearcher2(this.csa, this.pcsa, wc);
+        return new ControllerCourseSearcher2(this.csa, wc);
     }
 
     private void buildCourseSearchAdapter() {

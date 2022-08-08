@@ -2,7 +2,6 @@ package org.example.logincode.controllerspresentersgateways.controllers;
 
 import org.example.timetable.entities.WarningType;
 import org.phase2.studentrelated.searchersusecases.UsableCourseSearcher;
-import org.phase2.studentrelated.searchersusecases.UsableCourseSearcherPrev;
 import org.phase2.studentrelated.usecases.WarningChecker2;
 
 import java.util.Map;
@@ -13,14 +12,11 @@ import java.util.stream.Collectors;
 public class ControllerCourseSearcher2 {
 
     private final UsableCourseSearcher csa;
-    private final UsableCourseSearcherPrev pcsa;
     private final WarningChecker2 wc;
     public ControllerCourseSearcher2(UsableCourseSearcher csa,
-                                     UsableCourseSearcherPrev pcsa,
                                      WarningChecker2 wc) {
         this.wc = wc;
         this.csa = csa;
-        this.pcsa = pcsa;
     }
 
     /**
