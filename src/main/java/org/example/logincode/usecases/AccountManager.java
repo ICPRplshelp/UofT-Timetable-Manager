@@ -9,20 +9,15 @@ public class AccountManager {
     }
 
     private final Account account;
-    final StorageManager accountStorageManager;
 
 
     /**
      * Creates a new AccountManager instance based on an account.
      *
      * @param controlledAccount     the username to log in. The username better exist.
-     * @param accountStorageManager the account storage to check.
      */
-    public AccountManager(Account controlledAccount, StorageManager accountStorageManager) {
+    public AccountManager(Account controlledAccount) {
         account = controlledAccount;
-        this.accountStorageManager = accountStorageManager;
-
-        // add to account history already in AccountLogin / AccountCreator
     }
 
     public boolean setPassword(String oldPassword, String newPassword) {
