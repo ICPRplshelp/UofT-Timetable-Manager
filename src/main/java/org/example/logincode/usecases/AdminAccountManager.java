@@ -14,18 +14,13 @@ public class AdminAccountManager {
     /**
      * Constructs this class.
      *
-     * @param account        the admin account
+     * @param controlledAccount        the admin account
      * @param storageManager the account storage which the admin may
      *                       do stuff to.
      */
-    public AdminAccountManager(Account account, StorageManager storageManager) {
-        this.account = account;
+    public AdminAccountManager(Account controlledAccount, StorageManager storageManager) {
+        this.account = controlledAccount;
         this.storageManager = storageManager;
-    }
-
-    public AdminAccountManager(AccountManager controlledAccountManager, StorageManager accountStorageManager) {
-        this.account = controlledAccountManager.getAccount();
-        this.storageManager = accountStorageManager;
     }
 
     /**
