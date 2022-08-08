@@ -11,8 +11,8 @@ import java.util.Collection;
  */
 public class RequisiteChecker {
     // private final RequisiteList requisiteList;
-    final PrerequisiteListBuilder plb = new PrerequisiteListBuilder();
-    final ExclusionListBuilder elb = new ExclusionListBuilder();
+    private final PrerequisiteListBuilder plb = new PrerequisiteListBuilder();
+    private final ExclusionListBuilder elb = new ExclusionListBuilder();
 
 
     /**
@@ -26,7 +26,7 @@ public class RequisiteChecker {
      */
     public boolean check(Collection<String> coursesAsString,
                          String requisiteAsString) {
-        RequisiteList temp = plb.buildRequisiteList(requisiteAsString);
+        RequisiteList temp = getPlb().buildRequisiteList(requisiteAsString);
         return temp.check(coursesAsString);
     }
 
@@ -41,7 +41,15 @@ public class RequisiteChecker {
      */
     public boolean checkExclusions(Collection<String> coursesAsString,
                                    String exclusionsAsString) {
-        RequisiteList temp = elb.buildRequisiteList(exclusionsAsString);
+        RequisiteList temp = getElb().buildRequisiteList(exclusionsAsString);
         return temp.check(coursesAsString);
+    }
+
+    protected PrerequisiteListBuilder getPlb() {
+        return plb;
+    }
+
+    protected ExclusionListBuilder getElb() {
+        return elb;
     }
 }

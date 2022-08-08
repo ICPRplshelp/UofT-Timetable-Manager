@@ -1,9 +1,11 @@
 package org.example.logincode.controllerspresentersgateways.controllers;
 
+import org.example.timetable.entities.WarningType;
 import org.phase2.studentrelated.searchersusecases.UsableCourseSearcher;
 import org.phase2.studentrelated.searchersusecases.UsableCourseSearcherPrev;
 import org.phase2.studentrelated.usecases.WarningChecker2;
 
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -45,8 +47,24 @@ public class ControllerCourseSearcher2 {
      */
     public Set<String> searchCoursesICanTake(String keyword){
         Set<String> searched = searchCurrentCourses(keyword);
-        return searched.stream().filter(crs -> !wc.checkCourseWarnings(crs).containsKey(crs))
+        return searched.stream().filter(crs -> !hasConcerningWarnings(crs))
                 .collect(Collectors.toCollection(TreeSet::new));
+    }
+
+    /**
+     * Checks courses for concerning warnings
+     * @param crs course to check for
+     * @return whether the course flags something that concerns me
+     */
+    private boolean hasConcerningWarnings(String crs){
+        Map<String, Set<WarningType>> wcs = wc.checkCourseWarnings(crs);
+        if(!wcs.containsKey(crs)){
+            return false;
+        }
+        Set<WarningType> cw = wcs.get(crs);
+        Set<WarningType> concerns = Set.of(WarningType.PRQ,
+                WarningType.CRQ, WarningType.EXC, WarningType.FYF);
+        return cw.stream().anyMatch(concerns::contains);
     }
 
 

@@ -80,7 +80,8 @@ class MissingLecAdder implements WarningAdder {
     }
 
     Set<TeachingMethods> buildExistingTeachingMethods(Set<String> meetingSet) {
-        Set<TeachingMethods> existingMethods = new HashSet<TeachingMethods>();
+        Set<TeachingMethods> existingMethods = new HashSet<>();
+        if(meetingSet == null) return existingMethods;
         for (String meeting : meetingSet) {
             String firstThree = meeting.substring(0, Math.min(3, meeting.length()));
             switch (firstThree) {

@@ -8,14 +8,14 @@ import java.util.Map;
 
 public class RequisiteCheckerMemoized extends RequisiteChecker {
 
-    final Map<String, RequisiteList> memoizedPrqs = new HashMap<>();
-    final Map<String, RequisiteList> memoizedExcl = new HashMap<>();
+    private final Map<String, RequisiteList> memoizedPrqs = new HashMap<>();
+    private final Map<String, RequisiteList> memoizedExcl = new HashMap<>();
 
     public boolean check(Collection<String> courseAsString, String requisiteAsString) {
         if (memoizedPrqs.containsKey(requisiteAsString)) {
             return memoizedPrqs.get(requisiteAsString).check(courseAsString);
         }
-        RequisiteList temp = plb.buildRequisiteList(requisiteAsString);
+        RequisiteList temp = getPlb().buildRequisiteList(requisiteAsString);
         boolean state = temp.check(courseAsString);
         memoizedPrqs.put(requisiteAsString, temp);
         return state;
@@ -26,7 +26,7 @@ public class RequisiteCheckerMemoized extends RequisiteChecker {
         if (memoizedExcl.containsKey(exclusionsAsString)) {
             return memoizedExcl.get(exclusionsAsString).check(courseAsString);
         }
-        RequisiteList temp = elb.buildRequisiteList(exclusionsAsString);
+        RequisiteList temp = getElb().buildRequisiteList(exclusionsAsString);
         boolean state = temp.check(courseAsString);
         memoizedExcl.put(exclusionsAsString, temp);
         return state;
