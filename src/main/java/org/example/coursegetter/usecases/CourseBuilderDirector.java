@@ -31,7 +31,6 @@ public class CourseBuilderDirector {
         BreadthRequirement brc = new BreadthRequirement(breadthCategories, creditValue);
 
         cb.setCode(code);
-        cb.setOrg(org);
         cb.setPrerequisite(prerequisite);
         cb.setExclusion(exclusion);
         cb.setSection(section);
