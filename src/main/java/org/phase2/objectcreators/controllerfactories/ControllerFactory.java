@@ -111,7 +111,7 @@ public class ControllerFactory {
     private WarningChecker2 getWarningChecker() {
         StudentManager manager = getStudentManager();
         if (this.wc == null) {
-            this.wc = new WarningChecker2(manager.getCSA(), manager.getCSAP(),
+            this.wc = new WarningChecker2(manager.getCSA(),
                     manager.getPlannedCourses(), manager.getPassedCourses());
         }
         return this.wc;

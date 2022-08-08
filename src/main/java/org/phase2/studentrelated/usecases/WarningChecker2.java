@@ -15,25 +15,20 @@ import java.util.Set;
  * that are causing such problems.
  */
 public class WarningChecker2 {
-    private final RequisiteWarningAdder requisiteWarningAdder = new RequisiteWarningAdder(this);
+    private final WarningAdder requisiteWarningAdder = new RequisiteWarningAdder();
 
-    public UsableCourseSearcher getPlannedSearcher() {
-        return plannedSearcher;
-    }
 
     private final UsableCourseSearcher plannedSearcher;
-    private final UsableCourseSearcherPrev pastSearcher;
     private final Map<String, Set<String>> planned;
     private final Set<String> passed;
-
+    private final WarningAdder fyfWarningAdder = new FYFWarningAdder();
     private final BuildingStorageConstructor buildingStorageConstructor = new BuildingStorageConstructor();
     private final BuildingComparator buildingComparator = new BuildingComparator(buildingStorageConstructor.makeAllBuildings());
 
-    public WarningChecker2(UsableCourseSearcher plannedSearcher, UsableCourseSearcherPrev pastSearcher,
+    public WarningChecker2(UsableCourseSearcher plannedSearcher,
                            Map<String, Set<String>> planned,
                            Set<String> passed) {
         this.plannedSearcher = plannedSearcher;
-        this.pastSearcher = pastSearcher;
         this.planned = planned;
         this.passed = passed;
     }
@@ -64,8 +59,10 @@ public class WarningChecker2 {
      * @param planned1 modified planned course list
      */
     private void addCourseWarningsHelper(Map<String, Set<WarningType>> warnList, Set<String> planned1) {
-        requisiteWarningAdder.addRequisiteWarnings(planned1, passed, warnList);
+        requisiteWarningAdder.addWarnings(planned1, passed, warnList);
+        fyfWarningAdder.addWarnings(planned1, passed, warnList);
     }
+
 
     /**
      * This overload adds otherCourse to the courses that you are planning to take.

@@ -124,7 +124,7 @@ public class Course implements Comparable<Course>, Serializable, ICourse {
      */
     public boolean firstYearOnly() {
         for (Meeting met : this.meetings.getLectures().values()) {
-            if (!(met.getEnrollmentIndicator().equals("R1") ||
+            if (met.getEnrollmentIndicator() == null || !(met.getEnrollmentIndicator().equals("R1") ||
                     met.getEnrollmentIndicator().equals("R2"))) return false;
 
             for (EnrollmentControl ec : met.getEnrollmentControls()) {

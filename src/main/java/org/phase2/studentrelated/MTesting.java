@@ -21,7 +21,7 @@ public class MTesting {
         UsableCourseSearcher usableCourseSearcher = UsableCourseSearcher.getInstance();
         StudentManager sm = new StudentManager(stud, usableCourseSearcher, usableCourseSearcherPrev);
         StudentController sc = new StudentController(sm, null, null, null);
-        WarningChecker2 wc = new WarningChecker2(usableCourseSearcher, usableCourseSearcherPrev,
+        WarningChecker2 wc = new WarningChecker2(usableCourseSearcher,
                 sm.getPlannedCourses(), sm.getPassedCourses());
         StudentPresenter studentPresenter = new StudentPresenter(wc, sm);
         sc.addCourse("MAT257Y1-Y");

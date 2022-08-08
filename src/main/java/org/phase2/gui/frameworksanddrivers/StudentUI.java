@@ -5,7 +5,7 @@ import org.phase2.studentrelated.controllers.StudentController;
 import javax.swing.*;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
-import java.util.Map;
+import java.util.Collection;
 import java.util.Set;
 
 public class StudentUI {
@@ -28,6 +28,7 @@ public class StudentUI {
     private JTextField addPastCourseField;
     private JTextArea coursesTextArea;
     private JLabel plannedCoursesTitle;
+    private JTextArea pCoursesTextArea;
 
     private final StudentController stc;
 
@@ -38,6 +39,7 @@ public class StudentUI {
     public StudentUI(StudentController stc) {
         this.stc = stc;
         mainPanel.setVisible(true);
+        displayCourseList();
         addCourseButton.addActionListener(e -> {
             if (stc.addCourse(addCourseField.getText())) {
                 displayCourseList();
@@ -45,6 +47,7 @@ public class StudentUI {
             } else {
                 error.setText("Course doesn't exist, or is already added");
             }
+            displayCourseList();
         });
         removeCourseButton.addActionListener(e -> {
             if (stc.removePlannedCourse(addCourseField.getText())){
@@ -53,6 +56,7 @@ public class StudentUI {
             } else {
                 error.setText("Course wasn't in your planned courses");
             }
+            displayCourseList();
         });
         addPastCourseButton.addActionListener(e -> {
             if (stc.addHistoricalCourse(addPastCourseField.getText())){
@@ -60,6 +64,7 @@ public class StudentUI {
             } else {
                 error.setText("Past course doesn't exist, you are taking that course currently, or is already added");
             }
+            displayCourseList();
         });
         removePastCourseButton.addActionListener(e -> {
             if (stc.removeHistoricalCourse(addPastCourseField.getText())){
@@ -67,6 +72,7 @@ public class StudentUI {
             } else {
                 error.setText("Past course wasn't in your past courses");
             }
+            displayCourseList();
         });
         addMeetingButton.addActionListener(e -> {
             if (stc.addMeetingToPlannedCourse(addCourseField.getText(), addMeetingField.getText())){
@@ -74,6 +80,7 @@ public class StudentUI {
             } else {
                 error.setText("Meeting doesn't exist, it's already added, or the course you are trying to add the meeting to doesn't exist");
             }
+            displayCourseList();
         });
 
         fallSessionButton.addActionListener(e -> {
@@ -105,7 +112,13 @@ public class StudentUI {
     }
 
     private void displayCourseList() {
-        Set<String> cl = stc.getPlannedCourses().keySet();
-        coursesTextArea.setText(String.join("\n", cl));
+
+        coursesTextArea.setText(
+                joinCollection(stc.getPresenter().getPlannedCourseInfo()));
+        pCoursesTextArea.setText(joinCollection(stc.getPresenter().getPassedCourseInfo()));
+    }
+
+    private String joinCollection(Collection<String> col){
+        return String.join("\n", col);
     }
 }

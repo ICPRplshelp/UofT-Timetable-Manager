@@ -6,13 +6,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class RequisiteWarningAdder {
-    private final WarningChecker2 warningChecker2;
-
-    public RequisiteWarningAdder(WarningChecker2 warningChecker2) {
-        this.warningChecker2 = warningChecker2;
-    }
-
+class RequisiteWarningAdder implements WarningAdder {
     /**
      * Adds warnings to all courses - that is, requisite warnings.
      *
@@ -20,7 +14,7 @@ public class RequisiteWarningAdder {
      * @param passed   passed courses without suffix
      * @param warnList warn list to add to
      */
-    void addRequisiteWarnings(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList) {
+    public void addWarnings(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList) {
         Set<String> plannedF = new HashSet<>();
         Set<String> plannedS = new HashSet<>();
         Set<String> plannedY = new HashSet<>();
@@ -43,13 +37,13 @@ public class RequisiteWarningAdder {
         checkRequisiteIssuesForAllCoursesGivenPlannedPassed(planned, passed, warnList, passedForS, concurrentF, concurrentSY);
     }
 
-    void checkRequisiteIssuesForAllCoursesGivenPlannedPassed(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList, Set<String> passedForS, Set<String> concurrentF, Set<String> concurrentSY) {
+    private void checkRequisiteIssuesForAllCoursesGivenPlannedPassed(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList, Set<String> passedForS, Set<String> concurrentF, Set<String> concurrentSY) {
         for (String plannedCourse : planned) {
             CheckRequisite checker = new CheckRequisite(plannedCourse);
 
-            String exclusion = warningChecker2.getPlannedSearcher().getCourse(plannedCourse).getExclusion();
-            String coreq = warningChecker2.getPlannedSearcher().getCourse(plannedCourse).getCorequisite();
-            String prereq = warningChecker2.getPlannedSearcher().getCourse(plannedCourse).getPrerequisite();
+            String exclusion = UsableCourseSearcher.getInstance().getCourse(plannedCourse).getExclusion();
+            String coreq =     UsableCourseSearcher.getInstance().getCourse(plannedCourse).getCorequisite();
+            String prereq =    UsableCourseSearcher.getInstance().getCourse(plannedCourse).getPrerequisite();
 
             char sectionOfCourse = plannedCourse.charAt(plannedCourse.length() - 1);
             // these sets may not have the suffix, -F/-Y/-S
