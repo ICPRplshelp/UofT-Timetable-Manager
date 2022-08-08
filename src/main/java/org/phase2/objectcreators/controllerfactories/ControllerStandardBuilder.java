@@ -23,7 +23,7 @@ public class ControllerStandardBuilder {
     }
 
     private void buildManager(String username) {
-        this.manager = new AccountManager(username, storageManager);
+        this.manager = AccountManager.getInstance(username, storageManager);
     }
 
 }
