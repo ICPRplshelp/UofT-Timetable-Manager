@@ -3,7 +3,6 @@ package org.phase2.mainloophelpers.controllerspresenters;
 import org.example.logincode.controllerspresentersgateways.gateways.StorageLoader;
 import org.example.logincode.usecases.AccountCreator;
 import org.example.logincode.usecases.AccountLogin;
-import org.example.logincode.usecases.IGateway;
 import org.example.logincode.usecases.StorageManager;
 
 /**

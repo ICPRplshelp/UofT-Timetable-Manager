@@ -6,7 +6,6 @@ import javax.swing.*;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import java.util.Collection;
-import java.util.Set;
 
 public class StudentUI {
     private JPanel mainPanel;
