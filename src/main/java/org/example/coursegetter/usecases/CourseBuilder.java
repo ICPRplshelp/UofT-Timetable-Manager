@@ -14,9 +14,6 @@ public class CourseBuilder {
     public void setCode(String code){
         course.setCode(code);
     }
-    public void setOrg(String org){
-        course.setOrg(org);
-    }
     public void setPrerequisite(String prerequisite){
         course.setPrerequisite(prerequisite);
     }
