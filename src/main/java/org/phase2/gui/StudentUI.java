@@ -1,4 +1,4 @@
-package org.phase2.gui.frameworksanddrivers;
+package org.phase2.gui;
 
 import org.phase2.studentrelated.controllers.StudentController;
 

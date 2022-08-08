@@ -1,4 +1,4 @@
-package org.phase2.gui.frameworksanddrivers;
+package org.phase2.gui;
 
 import org.phase2.mainloophelpers.controllerspresenters.GUIMAccountLoginPresenter;
 import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
