@@ -9,7 +9,6 @@ public class ControllerCourseSearcher2Builder {
 
     private UsableCourseSearcher csa;
 
-    private UsableCourseSearcherPrev pcsa;
     private final WarningChecker2 wc;
 
     public ControllerCourseSearcher2Builder(WarningChecker2 wc) {
@@ -18,16 +17,11 @@ public class ControllerCourseSearcher2Builder {
 
     public ControllerCourseSearcher2 getController() {
         buildCourseSearchAdapter();
-        buildCourseSearchAdapterPrev();
 
         return new ControllerCourseSearcher2(this.csa, wc);
     }
 
     private void buildCourseSearchAdapter() {
         this.csa = UsableCourseSearcher.getInstance();
-    }
-
-    private void buildCourseSearchAdapterPrev() {
-        this.pcsa = UsableCourseSearcherPrev.getInstance();
     }
 }
