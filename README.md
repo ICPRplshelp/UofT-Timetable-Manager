@@ -1,13 +1,6 @@
-# CSC207 Project - PLEASE MARK THE PHASE 1 BRANCH (CHECK THE BRANCHES)
-
-https://github.com/ICPRplshelp/CSC207Project/tree/phase1only
-PHASE 1 BRANCH HERE
+# CSC207 Project
 
 The name of this project is to be added.
-
-Please do not mark any changes made to the
-project after Phase 1 due date.
-
 
 ## Dependencies
 
@@ -17,7 +10,10 @@ If you seem to be getting errors, ensure that your JDK is Java 18.
 
 ## Running the project
 
-Run the main file inside logincode/interfaceadapters
+Run MainLoop in java/org
+
+For the version with the GUI, run GUIDisplay in java/org/phase2/gui/GUIDisplay
+
 If running Main does not work, you
 may need to edit your run
 configurations such that the
@@ -25,6 +21,10 @@ working directory is set
 to `$MODULE_WORKING_DIR$`.
 Otherwise, exceptions regarding files
 not being found may arise.
+
+Much of the user input is similar to Phase 1, although there have been a few changes.
+
+Most of the work in Phase 2 was implementing the GUI and implementing design patterns and cleaning up code.
 
 ## Definitions
 
