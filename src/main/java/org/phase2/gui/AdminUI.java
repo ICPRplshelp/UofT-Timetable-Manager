@@ -30,6 +30,13 @@ public class AdminUI {
         return mainPanel;
     }
 
+    /**
+     * Saves the state of this program.
+     */
+    private void saveState(){
+        SaveStateController.getInstance().updateSave();
+    }
+
     public AdminUI(ControllerAdmin controller) {
 
         mainPanel.setVisible(true);
@@ -45,6 +52,7 @@ public class AdminUI {
                 } else {
                     error.setText("User not found, or you do not have permission for this action.");
                 }
+                saveState();
             } catch (ParseException ignored) {
                 error.setText("Invalid date format");
             }
@@ -55,6 +63,7 @@ public class AdminUI {
             } else {
                 error.setText("User not found, or you do not have permission for this action.");
             }
+            saveState();
         });
         createAdminButton.addActionListener(e -> {
             if (controller.createNewAdminUser(new String[] {
@@ -64,6 +73,7 @@ public class AdminUI {
             }else{
                 error.setText("User already exists, or you do not have permission for this action.");
             }
+            saveState();
         });
         promoteAdminButton.addActionListener(e -> {
             if (controller.promoteUserToAdmin(promoteAdminField.getText())){
@@ -71,6 +81,7 @@ public class AdminUI {
             } else {
                 error.setText("User not found, or you do not have permission for this action.");
             }
+            saveState();
         });
     }
 }

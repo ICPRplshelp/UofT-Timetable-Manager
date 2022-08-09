@@ -1,6 +1,7 @@
-package org.phase2.gui;
+package org;
 
 
+import org.phase2.gui.LoginUI;
 import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
 import org.phase2.mainloophelpers.ui.GUIObjectPool;
 import org.phase2.objectcreators.uifactories.GUIFactory;

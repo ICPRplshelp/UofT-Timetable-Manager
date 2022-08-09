@@ -1,5 +1,7 @@
 package org.phase2.gui;
 
+import org.example.logincode.controllerspresentersgateways.gateways.StorageLoader;
+import org.example.logincode.usecases.StorageManager;
 import org.phase2.studentrelated.controllers.StudentController;
 
 import javax.swing.*;
@@ -30,6 +32,10 @@ public class StudentUI {
 
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+
+    public void saveState() {
+        SaveStateController.getInstance().updateSave();
     }
 
     public StudentUI(StudentController stc) {
@@ -97,8 +103,11 @@ public class StudentUI {
         });
     }
 
+    /**
+     * Displays the course list and also saves the state of the program.
+     */
     private void displayCourseList() {
-
+        saveState();
         coursesTextArea.setText(
                 joinCollection(stc.getPresenter().getPlannedCourseInfo()));
         pCoursesTextArea.setText(joinCollection(stc.getPresenter().getPassedCourseInfo()));

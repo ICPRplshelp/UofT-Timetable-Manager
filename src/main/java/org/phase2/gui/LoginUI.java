@@ -1,5 +1,6 @@
 package org.phase2.gui;
 
+import org.GUIDisplay;
 import org.phase2.mainloophelpers.controllerspresenters.GUIMAccountLoginPresenter;
 import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
 
