@@ -11,7 +11,7 @@ public class CheckRequisite {
     private final String courseCode;
     private final RequisiteChecker checker;
 
-    CheckRequisite(String code) {
+    public CheckRequisite(String code) {
         checker = new RequisiteChecker();
         courseCode = code;
     }
