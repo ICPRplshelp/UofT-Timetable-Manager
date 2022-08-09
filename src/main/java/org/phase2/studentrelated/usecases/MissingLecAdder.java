@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-class MissingLecAdder implements WarningAdder {
+class MissingLecAdder implements CourseWarningAdder {
     final UsableCourseSearcher plannedSearcher;
 
     final Map<String, Set<String>> planned;

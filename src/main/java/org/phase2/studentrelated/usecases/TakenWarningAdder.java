@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class TakenWarningAdder implements WarningAdder {
+public class TakenWarningAdder implements CourseWarningAdder {
     @Override
     public void addWarnings(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList) {
         for(String crs : planned){

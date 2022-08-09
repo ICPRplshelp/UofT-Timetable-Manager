@@ -1,11 +1,14 @@
 package org.phase2.studentrelated.usecases;
 
+import org.example.timetable.entities.WarningType;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 
 import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
-public class ConflictChecker {
+public class ConflictChecker implements ScheduleWarningAdder {
     public ConflictChecker() {
     }
 
@@ -17,6 +20,18 @@ public class ConflictChecker {
      */
     int ltp(LocalTime lt) {
         return lt.getHour() * 60 + lt.getMinute();
+    }
+
+    @Override
+    public void addWarnings(Set<IScheduleEntry> allScheduleEntries, Map<IScheduleEntry, Set<WarningType>> warningMap){
+        for(IScheduleEntry se : allScheduleEntries){
+            if (checkConflict(se, allScheduleEntries)) {
+                if (!warningMap.containsKey(se)) {
+                    warningMap.put(se, new HashSet<>());
+                }
+                warningMap.get(se).add(WarningType.CONFLICT);
+            }
+        }
     }
 
     /**

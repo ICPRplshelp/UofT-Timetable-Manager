@@ -14,24 +14,30 @@ import java.util.Set;
  * that are causing such problems.
  */
 public class WarningChecker2 {
-    private final WarningAdder requisiteWarningAdder = new RequisiteWarningAdder();
-    private final WarningAdder checkTaken = new TakenWarningAdder();
     private final Map<String, Set<String>> planned;
     private final Set<String> passed;
-    private final WarningAdder fyfWarningAdder = new FYFWarningAdder();
-    private final ConflictChecker conflictChecker = new ConflictChecker();
-    private final DistanceChecker distanceChecker = new DistanceChecker();
-    private final MissingLecAdder missingLecAdder;
+
+    private final ScheduleWarningAdder[] allScheduleWarningAdders;
+    private final CourseWarningAdder[] allWarningAdders;
     private final UsableCourseSearcher plannedSearcher;
     private Map<IScheduleEntry, Set<WarningType>> lastMap = new HashMap<>();
 
     public WarningChecker2(UsableCourseSearcher plannedSearcher,
                            Map<String, Set<String>> planned,
                            Set<String> passed) {
-        this.missingLecAdder = new MissingLecAdder(plannedSearcher, planned);
         this.passed = passed;
         this.plannedSearcher = plannedSearcher;
         this.planned = planned;
+        allWarningAdders = new CourseWarningAdder[]{
+                new RequisiteWarningAdder(),
+                new TakenWarningAdder(),
+                new FYFWarningAdder(),
+                new MissingLecAdder(plannedSearcher, planned)
+        };
+        allScheduleWarningAdders = new ScheduleWarningAdder[] {
+                new ConflictChecker(),
+                new DistanceChecker()
+        };
     }
 
     /**
@@ -75,10 +81,9 @@ public class WarningChecker2 {
      * @param planned1 modified planned course list
      */
     private void addCourseWarningsHelper(Map<String, Set<WarningType>> warnList, Set<String> planned1) {
-        requisiteWarningAdder.addWarnings(planned1, passed, warnList);
-        fyfWarningAdder.addWarnings(planned1, passed, warnList);
-        missingLecAdder.addWarnings(planned1, passed, warnList);
-        checkTaken.addWarnings(planned1, passed, warnList);
+        for(CourseWarningAdder wa : this.allWarningAdders){
+            wa.addWarnings(planned1, passed, warnList);
+        }
     }
 
     /**
@@ -132,29 +137,17 @@ public class WarningChecker2 {
 
     /**
      * Check timetable-related warnings for a set of planned courses.
-     *
+     * <p>
      * Look at the method above to grab its warnings.
      */
     public void checkTimetableWarnings() {
         Map<IScheduleEntry, Set<WarningType>> warningMap = new HashMap<>();
         Set<IScheduleEntry> allScheduleEntries = generateScheduleEntriesAll(planned);
-        for (IScheduleEntry se : allScheduleEntries) {
-            if (conflictChecker.checkConflict(se, allScheduleEntries)) {
-                if (!warningMap.containsKey(se)) {
-                    warningMap.put(se, new HashSet<>());
-                }
-                warningMap.get(se).add(WarningType.CONFLICT);
-            }
-            if (distanceChecker.checkBackToBack(se, allScheduleEntries)) {
-                if (!warningMap.containsKey(se)) {
-                    warningMap.put(se, new HashSet<>());
-                }
-                warningMap.get(se).add(WarningType.DIST);
-            }
+        for(ScheduleWarningAdder is : allScheduleWarningAdders){
+            is.addWarnings(allScheduleEntries, warningMap);
         }
         this.lastMap = warningMap;
     }
-
 
 
     /**

@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-class RequisiteWarningAdder implements WarningAdder {
+class RequisiteWarningAdder implements CourseWarningAdder {
     /**
      * Adds warnings to all courses - that is, requisite warnings.
      *

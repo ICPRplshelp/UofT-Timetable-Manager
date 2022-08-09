@@ -2,11 +2,14 @@ package org.phase2.studentrelated.usecases;
 
 import org.example.requisitechecker.courselocationtracker.usecases.BuildingComparator;
 import org.example.requisitechecker.courselocationtracker.usecases.BuildingStorageConstructor;
+import org.example.timetable.entities.WarningType;
 import org.phase2.studentrelated.presenters.IScheduleEntry;
 
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
-public class DistanceChecker {
+public class DistanceChecker implements ScheduleWarningAdder  {
     final BuildingStorageConstructor buildingStorageConstructor = new BuildingStorageConstructor();
     final BuildingComparator buildingComparator = new BuildingComparator(buildingStorageConstructor.makeAllBuildings());
 
@@ -50,5 +53,17 @@ public class DistanceChecker {
         double higherDist = Math.max(distFall, distWinter);
         // System.out.println(higherDist);
         return higherDist > 650;
+    }
+
+    @Override
+    public void addWarnings(Set<IScheduleEntry> allScheduleEntries, Map<IScheduleEntry, Set<WarningType>> warningMap) {
+        for(IScheduleEntry se : allScheduleEntries){
+            if (checkBackToBack(se, allScheduleEntries)) {
+                if (!warningMap.containsKey(se)) {
+                    warningMap.put(se, new HashSet<>());
+                }
+                warningMap.get(se).add(WarningType.DIST);
+            }
+        }
     }
 }
