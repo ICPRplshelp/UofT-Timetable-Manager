@@ -1,7 +1,5 @@
 package org.phase2.gui;
 
-import org.example.logincode.controllerspresentersgateways.gateways.StorageLoader;
-import org.example.logincode.usecases.StorageManager;
 import org.phase2.studentrelated.controllers.StudentController;
 
 import javax.swing.*;
