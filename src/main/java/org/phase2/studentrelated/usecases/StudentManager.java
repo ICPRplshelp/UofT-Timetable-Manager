@@ -45,7 +45,7 @@ public class StudentManager {
         if (crs.length() > 8) {
             crs = crs.substring(0, 8);
         }
-        System.out.println(crs);
+        // System.out.println(crs);
         Course course = pastSearcher.getCourse(crs);
         if (course == null) {
             return false;
