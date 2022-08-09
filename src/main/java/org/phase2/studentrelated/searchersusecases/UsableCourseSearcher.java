@@ -16,7 +16,6 @@ import java.util.*;
  * This is the one that only tries to look for 20229 courses
  */
 public class UsableCourseSearcher {
-    private final String curSession = "20229";
 
     private static UsableCourseSearcher csa;
 
@@ -45,6 +44,7 @@ public class UsableCourseSearcher {
      * @return the course if it exists, or null otherwise.
      */
     public Course getCourse(String code) {
+        String curSession = "20229";
         return getCourseSearcher().getCourseOfferingByCode(curSession, code);
     }
 

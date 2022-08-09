@@ -11,9 +11,9 @@ import java.util.Map;
 import java.util.Set;
 
 class MissingLecAdder implements WarningAdder {
-    UsableCourseSearcher plannedSearcher;
+    final UsableCourseSearcher plannedSearcher;
 
-    Map<String, Set<String>> planned;
+    final Map<String, Set<String>> planned;
 
     public MissingLecAdder(UsableCourseSearcher ucs,
                            Map<String, Set<String>> planned) {

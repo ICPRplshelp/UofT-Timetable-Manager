@@ -97,10 +97,6 @@ public class StudentController {
         return new StudentPresenter(wc, sm);
     }
 
-    public Map<String, Set<String>> getPlannedCourses() {
-        return sm.getPlannedCourses();
-    }
-
     public Map<Character, Set<IScheduleEntry>> getPlannedCoursesSE() {
         return sm.getPlannedCourseSE();
     }
