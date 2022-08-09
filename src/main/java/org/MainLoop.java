@@ -37,7 +37,7 @@ public class MainLoop {
         UIFactory uiFactory = new UIFactory(username, mAccountLoginValidator);
         UIObjectPool uiObjectPool = new UIObjectPool(uiFactory);
         UICommandList uiCommandList = new UICommandList();
-        MContext context = new MContext(uiFactory, uiObjectPool, uiCommandList, "standard");
+        MContext context = new MContext(uiObjectPool, uiCommandList, "standard");
         String latestCommand;
         context.printGlobalCommands();
         latestCommand = beginLoop(context, uiCommandList);

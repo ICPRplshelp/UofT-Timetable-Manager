@@ -3,26 +3,21 @@ package org;
 import org.example.logincode.uiinput.UIInput2;
 import org.phase2.mainloophelpers.controllerspresenters.UICommandList;
 import org.phase2.mainloophelpers.ui.UIObjectPool;
-import org.phase2.objectcreators.uifactories.UIFactory;
 
 public class MContext {
 
-    private final UIFactory uif;
     private final UIObjectPool op;
     private final UICommandList cmdList;
-    private String curState;
     private UIInput2 curUI;
 
     /**
      * Constructs this class.
      *
-     * @param uif          UIFactory - an instance of it
      * @param op           UIObjectPool - an instance of it
      * @param cmdList      - the presenter that holds the list of commands
      * @param defaultState - the default state to start at, likely standard
      */
-    public MContext(UIFactory uif, UIObjectPool op, UICommandList cmdList, String defaultState) {
-        this.uif = uif;
+    public MContext(UIObjectPool op, UICommandList cmdList, String defaultState) {
         this.op = op;
         this.cmdList = cmdList;
         setState(defaultState);
@@ -58,19 +53,15 @@ public class MContext {
         switch (state.toLowerCase().trim()) {
             case "standard", "std" -> {
                 this.curUI = op.getStandard();
-                curState = "standard";
             }
             case "admin", "adminview", "ad", "adm" -> {
                 this.curUI = op.getAdmin();
-                curState = "admin";
             }
             case "student", "timetable", "ttb", "stu", "stud" -> {
                 this.curUI = op.getStudent();
-                curState = "student";
             }
             case "search", "coursesearch", "sea", "sh", "se" -> {
                 this.curUI = op.getSearch();
-                curState = "search";
             }
             default -> {
                 return false;
