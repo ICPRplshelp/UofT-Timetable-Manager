@@ -85,7 +85,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="CSC110"/>
+              <text value="CSC110Y1"/>
             </properties>
           </component>
           <grid id="1e153" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
