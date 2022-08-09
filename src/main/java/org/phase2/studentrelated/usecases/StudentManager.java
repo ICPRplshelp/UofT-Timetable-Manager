@@ -45,7 +45,7 @@ public class StudentManager {
         if (crs.length() > 8) {
             crs = crs.substring(0, 8);
         }
-        System.out.println(crs);
+        // System.out.println(crs);
         Course course = pastSearcher.getCourse(crs);
         if (course == null) {
             return false;
@@ -65,6 +65,11 @@ public class StudentManager {
         if (course == null) {
             return false;
         }
+
+        if (crs.matches("^[A-Z]{3}\\d{3}[HY]\\d[FYS]$")) {
+            crs = crs.substring(0, crs.length() - 1) + "-" + crs.substring(crs.length() - 1);
+        }
+
         return student.addToPlannedCourses(crs);
     }
 
@@ -75,6 +80,9 @@ public class StudentManager {
      * @return if the course was there and was removed.
      */
     public boolean removeFromPlannedCourses(String crs) {
+        if (crs.matches("^[A-Z]{3}\\d{3}[HY]\\d[FYS]$")) {
+            crs = crs.substring(0, crs.length() - 1) + "-" + crs.substring(crs.length() - 1);
+        }
         return student.removeFromPlannedCourses(crs);
     }
 
@@ -96,12 +104,15 @@ public class StudentManager {
      * Failure reasons include: meetingCode DNE,
      * or meeting DNE.
      *
-     * @param course      the course to add to
+     * @param tempCourse      the course to add to
      * @param meetingCode the meeting code
      * @return whether adding was successful
      */
-    public boolean addMeetingToPlannedCourse(String course, String meetingCode) {
-        Course crs = plannedSearcher.getCourse(course);
+    public boolean addMeetingToPlannedCourse(String tempCourse, String meetingCode) {
+        if (tempCourse.matches("^[A-Z]{3}\\d{3}[HY]\\d[FYS]$")) {
+            tempCourse = tempCourse.substring(0, tempCourse.length() - 1) + "-" + tempCourse.substring(tempCourse.length() - 1);
+        }
+        Course crs = plannedSearcher.getCourse(tempCourse);
         if (crs == null) return false;
         Meetings meetings = crs.getMeetings();
         Set<String> allMeetings = new TreeSet<>();
@@ -111,7 +122,7 @@ public class StudentManager {
             allMeetings.addAll(strings);
         }
         if (allMeetings.contains(meetingCode)) {
-            return student.addMeetingToPlannedCourse(course, meetingCode);
+            return student.addMeetingToPlannedCourse(tempCourse, meetingCode);
         } else return false;
     }
 
@@ -169,7 +180,7 @@ public class StudentManager {
         return toReturn;
     }
 
-    private Set<IScheduleEntry> setUnion(Set<IScheduleEntry> set1, Set<IScheduleEntry> set2){
+    private Set<IScheduleEntry> setUnion(Set<IScheduleEntry> set1, Set<IScheduleEntry> set2) {
         Set<IScheduleEntry> toReturn = new HashSet<>();
         toReturn.addAll(set1);
         toReturn.addAll(set2);

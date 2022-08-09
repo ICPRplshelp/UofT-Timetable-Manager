@@ -41,7 +41,7 @@ class RequisiteWarningAdder implements WarningAdder {
     private void checkRequisiteIssuesForAllCoursesGivenPlannedPassed(Set<String> planned, Set<String> passed, Map<String, Set<WarningType>> warnList, Set<String> passedForS, Set<String> concurrentF, Set<String> concurrentSY) {
         for (String plannedCourse : planned) {
             CheckRequisite checker = new CheckRequisite(plannedCourse);
-
+            // System.out.println(plannedCourse);
             String exclusion = UsableCourseSearcher.getInstance().getCourse(plannedCourse).getExclusion();
             String coreq =     UsableCourseSearcher.getInstance().getCourse(plannedCourse).getCorequisite();
             String prereq =    UsableCourseSearcher.getInstance().getCourse(plannedCourse).getPrerequisite();
