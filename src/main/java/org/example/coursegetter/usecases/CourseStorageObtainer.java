@@ -24,7 +24,7 @@ class CourseStorageObtainer {
      * @return a CourseStorage object holding every FW2022-2023 course.
      */
     public SessionStorage obtainAllCourses() {
-        Set<String> sessions = new HashSet<>(List.of(new String[]{"20195", "20199", "20205", "20209", "20215", "20219", "20225", "20229"}));
+        Set<String> sessions = new HashSet<>(List.of(new String[]{"20219", "20225", "20229"}));
 
         SessionStorage sessionStorage = new SessionStorage();
         for (String session : sessions) {
