@@ -14,12 +14,12 @@ import java.util.Map;
 import java.util.Set;
 
 public class TestFYFWarnings {
-    Student2 stud = new Student2();
-    UsableCourseSearcherPrev usableCourseSearcherPrev = UsableCourseSearcherPrev.getInstance();
-    UsableCourseSearcher usableCourseSearcher = UsableCourseSearcher.getInstance();
-    StudentManager sm = new StudentManager(stud, usableCourseSearcher, usableCourseSearcherPrev);
-    StudentController sc = new StudentController(sm, null, null, null);
-    WarningChecker2 wc = new WarningChecker2(usableCourseSearcher,
+    final Student2 stud = new Student2();
+    final UsableCourseSearcherPrev usableCourseSearcherPrev = UsableCourseSearcherPrev.getInstance();
+    final UsableCourseSearcher usableCourseSearcher = UsableCourseSearcher.getInstance();
+    final StudentManager sm = new StudentManager(stud, usableCourseSearcher, usableCourseSearcherPrev);
+    final StudentController sc = new StudentController(sm, null, null, null);
+    final WarningChecker2 wc = new WarningChecker2(usableCourseSearcher,
             sm.getPlannedCourses(), sm.getPassedCourses());
 
     public void emptyLecTutPraWarnings(Map<String, Set<WarningType>> warns){
