@@ -1,7 +1,7 @@
 package org.example.coursegetter.entities.baseclasses;
 
 import org.jetbrains.annotations.NotNull;
-import org.phase2.studentrelated.presenters.IScheduleEntry;
+import org.example.studentrelated.presenters.IScheduleEntry;
 
 import java.io.Serializable;
 import java.time.DayOfWeek;

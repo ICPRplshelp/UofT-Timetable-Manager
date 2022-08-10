@@ -1,9 +1,9 @@
 package org;
 
 import org.example.logincode.uiinput.UIInput2;
-import org.phase2.mainloophelpers.controllerspresenters.UICommandList;
-import org.phase2.mainloophelpers.ui.UIObjectPool;
-import org.phase2.objectcreators.uifactories.UIFactory;
+import org.example.mainloophelpers.controllerspresenters.UICommandList;
+import org.example.mainloophelpers.ui.UIObjectPool;
+import org.example.objectcreators.uifactories.UIFactory;
 
 public class MContext {
 
