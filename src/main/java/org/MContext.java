@@ -51,18 +51,10 @@ public class MContext {
      */
     public boolean setState(String state) {
         switch (state.toLowerCase().trim()) {
-            case "standard", "std" -> {
-                this.curUI = op.getStandard();
-            }
-            case "admin", "adminview", "ad", "adm" -> {
-                this.curUI = op.getAdmin();
-            }
-            case "student", "timetable", "ttb", "stu", "stud" -> {
-                this.curUI = op.getStudent();
-            }
-            case "search", "coursesearch", "sea", "sh", "se" -> {
-                this.curUI = op.getSearch();
-            }
+            case "standard", "std" -> this.curUI = op.getStandard();
+            case "admin", "adminview", "ad", "adm" -> this.curUI = op.getAdmin();
+            case "student", "timetable", "ttb", "stu", "stud" -> this.curUI = op.getStudent();
+            case "search", "coursesearch", "sea", "sh", "se" -> this.curUI = op.getSearch();
             default -> {
                 return false;
             }
