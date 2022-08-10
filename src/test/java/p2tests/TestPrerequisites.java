@@ -1,4 +1,4 @@
-package p2testsICP;
+package p2tests;
 
 import org.example.timetable.entities.WarningType;
 import org.example.studentrelated.controllers.StudentController;
