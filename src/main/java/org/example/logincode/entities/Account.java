@@ -1,6 +1,6 @@
 package org.example.logincode.entities;
 
-import org.phase2.studentrelated.entities.Student2;
+import org.example.studentrelated.entities.Student2;
 
 import java.io.Serializable;
 

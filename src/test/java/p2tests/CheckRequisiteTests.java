@@ -3,8 +3,8 @@ package p2tests;
 import org.example.coursegetter.entities.baseclasses.Course;
 import org.example.timetable.entities.WarningType;
 import org.junit.Test;
-import org.phase2.studentrelated.searchersusecases.UsableCourseSearcher;
-import org.phase2.studentrelated.usecases.CheckRequisite;
+import org.example.studentrelated.searchersusecases.UsableCourseSearcher;
+import org.example.studentrelated.usecases.CheckRequisite;
 
 import java.util.HashMap;
 import java.util.HashSet;

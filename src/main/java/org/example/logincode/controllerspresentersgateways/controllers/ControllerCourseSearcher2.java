@@ -1,8 +1,8 @@
 package org.example.logincode.controllerspresentersgateways.controllers;
 
 import org.example.timetable.entities.WarningType;
-import org.phase2.studentrelated.searchersusecases.UsableCourseSearcher;
-import org.phase2.studentrelated.usecases.WarningChecker2;
+import org.example.studentrelated.searchersusecases.UsableCourseSearcher;
+import org.example.studentrelated.usecases.WarningChecker2;
 
 import java.util.Map;
 import java.util.Set;

@@ -1,8 +1,8 @@
 package org.example.logincode.uiinput;
 
 import org.example.PresenterPrinter;
-import org.phase2.mainloophelpers.controllerspresenters.UICommandList;
-import org.phase2.studentrelated.controllers.StudentController;
+import org.example.mainloophelpers.controllerspresenters.UICommandList;
+import org.example.studentrelated.controllers.StudentController;
 
 import java.util.Collection;
 
