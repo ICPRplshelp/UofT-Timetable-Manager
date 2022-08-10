@@ -3,12 +3,12 @@ package p2testsICP;
 import org.example.timetable.entities.WarningType;
 import org.junit.Assert;
 import org.junit.Test;
-import org.phase2.studentrelated.controllers.StudentController;
-import org.phase2.studentrelated.entities.Student2;
-import org.phase2.studentrelated.searchersusecases.UsableCourseSearcher;
-import org.phase2.studentrelated.searchersusecases.UsableCourseSearcherPrev;
-import org.phase2.studentrelated.usecases.StudentManager;
-import org.phase2.studentrelated.usecases.WarningChecker2;
+import org.example.studentrelated.controllers.StudentController;
+import org.example.studentrelated.entities.Student2;
+import org.example.studentrelated.searchersusecases.UsableCourseSearcher;
+import org.example.studentrelated.searchersusecases.UsableCourseSearcherPrev;
+import org.example.studentrelated.usecases.StudentManager;
+import org.example.studentrelated.usecases.WarningChecker2;
 
 import java.util.Map;
 import java.util.Set;

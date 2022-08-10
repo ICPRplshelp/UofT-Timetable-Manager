@@ -2,7 +2,7 @@ package org.example.logincode.uiinput;
 
 import org.example.PresenterPrinter;
 import org.example.logincode.controllerspresentersgateways.controllers.ControllerCourseSearcher2;
-import org.phase2.mainloophelpers.controllerspresenters.UICommandList;
+import org.example.mainloophelpers.controllerspresenters.UICommandList;
 
 import java.util.Set;
 

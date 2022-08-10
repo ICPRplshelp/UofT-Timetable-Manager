@@ -1,7 +1,7 @@
 package org.example.coursegetter.entities.baseclasses;
 
 import org.jetbrains.annotations.NotNull;
-import org.phase2.studentrelated.presenters.ICourse;
+import org.example.studentrelated.presenters.ICourse;
 
 import java.io.Serializable;
 

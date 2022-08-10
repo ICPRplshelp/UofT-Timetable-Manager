@@ -3,11 +3,11 @@ package org;
 import org.example.PresenterPrinter;
 import org.example.logincode.uiinput.InputParserClass;
 import org.jetbrains.annotations.NotNull;
-import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginPresenter;
-import org.phase2.mainloophelpers.controllerspresenters.MAccountLoginValidator;
-import org.phase2.mainloophelpers.controllerspresenters.UICommandList;
-import org.phase2.mainloophelpers.ui.UIObjectPool;
-import org.phase2.objectcreators.uifactories.UIFactory;
+import org.example.mainloophelpers.controllerspresenters.MAccountLoginPresenter;
+import org.example.mainloophelpers.controllerspresenters.MAccountLoginValidator;
+import org.example.mainloophelpers.controllerspresenters.UICommandList;
+import org.example.mainloophelpers.ui.UIObjectPool;
+import org.example.objectcreators.uifactories.UIFactory;
 
 /**
  * This class is responsible for the main loop. Now how are we going
