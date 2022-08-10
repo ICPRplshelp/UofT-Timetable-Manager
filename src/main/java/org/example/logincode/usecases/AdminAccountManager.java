@@ -41,7 +41,13 @@ public class AdminAccountManager {
         return false;  // no perms
     }
 
-
+    /**
+     * Adds a permission to a user.
+     *
+     * @param username the user to add a permission to
+     * @param permission the permission to add
+     * @return whether the adding was successful.
+     */
     public boolean addPermission(String username, String permission) {
         if (account.getPermissions().hasPerm("admin")) {
             if (!storageManager.checkAccountExists(username)) {
@@ -58,6 +64,13 @@ public class AdminAccountManager {
         }
     }
 
+    /**
+     * Bans a user.
+     *
+     * @param username the user to ban
+     * @param unbanDate the date which the user will be banned until
+     * @return whether the action was successful.
+     */
     public boolean banUser(String username, Date unbanDate) {
         if (account.getPermissions().hasPerm("canBanUser")) {
             if (!storageManager.checkAccountExists(username)) {

@@ -25,6 +25,11 @@ public class StorageLoader implements IGateway {
     public StorageLoader() {
     }
 
+    /**
+     * Attempts to load from the ser storage.
+     * @param filepath the file to load.
+     * @return the accountStorage retrieved from the file.
+     */
     public AccountStorage attemptLoad(String filepath) throws IOException, ClassNotFoundException {
         FileInputStream fileIn = new FileInputStream(filepath);
         ObjectInputStream in = new ObjectInputStream(fileIn);
