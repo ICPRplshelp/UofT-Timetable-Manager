@@ -16,6 +16,14 @@ public class DistanceChecker implements ScheduleWarningAdder  {
     public DistanceChecker() {
     }
 
+    /**
+     * Checks whether a course occurs back-to-back to any of the other scheduled courses.
+     * This means one course's end time is the same as the other's
+     * start time.
+     * @param se the schedule entries of the course.
+     * @param allScheduleEntries all other scheduled entries of the other courses.
+     * @return whether there is any course which occurs back to back with the main SE.
+     */
     boolean checkBackToBack(IScheduleEntry se, Set<IScheduleEntry> allScheduleEntries) {
         char sesCode = se.getCourseCode().charAt(se.getCourseCode().length() - 1);
         for (IScheduleEntry se2 : allScheduleEntries) {
