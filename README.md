@@ -10,9 +10,9 @@ If you seem to be getting errors, ensure that your JDK is Java 18.
 
 ## Running the project
 
-Run MainLoop in java/org
+Run MainLoop in example
 
-For the version with the GUI, run GUIDisplay in java/org/phase2/gui/GUIDisplay
+For the version with the GUI, run GUIDisplay in example/gui/GUIDisplay
 
 If running Main does not work, you
 may need to edit your run
