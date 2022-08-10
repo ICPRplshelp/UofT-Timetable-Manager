@@ -1,6 +1,6 @@
 package org;
 
-import org.example.logincode.uiinput.UIInput2;
+import org.example.logincode.uiinput.UIInput;
 import org.example.mainloophelpers.controllerspresenters.UICommandList;
 import org.example.mainloophelpers.ui.UIObjectPool;
 
@@ -8,7 +8,7 @@ public class MContext {
 
     private final UIObjectPool op;
     private final UICommandList cmdList;
-    private UIInput2 curUI;
+    private UIInput curUI;
 
     /**
      * Constructs this class.
@@ -51,18 +51,10 @@ public class MContext {
      */
     public boolean setState(String state) {
         switch (state.toLowerCase().trim()) {
-            case "standard", "std" -> {
-                this.curUI = op.getStandard();
-            }
-            case "admin", "adminview", "ad", "adm" -> {
-                this.curUI = op.getAdmin();
-            }
-            case "student", "timetable", "ttb", "stu", "stud" -> {
-                this.curUI = op.getStudent();
-            }
-            case "search", "coursesearch", "sea", "sh", "se" -> {
-                this.curUI = op.getSearch();
-            }
+            case "standard", "std" -> this.curUI = op.getStandard();
+            case "admin", "adminview", "ad", "adm" -> this.curUI = op.getAdmin();
+            case "student", "timetable", "ttb", "stu", "stud" -> this.curUI = op.getStudent();
+            case "search", "coursesearch", "sea", "sh", "se" -> this.curUI = op.getSearch();
             default -> {
                 return false;
             }

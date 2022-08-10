@@ -3,12 +3,12 @@ package org.example.logincode.uiinput;
 import org.example.PresenterPrinter;
 import org.example.mainloophelpers.controllerspresenters.UICommandList;
 
-public abstract class UIInput2 {
+public abstract class UIInput {
     private final PresenterPrinter prt;
     protected final UICommandList cmdList;
 
-    public UIInput2(PresenterPrinter prt,
-                    UICommandList cmdList) {
+    public UIInput(PresenterPrinter prt,
+                   UICommandList cmdList) {
         this.prt = prt;
         this.cmdList = cmdList;
     }

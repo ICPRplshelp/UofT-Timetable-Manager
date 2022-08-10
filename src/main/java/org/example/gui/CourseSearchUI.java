@@ -1,6 +1,6 @@
 package org.example.gui;
 
-import org.example.logincode.controllerspresentersgateways.controllers.ControllerCourseSearcher2;
+import org.example.logincode.controllerspresentersgateways.controllers.ControllerCourseSearcher;
 
 import javax.swing.*;
 import java.util.Set;
@@ -22,7 +22,7 @@ public class CourseSearchUI extends JPanel {
 
     private JButton meetingButton;
 
-    public CourseSearchUI(ControllerCourseSearcher2 ccs2) {
+    public CourseSearchUI(ControllerCourseSearcher ccs2) {
 
         mainPanel.setVisible(true);
         searchCoursesButton.addActionListener(e -> {

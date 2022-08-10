@@ -33,15 +33,11 @@ public class AccountStorage implements Serializable {
      * will not be added.
      *
      * @param account the information about the account
-     * @return whether the account addition was successful
      */
-    public boolean addAccount(Account account) {
+    public void addAccount(Account account) {
         String username = account.getUsername();
         if (!accounts.containsKey(username)) {
             accounts.put(username, account);
-            return true;
-        } else {
-            return false;
         }
     }
 

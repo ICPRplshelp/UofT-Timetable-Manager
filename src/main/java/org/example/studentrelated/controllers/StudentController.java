@@ -6,7 +6,7 @@ import org.example.htmltables.TableOrganizer;
 import org.example.studentrelated.presenters.IScheduleEntry;
 import org.example.studentrelated.presenters.StudentPresenter;
 import org.example.studentrelated.usecases.StudentManager;
-import org.example.studentrelated.usecases.WarningChecker2;
+import org.example.studentrelated.usecases.WarningChecker;
 
 import java.util.Map;
 import java.util.Set;
@@ -16,13 +16,13 @@ public class StudentController {
     private final StudentManager sm;
     private final TableOrganizer fTable;
     private final TableOrganizer sTable;
-    private final WarningChecker2 wc;
+    private final WarningChecker wc;
 
 
     public StudentController(StudentManager sm,
                              TableOrganizer fTable,
                              TableOrganizer sTable,
-                             WarningChecker2 wc) {
+                             WarningChecker wc) {
         this.sm = sm;
         this.fTable = fTable;
         this.sTable = sTable;

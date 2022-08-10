@@ -1,6 +1,6 @@
 package org.example.mainloophelpers.ui;
 
-import org.example.logincode.uiinput.UIInput2;
+import org.example.logincode.uiinput.UIInput;
 import org.example.objectcreators.uifactories.UIFactory;
 
 /**
@@ -15,7 +15,7 @@ public class UIObjectPool {
      * Gets the specified UIInput.
      * Guaranteed to not be null (I hope?)
      */
-    public UIInput2 getAdmin() {
+    public UIInput getAdmin() {
         if (admin == null) admin = uif.getInputAdmin();
         return admin;
     }
@@ -24,7 +24,7 @@ public class UIObjectPool {
      * Gets the specified UIInput.
      * Guaranteed to not be null (I hope?)
      */
-    public UIInput2 getStandard() {
+    public UIInput getStandard() {
         if (standard == null) standard = uif.getInputStandard();
         return standard;
     }
@@ -33,7 +33,7 @@ public class UIObjectPool {
      * Gets the specified UIInput.
      * Guaranteed to not be null (I hope?)
      */
-    public UIInput2 getSearch() {
+    public UIInput getSearch() {
         if (search == null) search = uif.getInputCourseSearch();
         return search;
     }
@@ -42,15 +42,15 @@ public class UIObjectPool {
      * Gets the specified UIInput.
      * Guaranteed to not be null (I hope?)
      */
-    public UIInput2 getStudent() {
+    public UIInput getStudent() {
         if (student == null) student = uif.getInputStudent();
         return student;
     }
 
-    private UIInput2 admin;
-    private UIInput2 standard;
-    private UIInput2 search;
-    private UIInput2 student;
+    private UIInput admin;
+    private UIInput standard;
+    private UIInput search;
+    private UIInput student;
 
     public UIObjectPool(UIFactory uif) {
         this.uif = uif;

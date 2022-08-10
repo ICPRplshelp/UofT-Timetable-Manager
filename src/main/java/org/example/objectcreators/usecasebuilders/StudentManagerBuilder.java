@@ -3,14 +3,14 @@ package org.example.objectcreators.usecasebuilders;
 import org.example.logincode.entities.Account;
 import org.example.logincode.entities.AccountStorage;
 import org.example.logincode.usecases.StorageManager;
-import org.example.studentrelated.entities.Student2;
+import org.example.studentrelated.entities.Student;
 import org.example.studentrelated.searchersusecases.UsableCourseSearcher;
 import org.example.studentrelated.searchersusecases.UsableCourseSearcherPrev;
 import org.example.studentrelated.usecases.StudentManager;
 
 public class StudentManagerBuilder {
 
-    private final Student2 student;
+    private final Student student;
 
     private UsableCourseSearcher plannedSearcher;
     private UsableCourseSearcherPrev pastSearcher;

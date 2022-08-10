@@ -18,20 +18,20 @@ public class UIFactory {
         this.cmdl = new UICommandList();
     }
 
-    public UIInput2 getInputAdmin() {
-        return new UIInputAdmin2(prt, cf.getControllerAdmin(), cmdl);
+    public UIInput getInputAdmin() {
+        return new UIInputAdmin(prt, cf.getControllerAdmin(), cmdl);
     }
 
-    public UIInput2 getInputCourseSearch() {
-        return new UIInputCourseSearch2(prt, cf.getSearchController(), cmdl);
+    public UIInput getInputCourseSearch() {
+        return new UIInputCourseSearch(prt, cf.getSearchController(), cmdl);
     }
 
-    public UIInput2 getInputStandard() {
-        return new UIInputStandard2(prt, cf.getControllerStandard(), cmdl);
+    public UIInput getInputStandard() {
+        return new UIInputStandard(prt, cf.getControllerStandard(), cmdl);
     }
 
-    public UIInput2 getInputStudent() {
-        return new UIInputStudent2(prt, cf.getStudentController(), cmdl);
+    public UIInput getInputStudent() {
+        return new UIInputStudent(prt, cf.getStudentController(), cmdl);
     }
 
 }

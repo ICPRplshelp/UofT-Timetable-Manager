@@ -4,35 +4,29 @@ import org.example.timetable.entities.WarningType;
 import org.junit.Assert;
 import org.junit.Test;
 import org.example.studentrelated.controllers.StudentController;
-import org.example.studentrelated.entities.Student2;
+import org.example.studentrelated.entities.Student;
 import org.example.studentrelated.searchersusecases.UsableCourseSearcher;
 import org.example.studentrelated.searchersusecases.UsableCourseSearcherPrev;
 import org.example.studentrelated.usecases.StudentManager;
-import org.example.studentrelated.usecases.WarningChecker2;
+import org.example.studentrelated.usecases.WarningChecker;
 
 import java.util.Map;
 import java.util.Set;
 
 public class TestFYFWarnings {
-    final Student2 stud = new Student2();
+    final Student stud = new Student();
     final UsableCourseSearcherPrev usableCourseSearcherPrev = UsableCourseSearcherPrev.getInstance();
     final UsableCourseSearcher usableCourseSearcher = UsableCourseSearcher.getInstance();
     final StudentManager sm = new StudentManager(stud, usableCourseSearcher, usableCourseSearcherPrev);
     final StudentController sc = new StudentController(sm, null, null, null);
-    final WarningChecker2 wc = new WarningChecker2(usableCourseSearcher,
+    final WarningChecker wc = new WarningChecker(usableCourseSearcher,
             sm.getPlannedCourses(), sm.getPassedCourses());
 
     public void emptyLecTutPraWarnings(Map<String, Set<WarningType>> warns){
         for (Set<WarningType> warnSet : warns.values()) {
-            if (warnSet.contains(WarningType.MISSING_LEC)) {
-                warnSet.remove(WarningType.MISSING_LEC);
-            }
-            if (warnSet.contains(WarningType.MISSING_TUT)) {
-                warnSet.remove(WarningType.MISSING_TUT);
-            }
-            if (warnSet.contains(WarningType.MISSING_PRA)) {
-                warnSet.remove(WarningType.MISSING_PRA);
-            }
+            warnSet.remove(WarningType.MISSING_LEC);
+            warnSet.remove(WarningType.MISSING_TUT);
+            warnSet.remove(WarningType.MISSING_PRA);
         }
     }
 

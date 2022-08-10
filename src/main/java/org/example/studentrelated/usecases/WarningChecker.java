@@ -13,7 +13,7 @@ import java.util.Set;
  * The warning checker does not need to pinpoint the courses
  * that are causing such problems.
  */
-public class WarningChecker2 {
+public class WarningChecker {
     private final Map<String, Set<String>> planned;
     private final Set<String> passed;
 
@@ -22,9 +22,9 @@ public class WarningChecker2 {
     private final UsableCourseSearcher plannedSearcher;
     private Map<IScheduleEntry, Set<WarningType>> lastMap = new HashMap<>();
 
-    public WarningChecker2(UsableCourseSearcher plannedSearcher,
-                           Map<String, Set<String>> planned,
-                           Set<String> passed) {
+    public WarningChecker(UsableCourseSearcher plannedSearcher,
+                          Map<String, Set<String>> planned,
+                          Set<String> passed) {
         this.passed = passed;
         this.plannedSearcher = plannedSearcher;
         this.planned = planned;

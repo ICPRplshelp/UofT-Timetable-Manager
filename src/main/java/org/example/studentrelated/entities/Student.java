@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * This class represents a student.
  */
-public class Student2 implements Serializable {
+public class Student implements Serializable {
 
     /**
      * Items are course codes.

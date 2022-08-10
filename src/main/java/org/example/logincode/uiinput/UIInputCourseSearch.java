@@ -1,17 +1,17 @@
 package org.example.logincode.uiinput;
 
 import org.example.PresenterPrinter;
-import org.example.logincode.controllerspresentersgateways.controllers.ControllerCourseSearcher2;
+import org.example.logincode.controllerspresentersgateways.controllers.ControllerCourseSearcher;
 import org.example.mainloophelpers.controllerspresenters.UICommandList;
 
 import java.util.Set;
 
-public class UIInputCourseSearch2 extends UIInput2 {
+public class UIInputCourseSearch extends UIInput {
 
-    private final ControllerCourseSearcher2 ccs2;
+    private final ControllerCourseSearcher ccs2;
 
-    public UIInputCourseSearch2(PresenterPrinter prt, ControllerCourseSearcher2 ccs2,
-                                UICommandList cmdl) {
+    public UIInputCourseSearch(PresenterPrinter prt, ControllerCourseSearcher ccs2,
+                               UICommandList cmdl) {
         super(prt, cmdl);
         this.ccs2 = ccs2;
     }
