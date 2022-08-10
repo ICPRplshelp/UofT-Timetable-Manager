@@ -24,15 +24,9 @@ public class TestFYFWarnings {
 
     public void emptyLecTutPraWarnings(Map<String, Set<WarningType>> warns){
         for (Set<WarningType> warnSet : warns.values()) {
-            if (warnSet.contains(WarningType.MISSING_LEC)) {
-                warnSet.remove(WarningType.MISSING_LEC);
-            }
-            if (warnSet.contains(WarningType.MISSING_TUT)) {
-                warnSet.remove(WarningType.MISSING_TUT);
-            }
-            if (warnSet.contains(WarningType.MISSING_PRA)) {
-                warnSet.remove(WarningType.MISSING_PRA);
-            }
+            warnSet.remove(WarningType.MISSING_LEC);
+            warnSet.remove(WarningType.MISSING_TUT);
+            warnSet.remove(WarningType.MISSING_PRA);
         }
     }
 
