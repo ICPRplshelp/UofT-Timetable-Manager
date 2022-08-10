@@ -7,6 +7,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * This class may be used to:
+ * - Return a list of all courses whose course offering code contains a given keyword
+ * <p>
+ * This class may not be used to look up information about any individual course
+ */
 public class CourseSearcherByKeyword {
 
     private final CourseSearcherIndividual csi;
@@ -26,13 +32,13 @@ public class CourseSearcherByKeyword {
         List<Course> courseList = filterCourseNames(keyword, session);
         Collections.sort(courseList);
 
-        List<String> courseCodes = new ArrayList<>();
+        List<String> courseOfferings = new ArrayList<>();
 
         for (Course course : courseList) {
-            courseCodes.add(course.getOfferingCode());
+            courseOfferings.add(course.getOfferingCode());
         }
 
-        return courseCodes;
+        return courseOfferings;
     }
 
     private List<Course> filterCourseNames(String keyword, String session) {
@@ -40,9 +46,9 @@ public class CourseSearcherByKeyword {
 
         Set<String> allCourseOfferings = csi.getAllCoursesOfferingList(session);
 
-        for (String code : allCourseOfferings) {
-            if (code.startsWith(keyword)) {
-                coursesSoFar.add(csi.getCourseOfferingByCode(session, code));
+        for (String offering : allCourseOfferings) {
+            if (offering.startsWith(keyword)) {
+                coursesSoFar.add(csi.getCourseOfferingByCode(session, offering));
             }
         }
         return coursesSoFar;
