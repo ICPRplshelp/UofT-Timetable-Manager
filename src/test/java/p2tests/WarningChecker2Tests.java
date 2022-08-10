@@ -1,5 +1,6 @@
 package p2tests;
 
+import org.example.studentrelated.presenters.IScheduleEntry;
 import org.example.timetable.entities.WarningType;
 import org.junit.Test;
 import org.example.studentrelated.controllers.StudentController;
@@ -76,8 +77,8 @@ public class WarningChecker2Tests {
         Set<WarningType> warn = new HashSet<>();
         warn.add(WarningType.CONFLICT);
 
-        for (int i = 0; i < wc.getLastMap().size(); i++) {
-            assertEquals(wc.getLastMap().get(wc.getLastMap().keySet().toArray()[i]), warn);
+        for (IScheduleEntry entry: wc.getLastMap().keySet()) {
+            assertEquals(warn, wc.getLastMap().get(entry));
         }
     }
 
@@ -101,8 +102,8 @@ public class WarningChecker2Tests {
         Set<WarningType> warn = new HashSet<>();
         warn.add(WarningType.CONFLICT);
 
-        for (int i = 0; i < wc.getLastMap().size(); i++) {
-            assertEquals(wc.getLastMap().get(wc.getLastMap().keySet().toArray()[i]), warn);
+        for (IScheduleEntry entry: wc.getLastMap().keySet()) {
+            assertEquals(warn, wc.getLastMap().get(entry));
         }
     }
 
@@ -124,8 +125,8 @@ public class WarningChecker2Tests {
         Set<WarningType> warn = new HashSet<>();
         warn.add(WarningType.CONFLICT);
 
-        for (int i = 0; i < wc.getLastMap().size(); i++) {
-            assertEquals(wc.getLastMap().get(wc.getLastMap().keySet().toArray()[i]), warn);
+        for (IScheduleEntry entry: wc.getLastMap().keySet()) {
+            assertEquals(warn, wc.getLastMap().get(entry));
         }
     }
 
@@ -147,8 +148,8 @@ public class WarningChecker2Tests {
         Set<WarningType> warn = new HashSet<>();
         warn.add(WarningType.CONFLICT);
 
-        for (int i = 0; i < wc.getLastMap().size(); i++) {
-            assertEquals(wc.getLastMap().get(wc.getLastMap().keySet().toArray()[i]), warn);
+        for (IScheduleEntry entry: wc.getLastMap().keySet()) {
+            assertEquals(warn, wc.getLastMap().get(entry));
         }
     }
 
@@ -170,8 +171,8 @@ public class WarningChecker2Tests {
         Set<WarningType> warn = new HashSet<>();
         warn.add(WarningType.CONFLICT);
 
-        for (int i = 0; i < wc.getLastMap().size(); i++) {
-            assertEquals(wc.getLastMap().get(wc.getLastMap().keySet().toArray()[i]), warn);
+        for (IScheduleEntry entry: wc.getLastMap().keySet()) {
+            assertEquals(warn, wc.getLastMap().get(entry));
         }
     }
 
@@ -193,8 +194,8 @@ public class WarningChecker2Tests {
         Set<WarningType> warn = new HashSet<>();
         warn.add(WarningType.CONFLICT);
 
-        for (int i = 0; i < wc.getLastMap().size(); i++) {
-            assertEquals(wc.getLastMap().get(wc.getLastMap().keySet().toArray()[i]), warn);
+        for (IScheduleEntry entry: wc.getLastMap().keySet()) {
+            assertEquals(warn, wc.getLastMap().get(entry));
         }
     }
 
@@ -258,8 +259,8 @@ public class WarningChecker2Tests {
         Set<WarningType> warn = new HashSet<>();
         warn.add(WarningType.DIST);
 
-        for (int i = 0; i < wc.getLastMap().size(); i++) {
-            assertEquals(wc.getLastMap().get(wc.getLastMap().keySet().toArray()[i]), warn);
+        for (IScheduleEntry entry: wc.getLastMap().keySet()) {
+            assertEquals(warn, wc.getLastMap().get(entry));
         }
     }
 
@@ -281,8 +282,8 @@ public class WarningChecker2Tests {
         Set<WarningType> warn = new HashSet<>();
         warn.add(WarningType.DIST);
 
-        for (int i = 0; i < wc.getLastMap().size(); i++) {
-            assertEquals(wc.getLastMap().get(wc.getLastMap().keySet().toArray()[i]), warn);
+        for (IScheduleEntry entry: wc.getLastMap().keySet()) {
+            assertEquals(warn, wc.getLastMap().get(entry));
         }
     }
 
