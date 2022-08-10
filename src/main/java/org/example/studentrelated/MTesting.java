@@ -2,13 +2,13 @@ package org.example.studentrelated;
 
 import org.example.htmltables.TableOrganizer;
 import org.example.studentrelated.controllers.StudentController;
-import org.example.studentrelated.entities.Student2;
+import org.example.studentrelated.entities.Student;
 import org.example.studentrelated.presenters.IScheduleEntry;
 import org.example.studentrelated.presenters.StudentPresenter;
 import org.example.studentrelated.searchersusecases.UsableCourseSearcher;
 import org.example.studentrelated.searchersusecases.UsableCourseSearcherPrev;
 import org.example.studentrelated.usecases.StudentManager;
-import org.example.studentrelated.usecases.WarningChecker2;
+import org.example.studentrelated.usecases.WarningChecker;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -16,12 +16,12 @@ import java.util.Set;
 
 public class MTesting {
     public static void main(String[] args) {
-        Student2 stud = new Student2();
+        Student stud = new Student();
         UsableCourseSearcherPrev usableCourseSearcherPrev = UsableCourseSearcherPrev.getInstance();
         UsableCourseSearcher usableCourseSearcher = UsableCourseSearcher.getInstance();
         StudentManager sm = new StudentManager(stud, usableCourseSearcher, usableCourseSearcherPrev);
         StudentController sc = new StudentController(sm, null, null, null);
-        WarningChecker2 wc = new WarningChecker2(usableCourseSearcher,
+        WarningChecker wc = new WarningChecker(usableCourseSearcher,
                 sm.getPlannedCourses(), sm.getPassedCourses());
         StudentPresenter studentPresenter = new StudentPresenter(wc, sm);
         sc.addCourse("MAT257Y1-Y");

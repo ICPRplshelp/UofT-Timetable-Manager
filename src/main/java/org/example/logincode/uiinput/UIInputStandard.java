@@ -4,13 +4,13 @@ import org.example.PresenterPrinter;
 import org.example.logincode.controllerspresentersgateways.controllers.ControllerStandard;
 import org.example.mainloophelpers.controllerspresenters.UICommandList;
 
-public class UIInputStandard2 extends UIInput2 {
+public class UIInputStandard extends UIInput {
 
     private final ControllerStandard cs;
     private final PresenterPrinter prt = new PresenterPrinter();
 
-    public UIInputStandard2(PresenterPrinter prt, ControllerStandard cs,
-                            UICommandList cmdl) {
+    public UIInputStandard(PresenterPrinter prt, ControllerStandard cs,
+                           UICommandList cmdl) {
         super(prt, cmdl);
         this.cs = cs;
     }

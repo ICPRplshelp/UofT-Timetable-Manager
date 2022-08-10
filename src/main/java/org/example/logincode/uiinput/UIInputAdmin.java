@@ -9,12 +9,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class UIInputAdmin2 extends UIInput2 {
+public class UIInputAdmin extends UIInput {
 
     private final ControllerAdmin controller;
 
-    public UIInputAdmin2(PresenterPrinter prt, ControllerAdmin controller,
-                         UICommandList cmdl) {
+    public UIInputAdmin(PresenterPrinter prt, ControllerAdmin controller,
+                        UICommandList cmdl) {
         super(prt, cmdl);
         this.controller = controller;
     }

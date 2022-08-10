@@ -2,7 +2,7 @@ package org.example.htmltables;
 
 import org.example.timetable.entities.WarningType;
 import org.example.studentrelated.presenters.IScheduleEntry;
-import org.example.studentrelated.usecases.WarningChecker2;
+import org.example.studentrelated.usecases.WarningChecker;
 
 import java.util.*;
 
@@ -10,7 +10,7 @@ public class TableOrganizer {
 
     private final char fallWinter;
     private final TableGenerator tableGenerator = new TableGenerator();
-    private final WarningChecker2 wc;
+    private final WarningChecker wc;
     /**
      * Initiates this class, which is used to organize and
      * create the HTML output of a student's timetable.
@@ -20,7 +20,7 @@ public class TableOrganizer {
      *                   Default "S"
      */
     public TableOrganizer(char fallWinter,
-                          WarningChecker2 wc) {
+                          WarningChecker wc) {
         this.fallWinter = fallWinter;
         this.wc = wc;
     }

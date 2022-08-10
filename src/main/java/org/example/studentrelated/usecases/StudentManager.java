@@ -2,7 +2,7 @@ package org.example.studentrelated.usecases;
 
 import org.example.coursegetter.entities.baseclasses.Course;
 import org.example.coursegetter.entities.baseclasses.Meetings;
-import org.example.studentrelated.entities.Student2;
+import org.example.studentrelated.entities.Student;
 import org.example.studentrelated.presenters.IScheduleEntry;
 import org.example.studentrelated.searchersusecases.UsableCourseSearcher;
 import org.example.studentrelated.searchersusecases.UsableCourseSearcherPrev;
@@ -15,7 +15,7 @@ import java.util.*;
 public class StudentManager {
     private final UsableCourseSearcher plannedSearcher;
     private final UsableCourseSearcherPrev pastSearcher;
-    private final Student2 student;
+    private final Student student;
 
     /**
      * Constructs this class.
@@ -25,7 +25,7 @@ public class StudentManager {
      * @param pastSearcher    a course searcher than can obtain courses for the sessions 20199 - 20229, going for the
      *                        latest session possible
      */
-    public StudentManager(Student2 student, UsableCourseSearcher plannedSearcher, UsableCourseSearcherPrev pastSearcher) {
+    public StudentManager(Student student, UsableCourseSearcher plannedSearcher, UsableCourseSearcherPrev pastSearcher) {
         this.student = student;
         this.plannedSearcher = plannedSearcher;
         this.pastSearcher = pastSearcher;

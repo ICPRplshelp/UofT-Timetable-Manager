@@ -6,12 +6,12 @@ import org.example.studentrelated.controllers.StudentController;
 
 import java.util.Collection;
 
-public class UIInputStudent2 extends UIInput2 {
+public class UIInputStudent extends UIInput {
 
     private final StudentController stc;
 
 
-    public UIInputStudent2(PresenterPrinter prt, StudentController stc, UICommandList cmdl) {
+    public UIInputStudent(PresenterPrinter prt, StudentController stc, UICommandList cmdl) {
 
         super(prt, cmdl);
         this.stc = stc;

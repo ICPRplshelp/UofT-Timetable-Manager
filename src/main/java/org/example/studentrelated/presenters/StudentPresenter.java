@@ -2,17 +2,17 @@ package org.example.studentrelated.presenters;
 
 import org.example.timetable.entities.WarningType;
 import org.example.studentrelated.usecases.StudentManager;
-import org.example.studentrelated.usecases.WarningChecker2;
+import org.example.studentrelated.usecases.WarningChecker;
 
 import java.util.*;
 
 public class StudentPresenter {
-    private final WarningChecker2 warningChecker;
+    private final WarningChecker warningChecker;
     private final StudentManager sm;
     private final WarningPresenter wp = new WarningPresenter();
 
 
-    public StudentPresenter(WarningChecker2 warningChecker, StudentManager sm) {
+    public StudentPresenter(WarningChecker warningChecker, StudentManager sm) {
         this.warningChecker = warningChecker;
         this.sm = sm;
     }

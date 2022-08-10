@@ -2,19 +2,19 @@ package org.example.logincode.controllerspresentersgateways.controllers;
 
 import org.example.timetable.entities.WarningType;
 import org.example.studentrelated.searchersusecases.UsableCourseSearcher;
-import org.example.studentrelated.usecases.WarningChecker2;
+import org.example.studentrelated.usecases.WarningChecker;
 
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-public class ControllerCourseSearcher2 {
+public class ControllerCourseSearcher {
 
     private final UsableCourseSearcher csa;
-    private final WarningChecker2 wc;
-    public ControllerCourseSearcher2(UsableCourseSearcher csa,
-                                     WarningChecker2 wc) {
+    private final WarningChecker wc;
+    public ControllerCourseSearcher(UsableCourseSearcher csa,
+                                    WarningChecker wc) {
         this.wc = wc;
         this.csa = csa;
     }

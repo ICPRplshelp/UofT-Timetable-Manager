@@ -1,6 +1,6 @@
 package org;
 
-import org.example.logincode.uiinput.UIInput2;
+import org.example.logincode.uiinput.UIInput;
 import org.example.mainloophelpers.controllerspresenters.UICommandList;
 import org.example.mainloophelpers.ui.UIObjectPool;
 
@@ -8,7 +8,7 @@ public class MContext {
 
     private final UIObjectPool op;
     private final UICommandList cmdList;
-    private UIInput2 curUI;
+    private UIInput curUI;
 
     /**
      * Constructs this class.

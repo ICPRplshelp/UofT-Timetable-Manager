@@ -1,14 +1,14 @@
 package org.example.objectcreators.controllerfactories;
 
 import org.example.logincode.controllerspresentersgateways.controllers.ControllerAdmin;
-import org.example.logincode.controllerspresentersgateways.controllers.ControllerCourseSearcher2;
+import org.example.logincode.controllerspresentersgateways.controllers.ControllerCourseSearcher;
 import org.example.logincode.controllerspresentersgateways.controllers.ControllerStandard;
 import org.example.logincode.usecases.StorageManager;
 import org.example.mainloophelpers.controllerspresenters.MAccountLoginValidator;
 import org.example.objectcreators.usecasebuilders.StudentManagerBuilder;
 import org.example.studentrelated.controllers.StudentController;
 import org.example.studentrelated.usecases.StudentManager;
-import org.example.studentrelated.usecases.WarningChecker2;
+import org.example.studentrelated.usecases.WarningChecker;
 
 public class ControllerFactory {
 
@@ -18,8 +18,8 @@ public class ControllerFactory {
     private ControllerAdmin controllerAdmin;
     private ControllerStandard controllerStandard;
     private StudentController studentController;
-    private ControllerCourseSearcher2 controllerCourseSearcher2;
-    private WarningChecker2 wc;
+    private ControllerCourseSearcher controllerCourseSearcher;
+    private WarningChecker wc;
 
     public ControllerFactory(String username, MAccountLoginValidator malv) {
         this.sm = malv.getStorageManager();
@@ -69,10 +69,10 @@ public class ControllerFactory {
      *
      * @return the respective controller. It is never null.
      */
-    public ControllerCourseSearcher2 getSearchController() {
-        if (this.controllerCourseSearcher2 == null)
+    public ControllerCourseSearcher getSearchController() {
+        if (this.controllerCourseSearcher == null)
             buildSearchController();
-        return this.controllerCourseSearcher2;
+        return this.controllerCourseSearcher;
     }
 
     /**
@@ -108,10 +108,10 @@ public class ControllerFactory {
      * Gets the warning checker.
      * @return the warning checker. It is never null.
      */
-    private WarningChecker2 getWarningChecker() {
+    private WarningChecker getWarningChecker() {
         StudentManager manager = getStudentManager();
         if (this.wc == null) {
-            this.wc = new WarningChecker2(manager.getCSA(),
+            this.wc = new WarningChecker(manager.getCSA(),
                     manager.getPlannedCourses(), manager.getPassedCourses());
         }
         return this.wc;
@@ -141,8 +141,8 @@ public class ControllerFactory {
      * it as an instance attribute.
      */
     private void buildSearchController() {
-        ControllerCourseSearcher2Builder searcher2builder = new ControllerCourseSearcher2Builder(
+        ControllerCourseSearcherBuilder searcher2builder = new ControllerCourseSearcherBuilder(
                 getWarningChecker());
-        this.controllerCourseSearcher2 = searcher2builder.getController();
+        this.controllerCourseSearcher = searcher2builder.getController();
     }
 }
