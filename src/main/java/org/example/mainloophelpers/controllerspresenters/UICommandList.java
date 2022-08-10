@@ -7,7 +7,7 @@ package org.example.mainloophelpers.controllerspresenters;
 public class UICommandList {
 
     public String getStudent() {
-        String student = """
+        return """
                 STUDENT COMMANDS - THE SLASH IS OPTIONAL
                             
                 /add <course code with -F/-S/-Y suffix>
@@ -39,11 +39,10 @@ public class UICommandList {
                 Paste this to some HTML visualizer.
                 Aliases: /tt
                 """;
-        return student;
     }
 
     public String getAdmin() {
-        String admin = """
+        return """
                 ADMIN COMMANDS - THE SLASH IS OPTIONAL
                 ALL COMMANDS WILL FAIL IF YOU ARE NOT AN ADMIN.
                             
@@ -59,11 +58,10 @@ public class UICommandList {
                 /promote <username>
                 Promotes an existing user to admin. Fails if username DNE.
                 """;
-        return admin;
     }
 
     public String getCourseSearch() {
-        String courseSearch = """
+        return """
                 SEARCH COMMANDS - THE SLASH IS OPTIONAL
                             
                 /search <keyword>
@@ -76,22 +74,20 @@ public class UICommandList {
                 Prints out all courses offered in F/W 2022-2023 that will not result in issues in taking
                 them (follows prerequisites, corequisites, exclusions, and so on)
                 """;
-        return courseSearch;
     }
 
     public String getStandard() {
-        String standardCommands = """
+        return """
                 STANDARD COMMANDS - THE SLASH IS OPTIONAL
                             
                 /history
                 Prints the history log of your logins.
                             
                 """;
-        return standardCommands;
     }
 
     public String getGlobalCommands() {
-        String globalCommands = """
+        return """
                 GLOBAL COMMANDS - REMEMBER THEM!
                             
                 /switchto <mode: admin (ad) | search (se/sh/sea) | standard (std) | student (stu)>
@@ -104,7 +100,6 @@ public class UICommandList {
                 /exit
                 Exits the program.
                 """;
-        return globalCommands;
     }
 
     // for each of the four methods above, run and print them
