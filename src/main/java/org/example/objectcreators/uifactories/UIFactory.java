@@ -18,18 +18,46 @@ public class UIFactory {
         this.cmdl = new UICommandList();
     }
 
+    /**
+     * Obtains the respective UI Input.
+     * Uses the ControllerAdmin instance
+     * obtained from ControllerFactory
+     *
+     * @return the respective UI Input.
+     */
     public UIInput getInputAdmin() {
         return new UIInputAdmin(prt, cf.getControllerAdmin(), cmdl);
     }
 
+    /**
+     * Obtains the respective UI Input.
+     * Uses the ControllerCourseSearch instance
+     * obtained from ControllerFactory
+     *
+     * @return the respective UI Input.
+     */
     public UIInput getInputCourseSearch() {
         return new UIInputCourseSearch(prt, cf.getSearchController(), cmdl);
     }
 
+    /**
+     * Obtains the respective UI Input.
+     * Uses the ControllerStandard instance
+     * obtained from ControllerFactory
+     *
+     * @return the respective UI Input.
+     */
     public UIInput getInputStandard() {
         return new UIInputStandard(prt, cf.getControllerStandard(), cmdl);
     }
 
+    /**
+     * Obtains the respective UI Input.
+     * Uses the StudentController instance
+     * obtained from ControllerFactory
+     *
+     * @return the respective UI Input.
+     */
     public UIInput getInputStudent() {
         return new UIInputStudent(prt, cf.getStudentController(), cmdl);
     }
