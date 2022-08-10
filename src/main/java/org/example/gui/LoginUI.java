@@ -63,14 +63,14 @@ public class LoginUI {
     public String loginCommand(String cmd){
         switch (cmd){
             case "login" -> {
-                if(validateAccountSignIn(usernameTextField.getText(), Arrays.toString(passwordPasswordField.getPassword()))){
+                if(validateAccountSignIn(usernameTextField.getText(), new String(passwordPasswordField.getPassword()))){
                     return usernameTextField.getText();
                 }else{
                     return null;
                 }
             }
             case "register" -> {
-                if(mAccountLoginValidator.registerUser(usernameTextField.getText(), Arrays.toString(passwordPasswordField.getPassword()))){
+                if(mAccountLoginValidator.registerUser(usernameTextField.getText(), new String(passwordPasswordField.getPassword()))){
                     return usernameTextField.getText();
                 }else {
                     return null;
