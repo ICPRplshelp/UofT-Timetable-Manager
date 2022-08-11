@@ -117,7 +117,11 @@ public class MainLoop {
             case "register" -> {
                 boolean registerState = mAccountLoginValidator.registerUser(ipc.getArg(1), ipc.getArg(2));
                 mAccountLoginPresenter.registerState(registerState);
-                return ipc.getArg(1);
+                if (registerState){
+                    return ipc.getArg(1);
+                } else {
+                    return null;
+                }
             }
         }
         return null;
