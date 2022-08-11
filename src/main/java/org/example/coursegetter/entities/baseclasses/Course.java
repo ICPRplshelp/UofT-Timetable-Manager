@@ -1,11 +1,9 @@
 package org.example.coursegetter.entities.baseclasses;
 
 import org.jetbrains.annotations.NotNull;
-import org.example.studentrelated.presenters.ICourse;
-
 import java.io.Serializable;
 
-public class Course implements Comparable<Course>, Serializable, ICourse {
+public class Course implements Comparable<Course>, Serializable {
     public BreadthRequirement brc;
     private double creditValue;
     private String code;
