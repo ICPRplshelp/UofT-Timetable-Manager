@@ -1,6 +1,7 @@
-# CSC207 Project
+# UofT Timetable Manager
 
-The name of this project is to be added, maybe until the day this project goes public.
+This is a Java app that allows users to plan for courses whilst catching as many issues as possible,
+so they don't enroll in a course they can't take by mistake.
 
 ## Dependencies
 
@@ -34,3 +35,7 @@ Moreover, the program won't be able to properly load courses if you don't.
 Much of the user input is similar to Phase 1, although there have been a few changes.
 
 Most of the work in Phase 2 was implementing the GUI and implementing design patterns and cleaning up code.
+
+## Screenshots
+
+![](.README_images/6a1de7c7.png)
