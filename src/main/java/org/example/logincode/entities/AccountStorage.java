@@ -9,23 +9,14 @@ import java.util.Map;
  */
 public class AccountStorage implements Serializable {
     private final Map<String, Account> accounts;
-    private static AccountStorage as;
 
 
     /**
      * Construct a new AccountStorage with no accounts.
      */
-    private AccountStorage() {
+    public AccountStorage() {
         this.accounts = new HashMap<>();
     }
-
-    public static AccountStorage getInstance() {
-        if (as == null){
-            as = new AccountStorage();
-        }
-        return as;
-    }
-
 
     /**
      * Tries to add the account to the storage.

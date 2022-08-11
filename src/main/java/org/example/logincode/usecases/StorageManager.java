@@ -37,9 +37,8 @@ public class StorageManager {
 
         }
 
-
         if (this.getAccountStorage() == null) {
-            accountStorage = AccountStorage.getInstance();
+            accountStorage = new AccountStorage();
         }
     }
 
