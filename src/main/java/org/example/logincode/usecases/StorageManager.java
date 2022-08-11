@@ -9,12 +9,12 @@ import java.util.logging.Logger;
 public class StorageManager {
     private static final Logger LOGGER = Logger.getLogger(StorageManager.class.getName());
 
-    private static AccountStorage accountStorage;
-    public static IGateway loadedStorage;
+    private AccountStorage accountStorage;
+    public IGateway loadedStorage;
     private static StorageManager sm;
 
     public static StorageManager getInstance(IGateway loadedStorage) {
-        if (accountStorage == null) {
+        if (sm == null) {
             sm = new StorageManager(loadedStorage);
         }
         return sm;
@@ -25,10 +25,10 @@ public class StorageManager {
 
 
     private StorageManager(IGateway loadedStorage) {
-        StorageManager.loadedStorage = loadedStorage;
+        this.loadedStorage = loadedStorage;
 
         try {
-            accountStorage = StorageManager.loadedStorage.attemptLoad("accountInformation.ser");
+            accountStorage = this.loadedStorage.attemptLoad("accountInformation.ser");
         } catch (IOException e) {
             LOGGER.log(Level.WARNING, "Couldn't load anything (ignore if first time). Double check, in your run configurations, that the current working directory is $MODULE_WORKING_DIR$ and not anything else.");
 
