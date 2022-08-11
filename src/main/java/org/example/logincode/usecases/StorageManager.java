@@ -10,7 +10,7 @@ public class StorageManager {
     private static final Logger LOGGER = Logger.getLogger(StorageManager.class.getName());
 
     private AccountStorage accountStorage;
-    public IGateway loadedStorage;
+    public final IGateway loadedStorage;
     private static StorageManager sm;
 
     public static StorageManager getInstance(IGateway loadedStorage) {
