@@ -256,8 +256,7 @@ build and return the respective controllers.
 
 ### Builder - 2
 
-For construction of the Course classes, we didn’t exactly use a Builder
-design pattern, but used something similar. We wanted to move the long,
+For construction of the Course classes, we used a Builder. We wanted to move the long,
 clunky, and somewhat irrelevant constructor logic from the actual Course
 class and put it elsewhere in the CourseBuilder and
 CourseBuilderDirector classes, which cleaned up the Course class.
