@@ -3,6 +3,8 @@
 This is a Java app that allows users to plan for courses whilst catching as many issues as possible,
 so they don't enroll in a course they can't take by mistake.
 
+NOTE: design.pdf doesn't seem to open on certain browsers, try Chrome
+
 ## Dependencies
 
 This project uses **Java 18.**
