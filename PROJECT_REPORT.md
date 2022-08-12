@@ -265,12 +265,12 @@ its own class. (4a4a5ad6, e0da0032)
 ### Factory
 
 There are two factory classes, one for controllers and one for UI
-inputs. `ControllerFactory`` `gets the controllers from the builder
+inputs. `ControllerFactory` gets the controllers from the builder
 classes, and the UI input factory uses the controllers from
-`ControllerFactory`` `to build and return UI inputs. Both factories have
+`ControllerFactory` to build and return UI inputs. Both factories have
 separate methods for each type of object they are returning, instead of
 one method that can return multiple types of objects. It is particularly
-useful for `ControllerFactory`` `because the controller classes have
+useful for `ControllerFactory` because the controller classes have
 different functions and don’t inherit from one superclass. (1f0e3ee3)
 (f7edb392)
 
@@ -280,7 +280,7 @@ There are multiple singleton classes, such as `StorageManager`,
 `SaveStateController`, `UsableCourseSearcher`, and
 `UsableCourseSearcherPrev`. Each singleton class has a static field
 which stores an instance of itself, and a static method
-`getInstance``()` which returns that instance. This was useful for
+`getInstance()` which returns that instance. This was useful for
 classes which only needed one instance throughout the program, such as
 certain classes that do not rely on specific account information.
 (79ade8d2) (93ad0474) (a65878a0)
