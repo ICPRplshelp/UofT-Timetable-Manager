@@ -17,7 +17,7 @@ that. There are two ways to run this program:
 
 -   The main method in the class `GUIDisplay` for the GUI version of
     this app (example/gui/GUIDisplay), but there’s a class called
-    `RunGUIDisplay`` `that calls the main method of `GUIDisplay`.
+    `RunGUIDisplay` that calls the main method of `GUIDisplay`.
 
 -   The main method in the class `MainLoop` for the CLI version of this
     app
@@ -139,7 +139,7 @@ Decisions implemented in phase 2:
 
 -   No class should break the dependency rule (over two down or opposite
     direction), and it’s easier to abide by the rule using dependency
-    inversion. Note that `ScheduleEntry`` `is the only entity that has
+    inversion. Note that `ScheduleEntry` is the only entity that has
     an interface, and not `Course` (it would violate the interface
     segregation principle if an interface was extracted from `Course`).
     Due to the internal information from each `Course` object not being
