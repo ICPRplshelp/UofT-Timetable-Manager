@@ -468,8 +468,7 @@ unable to due to the project’s tight deadline.
     -   Corrected Storage Manager to properly use the singleton design
         pattern (aa8845611bbb46ac848b78d7108d5522e571e25d)
 
-    -   Used a builder class (or at least something similar to a
-        builder) to create Course instances
+    -   Used a builder class to move the long unnecessary construction logic from the Course instances
         (e0da0032e65df6deb70c5c2e92879fff6dfa31ce)
 
     -   Worked on conflict checker
