@@ -291,7 +291,7 @@ certain classes that do not rely on specific account information.
 
 No entity is supposed to be a singleton class.
 
-## Design patterns we decided not to use
+## Design patterns we decided not to use, or antipatterns present
 
 Here are the list of design patterns that we may not have used fully,
 and our reasons for doing so:
@@ -317,6 +317,11 @@ applying DI to in order to limit the number of methods in its public
 interface, but then, that breaks the interface segregation principle and
 doesn’t prevent others from tampering with the internal structure of the
 class.
+
+### Course having a lot of public methods that are exclusive to its builder
+
+Extracting a public interface for `Course` would break the interface segegration principle. Alternatively, I could
+just keep the constructor logic in `Course` as well, but like always APIs change.
 
 ## Instances of major refactoring
 
