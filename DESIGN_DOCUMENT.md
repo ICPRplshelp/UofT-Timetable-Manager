@@ -1,4 +1,4 @@
-# UofT Timetable Manager - Project Report
+# UofT Timetable Manager - Design Document
 
 The report of this project is placed here.
 
