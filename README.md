@@ -11,6 +11,10 @@ If you seem to be getting errors, ensure that your JDK is Java 18.
 
 Maven manages these dependencies, so you don't need to worry about installing external packages.
 
+## Sources
+
+The information for all courses is sourced from this link: [Here](https://timetable.iit.artsci.utoronto.ca/api/20229/courses?org=&section=F,S,Y)
+
 ## Running the project
 
 Please read the section below before running this for the first time.
