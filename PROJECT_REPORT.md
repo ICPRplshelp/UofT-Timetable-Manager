@@ -520,23 +520,25 @@ unable to due to the project’s tight deadline.
 
 -   **Carol (Caspian-9):**
 
-    -   Builders for all the controller classes (`1699746`)
+    -   Created factory class for all the controller classes, including 
+        ControllerStandard, ControllerAdmin, ControllerCourseSearcher, and StudentController (`1699746`)
 
-    -   Builders for use case classes the controllers depend on
+    -   Created factory class for UI inputs (`1f0e3ee`)
+
+    -   Created builder classes for all the controller classes to return the corresponding controller objects (`1699746`)
+
+    -   Created builder classes for use case classes the controllers depend on, including StudentManager
         (`1699746`)
 
-    -   Factory for controllers (`1699746`)
+    -   Make CourseSearcherAdapter and CourseSearcherAdapterPrev singleton (`285c5cc`)
 
-    -   Factory for UI inputs (`1f0e3ee`)
-
-    -   Make CourseSearcherAdapter and CourseSearcherAdapterPrev
-        singleton (`285c5cc`)
-
-    -   The planned courses list in the student window in the GUI
+    -   Added the planned courses list in the student window in the GUI
         (`785a4c0`)
 
-    -   Separate buttons for viewing the fall term and winter term
+    -   Implemented buttons in the GUI for viewing the fall term and winter term timetables in the student window
         timetables (`785a4c0`)
+
+    -   Testing and general bug fixing
 
     -   Javadocs for the above classes (`9c7b962`)
 
