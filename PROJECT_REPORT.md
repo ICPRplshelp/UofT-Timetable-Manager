@@ -190,7 +190,7 @@ Exclusive to phase 2:
     cells, course cells, and so on. *(97f1a44)*
     Note: this isn't an abstract class because I don't need any inheritance, 
     other than for the purpose of default values. 
-    This was originally called `Cellable`, but the working was awkward.
+    This was originally called `Cellable`, but the wording was awkward.
 
 ## All design patterns
 
