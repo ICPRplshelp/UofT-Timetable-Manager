@@ -144,7 +144,7 @@ Decisions implemented in phase 2:
     segregation principle if an interface was extracted from `Course`).
     Due to the internal information from each `Course` object not being
     used, only the course code can be presented to the screen, and
-    nothing more specific than that. **TODO**
+    nothing more specific than that. (1618da)
 
 -   The original controllers (for each major section) were split.
     Originally, the UI part and the controller implementation were in
@@ -161,7 +161,8 @@ Included in phase 1:
     act as nested structures, multiple classes that inherit from the
     same superclass have been created to help act as subtrees to the
     requisite tree that has to be built for each course. It works
-    similarly to abstract syntax trees. **TODO**
+    similarly to abstract syntax trees. The prerequisite checker
+    implements the composite design pattern to an extent. `(d55ae6a)`
 
 Exclusive to phase 2:
 
@@ -186,7 +187,10 @@ Exclusive to phase 2:
     implementing it to have an HTML representation, which is useful for
     generating the HTML timetable in the GUI. We needed multiple classes
     inheriting from it as we needed a way to represent blank timetable
-    cells, course cells, and so on. **TODO**
+    cells, course cells, and so on. *(97f1a44)*
+    Note: this isn't an abstract class because I don't need any inheritance, 
+    other than for the purpose of default values. 
+    This was originally called `Cellable`, but the working was awkward.
 
 ## All design patterns
 
