@@ -31,6 +31,9 @@ public class DistanceChecker implements ScheduleWarningAdder  {
             if ((sesCode != 'Y' && sesCode2 != 'Y') && sesCode != sesCode2) {
                 continue;
             }
+            if(!se.getDay().equals(se2.getDay())){
+                continue;
+            }
             if (!se.getStartTime().equals(se2.getEndTime())) {
                 continue;
             }
