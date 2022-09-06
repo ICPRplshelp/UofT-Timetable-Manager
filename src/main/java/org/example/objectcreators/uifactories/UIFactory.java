@@ -12,7 +12,7 @@ public class UIFactory {
     private final PresenterPrinter prt;
     private final UICommandList cmdl;
 
-    public UIFactory(String username, MAccountLoginValidator malv) {
+   public UIFactory(String username, MAccountLoginValidator malv) {
         this.cf = new ControllerFactory(username, malv);
         this.prt = new PresenterPrinter();
         this.cmdl = new UICommandList();
