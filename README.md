@@ -1,11 +1,9 @@
 # UofT Timetable Manager
 
 This is a Java app that allows users to plan for courses whilst catching as many issues as possible,
-so they don't enroll in a course they can't take by mistake.
+so they don't enroll in a course they can't take by mistake. This project was done as part of the CSC207H1 course project offered by UofT. No further updates for this project are planned at this time.
 
-NOTE: design.pdf doesn't seem to open on certain browsers, try Chrome
-
-## Dependencies
+## Requirements and Dependencies
 
 This project uses **Java 18.**
 I'm unsure if it is backwards compatible.
@@ -35,12 +33,6 @@ Then, you may subsequently run the program like normal.
 Otherwise, exceptions regarding files
 not being found may arise.
 Moreover, the program won't be able to properly load courses if you don't.
-
-## Additional information
-
-Much of the user input is similar to Phase 1, although there have been a few changes.
-
-Most of the work in Phase 2 was implementing the GUI and implementing design patterns and cleaning up code.
 
 ## Screenshots
 
