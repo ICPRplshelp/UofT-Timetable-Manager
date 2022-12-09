@@ -17,13 +17,19 @@ The information for all courses is sourced from this link: [Here](https://timeta
 
 ## Running the project
 
-Please read the section below before running this for the first time.
+Please read the section below before running this for the first time. This is not a compiled program, so you must use IntelliJ to run this.
 
 - Run `MainLoop` in `src/main/java/org/` for the command-line version of this program.
 
 - Run `RunGUIDisplay` in the same path above for the GUI version of this program.
 
 ## Important information regarding running this program for the  first time
+
+Firstly, you must mark the folder in blue in this screenshot as sources root (this makes the folder blue).
+
+![image](https://user-images.githubusercontent.com/93059453/206634131-8298f316-61a5-4263-a401-650849e4a646.png)
+
+Then:
 
 After running your program once, you must stop the program and edit your run
 configurations such that the
